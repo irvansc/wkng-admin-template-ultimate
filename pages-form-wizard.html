@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wizards & Flows - Daily Admin</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+
+    <link rel="stylesheet" href="assets/css/core.css" />
+    <link rel="stylesheet" href="assets/css/utilities.css" />
+    <link rel="stylesheet" href="assets/css/layout.css" />
+    <link rel="stylesheet" href="assets/css/components.css" />
+
+    <style>
+        /* CSS Tambahan Khusus Halaman Ini (Logic State) */
+        .step-pane {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .step-pane.active {
+            display: block;
+        }
+
+        /* Transisi Smooth untuk Progress */
+        .circle-prog-wrapper {
+            transition: --val 0.5s ease-out;
+            /* Note: Animasi var CSS butuh definisi @property di CSS modern */
+        }
+    </style>
+</head>
+
+<body>
+    <header class="app-header">
+        <div class="header-left-actions">
+            <button class="header-icon-btn mobile-toggle-btn" id="mobileToggle">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+            <div class="mobile-search-bar" id="mobileSearchBar">
+                <i class="fa-solid fa-magnifying-glass search-icon-mobile"></i>
+                <input type="text" class="mobile-search-input" placeholder="Search anything..."
+                    id="mobileSearchInput" />
+                <button class="mobile-search-close" id="mobileSearchClose">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="logo desktop-only">
+            <i class="fa-solid fa-code" style="color: var(--text-main)"></i>
+            <span>daily.dev</span>
+        </div>
+        <div id="horizontal-menu-container" class="desktop-only" style="flex: 1; margin-left: 20px">
+        </div>
+        <div class="search-wrapper search-wrapper-inline desktop-only">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <input type="text" class="search-input" placeholder="Search..." id="searchInputInline">
+            <div class="search-shortcut">Ctrl K</div>
+        </div>
+
+        <div class="header-right-actions">
+
+            <button class="header-icon-btn" id="searchTrigger" title="Search" style="display: none;">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+
+        </div>
+
+        <div class="search-overlay" id="searchOverlay">
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass search-box-icon"></i>
+                <input type="text" class="search-box-input" placeholder="Search pages..." id="searchInputFloating">
+                <button class="search-box-close" id="searchClose">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="header-right">
+            <div class="notification-wrapper">
+                <button class="header-icon-btn" id="notifTrigger" title="Notifications">
+                    <i class="fa-regular fa-bell"></i>
+                    <div class="notification-dot"></div>
+                </button>
+
+                <div class="notification-dropdown" id="notifDropdown">
+                    <div class="notif-header">
+                        <h4>
+                            Notifications
+                            <span class="badge badge-danger"
+                                style="margin-left: 8px; font-size: 10px; padding: 2px 6px">4
+                                New</span>
+                        </h4>
+                        <span class="notif-mark-read">Mark all as read</span>
+                    </div>
+
+                    <div class="notif-list">
+                        <div class="notif-item unread">
+                            <div class="notif-icon-box error">
+                                <i class="fa-solid fa-circle-exclamation"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Server Connection Failed</h5>
+                                <p>
+                                    Could not sync data with main server. Please check your API
+                                    Key configuration.
+                                </p>
+                                <span class="notif-time">2 minutes ago</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item unread">
+                            <div class="notif-icon-box success">
+                                <i class="fa-solid fa-check-double"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Project Exported</h5>
+                                <p>
+                                    Your dashboard layout "Q3 Report" has been successfully
+                                    exported to PDF.
+                                </p>
+                                <span class="notif-time">1 hour ago</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item">
+                            <div class="notif-icon-box warning">
+                                <i class="fa-solid fa-triangle-exclamation"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Storage Usage High</h5>
+                                <p>
+                                    You have used 85% of your allocated cloud storage. Consider
+                                    upgrading.
+                                </p>
+                                <span class="notif-time">Yesterday at 4:30 PM</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item">
+                            <div class="notif-icon-box info">
+                                <i class="fa-solid fa-circle-info"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>New Feature Available</h5>
+                                <p>
+                                    Dark mode is now customizable. Check settings for more
+                                    themes.
+                                </p>
+                                <span class="notif-time">2 days ago</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="notif-footer">View All Notifications</div>
+                </div>
+            </div>
+
+            <div class="profile-wrapper">
+                <img src="https://i.pravatar.cc/150?img=12" alt="Profile" class="user-img header-icon-btn"
+                    id="profileTrigger" />
+
+                <div class="profile-dropdown" id="profileDropdown">
+                    <div class="pd-header">
+                        <img src="https://i.pravatar.cc/150?img=12" class="pd-avatar" />
+                        <div class="pd-info">
+                            <h4>Irvan Maulana</h4>
+                            <span>@irvanmaulana</span>
+                        </div>
+                    </div>
+                    <div class="pd-menu-list">
+                        <a href="pages-profile.html" class="pd-menu-item"><i class="fa-regular fa-user"></i> Your
+                            profile</a>
+                    </div>
+                    <div class="pd-divider"></div>
+                    <div class="pd-theme-toggle">
+                        <span>Theme</span>
+                        <div class="theme-options">
+                            <div class="theme-opt active" id="themeDark">
+                                <i class="fa-solid fa-moon"></i>
+                            </div>
+                            <div class="theme-opt" id="themeLight">
+                                <i class="fa-solid fa-sun"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pd-divider"></div>
+                    <div class="pd-menu-list">
+                        <a class="pd-menu-item text-muted"><i class="fa-solid fa-arrow-right-from-bracket"></i>
+                            Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="app-body-wrapper">
+        <div class="app-body">
+            <div id="sidebar-container"></div>
+
+            <main class="main-content" id="mainContent">
+
+                <div class="page-header-card">
+                    <div class="header-hero-content">
+                        <h1 class="hero-title">Interactive Wizards</h1>
+                        <p class="hero-desc">
+                            Demonstrasi komponen interaktif: Stepper Form, Progress Visualizer, dan Action Confirmation.
+                        </p>
+                    </div>
+                    <nav class="hero-breadcrumb">
+                        <div class="home-icon-box"><i class="fa-solid fa-home"></i></div>
+
+                        <span class="breadcrumb-sep"><i class="fa-solid fa-chevron-right"></i></span>
+                        <a href="index.html" class="breadcrumb-link">Dashboard</a>
+                        <span class="breadcrumb-sep"><i class="fa-solid fa-chevron-right"></i></span>
+                        <span class="breadcrumb-link active">Wizards & Flows</span>
+                    </nav>
+                </div>
+
+                <div class="content-grid">
+
+                    <div class="col-span-12">
+                        <div class="section-title simple">
+                            <div class="section-line"></div>
+                            <div class="section-badge"><i class="fa-solid fa-shoe-prints"></i> 1. Stepper Wizard</div>
+                            <div class="section-line"></div>
+                        </div>
+
+                        <div class="card p-4">
+                            <div class="step-container">
+                                <div class="step-item active" id="stepInd1">
+                                    <div class="step-circle">1</div>
+                                    <span class="step-text">Account</span>
+                                </div>
+                                <div class="step-item" id="stepInd2">
+                                    <div class="step-circle">2</div>
+                                    <span class="step-text">Personal</span>
+                                </div>
+                                <div class="step-item" id="stepInd3">
+                                    <div class="step-circle">3</div>
+                                    <span class="step-text">Review</span>
+                                </div>
+                            </div>
+
+                            <hr class="border-dashed my-4">
+
+                            <form id="wizardForm" onsubmit="return false;">
+
+                                <div class="step-pane active" id="stepPane1">
+                                    <h4 class="mb-3">Account Details</h4>
+                                    <div class="row g-3">
+                                        <div class="col-12 col-md-6">
+                                            <label class="form-label">Username</label>
+                                            <input type="text" class="form-control" placeholder="johndoe"
+                                                id="inputUsername">
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <label class="form-label">Email</label>
+                                            <input type="email" class="form-control" placeholder="john@example.com">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="step-pane" id="stepPane2">
+                                    <h4 class="mb-3">Personal Information</h4>
+                                    <div class="row g-3">
+                                        <div class="col-12">
+                                            <label class="form-label">Full Address</label>
+                                            <textarea class="form-control" rows="2"></textarea>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <label class="form-label">Phone Number</label>
+                                            <input type="tel" class="form-control" placeholder="+62 812...">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="step-pane" id="stepPane3">
+                                    <div class="text-center py-4">
+                                        <div class="mb-3">
+                                            <i class="fa-solid fa-clipboard-check text-success"
+                                                style="font-size: 48px;"></i>
+                                        </div>
+                                        <h5>Ready to Submit?</h5>
+                                        <p class="text-muted">Please review your data before continuing.</p>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex justify-between mt-4">
+                                    <button type="button" class="btn btn-ghost" id="btnPrev" disabled
+                                        onclick="changeStep(-1)">
+                                        <i class="fa-solid fa-arrow-left"></i> Back
+                                    </button>
+
+                                    <button type="button" class="btn btn-primary" id="btnNext" onclick="changeStep(1)">
+                                        Next <i class="fa-solid fa-arrow-right"></i>
+                                    </button>
+
+                                    <button type="button" class="btn btn-success d-none" id="btnFinish"
+                                        onclick="finishWizard()">
+                                        Submit Data <i class="fa-solid fa-check"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="col-span-6 col-md-12">
+                        <div class="section-title simple">
+                            <div class="section-line"></div>
+                            <div class="section-badge"><i class="fa-solid fa-spinner"></i> 2. Progress Wizard</div>
+                            <div class="section-line"></div>
+                        </div>
+
+                        <div class="card p-4 h-100">
+                            <div class="d-flex align-center justify-between mb-4">
+                                <h5 class="card-title">Task Completion</h5>
+                                <span class="badge badge-soft-primary" id="progText">0% Completed</span>
+                            </div>
+
+                            <div class="row align-center">
+                                <div class="col-5 text-center">
+                                    <div class="circle-prog-wrapper" id="circleProg" style="--val: 0deg">
+                                        <div class="circle-prog-inner">
+                                            <span class="circle-prog-val" id="circleVal">0%</span>
+                                            <span class="circle-prog-label">Loading</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-7">
+                                    <label class="form-label text-xs">File Upload Progress</label>
+                                    <div class="prog-container md mb-4">
+                                        <div class="prog-bar striped" id="linearProg" style="width: 0%"></div>
+                                    </div>
+
+                                    <div class="d-grid gap-2">
+                                        <button class="btn btn-sm btn-outline-primary" onclick="simulateProgress()">
+                                            <i class="fa-solid fa-play"></i> Start Simulation
+                                        </button>
+                                        <button class="btn btn-sm btn-ghost" onclick="resetProgress()">
+                                            <i class="fa-solid fa-rotate-left"></i> Reset
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-span-6 col-md-12">
+                        <div class="section-title simple">
+                            <div class="section-line"></div>
+                            <div class="section-badge"><i class="fa-solid fa-triangle-exclamation"></i> 3. Confirmation
+                                Flow</div>
+                            <div class="section-line"></div>
+                        </div>
+
+                        <div class="card p-4 h-100 bg-soft-danger border-danger border-dashed">
+                            <div class="text-center py-3">
+                                <div class="mb-3">
+                                    <div class="btn-icon bg-white text-danger mx-auto rounded-circle shadow-sm"
+                                        style="width: 60px; height: 60px;">
+                                        <i class="fa-solid fa-trash-can" style="font-size: 24px;"></i>
+                                    </div>
+                                </div>
+                                <h5 class="text-danger">Delete Sensitive Data</h5>
+                                <p class="text-muted text-sm mb-4">
+                                    Tindakan ini memerlukan konfirmasi ganda melalui modal dialog.
+                                </p>
+                                <button class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
+                                    Delete Account
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <footer class="app-footer mt-5">
+                    <div class="footer-left">
+                        <span class="footer-logo-icon"><i class="fa-solid fa-code"></i></span>
+                        <span>&copy; 2025 <strong>Daily.dev</strong>. UI Components Demo.</span>
+                    </div>
+                </footer>
+
+            </main>
+        </div>
+    </div>
+
+    <div class="modal-backdrop" id="deleteModal">
+        <div class="modal-panel status-modal">
+            <div class="modal-status-icon danger">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+            <h3 class="modal-title mb-2">Are you sure?</h3>
+            <p class="text-muted mb-4">
+                You are about to delete <strong>User Account</strong>. This action cannot be undone.
+            </p>
+            <div class="d-flex justify-center gap-3">
+                <button class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button class="btn btn-danger" id="btnConfirmDelete" onclick="executeDelete()">
+                    Yes, Delete It
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="sidebar-overlay desktop-only" id="sidebarOverlay"></div>
+    <div id="settings-container"></div>
+
+    <script src="assets/js/core.js"></script>
+
+    <script>
+        /* =========================================
+           1. LOGIKA STEPPER WIZARD
+           ========================================= */
+        let currentStep = 1;
+        const totalSteps = 3;
+
+        function changeStep(direction) {
+            const nextStep = currentStep + direction;
+
+            // Validasi Sederhana di Step 1
+            if (currentStep === 1 && direction === 1) {
+                const username = document.getElementById('inputUsername').value;
+                if (!username) {
+                    if (window.Toast) window.Toast.fire({ type: 'error', title: 'Error', message: 'Username is required!' });
+                    else alert('Username required');
+                    return; // Stop
+                }
+            }
+
+            // Batas Langkah
+            if (nextStep < 1 || nextStep > totalSteps) return;
+
+            // Update UI Langkah Sekarang -> Langkah Selanjutnya
+            // 1. Hide Current Pane
+            document.getElementById(`stepPane${currentStep}`).classList.remove('active');
+
+            // 2. Update Indicator (Current jadi Completed atau Active)
+            const currInd = document.getElementById(`stepInd${currentStep}`);
+            if (direction === 1) {
+                currInd.classList.remove('active');
+                currInd.classList.add('completed');
+            } else {
+                currInd.classList.remove('active');
+            }
+
+            // 3. Pindah State
+            currentStep = nextStep;
+
+            // 4. Show New Pane
+            document.getElementById(`stepPane${currentStep}`).classList.add('active');
+
+            // 5. Update Indicator Baru
+            const nextInd = document.getElementById(`stepInd${currentStep}`);
+            nextInd.classList.add('active');
+            nextInd.classList.remove('completed'); // Jika mundur
+
+            // 6. Atur Tombol
+            const btnPrev = document.getElementById('btnPrev');
+            const btnNext = document.getElementById('btnNext');
+            const btnFinish = document.getElementById('btnFinish');
+
+            btnPrev.disabled = currentStep === 1;
+
+            if (currentStep === totalSteps) {
+                btnNext.classList.add('d-none');
+                btnFinish.classList.remove('d-none');
+            } else {
+                btnNext.classList.remove('d-none');
+                btnFinish.classList.add('d-none');
+            }
+        }
+
+        function finishWizard() {
+            // Simulasi Submit
+            const btn = document.getElementById('btnFinish');
+            const originalText = btn.innerHTML;
+
+            btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Processing...';
+            btn.classList.add('btn-loading');
+
+            setTimeout(() => {
+                if (window.Toast) window.Toast.fire({ type: 'success', title: 'Success', message: 'Data submitted successfully!' });
+
+                // Reset Form
+                btn.innerHTML = originalText;
+                btn.classList.remove('btn-loading');
+
+                // Reset Wizard ke Awal (Optional)
+                document.getElementById('wizardForm').reset();
+                // Logic reset UI step bisa ditambahkan di sini
+                location.reload();
+            }, 1500);
+        }
+
+        /* =========================================
+           2. LOGIKA PROGRESS WIZARD
+           ========================================= */
+        let progressVal = 0;
+        let progressInterval;
+
+        function updateProgressUI(val) {
+            const circle = document.getElementById('circleProg');
+            const circleText = document.getElementById('circleVal');
+            const linearBar = document.getElementById('linearProg');
+            const textBadge = document.getElementById('progText');
+
+            // 1. Update Circle (Conic Gradient: val * 3.6deg)
+            const deg = val * 3.6;
+            circle.style.background = `conic-gradient(var(--accent-color) ${deg}deg, var(--bg-hover) 0deg)`;
+            circleText.innerText = val + '%';
+
+            // 2. Update Linear Bar
+            linearBar.style.width = val + '%';
+
+            // 3. Update Text
+            textBadge.innerText = val + '% Completed';
+
+            // Warna Status
+            if (val === 100) {
+                circle.classList.add('success');
+                linearBar.classList.add('success');
+                textBadge.className = 'badge badge-soft-success';
+                textBadge.innerText = 'Completed!';
+            } else {
+                circle.classList.remove('success');
+                linearBar.classList.remove('success');
+                textBadge.className = 'badge badge-soft-primary';
+            }
+        }
+
+        function simulateProgress() {
+            if (progressInterval) clearInterval(progressInterval);
+            progressVal = 0;
+
+            const btn = event.target;
+            btn.disabled = true;
+
+            progressInterval = setInterval(() => {
+                progressVal += 5;
+                updateProgressUI(progressVal);
+
+                if (progressVal >= 100) {
+                    clearInterval(progressInterval);
+                    btn.disabled = false;
+                    if (window.Toast) window.Toast.fire({ type: 'info', title: 'Task Done', message: 'Process finished 100%' });
+                }
+            }, 150); // Kecepatan update
+        }
+
+        function resetProgress() {
+            if (progressInterval) clearInterval(progressInterval);
+            progressVal = 0;
+            updateProgressUI(0);
+        }
+
+        /* =========================================
+           3. LOGIKA CONFIRMATION WIZARD
+           ========================================= */
+        function executeDelete() {
+            const btn = document.getElementById('btnConfirmDelete');
+            const originalContent = btn.innerHTML;
+
+            // 1. Loading State
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Deleting...';
+            btn.disabled = true;
+
+            // 2. Simulasi Request API (2 detik)
+            setTimeout(() => {
+                // 3. Tutup Modal
+                const modal = document.getElementById('deleteModal');
+                if (modal) {
+                    modal.classList.remove('show');
+                    // Reset body scroll (Logic dari core.js biasanya handle ini, tapi kita force)
+                    document.body.style.overflow = '';
+                }
+
+                // 4. Tampilkan Success
+                if (window.Toast) {
+                    window.Toast.fire({
+                        type: 'success',
+                        title: 'Deleted',
+                        message: 'Account has been removed successfully.'
+                    });
+                } else {
+                    alert('Deleted successfully!');
+                }
+
+                // 5. Reset Tombol (Untuk demo agar bisa diklik lagi)
+                btn.innerHTML = originalContent;
+                btn.disabled = false;
+
+            }, 2000);
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultimate Profile Styles - Daily Admin</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Courier+Prime:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/core.css">
+    <link rel="stylesheet" href="assets/css/utilities.css">
+    <link rel="stylesheet" href="assets/css/layout.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+</head>
+
+<body>
+
+    <header class="app-header">
+        <div class="header-left-actions">
+            <button class="header-icon-btn mobile-toggle-btn" id="mobileToggle">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+            <div class="mobile-search-bar" id="mobileSearchBar">
+                <i class="fa-solid fa-magnifying-glass search-icon-mobile"></i>
+                <input type="text" class="mobile-search-input" placeholder="Search anything..."
+                    id="mobileSearchInput" />
+                <button class="mobile-search-close" id="mobileSearchClose">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="logo desktop-only">
+            <i class="fa-solid fa-code" style="color: var(--text-main)"></i>
+            <span>daily.dev</span>
+        </div>
+        <div id="horizontal-menu-container" class="desktop-only" style="flex: 1; margin-left: 20px">
+        </div>
+        <div class="search-wrapper search-wrapper-inline desktop-only">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <input type="text" class="search-input" placeholder="Search..." id="searchInputInline">
+            <div class="search-shortcut">Ctrl K</div>
+        </div>
+
+        <div class="header-right-actions">
+
+            <button class="header-icon-btn" id="searchTrigger" title="Search" style="display: none;">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+
+        </div>
+
+        <div class="search-overlay" id="searchOverlay">
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass search-box-icon"></i>
+                <input type="text" class="search-box-input" placeholder="Search pages..." id="searchInputFloating">
+                <button class="search-box-close" id="searchClose">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="header-right">
+            <div class="notification-wrapper">
+                <button class="header-icon-btn" id="notifTrigger" title="Notifications">
+                    <i class="fa-regular fa-bell"></i>
+                    <div class="notification-dot"></div>
+                </button>
+
+                <div class="notification-dropdown" id="notifDropdown">
+                    <div class="notif-header">
+                        <h4>
+                            Notifications
+                            <span class="badge badge-danger"
+                                style="margin-left: 8px; font-size: 10px; padding: 2px 6px">4
+                                New</span>
+                        </h4>
+                        <span class="notif-mark-read">Mark all as read</span>
+                    </div>
+
+                    <div class="notif-list">
+                        <div class="notif-item unread">
+                            <div class="notif-icon-box error">
+                                <i class="fa-solid fa-circle-exclamation"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Server Connection Failed</h5>
+                                <p>
+                                    Could not sync data with main server. Please check your API
+                                    Key configuration.
+                                </p>
+                                <span class="notif-time">2 minutes ago</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item unread">
+                            <div class="notif-icon-box success">
+                                <i class="fa-solid fa-check-double"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Project Exported</h5>
+                                <p>
+                                    Your dashboard layout "Q3 Report" has been successfully
+                                    exported to PDF.
+                                </p>
+                                <span class="notif-time">1 hour ago</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item">
+                            <div class="notif-icon-box warning">
+                                <i class="fa-solid fa-triangle-exclamation"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Storage Usage High</h5>
+                                <p>
+                                    You have used 85% of your allocated cloud storage. Consider
+                                    upgrading.
+                                </p>
+                                <span class="notif-time">Yesterday at 4:30 PM</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item">
+                            <div class="notif-icon-box info">
+                                <i class="fa-solid fa-circle-info"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>New Feature Available</h5>
+                                <p>
+                                    Dark mode is now customizable. Check settings for more
+                                    themes.
+                                </p>
+                                <span class="notif-time">2 days ago</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="notif-footer">View All Notifications</div>
+                </div>
+            </div>
+
+            <div class="profile-wrapper">
+                <img src="https://i.pravatar.cc/150?img=12" alt="Profile" class="user-img header-icon-btn"
+                    id="profileTrigger" />
+
+                <div class="profile-dropdown" id="profileDropdown">
+                    <div class="pd-header">
+                        <img src="https://i.pravatar.cc/150?img=12" class="pd-avatar" />
+                        <div class="pd-info">
+                            <h4>Irvan Maulana</h4>
+                            <span>@irvanmaulana</span>
+                        </div>
+                    </div>
+                    <div class="pd-menu-list">
+                        <a href="pages-profile.html" class="pd-menu-item"><i class="fa-regular fa-user"></i> Your
+                            profile</a>
+                    </div>
+                    <div class="pd-divider"></div>
+                    <div class="pd-theme-toggle">
+                        <span>Theme</span>
+                        <div class="theme-options">
+                            <div class="theme-opt active" id="themeDark">
+                                <i class="fa-solid fa-moon"></i>
+                            </div>
+                            <div class="theme-opt" id="themeLight">
+                                <i class="fa-solid fa-sun"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pd-divider"></div>
+                    <div class="pd-menu-list">
+                        <a class="pd-menu-item text-muted"><i class="fa-solid fa-arrow-right-from-bracket"></i>
+                            Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="app-body-wrapper">
+        <div class="app-body">
+            <div id="sidebar-container"></div>
+        
+            <main class="main-content " id="mainContent">
+        
+                <div class="page-header-card">
+                    <div class="header-hero-content">
+                        <h1 class="hero-title">Ultimate Profile Kit</h1>
+                        <p class="hero-desc">Desain profil tingkat lanjut yang responsif sempurna.</p>
+                    </div>
+                    <div class="header-hero-actions">
+                        <nav aria-label="breadcrumb">
+                            <ol class="hero-breadcrumb">
+                                <li><a href="#" class="breadcrumb-link">Pages</a></li>
+                                <li class="breadcrumb-sep"><i class="fa-solid fa-chevron-right"></i></li>
+                                <li><span class="breadcrumb-link active">Ultimate</span></li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+        
+                <div class="section-title">
+                    <div class="section-line"></div>
+                    <div class="section-badge"><i class="fa-solid fa-wand-magic-sparkles"></i> 01. The Glass Visionary</div>
+                    <div class="section-line"></div>
+                </div>
+        
+                <div class="profile-v1-wrapper profile-section">
+                    <div class="profile-v1-overlay">
+                        <div class="profile-v1-card">
+                            <img src="https://i.pravatar.cc/300?img=32" class="profile-v1-avatar">
+        
+                            <div class="flex-1">
+                                <div class="d-flex justify-between align-center flex-wrap gap-3">
+                                    <div>
+                                        <h2 class="text-white font-bold mb-1" style="font-size: 28px;">Sarah Jenkins</h2>
+                                        <p class="text-white opacity-75 mb-0">Product Design Lead @ Spotify</p>
+                                    </div>
+                                    <button class="btn btn-neon btn-sm">Follow Project</button>
+                                </div>
+        
+                                <div class="d-flex gap-4 mt-3 pt-3 profile-v1-stats"
+                                    style="border-top: 1px solid rgba(255,255,255,0.1);">
+                                    <div class="text-center md:text-start">
+                                        <span class="text-white font-bold text-lg block">142</span>
+                                        <span class="text-white opacity-50 text-xs uppercase">Projects</span>
+                                    </div>
+                                    <div class="text-center md:text-start">
+                                        <span class="text-white font-bold text-lg block">8.4k</span>
+                                        <span class="text-white opacity-50 text-xs uppercase">Followers</span>
+                                    </div>
+                                    <div class="text-center md:text-start">
+                                        <span class="text-white font-bold text-lg block">9.9</span>
+                                        <span class="text-white opacity-50 text-xs uppercase">Rating</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="section-title">
+                    <div class="section-line"></div>
+                    <div class="section-badge"><i class="fa-solid fa-building"></i> 02. The Corporate Titan</div>
+                    <div class="section-line"></div>
+                </div>
+        
+                <div class="titan-wrapper profile-section">
+        
+                    <aside class="titan-sidebar">
+                        <img src="https://i.pravatar.cc/300?img=11" class="titan-avatar">
+        
+                        <h3 class="font-bold text-main mb-1">Alexander Pierce</h3>
+                        <p class="text-muted text-sm mb-4">Senior VP of Engineering</p>
+        
+                        <div class="d-flex gap-2 w-full mb-4">
+                            <button class="btn btn-primary flex-1">Message</button>
+                            <button class="btn btn-outline-primary w-10 p-0"><i class="fa-solid fa-ellipsis"></i></button>
+                        </div>
+        
+                        <div class="w-full border-top pt-2" style="border-color: var(--border-color);">
+                            <div class="titan-info-item">
+                                <i class="fa-solid fa-briefcase"></i> <span>Google Inc.</span>
+                            </div>
+                            <div class="titan-info-item">
+                                <i class="fa-solid fa-location-dot"></i> <span>San Francisco, CA</span>
+                            </div>
+                            <div class="titan-info-item">
+                                <i class="fa-solid fa-envelope"></i> <span>alex.p@google.com</span>
+                            </div>
+                            <div class="titan-info-item">
+                                <i class="fa-solid fa-link"></i> <span>alexander.dev</span>
+                            </div>
+                        </div>
+                    </aside>
+        
+                    <div class="titan-content">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Executive Summary</h4>
+                            </div>
+                            <div class="card-body">
+                                <p class="text-muted mb-4" style="line-height: 1.6;">
+                                    Experienced technology executive with a demonstrated history of working in the internet
+                                    industry.
+                                    Skilled in Scalability, Big Data, and Engineering Management. Currently leading a team
+                                    of 150+
+                                    engineers at Google HQ.
+                                </p>
+                                <h6 class="text-xs font-bold text-muted uppercase mb-3">Core Competencies</h6>
+                                <div class="d-flex flex-wrap gap-2">
+                                    <span class="badge badge-soft-primary">Strategic Planning</span>
+                                    <span class="badge badge-soft-primary">Team Leadership</span>
+                                    <span class="badge badge-soft-primary">Cloud Architecture</span>
+                                </div>
+                            </div>
+                        </div>
+        
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Career History</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="timeline-simple">
+                                    <div class="tl-simple-item">
+                                        <span class="tl-simple-dot"></span>
+                                        <span class="tl-time">2020 - Present</span>
+                                        <h5 class="font-bold text-main">Senior VP of Engineering</h5>
+                                        <p class="text-sm text-muted mb-0">Google • Mountain View, CA</p>
+                                    </div>
+                                    <div class="tl-simple-item mb-0">
+                                        <span class="tl-simple-dot"></span>
+                                        <span class="tl-time">2015 - 2020</span>
+                                        <h5 class="font-bold text-main">Director of Technology</h5>
+                                        <p class="text-sm text-muted mb-0">Uber • San Francisco, CA</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="section-title">
+                    <div class="section-line"></div>
+                    <div class="section-badge"><i class="fa-solid fa-gamepad"></i> 03. The Pro Gamer</div>
+                    <div class="section-line"></div>
+                </div>
+        
+                <div class="gamer-wrapper profile-section">
+                    <div class="gamer-banner"></div>
+        
+                    <div class="gamer-body">
+                        <div class="gamer-header">
+                            <div class="gamer-hex-container">
+                                <div class="gamer-hex">
+                                    <img src="https://i.pravatar.cc/300?img=8">
+                                </div>
+                            </div>
+        
+                            <div class="flex-1 px-4 gamer-info-text">
+                                <h2 class="font-bold text-main mb-0" style="font-size: 28px;">
+                                    Kaelthas <span class="badge badge-neon fire align-middle text-xs ms-2">PRO</span>
+                                </h2>
+                                <p class="text-muted mb-0">Apex Predator • Twitch Partner</p>
+                            </div>
+        
+                            <div class="d-flex gap-4 align-center gamer-actions">
+                                <div class="text-center">
+                                    <h3 class="mb-0 font-bold text-main">2.4M</h3>
+                                    <small class="text-muted text-xs uppercase">Subs</small>
+                                </div>
+                                <button class="btn btn-neon">Subscribe</button>
+                            </div>
+                        </div>
+        
+                        <div class="content-grid">
+                            <div class="card card-neumorphic p-3 text-center">
+                                <i class="fa-brands fa-twitch text-xl mb-2" style="color: #9146ff;"></i>
+                                <h4 class="font-bold mb-0">Live</h4>
+                                <p class="text-muted text-xs mb-0">Status</p>
+                            </div>
+                            <div class="card card-neumorphic p-3 text-center">
+                                <i class="fa-solid fa-trophy text-xl mb-2 text-warning"></i>
+                                <h4 class="font-bold mb-0">142</h4>
+                                <p class="text-muted text-xs mb-0">Wins</p>
+                            </div>
+                            <div class="card card-neumorphic p-3 text-center">
+                                <i class="fa-solid fa-crosshairs text-xl mb-2 text-danger"></i>
+                                <h4 class="font-bold mb-0">3.2</h4>
+                                <p class="text-muted text-xs mb-0">K/D Ratio</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="section-title">
+                    <div class="section-line"></div>
+                    <div class="section-badge"><i class="fa-solid fa-terminal"></i> 04. The Developer</div>
+                    <div class="section-line"></div>
+                </div>
+        
+                <div class="dev-wrapper profile-section">
+                    <div class="dev-sidebar">
+                        <img src="https://i.pravatar.cc/300?img=60" class="rounded-full border border-2 border-secondary">
+        
+                        <div class="dev-text-group">
+                            <h4 class="text-white font-bold mb-0">David Kim</h4>
+                            <p class="text-muted text-sm mb-0">@dave_code</p>
+                        </div>
+        
+                        <button class="btn btn-sm btn-outline-primary btn-follow">
+                            <i class="fa-brands fa-github"></i> <span>Follow</span>
+                        </button>
+                    </div>
+                    <div class="dev-content">
+                        <div class="terminal-bar">
+                            <div class="terminal-dot bg-danger"></div>
+                            <div class="terminal-dot bg-warning"></div>
+                            <div class="terminal-dot bg-success"></div>
+                            <span class="text-xs text-muted ms-2">user@daily:~/profile</span>
+                        </div>
+                        <div class="code-area">
+                            <span style="color: #ff7b72;">const</span> <span style="color: #d2a8ff;">profile</span> = {<br>
+                            &nbsp;&nbsp;role: <span style="color: #a5d6ff;">"Fullstack Engineer"</span>,<br>
+                            &nbsp;&nbsp;stack: [<span style="color: #a5d6ff;">"React"</span>, <span
+                                style="color: #a5d6ff;">"Node"</span>, <span style="color: #a5d6ff;">"Go"</span>],<br>
+                            &nbsp;&nbsp;coffee: <span style="color: #ff7b72;">true</span>,<br>
+                            &nbsp;&nbsp;hired: <span style="color: #ff7b72;">false</span><br>
+                            };
+                        </div>
+                    </div>
+                </div>
+                <div class="section-title">
+                    <div class="section-line"></div>
+                    <div class="section-badge"><i class="fa-brands fa-instagram"></i> 05. The Influencer</div>
+                    <div class="section-line"></div>
+                </div>
+        
+                <div class="influencer-wrapper profile-section">
+                    <div class="influencer-bg"
+                        style="background-image: url('https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=2000&auto=format&fit=crop');">
+                    </div>
+        
+                    <div class="influencer-card">
+                        <div class="influencer-header">
+                            <div class="insta-avatar-container">
+                                <img src="https://i.pravatar.cc/300?img=5" class="insta-avatar">
+                                <div class="insta-badge"><i class="fa-solid fa-check"></i></div>
+                            </div>
+                            <div class="insta-stats">
+                                <div class="stat"><b>245</b><span>Posts</span></div>
+                                <div class="stat"><b>1.2M</b><span>Followers</span></div>
+                                <div class="stat"><b>450</b><span>Following</span></div>
+                            </div>
+                        </div>
+        
+                        <div class="insta-bio">
+                            <h3>Jessica M. <span class="text-muted text-sm font-normal">@jess_models</span></h3>
+                            <p>Fashion & Lifestyle Model 📸<br>Travel Enthusiast ✈️<br>Dm for collabs 📩</p>
+                            <a href="#" class="bio-link"><i class="fa-solid fa-link"></i> jessica.bio/links</a>
+                        </div>
+        
+                        <div class="insta-actions">
+                            <button class="btn btn-primary flex-1">Follow</button>
+                            <button class="btn btn-secondary flex-1">Message</button>
+                            <button class="btn btn-ghost btn-icon"><i class="fa-solid fa-chevron-down"></i></button>
+                        </div>
+        
+                        <div class="insta-stories">
+                            <div class="story">
+                                <div class="story-circle"><img src="https://picsum.photos/100/100?random=1">
+                                </div>
+                                <span>OOTD</span>
+                            </div>
+                            <div class="story">
+                                <div class="story-circle"><img src="https://picsum.photos/100/100?random=2">
+                                </div>
+                                <span>Trip</span>
+                            </div>
+                            <div class="story">
+                                <div class="story-circle"><img src="https://picsum.photos/100/100?random=3"></div>
+                                <span>Food</span>
+                            </div>
+                            <div class="story">
+                                <div class="story-circle"><i class="fa-solid fa-plus"></i></div><span>New</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        
+        
+                <div class="section-title">
+                    <div class="section-line"></div>
+                    <div class="section-badge"><i class="fa-solid fa-robot"></i> 06. The Cyberpunk</div>
+                    <div class="section-line"></div>
+                </div>
+        
+                <div class="cyber-wrapper profile-section">
+                    <div class="cyber-card">
+                        <div class="cyber-glitch-header">
+                            <div class="cyber-avatar-frame">
+                                <img src="https://i.pravatar.cc/300?img=33" class="cyber-avatar">
+                                <div class="cyber-scanline"></div>
+                            </div>
+                            <div class="cyber-info">
+                                <div class="cyber-tag">ID: 994-AX-22</div>
+                                <h2 class="cyber-name" data-text="NEO_RIDER">NEO_RIDER</h2>
+                                <div class="cyber-role">[ SYSTEM ARCHITECT ]</div>
+                            </div>
+                        </div>
+        
+                        <div class="cyber-grid-stats">
+                            <div class="cyber-stat-box">
+                                <span class="label">LEVEL</span>
+                                <span class="value text-neon-blue">78</span>
+                            </div>
+                            <div class="cyber-stat-box">
+                                <span class="label">REP</span>
+                                <span class="value text-neon-pink">99%</span>
+                            </div>
+                            <div class="cyber-stat-box">
+                                <span class="label">TASKS</span>
+                                <span class="value text-neon-green">420</span>
+                            </div>
+                        </div>
+        
+                        <div class="cyber-actions">
+                            <button class="btn-cyber">INITIATE_CHAT</button>
+                            <button class="btn-cyber outline">VIEW_LOGS</button>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="section-title">
+                    <div class="section-line"></div>
+                    <div class="section-badge"><i class="fa-brands fa-facebook"></i> 07. The Social Network</div>
+                    <div class="section-line"></div>
+                </div>
+        
+                <div class="fb-wrapper profile-section">
+                    <div class="fb-cover"
+                        style="background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=2000&auto=format&fit=crop');">
+                        <button class="btn-edit-cover"><i class="fa-solid fa-camera"></i> <span class="desktop-only">Edit
+                                Cover
+                                Photo</span></button>
+                    </div>
+        
+                    <div class="fb-header">
+                        <div class="fb-profile-pic-container">
+                            <img src="https://i.pravatar.cc/300?img=68" class="fb-avatar">
+                            <div class="fb-camera-icon"><i class="fa-solid fa-camera"></i></div>
+                        </div>
+        
+                        <div class="fb-info">
+                            <div class="fb-name-group">
+                                <h2 class="fb-name">Mark Z. <i
+                                        class="fa-solid fa-circle-check text-primary text-sm align-middle"></i></h2>
+                                <span class="fb-friends-count">4.2K friends</span>
+                                <div class="fb-friends-avatars">
+                                    <img src="https://i.pravatar.cc/100?img=1">
+                                    <img src="https://i.pravatar.cc/100?img=2">
+                                    <img src="https://i.pravatar.cc/100?img=3">
+                                    <img src="https://i.pravatar.cc/100?img=4">
+                                    <img src="https://i.pravatar.cc/100?img=5">
+                                </div>
+                            </div>
+        
+                            <div class="fb-actions">
+                                <button class="btn btn-primary"><i class="fa-solid fa-plus"></i> Add to Story</button>
+                                <button class="btn btn-secondary"><i class="fa-solid fa-pen"></i> Edit Profile</button>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="fb-divider"></div>
+        
+                    <div class="fb-nav">
+                        <a href="#" class="fb-nav-link active">Posts</a>
+                        <a href="#" class="fb-nav-link">About</a>
+                        <a href="#" class="fb-nav-link">Friends</a>
+                        <a href="#" class="fb-nav-link">Photos</a>
+                        <a href="#" class="fb-nav-link">Videos</a>
+                        <button class="btn-dots"><i class="fa-solid fa-ellipsis"></i></button>
+                    </div>
+        
+                    <div class="fb-content-grid">
+        
+                        <div class="fb-sidebar">
+                            <div class="card mb-3">
+                                <div class="card-header border-0 pb-0">
+                                    <h4 class="card-title">Intro</h4>
+                                </div>
+                                <div class="card-body">
+                                    <p class="text-center text-sm mb-3">Building the future of connection 🌐</p>
+                                    <ul class="fb-intro-list">
+                                        <li><i class="fa-solid fa-briefcase"></i> Founder at <strong>Meta</strong></li>
+                                        <li><i class="fa-solid fa-graduation-cap"></i> Studied at <strong>Harvard</strong>
+                                        </li>
+                                        <li><i class="fa-solid fa-house"></i> Lives in <strong>Palo Alto, CA</strong></li>
+                                        <li><i class="fa-solid fa-heart"></i> Married</li>
+                                    </ul>
+                                    <button class="btn btn-secondary w-full mt-3">Edit Details</button>
+                                </div>
+                            </div>
+        
+                            <div class="card">
+                                <div class="card-header border-0 pb-0 d-flex justify-between">
+                                    <h4 class="card-title">Photos</h4>
+                                    <a href="#" class="text-primary text-sm">See All</a>
+                                </div>
+                                <div class="card-body">
+                                    <div class="fb-photo-grid">
+                                        <img src="https://picsum.photos/200/200?random=1">
+                                        <img src="https://picsum.photos/200/200?random=2">
+                                        <img src="https://picsum.photos/200/200?random=4">
+                                        <img src="https://picsum.photos/200/200?random=5">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+        
+                        <div class="fb-feed">
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <div class="d-flex gap-2 mb-3">
+                                        <img src="https://i.pravatar.cc/300?img=68" class="avatar-sm rounded-full">
+                                        <input type="text" class="form-control rounded-full bg-hover border-0"
+                                            placeholder="What's on your mind, Mark?">
+                                    </div>
+                                    <div class="d-flex justify-between border-top pt-2"
+                                        style="border-color: var(--border-color);">
+                                        <button class="btn btn-ghost btn-sm text-muted"><i
+                                                class="fa-solid fa-video text-danger"></i> Live</button>
+                                        <button class="btn btn-ghost btn-sm text-muted"><i
+                                                class="fa-solid fa-images text-success"></i> Photo/Video</button>
+                                        <button class="btn btn-ghost btn-sm text-muted"><i
+                                                class="fa-solid fa-face-smile text-warning"></i> Feeling</button>
+                                    </div>
+                                </div>
+                            </div>
+        
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="d-flex justify-between mb-3">
+                                        <div class="d-flex gap-2">
+                                            <img src="https://i.pravatar.cc/300?img=68" class="avatar-sm rounded-full">
+                                            <div>
+                                                <h5 class="font-bold text-sm mb-0">Mark Z.</h5>
+                                                <span class="text-xs text-muted">2 hours ago <i
+                                                        class="fa-solid fa-earth-americas"></i></span>
+                                            </div>
+                                        </div>
+                                        <i class="fa-solid fa-ellipsis text-muted"></i>
+                                    </div>
+                                    <p class="mb-3 text-sm">Big updates coming to our VR platform! 🕶️ Can't wait to share
+                                        what
+                                        we've been building. #Metaverse #Future</p>
+                                    <img src="https://picsum.photos/1000/500?random=1" class="rounded w-full mb-3">
+                                    <div class="d-flex justify-between border-top pt-2"
+                                        style="border-color: var(--border-color);">
+                                        <button class="btn btn-ghost btn-sm flex-1"><i class="fa-regular fa-thumbs-up"></i>
+                                            Like</button>
+                                        <button class="btn btn-ghost btn-sm flex-1"><i class="fa-regular fa-comment"></i>
+                                            Comment</button>
+                                        <button class="btn btn-ghost btn-sm flex-1"><i class="fa-solid fa-share"></i>
+                                            Share</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        
+        
+                <div class="section-title">
+                    <div class="section-line"></div>
+                    <div class="section-badge"><i class="fa-brands fa-x-twitter"></i> 08. The Microblogger</div>
+                    <div class="section-line"></div>
+                </div>
+        
+                <div class="x-wrapper profile-section mb-2">
+                    <div class="x-banner"
+                        style="background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2000');">
+                    </div>
+        
+                    <div class="x-body">
+                        <div class="x-header">
+                            <img src="https://i.pravatar.cc/300?img=53" class="x-avatar">
+                            <button class="btn btn-light rounded-full font-bold px-4">Follow</button>
+                        </div>
+        
+                        <div class="x-info">
+                            <h2 class="x-name">Elon M. <i class="fa-solid fa-certificate text-warning"></i></h2>
+                            <span class="x-handle">@elon_musk</span>
+        
+                            <p class="x-bio">Building rockets 🚀 and electric cars 🚗. Occasionally tweeting memes.</p>
+        
+                            <div class="x-meta">
+                                <span><i class="fa-solid fa-location-dot"></i> Mars, Solar System</span>
+                                <span><i class="fa-solid fa-link"></i> <a href="#">spacex.com</a></span>
+                                <span><i class="fa-regular fa-calendar"></i> Joined June 2009</span>
+                            </div>
+        
+                            <div class="x-follow-stats">
+                                <span><b>167</b> Following</span>
+                                <span><b>158.2M</b> Followers</span>
+                            </div>
+                        </div>
+        
+                        <div class="x-tabs">
+                            <div class="x-tab active">Posts</div>
+                            <div class="x-tab">Replies</div>
+                            <div class="x-tab">Highlights</div>
+                            <div class="x-tab">Media</div>
+                            <div class="x-tab">Likes</div>
+                        </div>
+        
+                        <div class="x-feed">
+                            <div class="x-tweet">
+                                <div class="x-pinned"><i class="fa-solid fa-thumbtack"></i> Pinned</div>
+                                <div class="d-flex gap-3">
+                                    <img src="https://i.pravatar.cc/300?img=53" class="avatar-sm rounded-full">
+                                    <div class="flex-1">
+                                        <div class="d-flex justify-between">
+                                            <div>
+                                                <span class="font-bold text-main">Elon M.</span>
+                                                <span class="text-muted">@elon_musk · Nov 12</span>
+                                            </div>
+                                            <i class="fa-solid fa-ellipsis text-muted"></i>
+                                        </div>
+                                        <p class="text-main mt-1 mb-2">We are going to Mars! 🚀🌌</p>
+        
+                                        <div class="x-tweet-actions">
+                                            <span><i class="fa-regular fa-comment"></i> 12k</span>
+                                            <span><i class="fa-solid fa-retweet"></i> 45k</span>
+                                            <span><i class="fa-regular fa-heart"></i> 1.2M</span>
+                                            <span><i class="fa-solid fa-chart-simple"></i> 55M</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+        
+                    </div>
+                </div>
+                <footer class="app-footer">
+                    <div class="footer-left">
+                        <span class="footer-logo-icon"><i class="fa-solid fa-code"></i></span>
+                        <span>&copy; 2025 <strong>Daily.dev</strong>. Created with
+                            <i class="fa-solid fa-heart heart-icon"></i> by Irvan
+                            Maulana.</span>
+                    </div>
+                    <div class="footer-links">
+                        <a href="#" class="footer-link-item">Privacy Policy</a>
+                        <a href="#" class="footer-link-item">Terms</a>
+                        <a href="#" class="footer-link-item">Support</a>
+                    </div>
+                </footer>
+            </main>
+        </div>
+    </div>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <div id="settings-container"></div>
+
+    <script src="assets/js/core.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Memastikan script core sudah berjalan (sidebar, theme toggle)
+            if (typeof initSidebarLogic === 'function') initSidebarLogic();
+        });
+    </script>
+</body>
+
+</html>

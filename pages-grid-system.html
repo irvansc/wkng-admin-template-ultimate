@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grid System - Daily Admin</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet" />
+
+    <link rel="stylesheet" href="assets/css/core.css" />
+    <link rel="stylesheet" href="assets/css/utilities.css" />
+    <link rel="stylesheet" href="assets/css/layout.css" />
+    <link rel="stylesheet" href="assets/css/components.css" />
+
+    <style>
+        /* Styling khusus halaman demo ini untuk visualisasi grid */
+        .demo-grid-box {
+            background: rgba(168, 85, 247, 0.1);
+            border: 1px dashed var(--accent-color);
+            color: var(--accent-color);
+            padding: 1rem;
+            text-align: center;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 12px;
+            font-family: 'JetBrains Mono', monospace;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 60px;
+        }
+
+        .code-snippet {
+            background: #0d1117;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            padding: 16px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: #c9d1d9;
+            overflow-x: auto;
+            margin-top: 10px;
+        }
+
+        .token-tag {
+            color: #7ee787;
+        }
+
+        .token-attr {
+            color: #79c0ff;
+        }
+
+        .token-val {
+            color: #a5d6ff;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="app-header">
+        <div class="header-left-actions">
+            <button class="header-icon-btn mobile-toggle-btn" id="mobileToggle">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+            <div class="mobile-search-bar" id="mobileSearchBar">
+                <i class="fa-solid fa-magnifying-glass search-icon-mobile"></i>
+                <input type="text" class="mobile-search-input" placeholder="Search anything..."
+                    id="mobileSearchInput" />
+                <button class="mobile-search-close" id="mobileSearchClose">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="logo desktop-only">
+            <i class="fa-solid fa-code" style="color: var(--text-main)"></i>
+            <span>daily.dev</span>
+        </div>
+        <div id="horizontal-menu-container" class="desktop-only" style="flex: 1; margin-left: 20px">
+        </div>
+        <div class="search-wrapper search-wrapper-inline desktop-only">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <input type="text" class="search-input" placeholder="Search..." id="searchInputInline">
+            <div class="search-shortcut">Ctrl K</div>
+        </div>
+
+        <div class="header-right-actions">
+
+            <button class="header-icon-btn" id="searchTrigger" title="Search" style="display: none;">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+
+        </div>
+
+        <div class="search-overlay" id="searchOverlay">
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass search-box-icon"></i>
+                <input type="text" class="search-box-input" placeholder="Search pages..." id="searchInputFloating">
+                <button class="search-box-close" id="searchClose">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="header-right">
+            <div class="notification-wrapper">
+                <button class="header-icon-btn" id="notifTrigger" title="Notifications">
+                    <i class="fa-regular fa-bell"></i>
+                    <div class="notification-dot"></div>
+                </button>
+
+                <div class="notification-dropdown" id="notifDropdown">
+                    <div class="notif-header">
+                        <h4>
+                            Notifications
+                            <span class="badge badge-danger"
+                                style="margin-left: 8px; font-size: 10px; padding: 2px 6px">4
+                                New</span>
+                        </h4>
+                        <span class="notif-mark-read">Mark all as read</span>
+                    </div>
+
+                    <div class="notif-list">
+                        <div class="notif-item unread">
+                            <div class="notif-icon-box error">
+                                <i class="fa-solid fa-circle-exclamation"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Server Connection Failed</h5>
+                                <p>
+                                    Could not sync data with main server. Please check your API
+                                    Key configuration.
+                                </p>
+                                <span class="notif-time">2 minutes ago</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item unread">
+                            <div class="notif-icon-box success">
+                                <i class="fa-solid fa-check-double"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Project Exported</h5>
+                                <p>
+                                    Your dashboard layout "Q3 Report" has been successfully
+                                    exported to PDF.
+                                </p>
+                                <span class="notif-time">1 hour ago</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item">
+                            <div class="notif-icon-box warning">
+                                <i class="fa-solid fa-triangle-exclamation"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Storage Usage High</h5>
+                                <p>
+                                    You have used 85% of your allocated cloud storage. Consider
+                                    upgrading.
+                                </p>
+                                <span class="notif-time">Yesterday at 4:30 PM</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item">
+                            <div class="notif-icon-box info">
+                                <i class="fa-solid fa-circle-info"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>New Feature Available</h5>
+                                <p>
+                                    Dark mode is now customizable. Check settings for more
+                                    themes.
+                                </p>
+                                <span class="notif-time">2 days ago</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="notif-footer">View All Notifications</div>
+                </div>
+            </div>
+
+            <div class="profile-wrapper">
+                <img src="https://i.pravatar.cc/150?img=12" alt="Profile" class="user-img header-icon-btn"
+                    id="profileTrigger" />
+
+                <div class="profile-dropdown" id="profileDropdown">
+                    <div class="pd-header">
+                        <img src="https://i.pravatar.cc/150?img=12" class="pd-avatar" />
+                        <div class="pd-info">
+                            <h4>Irvan Maulana</h4>
+                            <span>@irvanmaulana</span>
+                        </div>
+                    </div>
+                    <div class="pd-menu-list">
+                        <a href="pages-profile.html" class="pd-menu-item"><i class="fa-regular fa-user"></i> Your
+                            profile</a>
+                    </div>
+                    <div class="pd-divider"></div>
+                    <div class="pd-theme-toggle">
+                        <span>Theme</span>
+                        <div class="theme-options">
+                            <div class="theme-opt active" id="themeDark">
+                                <i class="fa-solid fa-moon"></i>
+                            </div>
+                            <div class="theme-opt" id="themeLight">
+                                <i class="fa-solid fa-sun"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pd-divider"></div>
+                    <div class="pd-menu-list">
+                        <a class="pd-menu-item text-muted"><i class="fa-solid fa-arrow-right-from-bracket"></i>
+                            Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="app-body-wrapper">
+        <div class="app-body">
+            <div id="sidebar-container"></div>
+
+            <main class="main-content" id="mainContent">
+
+                <div class="page-header-card">
+                    <i class="fa-solid fa-border-all header-bg-icon"></i>
+                    <div class="header-hero-content">
+                        <h1 class="hero-title">Grid System</h1>
+                        <p class="hero-desc">
+                            Dokumentasi sistem tata letak (layout) menggunakan <b class="text-white">CSS Grid</b> untuk
+                            struktur halaman utama dan <b class="text-white">Flexbox Utilities</b> untuk komponen
+                            internal.
+                        </p>
+                    </div>
+                    <nav class="hero-breadcrumb">
+                        <div class="home-icon-box"><i class="fa-solid fa-home"></i></div>
+
+                        <span class="breadcrumb-sep"><i class="fa-solid fa-chevron-right"></i></span>
+                        <a href="index.html" class="breadcrumb-link">Dashboard</a>
+                        <span class="breadcrumb-sep"><i class="fa-solid fa-chevron-right"></i></span>
+                        <span class="breadcrumb-link active">Grid System</span>
+                    </nav>
+                </div>
+
+                <div class="alert alert-accent primary mb-4">
+                    <div class="alert-icon"><i class="fa-solid fa-circle-info"></i></div>
+                    <div>
+                        <h5 style="margin-bottom: 4px; font-weight: 700;">Panduan Singkat</h5>
+                        <p class="m-0 text-muted" style="font-size: 13px;">
+                            Gunakan <code>.content-grid</code> (Layout CSS) untuk membagi halaman utama (Main
+                            Dashboard).<br>
+                            Gunakan <code>.row</code> & <code>.col-*</code> (Utilities CSS) untuk membagi isi di dalam
+                            Card atau Form.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="section-title">
+                    <div class="section-line"></div>
+                    <div class="section-badge"><i class="fa-solid fa-table-columns"></i> 1. Page Layout (CSS Grid)</div>
+                    <div class="section-line"></div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h4 class="card-title">12-Column Grid Wrapper</h4>
+                    </div>
+                    <div class="card-body">
+                        <p class="text-muted mb-4">
+                            Gunakan class <code>.content-grid</code> sebagai pembungkus utama. Grid ini memiliki 12
+                            kolom dan <strong>responsive otomatis</strong> (menumpuk di mobile).
+                        </p>
+
+                        <div class="content-grid mb-4">
+                            <div class="col-span-12">
+                                <div class="demo-grid-box">.col-span-12 (Full Width)</div>
+                            </div>
+
+                            <div class="col-span-8">
+                                <div class="demo-grid-box">.col-span-8 (Main Content)</div>
+                            </div>
+                            <div class="col-span-4">
+                                <div class="demo-grid-box">.col-span-4 (Sidebar/Widget)</div>
+                            </div>
+
+                            <div class="col-span-6">
+                                <div class="demo-grid-box">.col-span-6</div>
+                            </div>
+                            <div class="col-span-6">
+                                <div class="demo-grid-box">.col-span-6</div>
+                            </div>
+
+                            <div class="col-span-4">
+                                <div class="demo-grid-box">.col-span-4</div>
+                            </div>
+                            <div class="col-span-4">
+                                <div class="demo-grid-box">.col-span-4</div>
+                            </div>
+                            <div class="col-span-4">
+                                <div class="demo-grid-box">.col-span-4</div>
+                            </div>
+                        </div>
+
+                        <div class="code-snippet copy-click">
+                            &lt;<span class="token-tag">div</span> <span class="token-attr">class</span>=<span
+                                class="token-val">"content-grid"</span>&gt;
+                            &lt;<span class="token-tag">div</span> <span class="token-attr">class</span>=<span
+                                class="token-val">"col-span-8"</span>&gt; Main Content &lt;/<span
+                                class="token-tag">div</span>&gt;
+                            &lt;<span class="token-tag">div</span> <span class="token-attr">class</span>=<span
+                                class="token-val">"col-span-4"</span>&gt; Widget &lt;/<span
+                                class="token-tag">div</span>&gt;
+
+                            &lt;<span class="token-tag">div</span> <span class="token-attr">class</span>=<span
+                                class="token-val">"col-span-12"</span>&gt; Full Width &lt;/<span
+                                class="token-tag">div</span>&gt;
+                            &lt;/<span class="token-tag">div</span>&gt;</div>
+                    </div>
+                </div>
+
+                <div class="section-title">
+                    <div class="section-line"></div>
+                    <div class="section-badge"><i class="fa-solid fa-cubes"></i> 2. Component Grid (Flexbox)</div>
+                    <div class="section-line"></div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h4 class="card-title">Bootstrap-like Flex Utilities</h4>
+                    </div>
+                    <div class="card-body">
+                        <p class="text-muted mb-4">
+                            Sistem ini menggunakan <code>.row</code> dan <code>.col-*</code>. Sangat fleksibel untuk
+                            form, tombol, atau layout internal kartu. Mendukung breakpoint <code>md</code> dan
+                            <code>lg</code>.
+                        </p>
+
+                        <div class="row g-3 mb-4">
+                            <div class="col-12 col-md-4 mb-2">
+                                <div class="demo-grid-box text-white bg-hover border-none">.col-12 .col-md-4</div>
+                            </div>
+                            <div class="col-12 col-md-4 mb-2">
+                                <div class="demo-grid-box text-white bg-hover border-none">.col-12 .col-md-4</div>
+                            </div>
+                            <div class="col-12 col-md-4 mb-2">
+                                <div class="demo-grid-box text-white bg-hover border-none">.col-12 .col-md-4</div>
+                            </div>
+
+                            <div class="col-6 col-md-3 mb-2">
+                                <div class="demo-grid-box text-white bg-hover border-none">.col-md-3</div>
+                            </div>
+                            <div class="col-6 col-md-9 mb-2">
+                                <div class="demo-grid-box text-white bg-hover border-none">.col-md-9</div>
+                            </div>
+                        </div>
+
+                        <p class="text-xs text-muted font-bold text-uppercase mb-2">Auto Width Content</p>
+                        <div class="row g-2 align-items-center mb-4">
+                            <div class="col-auto">
+                                <div class="avatar avatar-md"><img src="https://i.pravatar.cc/150?img=3"></div>
+                            </div>
+                            <div class="col">
+                                <input type="text" class="form-control"
+                                    placeholder="Input ini mengisi sisa ruang (.col)">
+                            </div>
+                            <div class="col-auto">
+                                <button class="btn btn-primary">Action (.col-auto)</button>
+                            </div>
+                        </div>
+
+                        <div class="code-snippet copy-click">
+                            &lt;<span class="token-tag">div</span> <span class="token-attr">class</span>=<span
+                                class="token-val">"row g-3"</span>&gt;
+                            &lt;<span class="token-tag">div</span> <span class="token-attr">class</span>=<span
+                                class="token-val">"col-12 col-md-6"</span>&gt; Setengah Layar di PC &lt;/<span
+                                class="token-tag">div</span>&gt;
+                            &lt;<span class="token-tag">div</span> <span class="token-attr">class</span>=<span
+                                class="token-val">"col-12 col-md-6"</span>&gt; Setengah Layar di PC &lt;/<span
+                                class="token-tag">div</span>&gt;
+                            &lt;/<span class="token-tag">div</span>&gt;</div>
+                    </div>
+                </div>
+
+                <div class="section-title simple">
+                    <div class="section-line"></div>
+                    <div class="section-badge">Gap & Spacing</div>
+                </div>
+
+                <div class="row g-4">
+                    <div class="col-12 col-md-6">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5>Grid Gap (Flex)</h5>
+                                <p class="text-muted text-sm">Gunakan class <code>.g-0</code> sampai <code>.g-5</code>
+                                    pada elemen <code>.row</code>.</p>
+
+                                <div class="row g-1 mb-2">
+                                    <div class="col-6">
+                                        <div class="p-2 bg-hover text-center text-xs">g-1</div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="p-2 bg-hover text-center text-xs">g-1</div>
+                                    </div>
+                                </div>
+                                <div class="row g-4">
+                                    <div class="col-6">
+                                        <div class="p-2 bg-hover text-center text-xs">g-4</div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="p-2 bg-hover text-center text-xs">g-4</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-6">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5>Flex Alignment</h5>
+                                <p class="text-muted text-sm">Gunakan utility flex untuk meratakan konten.</p>
+
+                                <div class="d-flex justify-between mb-2 p-2 border-dashed border-1 border-dark rounded">
+                                    <span class="badge badge-soft-primary">Start</span>
+                                    <span class="badge badge-soft-primary">Between</span>
+                                    <span class="badge badge-soft-primary">End</span>
+                                </div>
+                                <div class="d-flex justify-center p-2 border-dashed border-1 border-dark rounded">
+                                    <span class="badge badge-soft-success">Centered Content</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <footer class="app-footer mt-2">
+                    <div class="footer-left">
+                        <span class="footer-logo-icon"><i class="fa-solid fa-code"></i></span>
+                        <span>&copy; 2025 <strong>Daily.dev</strong>. Created with <i
+                                class="fa-solid fa-heart heart-icon"></i>
+                            by Irvan Maulana.</span>
+                    </div>
+                    <div class="footer-links">
+                        <a href="#" class="footer-link-item">Privacy Policy</a>
+                        <a href="#" class="footer-link-item">Terms</a>
+                        <a href="#" class="footer-link-item">Support</a>
+                    </div>
+                </footer>
+            </main>
+        </div>
+    </div>
+
+    <div class="sidebar-overlay desktop-only" id="sidebarOverlay"></div>
+    <div id="settings-container"></div>
+
+    <script src="assets/js/core.js"></script>
+</body>
+
+</html>

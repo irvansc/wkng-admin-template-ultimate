@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timeline - Daily Admin</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/core.css">
+    <link rel="stylesheet" href="assets/css/utilities.css">
+    <link rel="stylesheet" href="assets/css/layout.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+</head>
+
+<body>
+
+    <header class="app-header">
+
+        <div class="header-left-actions">
+            <button class="header-icon-btn mobile-toggle-btn" id="mobileToggle">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+
+            <button class="header-icon-btn mobile-search-btn">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+
+            <div class="mobile-search-bar" id="mobileSearchBar">
+                <i class="fa-solid fa-magnifying-glass search-icon-mobile"></i>
+                <input type="text" class="mobile-search-input" placeholder="Search anything..." id="mobileSearchInput">
+                <button class="mobile-search-close" id="mobileSearchClose">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+
+
+
+        <div class="logo desktop-only">
+            <i class="fa-solid fa-code" style="color: var(--text-main);"></i>
+            <span>daily.dev</span>
+        </div>
+
+        <div class="search-wrapper desktop-only">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <input type="text" class="search-input" placeholder="Search..." id="searchInput">
+            <div class="search-shortcut">Ctrl K</div>
+        </div>
+
+        <div class="header-right">
+            <div class="notification-wrapper">
+                <button class="header-icon-btn" id="notifTrigger" title="Notifications">
+                    <i class="fa-regular fa-bell"></i>
+                    <div class="notification-dot"></div>
+                </button>
+
+                <div class="notification-dropdown" id="notifDropdown">
+                    <div class="notif-header">
+                        <h4>Notifications <span class="badge badge-danger"
+                                style="margin-left:8px; font-size:10px; padding:2px 6px;">4 New</span></h4>
+                        <span class="notif-mark-read">Mark all as read</span>
+                    </div>
+
+                    <div class="notif-list">
+
+                        <div class="notif-item unread">
+                            <div class="notif-icon-box error">
+                                <i class="fa-solid fa-circle-exclamation"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Server Connection Failed</h5>
+                                <p>Could not sync data with main server. Please check your API Key configuration.</p>
+                                <span class="notif-time">2 minutes ago</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item unread">
+                            <div class="notif-icon-box success">
+                                <i class="fa-solid fa-check-double"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Project Exported</h5>
+                                <p>Your dashboard layout "Q3 Report" has been successfully exported to PDF.</p>
+                                <span class="notif-time">1 hour ago</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item">
+                            <div class="notif-icon-box warning">
+                                <i class="fa-solid fa-triangle-exclamation"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Storage Usage High</h5>
+                                <p>You have used 85% of your allocated cloud storage. Consider upgrading.</p>
+                                <span class="notif-time">Yesterday at 4:30 PM</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item">
+                            <div class="notif-icon-box info">
+                                <i class="fa-solid fa-circle-info"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>New Feature Available</h5>
+                                <p>Dark mode is now customizable. Check settings for more themes.</p>
+                                <span class="notif-time">2 days ago</span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="notif-footer">
+                        View All Notifications
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-wrapper">
+                <img src="https://i.pravatar.cc/150?img=12" alt="Profile" class="user-img header-icon-btn"
+                    id="profileTrigger">
+
+                <div class="profile-dropdown" id="profileDropdown">
+                    <div class="pd-header">
+                        <img src="https://i.pravatar.cc/150?img=12" class="pd-avatar">
+                        <div class="pd-info">
+                            <h4>Irvan Maulana</h4>
+                            <span>@irvanmaulana</span>
+                        </div>
+                    </div>
+                    <div class="pd-menu-list">
+                        <a href="pages-profile.html" class="pd-menu-item"><i class="fa-regular fa-user"></i> Your
+                            profile</a>
+                    </div>
+                    <div class="pd-divider"></div>
+                    <div class="pd-theme-toggle">
+                        <span>Theme</span>
+                        <div class="theme-options">
+                            <div class="theme-opt active" id="themeDark"><i class="fa-solid fa-moon"></i></div>
+                            <div class="theme-opt" id="themeLight"><i class="fa-solid fa-sun"></i></div>
+                        </div>
+                    </div>
+                    <div class="pd-divider"></div>
+                    <div class="pd-menu-list">
+                        <a class="pd-menu-item text-muted"><i class="fa-solid fa-arrow-right-from-bracket"></i>
+                            Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="app-body-wrapper">
+        <div class="app-body">
+
+            <div id="sidebar-container"></div>
+
+            <main class="main-content" id="mainContent">
+                <!-- PAGE HEADER -->
+
+                <div class="page-header-card">
+                    <i class="fa-solid fa-clock-rotate-left header-bg-icon"></i>
+                    <div class="header-hero-content">
+                        <h1 class="hero-title">Timeline & Activities</h1>
+                        <p class="hero-desc">Visualize history, processes, or user activities with distinct timeline
+                            styles.
+                        </p>
+                    </div>
+                    <nav class="hero-breadcrumb">
+                        <div class="home-icon-box"><i class="fa-solid fa-home"></i></div>
+
+                        <span class="breadcrumb-sep"><i class="fa-solid fa-chevron-right"></i></span>
+                        <a href="index.html" class="breadcrumb-link">Dashboard</a>
+                        <span class="breadcrumb-sep"><i class="fa-solid fa-chevron-right"></i></span>
+                        <span class="breadcrumb-link active">Activity Logs</span>
+                    </nav>
+                </div>
+                <!-- PAGE HEADER END -->
+
+
+                <!-- CONTENT HERE -->
+
+
+                <div class="content-grid">
+                    <div class="section-title col-span-12 ">
+                        <div class="section-line"></div>
+                        <div class="section-badge"><i class="fa-solid fa-address-card"></i> <span>1. Card
+                                Timeline</span>
+                        </div>
+                        <div class="section-line"></div>
+                    </div>
+                    <div class="card col-span-6">
+                        <div class="card-header"><span class="card-title">Activity Log (Simple)</span></div>
+                        <div class="card-body">
+                            <div class="timeline-simple">
+
+                                <div class="tl-simple-item">
+                                    <div class="tl-simple-dot"></div>
+                                    <span class="tl-time">Just Now</span>
+                                    <h6 class="m-0">Profile Updated</h6>
+                                    <p class="text-muted text-sm m-0">You changed your password.</p>
+                                </div>
+
+                                <div class="tl-simple-item">
+                                    <div class="tl-simple-dot" style="border-color: var(--accent-green);"></div>
+                                    <span class="tl-time">2 hours ago</span>
+                                    <h6 class="m-0">Invoice Paid</h6>
+                                    <p class="text-muted text-sm m-0">Client paid invoice #INV-002.</p>
+                                </div>
+
+                                <div class="tl-simple-item">
+                                    <div class="tl-simple-dot"></div>
+                                    <span class="tl-time">Yesterday</span>
+                                    <h6 class="m-0">New Project Created</h6>
+                                    <p class="text-muted text-sm m-0">"Website Redesign" added.</p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card col-span-6">
+                        <div class="card-header"><span class="card-title">Iconic Feed</span></div>
+                        <div class="card-body">
+                            <div class="timeline-feed">
+
+                                <div class="tl-feed-item">
+                                    <div class="tl-feed-icon text-primary"><i class="fa-solid fa-comment"></i></div>
+                                    <div>
+                                        <h6 class="m-0">New Comment</h6>
+                                        <p class="text-muted text-sm">Sarah commented on your post.</p>
+                                        <div class="p-2 bg-hover rounded mt-2 text-sm italic">"Great work on this
+                                            layout!"
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="tl-feed-item">
+                                    <div class="tl-feed-icon text-danger"><i class="fa-solid fa-heart"></i></div>
+                                    <div class="">
+                                        <h6 class="m-0">Post Liked</h6>
+                                        <p class="text-muted text-sm">Alex and 5 others liked your post.</p>
+                                        <div class="d-flex gap-2  mt-2">
+                                            <img src="https://i.pravatar.cc/150?img=1"
+                                                class="rounded-full w-10 h-10 border border-card">
+                                            <img src="https://i.pravatar.cc/150?img=2"
+                                                class="rounded-full w-10 h-10 border border-card"
+                                                style="margin-left: -10px;">
+                                            <img src="https://i.pravatar.cc/150?img=3"
+                                                class="rounded-full w-10 h-10 border border-card"
+                                                style="margin-left: -10px;">
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section-title col-span-12 ">
+                        <div class="section-line"></div>
+                        <div class="section-badge"><i class="fa-solid fa-address-card"></i> <span>2. Card
+                                Timeline</span>
+                        </div>
+                        <div class="section-line"></div>
+                    </div>
+
+                    <div class="card col-span-6">
+                        <div class=" timeline-card-wrapper">
+
+                            <div class="tl-card-item">
+                                <div class="tl-card-icon"><i class="fa-solid fa-rocket"></i></div>
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-between mb-2">
+                                            <h5 class="m-0">Project Launch</h5>
+                                            <span class="badge badge-soft-primary">10:00 AM</span>
+                                        </div>
+                                        <p class="text-muted m-0">Successfully launched v2.0 to production server. All
+                                            systems
+                                            operational.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tl-card-item">
+                                <div class="tl-card-icon" style="border-color: #f1c40f; color: #f1c40f;"><i
+                                        class="fa-solid fa-bug"></i></div>
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-between mb-2">
+                                            <h5 class="m-0">Bug Detected</h5>
+                                            <span class="badge badge-soft-warning">11:30 AM</span>
+                                        </div>
+                                        <p class="text-muted m-0">Minor issue found in login form. Ticket #402 created.
+                                        </p>
+                                        <button class="btn btn-sm btn-outline-warning mt-2">View Ticket</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="card col-span-6">
+                        <div class="card-body pt-5">
+                            <div class="stepper-wrapper">
+                                <div class="step-item active">
+                                    <div class="step-circle"><i class="fa-solid fa-cart-shopping"></i></div>
+                                    <div class="step-label">Order Placed</div>
+                                    <div class="text-xs text-muted">Oct 24, 10:00</div>
+                                </div>
+                                <div class="step-item active">
+                                    <div class="step-circle"><i class="fa-solid fa-box-open"></i></div>
+                                    <div class="step-label">Packed</div>
+                                    <div class="text-xs text-muted">Oct 24, 14:00</div>
+                                </div>
+                                <div class="step-item active">
+                                    <div class="step-circle"><i class="fa-solid fa-truck-fast"></i></div>
+                                    <div class="step-label">Shipped</div>
+                                    <div class="text-xs text-muted">Oct 25, 08:00</div>
+                                </div>
+                                <div class="step-item">
+                                    <div class="step-circle"><i class="fa-solid fa-house-chimney"></i></div>
+                                    <div class="step-label">Delivered</div>
+                                    <div class="text-xs text-muted">Pending</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section-title col-span-12 ">
+                        <div class="section-line"></div>
+                        <div class="section-badge"><i class="fa-solid fa-code-branch"></i> <span>3. Split History</span>
+                        </div>
+                        <div class="section-line"></div>
+                    </div>
+
+                    <div class="card bg-transparent border-0 shadow-none col-span-4">
+                        <div class="timeline-split">
+
+                            <div class="tl-split-item left">
+                                <div class="tl-split-dot"></div>
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5>2023 - The Beginning</h5>
+                                        <p class="text-muted m-0">Started the company with 2 employees.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tl-split-item right">
+                                <div class="tl-split-dot"></div>
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5>2024 - First Funding</h5>
+                                        <p class="text-muted m-0">Raised $1M seed round from investors.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tl-split-item left">
+                                <div class="tl-split-dot"></div>
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5>2025 - Global Expansion</h5>
+                                        <p class="text-muted m-0">Opened offices in Singapore and Tokyo.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+                <!-- CONTENT END -->
+                <footer class="app-footer mt-2">
+                    <div class="footer-left">
+                        <span class="footer-logo-icon"><i class="fa-solid fa-code"></i></span>
+                        <span>&copy; 2025 <strong>Daily.dev</strong>. Created with <i
+                                class="fa-solid fa-heart heart-icon"></i>
+                            by Irvan Maulana.</span>
+                    </div>
+                    <div class="footer-links">
+                        <a href="#" class="footer-link-item">Privacy Policy</a>
+                        <a href="#" class="footer-link-item">Terms</a>
+                        <a href="#" class="footer-link-item">Support</a>
+                    </div>
+                </footer>
+            </main>
+        </div>
+    </div>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <div id="settings-container"></div>
+    <script src="assets/js/core.js"></script>
+
+</body>
+
+</html>

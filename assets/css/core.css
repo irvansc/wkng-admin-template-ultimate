@@ -1,0 +1,255 @@
+/* =========================================
+   1. CORE: VARIABLES, RESET, & UTILITIES
+   ========================================= */
+
+:root {
+  /* --- DARK MODE (DEFAULT) --- */
+  --bg-body: #0e1217;
+  --bg-header: #0e1217;
+  --bg-sidebar: #0e1217;
+  --bg-card: #1c1f26;
+  --bg-search: #21242c;
+  --bg-hover: #2d323b;
+  --border-color: #2d323b;
+
+  /* Typography */
+  --text-main: #ffffff;
+  --text-muted: #9499a6;
+  --text-link: #9c3aed; /* Purple 500 */
+  --text-placeholder: #6b7280;
+
+  /* --- BRAND COLORS (HEX) --- */
+  --accent-color: #ff4757;       /* Warna Utama Brand kamu (Merah Pink) */
+  --primary: #5982f6;            /* Biru Standar */
+  --success: #2ecc71;            /* Hijau */
+  --warning: #f1c40f;            /* Kuning */
+  --danger: #e74c3c;             /* Merah */
+  --info: #3498db;               /* Biru Langit */
+
+  /* --- BRAND COLORS (RGB - Untuk Opacity/Transparansi) --- */
+  /* Format: R, G, B (Tanpa kurung) -> dipakai di rgba(var(--nama), 0.5) */
+  --accent-rgb: 255, 71, 87;     /* Wajib ada untuk shadow-glow */
+  --primary-rgb: 89, 130, 246;
+  --success-rgb: 46, 204, 113;
+  --warning-rgb: 241, 196, 15;
+  --danger-rgb: 231, 76, 60;
+  --info-rgb: 52, 152, 219;
+
+  /* Components */
+  --btn-primary-bg: #ffffff;
+  --btn-primary-text: #0e1217;
+  --promo-gradient: linear-gradient(135deg, #a855f7, #ec4899);
+
+  /* Dimensions */
+  --sidebar-width: 260px;
+  --sidebar-collapsed-width: 72px;
+  --header-height: 70px;
+}
+
+/* --- LIGHT MODE CONFIGURATION --- */
+[data-theme="light"] {
+  --bg-body: #f8f9fa;
+  --bg-header: #ffffff;
+  --bg-sidebar: #ffffff;
+  --bg-card: #ffffff;
+  --bg-search: #f1f3f5;
+  --bg-hover: #e9ecef;
+  --border-color: #dee2e6;
+
+  --text-main: #212529;
+  --text-muted: #6c757d;
+  --text-link: #aa21b6;
+  --text-placeholder: #adb5bd;
+
+  /* Button Inverse di Light Mode */
+  --btn-primary-bg: #0e1217;
+  --btn-primary-text: #ffffff;
+}
+
+/* RESET & BASE */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+body {
+  background-color: var(--bg-body);
+  color: var(--text-main);
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-body);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+}
+
+/* UTILITIES */
+.d-flex {
+  display: flex;
+}
+.align-center {
+  align-items: center;
+}
+.justify-between {
+  justify-content: space-between;
+}
+.justify-center {
+  justify-content: center;
+}
+.w-full {
+  width: 100%;
+}
+.gap-2 {
+  gap: 0.5rem;
+}
+.gap-3 {
+  gap: 1rem;
+}
+.gap-4 {
+  gap: 1.5rem;
+}
+.gap-5 {
+  gap: 2rem;
+}
+.gap-6 {
+  gap: 2.5rem;
+}
+.gap-7 {
+  gap: 3rem;
+}
+.gap-8 {
+  gap: 3.5rem;
+}
+.gap-9 {
+  gap: 4rem;
+}
+.gap-10 {
+  gap: 5rem;
+}
+
+.mb-2 {
+  margin-bottom: 1rem;
+}
+.mt-2 {
+  margin-top: 1rem;
+}
+.text-sm {
+  font-size: 0.875rem;
+}
+.text-xs {
+  font-size: 0.75rem;
+}
+.font-bold {
+  font-weight: 700;
+}
+.text-muted {
+  color: var(--text-muted);
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+.rounded {
+  border-radius: 0.75rem;
+}
+.rounded-full {
+  border-radius: 9999px;
+}
+
+.w-1 {
+  width: 0.25rem;
+}
+.w-2 {
+  width: 0.5rem;
+}
+.w-3 {
+  width: 0.75rem;
+}
+.w-4 {
+  width: 1rem;
+}
+.w-5 {
+  width: 1.25rem;
+}
+.w-6 {
+  width: 1.5rem;
+}
+.w-7 {
+  width: 1.75rem;
+}
+.w-8 {
+  width: 2rem;
+}
+.w-9 {
+  width: 2.25rem;
+}
+.w-10 {
+  width: 2.5rem;
+}
+.h-1 {
+  height: 0.25rem;
+}
+.h-2 {
+  height: 0.5rem;
+}
+.h-3 {
+  height: 0.75rem;
+}
+.h-4 {
+  height: 1rem;
+}
+.h-5 {
+  height: 1.25rem;
+}
+.h-6 {
+  height: 1.5rem;
+}
+.h-7 {
+  height: 1.75rem;
+}
+.h-8 {
+  height: 2rem;
+}
+.h-9 {
+  height: 2.25rem;
+}
+.h-10 {
+  height: 2.5rem;
+}
+a {
+  color: var(--text-link);
+  text-decoration: none;
+  font-weight: 500;
+}
+a:hover {
+  color: #c084fc; /* Purple 300 */
+}
+a:focus-visible {
+  outline: 2px solid #c084fc;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+.link-muted {
+  color: var(--text-muted);
+}
+.link-muted:hover {
+  color: var(--text-link);
+}
+.link-primary {
+  color: var(--accent-color);
+  font-weight: 600;
+}
+.link-primary:hover {
+  opacity: 0.85;
+}

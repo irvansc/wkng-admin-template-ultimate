@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activity Log - Daily Admin</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/core.css">
+    <link rel="stylesheet" href="assets/css/utilities.css">
+    <link rel="stylesheet" href="assets/css/layout.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+</head>
+
+<body>
+
+    <header class="app-header">
+        <div class="header-left-actions">
+            <button class="header-icon-btn mobile-toggle-btn" id="mobileToggle">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+            <div class="mobile-search-bar" id="mobileSearchBar">
+                <i class="fa-solid fa-magnifying-glass search-icon-mobile"></i>
+                <input type="text" class="mobile-search-input" placeholder="Search anything..."
+                    id="mobileSearchInput" />
+                <button class="mobile-search-close" id="mobileSearchClose">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="logo desktop-only">
+            <i class="fa-solid fa-code" style="color: var(--text-main)"></i>
+            <span>daily.dev</span>
+        </div>
+        <div id="horizontal-menu-container" class="desktop-only" style="flex: 1; margin-left: 20px">
+        </div>
+        <div class="search-wrapper search-wrapper-inline desktop-only">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <input type="text" class="search-input" placeholder="Search..." id="searchInputInline">
+            <div class="search-shortcut">Ctrl K</div>
+        </div>
+
+        <div class="header-right-actions">
+
+            <button class="header-icon-btn" id="searchTrigger" title="Search" style="display: none;">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+
+        </div>
+
+        <div class="search-overlay" id="searchOverlay">
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass search-box-icon"></i>
+                <input type="text" class="search-box-input" placeholder="Search pages..." id="searchInputFloating">
+                <button class="search-box-close" id="searchClose">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="header-right">
+            <div class="notification-wrapper">
+                <button class="header-icon-btn" id="notifTrigger" title="Notifications">
+                    <i class="fa-regular fa-bell"></i>
+                    <div class="notification-dot"></div>
+                </button>
+
+                <div class="notification-dropdown" id="notifDropdown">
+                    <div class="notif-header">
+                        <h4>
+                            Notifications
+                            <span class="badge badge-danger"
+                                style="margin-left: 8px; font-size: 10px; padding: 2px 6px">4
+                                New</span>
+                        </h4>
+                        <span class="notif-mark-read">Mark all as read</span>
+                    </div>
+
+                    <div class="notif-list">
+                        <div class="notif-item unread">
+                            <div class="notif-icon-box error">
+                                <i class="fa-solid fa-circle-exclamation"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Server Connection Failed</h5>
+                                <p>
+                                    Could not sync data with main server. Please check your API
+                                    Key configuration.
+                                </p>
+                                <span class="notif-time">2 minutes ago</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item unread">
+                            <div class="notif-icon-box success">
+                                <i class="fa-solid fa-check-double"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Project Exported</h5>
+                                <p>
+                                    Your dashboard layout "Q3 Report" has been successfully
+                                    exported to PDF.
+                                </p>
+                                <span class="notif-time">1 hour ago</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item">
+                            <div class="notif-icon-box warning">
+                                <i class="fa-solid fa-triangle-exclamation"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Storage Usage High</h5>
+                                <p>
+                                    You have used 85% of your allocated cloud storage. Consider
+                                    upgrading.
+                                </p>
+                                <span class="notif-time">Yesterday at 4:30 PM</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item">
+                            <div class="notif-icon-box info">
+                                <i class="fa-solid fa-circle-info"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>New Feature Available</h5>
+                                <p>
+                                    Dark mode is now customizable. Check settings for more
+                                    themes.
+                                </p>
+                                <span class="notif-time">2 days ago</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="notif-footer">View All Notifications</div>
+                </div>
+            </div>
+
+            <div class="profile-wrapper">
+                <img src="https://i.pravatar.cc/150?img=12" alt="Profile" class="user-img header-icon-btn"
+                    id="profileTrigger" />
+
+                <div class="profile-dropdown" id="profileDropdown">
+                    <div class="pd-header">
+                        <img src="https://i.pravatar.cc/150?img=12" class="pd-avatar" />
+                        <div class="pd-info">
+                            <h4>Irvan Maulana</h4>
+                            <span>@irvanmaulana</span>
+                        </div>
+                    </div>
+                    <div class="pd-menu-list">
+                        <a href="pages-profile.html" class="pd-menu-item"><i class="fa-regular fa-user"></i> Your
+                            profile</a>
+                    </div>
+                    <div class="pd-divider"></div>
+                    <div class="pd-theme-toggle">
+                        <span>Theme</span>
+                        <div class="theme-options">
+                            <div class="theme-opt active" id="themeDark">
+                                <i class="fa-solid fa-moon"></i>
+                            </div>
+                            <div class="theme-opt" id="themeLight">
+                                <i class="fa-solid fa-sun"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pd-divider"></div>
+                    <div class="pd-menu-list">
+                        <a class="pd-menu-item text-muted"><i class="fa-solid fa-arrow-right-from-bracket"></i>
+                            Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="app-body-wrapper">
+        <div class="app-body">
+            <div id="sidebar-container"></div>
+
+            <main class="main-content" id="mainContent">
+
+                <div class="page-header-card">
+                    <div class="header-hero-content">
+                        <h2 class="hero-title">Activity Logs</h2>
+                        <p class="hero-desc">Track user actions, system events, and security audits in real-time.</p>
+                    </div>
+                    <nav class="hero-breadcrumb">
+                        <div class="home-icon-box"><i class="fa-solid fa-home"></i></div>
+
+                        <span class="breadcrumb-sep"><i class="fa-solid fa-chevron-right"></i></span>
+                        <a href="index.html" class="breadcrumb-link">Dashboard</a>
+                        <span class="breadcrumb-sep"><i class="fa-solid fa-chevron-right"></i></span>
+                        <span class="breadcrumb-link active">Activity Logs</span>
+                    </nav>
+                </div>
+
+                <div class="content-grid">
+                    <div class="card col-span-12">
+                        <div class="card-body">
+                            <div class="tabs-container">
+                                <div class="tabs-line">
+                                    <div class="tab-link-line tab-link  active" data-tab="style1">1. Linear Timeline
+                                    </div>
+                                    <div class="tab-link-line tab-link " data-tab="style2">2. Audit Table</div>
+                                    <div class="tab-link-line tab-link " data-tab="style3">3. Card Feed</div>
+                                    <div class="tab-link-line tab-link " data-tab="style4">4. Dev Terminal</div>
+                                    <div class="tab-link-line tab-link " data-tab="style5">5. Grouped Modern</div>
+                                </div>
+
+                                <div class="log-filter-bar">
+                                    <div class="search-wrapper">
+                                        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                                        <input type="text" class="search-input" placeholder="Search logs...">
+                                    </div>
+                                    <select class="form-control" style="width: auto;">
+                                        <option>All Events</option>
+                                        <option>Login</option>
+                                        <option>Create</option>
+                                        <option>Delete</option>
+                                    </select>
+                                    <input type="date" class="form-control" style="width: auto;">
+                                    <div class="ms-auto">
+                                        <span class="text-muted text-sm">Showing 50 of 1,240 events</span>
+                                    </div>
+                                </div>
+
+                                <div class="tab-content">
+                                    <div id="style1" class="tab-pane active">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h4 class="card-title mb-4">Activity History</h4>
+
+                                                <div class="timeline-linear">
+                                                    <div class="tl-item">
+                                                        <div class="tl-dot bg-primary"></div>
+                                                        <div class="d-flex justify-between">
+                                                            <div>
+                                                                <h6 class="mb-1">Page "Dashboard V2" Created</h6>
+                                                                <p class="text-muted text-sm mb-0">By <a href="#"
+                                                                        class="fw-bold text-main">Irvan
+                                                                        Maulana</a> in CMS Module</p>
+                                                            </div>
+                                                            <span class="tl-time-sm text-end">Just now</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="tl-item">
+                                                        <div class="tl-dot bg-success"></div>
+                                                        <div class="d-flex justify-between">
+                                                            <div>
+                                                                <h6 class="mb-1">Payment Gateway Updated</h6>
+                                                                <p class="text-muted text-sm mb-0">Configuration changed
+                                                                    for
+                                                                    Stripe API Key.
+                                                                </p>
+                                                            </div>
+                                                            <span class="tl-time-sm text-end">2 hrs ago</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="tl-item">
+                                                        <div class="tl-dot bg-warning"></div>
+                                                        <div class="d-flex justify-between">
+                                                            <div>
+                                                                <h6 class="mb-1">Suspicious Login Attempt</h6>
+                                                                <p class="text-muted text-sm mb-0">Failed login from IP
+                                                                    192.168.1.1
+                                                                    (Jakarta).</p>
+                                                            </div>
+                                                            <span class="tl-time-sm text-end">5 hrs ago</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="tl-item">
+                                                        <div class="tl-dot bg-info"></div>
+                                                        <div class="d-flex justify-between">
+                                                            <div>
+                                                                <h6 class="mb-1">Backup Completed</h6>
+                                                                <p class="text-muted text-sm mb-0">System auto-backup
+                                                                    finished successfully.
+                                                                </p>
+                                                            </div>
+                                                            <span class="tl-time-sm text-end">Yesterday</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="style2" class="tab-pane">
+                                        <div class="card p-0 overflow-hidden">
+                                            <div class="table-responsive">
+                                                <table class="table table-hover align-middle mb-0">
+                                                    <thead class="bg-soft-hover">
+                                                        <tr>
+                                                            <th class="ps-4">User</th>
+                                                            <th>Action</th>
+                                                            <th>Module</th>
+                                                            <th>IP Address</th>
+                                                            <th>Status</th>
+                                                            <th class="text-end pe-4">Time</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class="ps-4">
+                                                                <div class="log-user-info">
+                                                                    <img src="https://i.pravatar.cc/150?img=12">
+                                                                    <div>
+                                                                        <div class="fw-bold">Irvan M.</div>
+                                                                        <div class="text-xs text-muted">Admin</div>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td><span class="fw-bold">Updated Role</span></td>
+                                                            <td>User Mgmt</td>
+                                                            <td><span class="ip-badge">10.0.0.5</span></td>
+                                                            <td><span class="badge badge-soft-success">Success</span>
+                                                            </td>
+                                                            <td class="text-end pe-4 text-muted text-sm">10:42 AM</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="ps-4">
+                                                                <div class="log-user-info">
+                                                                    <img src="https://i.pravatar.cc/150?img=33">
+                                                                    <div>
+                                                                        <div class="fw-bold">Sarah J.</div>
+                                                                        <div class="text-xs text-muted">Editor</div>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td><span class="fw-bold text-danger">Deleted Post</span>
+                                                            </td>
+                                                            <td>Blog</td>
+                                                            <td><span class="ip-badge">192.168.1.5</span></td>
+                                                            <td><span class="badge badge-soft-warning">Warning</span>
+                                                            </td>
+                                                            <td class="text-end pe-4 text-muted text-sm">09:15 AM</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="ps-4">
+                                                                <div class="log-user-info">
+                                                                    <div class="avatar avatar-sm bg-dark text-white">SYS
+                                                                    </div>
+                                                                    <div class="ms-2">
+                                                                        <div class="fw-bold">System</div>
+                                                                        <div class="text-xs text-muted">Bot</div>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td><span class="fw-bold">Cron Job</span></td>
+                                                            <td>Maintenance</td>
+                                                            <td><span class="ip-badge">localhost</span></td>
+                                                            <td><span class="badge badge-soft-primary">Running</span>
+                                                            </td>
+                                                            <td class="text-end pe-4 text-muted text-sm">08:00 AM</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="style3" class="tab-pane">
+
+                                        <div class="feed-card">
+                                            <div class="feed-icon bg-soft-primary text-primary">
+                                                <i class="fa-solid fa-file-pen"></i>
+                                            </div>
+                                            <div class="feed-content">
+                                                <div class="d-flex justify-between">
+                                                    <h5 class="mb-1 font-bold text-md">Article Published</h5>
+                                                    <span class="text-xs text-muted">2 mins ago</span>
+                                                </div>
+                                                <p class="mb-2 text-muted text-sm">
+                                                    <a href="#" class="text-main fw-bold">Irvan Maulana</a>
+                                                    published a
+                                                    new article in
+                                                    <span class="badge badge-outline-primary">Technology</span>
+                                                    category.
+                                                </p>
+                                                <div class="feed-attachment">
+                                                    <i class="fa-solid fa-link me-2"></i>
+                                                    /blog/tech/new-release-2025
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="feed-card">
+                                            <div class="feed-icon bg-soft-danger text-danger">
+                                                <i class="fa-solid fa-shield-cat"></i>
+                                            </div>
+                                            <div class="feed-content">
+                                                <div class="d-flex justify-between">
+                                                    <h5 class="mb-1 font-bold text-md">Security Alert</h5>
+                                                    <span class="text-xs text-muted">1 hour ago</span>
+                                                </div>
+                                                <p class="mb-2 text-muted text-sm">
+                                                    Detected multiple failed login attempts for account
+                                                    <strong>admin@daily.dev</strong>. Account has been temporarily
+                                                    locked.
+                                                </p>
+                                                <div class="d-flex gap-2 mt-3">
+                                                    <button class="btn btn-sm btn-outline-danger">View
+                                                        Details</button>
+                                                    <button class="btn btn-sm btn-ghost">Dismiss</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="feed-card">
+                                            <div class="feed-icon bg-soft-success text-success">
+                                                <i class="fa-solid fa-users"></i>
+                                            </div>
+                                            <div class="feed-content">
+                                                <div class="d-flex justify-between">
+                                                    <h5 class="mb-1 font-bold text-md">New Team Member</h5>
+                                                    <span class="text-xs text-muted">Yesterday</span>
+                                                </div>
+                                                <p class="mb-0 text-muted text-sm">
+                                                    <a href="#" class="fw-bold">Sarah Jenkins</a> joined the
+                                                    "Marketing"
+                                                    team
+                                                    with Editor permissions.
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div id="style4" class="tab-pane">
+                                        <div class="terminal-log">
+                                            <div class="terminal-header">
+                                                <span>system@daily-admin:~/logs/auth.log</span>
+                                                <span><i class="fa-solid fa-circle text-success"
+                                                        style="font-size: 8px;"></i> Live</span>
+                                            </div>
+
+                                            <div class="terminal-row">
+                                                <span class="t-hash">#a1b2c3</span>
+                                                <span class="t-time">2025-10-24 10:42:01</span>
+                                                <span class="t-user">[root]</span>
+                                                <span class="t-action">System reboot initiated by user request</span>
+                                            </div>
+                                            <div class="terminal-row">
+                                                <span class="t-hash">#d4e5f6</span>
+                                                <span class="t-time">2025-10-24 10:45:12</span>
+                                                <span class="t-user" style="color: #ff7b72;">[alert]</span>
+                                                <span class="t-action">Port 8080 timeout. Restarting nginx
+                                                    service...</span>
+                                            </div>
+                                            <div class="terminal-row">
+                                                <span class="t-hash">#7a8b9c</span>
+                                                <span class="t-time">2025-10-24 10:45:15</span>
+                                                <span class="t-user" style="color: #7ee787;">[success]</span>
+                                                <span class="t-action">Service nginx restarted successfully. PID:
+                                                    1245</span>
+                                            </div>
+                                            <div class="terminal-row">
+                                                <span class="t-hash">#1f2e3d</span>
+                                                <span class="t-time">2025-10-24 11:00:00</span>
+                                                <span class="t-user">[cron]</span>
+                                                <span class="t-action">Executing scheduled task: db_backup.sh</span>
+                                            </div>
+                                            <div class="terminal-row">
+                                                <span class="t-hash">#9z8y7x</span>
+                                                <span class="t-time">2025-10-24 11:05:22</span>
+                                                <span class="t-user">[irvan]</span>
+                                                <span class="t-action">Deploying commit <span
+                                                        style="text-decoration: underline; cursor: pointer;">7829a1</span>
+                                                    to
+                                                    production</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="style5" class="tab-pane">
+                                        <div class="row">
+                                            <div class="col-md-8">
+
+                                                <div class="date-group-label">Today, 24 Oct</div>
+
+                                                <div class="modern-log-item">
+                                                    <div class="avatar avatar-sm bg-primary text-white me-3"><i
+                                                            class="fa-solid fa-plus"></i></div>
+                                                    <div style="flex: 1;">
+                                                        <div class="d-flex justify-between">
+                                                            <h6 class="mb-0 text-sm">New Product Added</h6>
+                                                            <span class="text-xs text-muted">10:30 AM</span>
+                                                        </div>
+                                                        <span class="text-xs text-muted">"Wireless Headphone X" added to
+                                                            catalog.</span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="modern-log-item">
+                                                    <div class="avatar avatar-sm bg-danger text-white me-3"><i
+                                                            class="fa-solid fa-trash"></i></div>
+                                                    <div style="flex: 1;">
+                                                        <div class="d-flex justify-between">
+                                                            <h6 class="mb-0 text-sm">Order Cancelled</h6>
+                                                            <span class="text-xs text-muted">09:15 AM</span>
+                                                        </div>
+                                                        <span class="text-xs text-muted">Order #ORD-2291 cancelled by
+                                                            customer.</span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="date-group-label mt-3">Yesterday</div>
+
+                                                <div class="modern-log-item">
+                                                    <div class="avatar avatar-sm bg-info text-white me-3"><i
+                                                            class="fa-solid fa-envelope"></i></div>
+                                                    <div style="flex: 1;">
+                                                        <div class="d-flex justify-between">
+                                                            <h6 class="mb-0 text-sm">Email Campaign Sent</h6>
+                                                            <span class="text-xs text-muted">4:00 PM</span>
+                                                        </div>
+                                                        <span class="text-xs text-muted">"Weekly Newsletter" sent to
+                                                            5,000
+                                                            subscribers.</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">Log Summary</h5>
+                                                        <div class="d-flex justify-between align-center mb-2 mt-3">
+                                                            <span class="text-sm text-muted">Success Actions</span>
+                                                            <span class="badge badge-soft-success">85%</span>
+                                                        </div>
+                                                        <div class="progress mb-3" style="height: 6px;">
+                                                            <div class="progress-bar bg-success" style="width: 85%">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="d-flex justify-between align-center mb-2">
+                                                            <span class="text-sm text-muted">Errors</span>
+                                                            <span class="badge badge-soft-danger">5%</span>
+                                                        </div>
+                                                        <div class="progress mb-3" style="height: 6px;">
+                                                            <div class="progress-bar bg-danger" style="width: 5%"></div>
+                                                        </div>
+
+                                                        <div class="alert alert-soft-info mt-3 mb-0 text-xs">
+                                                            <i class="fa-solid fa-info-circle me-1"></i> Logs are kept
+                                                            for
+                                                            90 days.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <footer class="app-footer mt-3">
+                    <div class="footer-left">
+                        <span class="footer-logo-icon"><i class="fa-solid fa-code"></i></span>
+                        <span>&copy; 2025 <strong>Daily.dev</strong>. Created with <i
+                                class="fa-solid fa-heart heart-icon"></i> by Irvan Maulana.</span>
+                    </div>
+                    <div class="footer-links">
+                        <a href="#" class="footer-link-item">Privacy Policy</a>
+                        <a href="#" class="footer-link-item">Terms</a>
+                        <a href="#" class="footer-link-item">Support</a>
+                    </div>
+                </footer>
+            </main>
+        </div>
+    </div>
+
+    <div class="sidebar-overlay desktop-only" id="sidebarOverlay"></div>
+    <div id="settings-container"></div>
+    <script src="assets/js/core.js"></script>
+
+</body>
+
+</html>

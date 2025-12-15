@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi Column Forms - Daily Admin</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/core.css">
+    <link rel="stylesheet" href="assets/css/utilities.css">
+    <link rel="stylesheet" href="assets/css/layout.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+
+</head>
+
+<body>
+
+    <header class="app-header">
+        <div class="header-left-actions">
+            <button class="header-icon-btn mobile-toggle-btn" id="mobileToggle">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+            <div class="mobile-search-bar" id="mobileSearchBar">
+                <i class="fa-solid fa-magnifying-glass search-icon-mobile"></i>
+                <input type="text" class="mobile-search-input" placeholder="Search anything..."
+                    id="mobileSearchInput" />
+                <button class="mobile-search-close" id="mobileSearchClose">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="logo desktop-only">
+            <i class="fa-solid fa-code" style="color: var(--text-main)"></i>
+            <span>daily.dev</span>
+        </div>
+        <div id="horizontal-menu-container" class="desktop-only" style="flex: 1; margin-left: 20px">
+        </div>
+        <div class="search-wrapper search-wrapper-inline desktop-only">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <input type="text" class="search-input" placeholder="Search..." id="searchInputInline">
+            <div class="search-shortcut">Ctrl K</div>
+        </div>
+
+        <div class="header-right-actions">
+
+            <button class="header-icon-btn" id="searchTrigger" title="Search" style="display: none;">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+
+        </div>
+
+        <div class="search-overlay" id="searchOverlay">
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass search-box-icon"></i>
+                <input type="text" class="search-box-input" placeholder="Search pages..." id="searchInputFloating">
+                <button class="search-box-close" id="searchClose">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="header-right">
+            <div class="notification-wrapper">
+                <button class="header-icon-btn" id="notifTrigger" title="Notifications">
+                    <i class="fa-regular fa-bell"></i>
+                    <div class="notification-dot"></div>
+                </button>
+
+                <div class="notification-dropdown" id="notifDropdown">
+                    <div class="notif-header">
+                        <h4>
+                            Notifications
+                            <span class="badge badge-danger"
+                                style="margin-left: 8px; font-size: 10px; padding: 2px 6px">4
+                                New</span>
+                        </h4>
+                        <span class="notif-mark-read">Mark all as read</span>
+                    </div>
+
+                    <div class="notif-list">
+                        <div class="notif-item unread">
+                            <div class="notif-icon-box error">
+                                <i class="fa-solid fa-circle-exclamation"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Server Connection Failed</h5>
+                                <p>
+                                    Could not sync data with main server. Please check your API
+                                    Key configuration.
+                                </p>
+                                <span class="notif-time">2 minutes ago</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item unread">
+                            <div class="notif-icon-box success">
+                                <i class="fa-solid fa-check-double"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Project Exported</h5>
+                                <p>
+                                    Your dashboard layout "Q3 Report" has been successfully
+                                    exported to PDF.
+                                </p>
+                                <span class="notif-time">1 hour ago</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item">
+                            <div class="notif-icon-box warning">
+                                <i class="fa-solid fa-triangle-exclamation"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Storage Usage High</h5>
+                                <p>
+                                    You have used 85% of your allocated cloud storage. Consider
+                                    upgrading.
+                                </p>
+                                <span class="notif-time">Yesterday at 4:30 PM</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item">
+                            <div class="notif-icon-box info">
+                                <i class="fa-solid fa-circle-info"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>New Feature Available</h5>
+                                <p>
+                                    Dark mode is now customizable. Check settings for more
+                                    themes.
+                                </p>
+                                <span class="notif-time">2 days ago</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="notif-footer">View All Notifications</div>
+                </div>
+            </div>
+
+            <div class="profile-wrapper">
+                <img src="https://i.pravatar.cc/150?img=12" alt="Profile" class="user-img header-icon-btn"
+                    id="profileTrigger" />
+
+                <div class="profile-dropdown" id="profileDropdown">
+                    <div class="pd-header">
+                        <img src="https://i.pravatar.cc/150?img=12" class="pd-avatar" />
+                        <div class="pd-info">
+                            <h4>Irvan Maulana</h4>
+                            <span>@irvanmaulana</span>
+                        </div>
+                    </div>
+                    <div class="pd-menu-list">
+                        <a href="pages-profile.html" class="pd-menu-item"><i class="fa-regular fa-user"></i> Your
+                            profile</a>
+                    </div>
+                    <div class="pd-divider"></div>
+                    <div class="pd-theme-toggle">
+                        <span>Theme</span>
+                        <div class="theme-options">
+                            <div class="theme-opt active" id="themeDark">
+                                <i class="fa-solid fa-moon"></i>
+                            </div>
+                            <div class="theme-opt" id="themeLight">
+                                <i class="fa-solid fa-sun"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pd-divider"></div>
+                    <div class="pd-menu-list">
+                        <a class="pd-menu-item text-muted"><i class="fa-solid fa-arrow-right-from-bracket"></i>
+                            Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="app-body-wrapper">
+        <div class="app-body">
+
+            <div id="sidebar-container"></div>
+
+            <main class="main-content" id="mainContent">
+
+                <div class="page-header-card">
+                    <div class="header-hero-content">
+                        <h2 class="hero-title">Multi-Column Logic</h2>
+                        <p class="hero-desc">Form grid sistem dengan logika Javascript siap pakai: Kalkulasi otomatis,
+                            Dynamic Select (Wilayah), dan Copy Data helper.</p>
+                    </div>
+                    <div class="header-hero-actions">
+                        <nav class="hero-breadcrumb">
+                            <a href="index.html" class="breadcrumb-link">
+                                <div class="home-icon-box"><i class="fa-solid fa-house"></i></div> Home
+                            </a>
+                            <span class="breadcrumb-sep"><i class="fa-solid fa-chevron-right"></i></span>
+                            <span class="breadcrumb-link active">Multi Column</span>
+                        </nav>
+                    </div>
+                </div>
+
+                <div class="content-grid">
+
+                    <div class="col-span-12">
+                        <div class="section-title  col-span-12">
+                            <div class="section-line"></div>
+                            <div class="section-badge"><i class="fa-regular fa-square"></i> <span>Case 1: Product
+                                    Pricing Calculator</span>
+                            </div>
+                            <div class="section-line"></div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Create Product Pricing</h4>
+                            </div>
+                            <div class="card-body">
+                                <form id="pricingForm">
+                                    <div class="row g-3">
+                                        <div class="col-md-4">
+                                            <label class="form-label">Harga Modal (Cost)</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text">Rp</span>
+                                                <input type="number" class="form-control" id="inputCost" placeholder="0"
+                                                    min="0">
+                                            </div>
+                                            <small class="text-muted">Biaya produksi atau beli.</small>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label class="form-label">Harga Jual (Price)</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text">Rp</span>
+                                                <input type="number" class="form-control" id="inputPrice"
+                                                    placeholder="0" min="0">
+                                            </div>
+                                            <small class="text-muted">Harga yang dilihat customer.</small>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label class="form-label">Pajak (Tax %)</label>
+                                            <div class="input-group">
+                                                <input type="number" class="form-control" id="inputTax" value="11"
+                                                    min="0">
+                                                <span class="input-group-text">%</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12 mt-4">
+                                            <h6 class="text-muted text-uppercase mb-3"
+                                                style="font-size: 12px; font-weight: 700;">Simulasi Keuntungan
+                                                (Otomatis)</h6>
+                                            <div class="row g-3">
+                                                <div class="col-6 col-md-3">
+                                                    <div class="calc-preview">
+                                                        <span class="calc-label">Profit (Rp)</span>
+                                                        <span class="calc-value text-success" id="valProfit">0</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6 col-md-3">
+                                                    <div class="calc-preview">
+                                                        <span class="calc-label">Margin (%)</span>
+                                                        <span class="calc-value text-info" id="valMargin">0%</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6 col-md-3">
+                                                    <div class="calc-preview">
+                                                        <span class="calc-label">Tax Amount</span>
+                                                        <span class="calc-value text-danger" id="valTax">0</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6 col-md-3">
+                                                    <div class="calc-preview"
+                                                        style="border-color: var(--accent-color); background: rgba(168, 85, 247, 0.05);">
+                                                        <span class="calc-label">Final Price (Inc. Tax)</span>
+                                                        <span class="calc-value" style="color: var(--accent-color)"
+                                                            id="valFinal">0</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-span-12">
+
+                        <div class="section-title  col-span-12">
+                            <div class="section-line"></div>
+                            <div class="section-badge"><i class="fa-regular fa-square"></i> <span>Case 2: Address
+                                    Helper</span>
+                            </div>
+                            <div class="section-line"></div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <form>
+                                    <div class="row g-4">
+                                        <div class="col-lg-6">
+                                            <h5 class="mb-3 border-bottom pb-2">Billing Address</h5>
+                                            <div class="row g-3">
+                                                <div class="col-md-6">
+                                                    <label class="form-label">First Name</label>
+                                                    <input type="text" class="form-control" id="billFirst"
+                                                        placeholder="John">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Last Name</label>
+                                                    <input type="text" class="form-control" id="billLast"
+                                                        placeholder="Doe">
+                                                </div>
+                                                <div class="col-12">
+                                                    <label class="form-label">Address</label>
+                                                    <input type="text" class="form-control" id="billAddress"
+                                                        placeholder="123 Main St">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Phone</label>
+                                                    <input type="text" class="form-control" id="billPhone"
+                                                        placeholder="+62...">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-6">
+                                            <div
+                                                class="d-flex justify-content-between align-items-center border-bottom pb-2 mb-3">
+                                                <h5 class="m-0">Shipping Address</h5>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox"
+                                                        id="checkSameAddress">
+                                                    <label class="form-check-label text-sm" for="checkSameAddress">
+                                                        Same as Billing
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <div class="row g-3">
+                                                <div class="col-md-6">
+                                                    <label class="form-label">First Name</label>
+                                                    <input type="text" class="form-control" id="shipFirst">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Last Name</label>
+                                                    <input type="text" class="form-control" id="shipLast">
+                                                </div>
+                                                <div class="col-12">
+                                                    <label class="form-label">Address</label>
+                                                    <input type="text" class="form-control" id="shipAddress">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Phone</label>
+                                                    <input type="text" class="form-control" id="shipPhone">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-span-12">
+
+                        <div class="section-title  col-span-12">
+                            <div class="section-line"></div>
+                            <div class="section-badge"><i class="fa-regular fa-square"></i> <span>Case 3: Dependent
+                                    Select (Wilayah)</span>
+                            </div>
+                            <div class="section-line"></div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Location Selector</h4>
+                            </div>
+                            <div class="card-body">
+                                <form>
+                                    <div class="row g-3">
+                                        <div class="col-md-4">
+                                            <label class="form-label">Provinsi</label>
+                                            <select class="form-control" id="selectProvince">
+                                                <option value="" selected disabled>-- Pilih Provinsi --</option>
+                                                <option value="jabar">Jawa Barat</option>
+                                                <option value="jateng">Jawa Tengah</option>
+                                                <option value="jatim">Jawa Timur</option>
+                                                <option value="dki">DKI Jakarta</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label class="form-label">Kota / Kabupaten</label>
+                                            <select class="form-control" id="selectCity" disabled>
+                                                <option value="" selected disabled>-- Pilih Provinsi Dulu --</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label class="form-label">Kode Pos (Auto)</label>
+                                            <input type="text" class="form-control bg-search" id="inputZip" readonly
+                                                placeholder="Auto-filled">
+                                        </div>
+
+                                        <div class="col-12 text-end mt-3">
+                                            <button type="submit" class="btn btn-primary">Save Location</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <footer class="app-footer mt-2">
+                    <div class="footer-left">
+                        <span class="footer-logo-icon"><i class="fa-solid fa-code"></i></span>
+                        <span>&copy; 2025 <strong>Daily.dev</strong>. Created with
+                            <i class="fa-solid fa-heart heart-icon"></i> by Irvan
+                            Maulana.</span>
+                    </div>
+                    <div class="footer-links">
+                        <a href="#" class="footer-link-item">Privacy Policy</a>
+                        <a href="#" class="footer-link-item">Terms</a>
+                        <a href="#" class="footer-link-item">Support</a>
+                    </div>
+                </footer>
+            </main>
+        </div>
+    </div>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <div id="settings-container"></div>
+    <script src="assets/js/core.js"></script>
+
+    <script>
+
+        // ==========================================
+        // 1. LOGIC: PRODUCT CALCULATOR (Live)
+        // ==========================================
+        const costInput = document.getElementById('inputCost');
+        const priceInput = document.getElementById('inputPrice');
+        const taxInput = document.getElementById('inputTax');
+
+        const valProfit = document.getElementById('valProfit');
+        const valMargin = document.getElementById('valMargin');
+        const valTax = document.getElementById('valTax');
+        const valFinal = document.getElementById('valFinal');
+
+        function calculateProduct() {
+            const cost = parseFloat(costInput.value) || 0;
+            const price = parseFloat(priceInput.value) || 0;
+            const taxPercent = parseFloat(taxInput.value) || 0;
+
+            // Hitung Profit (Margin Kotor)
+            const profit = price - cost;
+
+            // Hitung Margin %
+            let margin = 0;
+            if (price > 0) {
+                margin = (profit / price) * 100;
+            }
+
+            // Hitung Pajak Nominal
+            const taxAmount = price * (taxPercent / 100);
+
+            // Harga Akhir (Price + Tax)
+            const finalPrice = price + taxAmount;
+
+            // Update UI
+            // Format Rupiah sederhana
+            valProfit.innerText = "Rp " + profit.toLocaleString('id-ID');
+            valMargin.innerText = margin.toFixed(1) + "%";
+            valTax.innerText = "Rp " + taxAmount.toLocaleString('id-ID');
+            valFinal.innerText = "Rp " + finalPrice.toLocaleString('id-ID');
+
+            // Visual Color Logic
+            if (profit < 0) {
+                valProfit.className = "calc-value text-danger"; // Rugi
+            } else {
+                valProfit.className = "calc-value text-success"; // Untung
+            }
+        }
+
+        // Trigger Event saat ngetik
+        [costInput, priceInput, taxInput].forEach(el => {
+            el.addEventListener('input', calculateProduct);
+        });
+
+
+        // ==========================================
+        // 2. LOGIC: COPY ADDRESS (Billing -> Ship)
+        // ==========================================
+        const checkSame = document.getElementById('checkSameAddress');
+
+        // Mapping ID: Asal => Tujuan
+        const addressMap = {
+            'billFirst': 'shipFirst',
+            'billLast': 'shipLast',
+            'billAddress': 'shipAddress',
+            'billPhone': 'shipPhone'
+        };
+
+        checkSame.addEventListener('change', function () {
+            if (this.checked) {
+                // Copy Data
+                for (const [from, to] of Object.entries(addressMap)) {
+                    const sourceVal = document.getElementById(from).value;
+                    const targetEl = document.getElementById(to);
+                    targetEl.value = sourceVal;
+                    // Optional: Disable field agar user tau ini copy-an
+                    targetEl.setAttribute('readonly', true);
+                    targetEl.style.backgroundColor = "var(--bg-search)";
+                }
+                if (window.Toast) window.Toast.fire({ title: "Copied", message: "Billing address copied to shipping.", type: "info" });
+            } else {
+                // Clear / Enable Data
+                for (const [from, to] of Object.entries(addressMap)) {
+                    const targetEl = document.getElementById(to);
+                    targetEl.value = "";
+                    targetEl.removeAttribute('readonly');
+                    targetEl.style.backgroundColor = "";
+                }
+            }
+        });
+
+        // ==========================================
+        // 3. LOGIC: CASCADING DROPDOWN (Dummy Data)
+        // ==========================================
+        const selectProvince = document.getElementById('selectProvince');
+        const selectCity = document.getElementById('selectCity');
+        const inputZip = document.getElementById('inputZip');
+
+        // Data Kota Dummy (Biasanya dari API / Database)
+        const cityData = {
+            'jabar': ['Bandung', 'Bogor', 'Bekasi', 'Depok', 'Cimahi'],
+            'jateng': ['Semarang', 'Solo', 'Magelang', 'Tegal'],
+            'jatim': ['Surabaya', 'Malang', 'Kediri', 'Banyuwangi'],
+            'dki': ['Jakarta Selatan', 'Jakarta Pusat', 'Jakarta Barat', 'Jakarta Timur']
+        };
+
+        // Data Kode Pos Dummy
+        const zipData = {
+            'Bandung': '40115', 'Bogor': '16110', 'Bekasi': '17111',
+            'Semarang': '50111', 'Solo': '57111',
+            'Surabaya': '60111', 'Jakarta Selatan': '12110'
+        };
+
+        selectProvince.addEventListener('change', function () {
+            const province = this.value;
+            const cities = cityData[province] || [];
+
+            // Reset Kota
+            selectCity.innerHTML = '<option value="" selected disabled>-- Pilih Kota --</option>';
+            selectCity.disabled = false; // Aktifkan select kota
+
+            // Isi Kota Baru
+            cities.forEach(city => {
+                const option = document.createElement('option');
+                option.value = city;
+                option.textContent = city;
+                selectCity.appendChild(option);
+            });
+
+            // Reset Zip
+            inputZip.value = "";
+        });
+
+        selectCity.addEventListener('change', function () {
+            const city = this.value;
+            // Auto fill Zip Code
+            const zip = zipData[city] || Math.floor(10000 + Math.random() * 90000); // Random jika tidak ada di map
+            inputZip.value = zip;
+        });
+
+    </script>
+</body>
+
+</html>

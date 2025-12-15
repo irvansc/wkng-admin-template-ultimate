@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Daily Admin</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/core.css">
+    <link rel="stylesheet" href="assets/css/utilities.css">
+    <link rel="stylesheet" href="assets/css/layout.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+</head>
+
+<body>
+
+    <header class="app-header">
+
+        <div class="header-left-actions">
+            <button class="header-icon-btn mobile-toggle-btn" id="mobileToggle">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+
+            <button class="header-icon-btn mobile-search-btn">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+
+            <div class="mobile-search-bar" id="mobileSearchBar">
+                <i class="fa-solid fa-magnifying-glass search-icon-mobile"></i>
+                <input type="text" class="mobile-search-input" placeholder="Search anything..." id="mobileSearchInput">
+                <button class="mobile-search-close" id="mobileSearchClose">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="logo desktop-only">
+            <i class="fa-solid fa-code" style="color: var(--text-main);"></i>
+            <span>daily.dev</span>
+        </div>
+        <div id="horizontal-menu-container" class="desktop-only" style="flex: 1; margin-left: 20px;">
+        </div>
+        <div class="search-wrapper desktop-only">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <input type="text" class="search-input" placeholder="Search..." id="searchInput">
+            <div class="search-shortcut">Ctrl K</div>
+        </div>
+
+        <div class="header-right">
+            <div class="notification-wrapper">
+                <button class="header-icon-btn" id="notifTrigger" title="Notifications">
+                    <i class="fa-regular fa-bell"></i>
+                    <div class="notification-dot"></div>
+                </button>
+
+                <div class="notification-dropdown" id="notifDropdown">
+                    <div class="notif-header">
+                        <h4>Notifications <span class="badge badge-danger"
+                                style="margin-left:8px; font-size:10px; padding:2px 6px;">4 New</span></h4>
+                        <span class="notif-mark-read">Mark all as read</span>
+                    </div>
+
+                    <div class="notif-list">
+
+                        <div class="notif-item unread">
+                            <div class="notif-icon-box error">
+                                <i class="fa-solid fa-circle-exclamation"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Server Connection Failed</h5>
+                                <p>Could not sync data with main server. Please check your API Key configuration.</p>
+                                <span class="notif-time">2 minutes ago</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item unread">
+                            <div class="notif-icon-box success">
+                                <i class="fa-solid fa-check-double"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Project Exported</h5>
+                                <p>Your dashboard layout "Q3 Report" has been successfully exported to PDF.</p>
+                                <span class="notif-time">1 hour ago</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item">
+                            <div class="notif-icon-box warning">
+                                <i class="fa-solid fa-triangle-exclamation"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Storage Usage High</h5>
+                                <p>You have used 85% of your allocated cloud storage. Consider upgrading.</p>
+                                <span class="notif-time">Yesterday at 4:30 PM</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item">
+                            <div class="notif-icon-box info">
+                                <i class="fa-solid fa-circle-info"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>New Feature Available</h5>
+                                <p>Dark mode is now customizable. Check settings for more themes.</p>
+                                <span class="notif-time">2 days ago</span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="notif-footer">
+                        View All Notifications
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-wrapper">
+                <img src="https://i.pravatar.cc/150?img=12" alt="Profile" class="user-img header-icon-btn"
+                    id="profileTrigger">
+
+                <div class="profile-dropdown" id="profileDropdown">
+                    <div class="pd-header">
+                        <img src="https://i.pravatar.cc/150?img=12" class="pd-avatar">
+                        <div class="pd-info">
+                            <h4>Irvan Maulana</h4>
+                            <span>@irvanmaulana</span>
+                        </div>
+                    </div>
+                    <div class="pd-menu-list">
+                        <a href="pages-profile.html" class="pd-menu-item"><i class="fa-regular fa-user"></i> Your
+                            profile</a>
+                    </div>
+                    <div class="pd-divider"></div>
+                    <div class="pd-theme-toggle">
+                        <span>Theme</span>
+                        <div class="theme-options">
+                            <div class="theme-opt active" id="themeDark"><i class="fa-solid fa-moon"></i></div>
+                            <div class="theme-opt" id="themeLight"><i class="fa-solid fa-sun"></i></div>
+                        </div>
+                    </div>
+                    <div class="pd-divider"></div>
+                    <div class="pd-menu-list">
+                        <a class="pd-menu-item text-muted"><i class="fa-solid fa-arrow-right-from-bracket"></i>
+                            Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="app-body-wrapper">
+
+        <div class="app-body">
+
+            <div id="sidebar-container"></div>
+
+            <main class="main-content" id="mainContent">
+                <!-- PAGE HEADER -->
+
+
+                <!-- PAGE HEADER END -->
+
+
+                <!-- CONTENT HERE -->
+
+                <!-- CONTENT END -->
+                <footer class="app-footer">
+                    <div class="footer-left">
+                        <span class="footer-logo-icon"><i class="fa-solid fa-code"></i></span>
+                        <span>&copy; 2025 <strong>Daily.dev</strong>. Created with <i
+                                class="fa-solid fa-heart heart-icon"></i>
+                            by Irvan Maulana.</span>
+                    </div>
+                    <div class="footer-links">
+                        <a href="#" class="footer-link-item">Privacy Policy</a>
+                        <a href="#" class="footer-link-item">Terms</a>
+                        <a href="#" class="footer-link-item">Support</a>
+                    </div>
+                </footer>
+            </main>
+        </div>
+    </div>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <button id="settings-trigger" class="settings-btn-float">
+        <i class="fa-solid fa-gear fa-spin"></i>
+    </button>
+
+    <div id="settings-panel" class="settings-panel">
+        <div class="settings-header">
+            <h5>Theme Customizer</h5>
+            <button id="settings-close" class="btn-close-simple"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+
+        <div class="settings-body">
+
+            <div class="settings-section">
+                <h6 class="settings-title">Layout Mode</h6>
+                <div class="layout-grid">
+
+                    <div class="layout-option" onclick="changeLayout('default')">
+                        <div class="layout-preview vertical">
+                            <div class="preview-sidebar"></div>
+                            <div class="preview-content"></div>
+                        </div>
+                        <span>Vertical</span>
+                    </div>
+
+                    <div class="layout-option" onclick="changeLayout('horizontal')">
+                        <div class="layout-preview horizontal">
+                            <div class="preview-header"></div>
+                            <div class="preview-content"></div>
+                        </div>
+                        <span>Horizontal</span>
+                    </div>
+
+                    <div class="layout-option" onclick="changeLayout('collapsed')">
+                        <div class="layout-preview collapsed">
+                            <div class="preview-sidebar mini"></div>
+                            <div class="preview-content"></div>
+                        </div>
+                        <span>Collapsed</span>
+                    </div>
+
+                    <div class="layout-option" onclick="changeLayout('boxed')">
+                        <div class="layout-preview boxed">
+                            <div class="preview-content"></div>
+                        </div>
+                        <span>Boxed</span>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h6 class="settings-title">Action</h6>
+                <button class="btn-reset-layout" onclick="changeLayout('default')">Reset to Default</button>
+            </div>
+
+        </div>
+    </div>
+    <script src="assets/js/core.js"></script>
+
+</body>
+
+</html>

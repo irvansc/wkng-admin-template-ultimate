@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Roles & Permissions - Daily Admin</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+
+    <link rel="stylesheet" href="assets/css/core.css" />
+    <link rel="stylesheet" href="assets/css/utilities.css" />
+    <link rel="stylesheet" href="assets/css/layout.css" />
+    <link rel="stylesheet" href="assets/css/components.css" />
+</head>
+
+<body>
+    <header class="app-header">
+        <div class="header-left-actions">
+            <button class="header-icon-btn mobile-toggle-btn" id="mobileToggle">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+            <div class="mobile-search-bar" id="mobileSearchBar">
+                <i class="fa-solid fa-magnifying-glass search-icon-mobile"></i>
+                <input type="text" class="mobile-search-input" placeholder="Search anything..."
+                    id="mobileSearchInput" />
+                <button class="mobile-search-close" id="mobileSearchClose">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="logo desktop-only">
+            <i class="fa-solid fa-code" style="color: var(--text-main)"></i>
+            <span>daily.dev</span>
+        </div>
+        <div id="horizontal-menu-container" class="desktop-only" style="flex: 1; margin-left: 20px">
+        </div>
+        <div class="search-wrapper search-wrapper-inline desktop-only">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <input type="text" class="search-input" placeholder="Search..." id="searchInputInline">
+            <div class="search-shortcut">Ctrl K</div>
+        </div>
+
+        <div class="header-right-actions">
+
+            <button class="header-icon-btn" id="searchTrigger" title="Search" style="display: none;">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+
+        </div>
+
+        <div class="search-overlay" id="searchOverlay">
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass search-box-icon"></i>
+                <input type="text" class="search-box-input" placeholder="Search pages..." id="searchInputFloating">
+                <button class="search-box-close" id="searchClose">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="header-right">
+            <div class="notification-wrapper">
+                <button class="header-icon-btn" id="notifTrigger" title="Notifications">
+                    <i class="fa-regular fa-bell"></i>
+                    <div class="notification-dot"></div>
+                </button>
+
+                <div class="notification-dropdown" id="notifDropdown">
+                    <div class="notif-header">
+                        <h4>
+                            Notifications
+                            <span class="badge badge-danger"
+                                style="margin-left: 8px; font-size: 10px; padding: 2px 6px">4 New</span>
+                        </h4>
+                        <span class="notif-mark-read">Mark all as read</span>
+                    </div>
+
+                    <div class="notif-list">
+                        <div class="notif-item unread">
+                            <div class="notif-icon-box error">
+                                <i class="fa-solid fa-circle-exclamation"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Server Connection Failed</h5>
+                                <p>
+                                    Could not sync data with main server. Please check your API
+                                    Key configuration.
+                                </p>
+                                <span class="notif-time">2 minutes ago</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item unread">
+                            <div class="notif-icon-box success">
+                                <i class="fa-solid fa-check-double"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Project Exported</h5>
+                                <p>
+                                    Your dashboard layout "Q3 Report" has been successfully
+                                    exported to PDF.
+                                </p>
+                                <span class="notif-time">1 hour ago</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item">
+                            <div class="notif-icon-box warning">
+                                <i class="fa-solid fa-triangle-exclamation"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Storage Usage High</h5>
+                                <p>
+                                    You have used 85% of your allocated cloud storage. Consider
+                                    upgrading.
+                                </p>
+                                <span class="notif-time">Yesterday at 4:30 PM</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item">
+                            <div class="notif-icon-box info">
+                                <i class="fa-solid fa-circle-info"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>New Feature Available</h5>
+                                <p>
+                                    Dark mode is now customizable. Check settings for more
+                                    themes.
+                                </p>
+                                <span class="notif-time">2 days ago</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="notif-footer">View All Notifications</div>
+                </div>
+            </div>
+
+            <div class="profile-wrapper">
+                <img src="https://i.pravatar.cc/150?img=12" alt="Profile" class="user-img header-icon-btn"
+                    id="profileTrigger" />
+
+                <div class="profile-dropdown" id="profileDropdown">
+                    <div class="pd-header">
+                        <img src="https://i.pravatar.cc/150?img=12" class="pd-avatar" />
+                        <div class="pd-info">
+                            <h4>Irvan Maulana</h4>
+                            <span>@irvanmaulana</span>
+                        </div>
+                    </div>
+                    <div class="pd-menu-list">
+                        <a href="pages-profile.html" class="pd-menu-item"><i class="fa-regular fa-user"></i> Your
+                            profile</a>
+                    </div>
+                    <div class="pd-divider"></div>
+                    <div class="pd-theme-toggle">
+                        <span>Theme</span>
+                        <div class="theme-options">
+                            <div class="theme-opt active" id="themeDark">
+                                <i class="fa-solid fa-moon"></i>
+                            </div>
+                            <div class="theme-opt" id="themeLight">
+                                <i class="fa-solid fa-sun"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pd-divider"></div>
+                    <div class="pd-menu-list">
+                        <a class="pd-menu-item text-muted"><i class="fa-solid fa-arrow-right-from-bracket"></i>
+                            Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="app-body-wrapper">
+
+        <div class="app-body">
+            <div id="sidebar-container"></div>
+
+            <main class="main-content" id="mainContent">
+                <div class="page-header-card">
+                    <div class="header-hero-content">
+                        <h2 class="hero-title">Roles & Permissions <i class="fa-solid fa-shield-halved"
+                                style="font-size: 24px; color: var(--accent-color); opacity: 0.5;"></i></h2>
+                        <p class="hero-desc">Define hierarchy, assign granular permissions, and secure your platform.
+                        </p>
+                    </div>
+                    <div class="header-hero-actions">
+                        <nav aria-label="breadcrumb">
+                            <ol class="hero-breadcrumb">
+                                <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">
+                                        <div class="home-icon-box"><i class="fa-solid fa-house"></i></div> Dashboard
+                                    </a></li>
+                                <span class="breadcrumb-sep"><i class="fa-solid fa-chevron-right"></i></span>
+                                <li class="breadcrumb-item"><a href="#" class="breadcrumb-link active">Roles &
+                                        Access</a></li>
+                            </ol>
+                        </nav>
+
+                    </div>
+                    <i class="fa-solid fa-user-lock header-bg-icon"></i>
+                </div>
+
+                <div class="d-flex justify-between align-center mb-4 tabs-container">
+                    <div class="premium-tabs-container">
+                        <div class="premium-tab active" data-tab="view-matrix">
+                            <i class="fa-solid fa-table-cells"></i> Matrix View
+                        </div>
+                        <div class="premium-tab" data-tab="view-cards">
+                            <i class="fa-solid fa-id-card-clip"></i> Role Cards
+                        </div>
+                        <div class="premium-tab" data-tab="view-builder">
+                            <i class="fa-solid fa-network-wired"></i> Tree Builder
+                        </div>
+                    </div>
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-soft-primary"><i class="fa-solid fa-clock-rotate-left"></i> Audit
+                            Log</button>
+                        <button class="btn btn-primary"><i class="fa-solid fa-plus"></i> Create New Role</button>
+                    </div>
+                </div>
+
+                <div class="tab-content">
+
+                    <div id="view-matrix" class="tab-pane active">
+                        <div class="card border-0">
+                            <div class="card-body p-0">
+                                <div class="table-responsive">
+                                    <table class="table table-hover align-middle permission-matrix">
+                                        <thead>
+                                            <tr>
+                                                <th style="width: 250px; padding-left: 24px;">Permission Name</th>
+                                                <th class="text-center"><span class="badge badge-soft-danger">Super
+                                                        Admin</span></th>
+                                                <th class="text-center"><span
+                                                        class="badge badge-soft-primary">Manager</span></th>
+                                                <th class="text-center"><span
+                                                        class="badge badge-soft-success">Editor</span></th>
+                                                <th class="text-center"><span
+                                                        class="badge badge-soft-warning">Viewer</span></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="table-group-header">
+                                                <td colspan="5">User Management</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="ps-4 fw-bold">View Users</td>
+                                                <td class="text-center"><input type="checkbox" class="matrix-check"
+                                                        checked disabled>
+                                                </td>
+                                                <td class="text-center"><input type="checkbox" class="matrix-check"
+                                                        checked></td>
+                                                <td class="text-center"><input type="checkbox" class="matrix-check"
+                                                        checked></td>
+                                                <td class="text-center"><input type="checkbox" class="matrix-check"
+                                                        checked></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="ps-4 fw-bold">Create/Edit Users</td>
+                                                <td class="text-center"><input type="checkbox" class="matrix-check"
+                                                        checked disabled>
+                                                </td>
+                                                <td class="text-center"><input type="checkbox" class="matrix-check"
+                                                        checked></td>
+                                                <td class="text-center"><input type="checkbox" class="matrix-check">
+                                                </td>
+                                                <td class="text-center"><input type="checkbox" class="matrix-check">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="ps-4 fw-bold">Delete Users</td>
+                                                <td class="text-center"><input type="checkbox" class="matrix-check"
+                                                        checked disabled>
+                                                </td>
+                                                <td class="text-center"><input type="checkbox" class="matrix-check">
+                                                </td>
+                                                <td class="text-center"><input type="checkbox" class="matrix-check">
+                                                </td>
+                                                <td class="text-center"><input type="checkbox" class="matrix-check">
+                                                </td>
+                                            </tr>
+
+                                            <tr class="table-group-header">
+                                                <td colspan="5">Billing & Finance</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="ps-4 fw-bold">View Invoices</td>
+                                                <td class="text-center"><input type="checkbox" class="matrix-check"
+                                                        checked disabled>
+                                                </td>
+                                                <td class="text-center"><input type="checkbox" class="matrix-check"
+                                                        checked></td>
+                                                <td class="text-center"><input type="checkbox" class="matrix-check">
+                                                </td>
+                                                <td class="text-center"><input type="checkbox" class="matrix-check">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="ps-4 fw-bold">Manage Payment Methods</td>
+                                                <td class="text-center"><input type="checkbox" class="matrix-check"
+                                                        checked disabled>
+                                                </td>
+                                                <td class="text-center"><input type="checkbox" class="matrix-check">
+                                                </td>
+                                                <td class="text-center"><input type="checkbox" class="matrix-check">
+                                                </td>
+                                                <td class="text-center"><input type="checkbox" class="matrix-check">
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="p-3 border-top border-color text-end">
+                                    <button class="btn btn-primary">Save Changes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="view-cards" class="tab-pane">
+                        <div class="row g-4">
+
+                            <div class="col-md-6 col-lg-4">
+                                <div class="role-card">
+                                    <div class="role-header bg-gradient-danger">
+                                        <div class="d-flex justify-between align-center">
+                                            <div class="role-icon"><i class="fa-solid fa-crown"></i></div>
+                                            <div class="dropdown-action">
+                                                <button
+                                                    class="btn btn-icon btn-ghost btn-sm text-white dropdown-trigger"><i
+                                                        class="fa-solid fa-ellipsis"></i></button>
+                                            </div>
+                                        </div>
+                                        <h4 class="text-white mt-3 mb-1">Super Admin</h4>
+                                        <span class="text-white-50 text-sm">Full access to everything</span>
+                                    </div>
+                                    <div class="role-body">
+                                        <div class="d-flex justify-between align-center mb-3">
+                                            <span class="text-muted text-xs font-bold uppercase">Members</span>
+                                            <div class="avatar-group">
+                                                <div class="avatar avatar-sm"><img
+                                                        src="https://i.pravatar.cc/150?img=33"></div>
+                                                <div class="avatar avatar-sm"><img
+                                                        src="https://i.pravatar.cc/150?img=12"></div>
+                                                <div class="avatar avatar-sm bg-light text-dark">+2</div>
+                                            </div>
+                                        </div>
+                                        <div class="role-features">
+                                            <div class="feature-item"><i class="fa-solid fa-check text-success"></i>
+                                                User Management
+                                            </div>
+                                            <div class="feature-item"><i class="fa-solid fa-check text-success"></i>
+                                                System Settings
+                                            </div>
+                                            <div class="feature-item"><i class="fa-solid fa-check text-success"></i>
+                                                Billing & API</div>
+                                        </div>
+                                        <button class="btn btn-soft-danger w-full mt-4">Configure Role</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4">
+                                <div class="role-card">
+                                    <div class="role-header bg-gradient-primary">
+                                        <div class="d-flex justify-between align-center">
+                                            <div class="role-icon"><i class="fa-solid fa-user-tie"></i></div>
+                                            <div class="dropdown-action">
+                                                <button
+                                                    class="btn btn-icon btn-ghost btn-sm text-white dropdown-trigger"><i
+                                                        class="fa-solid fa-ellipsis"></i></button>
+                                            </div>
+                                        </div>
+                                        <h4 class="text-white mt-3 mb-1">Manager</h4>
+                                        <span class="text-white-50 text-sm">Can manage content & users</span>
+                                    </div>
+                                    <div class="role-body">
+                                        <div class="d-flex justify-between align-center mb-3">
+                                            <span class="text-muted text-xs font-bold uppercase">Members</span>
+                                            <div class="avatar-group">
+                                                <div class="avatar avatar-sm"><img
+                                                        src="https://i.pravatar.cc/150?img=5"></div>
+                                                <div class="avatar avatar-sm"><img
+                                                        src="https://i.pravatar.cc/150?img=8"></div>
+                                                <div class="avatar avatar-sm bg-light text-dark">+5</div>
+                                            </div>
+                                        </div>
+                                        <div class="role-features">
+                                            <div class="feature-item"><i class="fa-solid fa-check text-success"></i>
+                                                User Management
+                                                (Partial)</div>
+                                            <div class="feature-item"><i class="fa-solid fa-check text-success"></i>
+                                                Content Publishing
+                                            </div>
+                                            <div class="feature-item"><i class="fa-solid fa-xmark text-muted"></i>
+                                                System Settings</div>
+                                        </div>
+                                        <button class="btn btn-soft-primary w-full mt-4">Configure Role</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4">
+                                <div class="role-card">
+                                    <div class="role-header bg-gradient-warning">
+                                        <div class="d-flex justify-between align-center">
+                                            <div class="role-icon"><i class="fa-solid fa-eye"></i></div>
+                                            <div class="dropdown-action">
+                                                <button
+                                                    class="btn btn-icon btn-ghost btn-sm text-white dropdown-trigger"><i
+                                                        class="fa-solid fa-ellipsis"></i></button>
+                                            </div>
+                                        </div>
+                                        <h4 class="text-white mt-3 mb-1">Viewer</h4>
+                                        <span class="text-white-50 text-sm">Read-only access</span>
+                                    </div>
+                                    <div class="role-body">
+                                        <div class="d-flex justify-between align-center mb-3">
+                                            <span class="text-muted text-xs font-bold uppercase">Members</span>
+                                            <div class="avatar-group">
+                                                <div class="avatar avatar-sm"><img
+                                                        src="https://i.pravatar.cc/150?img=60"></div>
+                                                <div class="avatar avatar-sm bg-light text-dark">+12</div>
+                                            </div>
+                                        </div>
+                                        <div class="role-features">
+                                            <div class="feature-item"><i class="fa-solid fa-check text-success"></i>
+                                                Read Content</div>
+                                            <div class="feature-item"><i class="fa-solid fa-check text-success"></i>
+                                                View Analytics
+                                            </div>
+                                            <div class="feature-item"><i class="fa-solid fa-xmark text-muted"></i>
+                                                Edit/Delete Data
+                                            </div>
+                                        </div>
+                                        <button class="btn btn-soft-warning w-full mt-4">Configure Role</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4">
+                                <div class="role-card border-dashed d-flex flex-column align-center justify-center h-100"
+                                    style="min-height: 320px; cursor: pointer;">
+                                    <div class="icon-circle mb-3 bg-soft-primary text-primary">
+                                        <i class="fa-solid fa-plus fa-lg"></i>
+                                    </div>
+                                    <h5 class="text-muted">Add New Role</h5>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div id="view-builder" class="tab-pane">
+                        <div class="builder-container">
+
+                            <div class="builder-sidebar">
+                                <div class="p-4 border-bottom border-color">
+                                    <input type="text" id="roleSearchInput" class="role-search-box"
+                                        placeholder="Find Role...">
+                                </div>
+                                <div id="roleListContainer"
+                                    class="list-group list-group-flush flex-1 overflow-y-auto custom-scrollbar">
+                                </div>
+                                <div class="p-3 border-top border-color">
+                                    <button class="btn btn-soft-primary w-100 btn-sm" data-toggle="modal"
+                                        data-target="#addRoleModal">
+                                        <i class="fa-solid fa-plus"></i> Add New Role
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="builder-content">
+                                <div class="builder-header">
+                                    <div>
+                                        <h2 class="role-title-large" id="selectedRoleTitle">
+                                            Loading...
+                                        </h2>
+                                        <p class="text-muted text-sm mb-0 mt-1" id="selectedRoleDesc">Select a role to
+                                            manage permissions.
+                                        </p>
+                                    </div>
+                                    <div class="d-flex gap-2">
+                                        <button class="btn btn-sm btn-ghost text-muted"
+                                            onclick="PermissionApp.deselectAll()">
+                                            <i class="fa-regular fa-square"></i> Clear
+                                        </button>
+                                        <button class="btn btn-sm btn-ghost text-accent"
+                                            onclick="PermissionApp.selectAll()">
+                                            <i class="fa-regular fa-square-check"></i> Select All
+                                        </button>
+                                        <div class="vr mx-1 bg-border"></div>
+                                        <button class="btn btn-primary btn-sm shadow-glow"
+                                            onclick="PermissionApp.saveChanges()">
+                                            <i class="fa-solid fa-floppy-disk"></i> Save Changes
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="builder-toolbar">
+                                    <div class="tree-search-box mb-0">
+                                        <i class="fa-solid fa-magnifying-glass tree-search-icon"></i>
+                                        <input type="text" id="permissionFilter" class="tree-search-input"
+                                            placeholder="Filter permissions (e.g. 'delete')...">
+                                    </div>
+                                </div>
+
+                                <div class="builder-tree-area custom-scrollbar">
+                                    <div id="pure-tree" class="pure-tree py-3">
+                                        <ul id="permissionTreeContainer">
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <footer class="app-footer">
+                    <div class="footer-left">
+                        <span class="footer-logo-icon"><i class="fa-solid fa-code"></i></span>
+                        <span>&copy; 2025 <strong>Daily.dev</strong>. Created with
+                            <i class="fa-solid fa-heart heart-icon"></i> by Irvan
+                            Maulana.</span>
+                    </div>
+                    <div class="footer-links">
+                        <a href="#" class="footer-link-item">Privacy Policy</a>
+                        <a href="#" class="footer-link-item">Terms</a>
+                        <a href="#" class="footer-link-item">Support</a>
+                    </div>
+                </footer>
+            </main>
+        </div>
+    </div>
+    <div class="modal-backdrop" id="addRoleModal">
+        <div class="modal-panel modal-sm">
+            <div class="modal-header">
+                <h5 class="modal-title">Create New Role</h5>
+                <button class="modal-close-btn" data-dismiss="modal"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body">
+                <form id="addRoleForm">
+                    <div class="form-group">
+                        <label class="form-label">Role Name</label>
+                        <input type="text" class="form-control" name="roleName" placeholder="e.g. HR Admin" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Description</label>
+                        <textarea class="form-control" name="roleDesc" rows="2"
+                            placeholder="Short description..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Clone Permissions From (Optional)</label>
+                        <select class="form-control" id="roleCloneSelect">
+                            <option value="">-- Start from Scratch --</option>
+                        </select>
+                    </div>
+                    <div class="d-flex justify-content-end gap-2 mt-4">
+                        <button type="button" class="btn btn-ghost" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Create Role</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="sidebar-overlay desktop-only" id="sidebarOverlay"></div>
+    <div id="settings-container"></div>
+
+    <script src="assets/js/core.js"></script>
+    <script>
+
+        /* =========================================
+           ROLE & PERMISSION SIMULATION ENGINE
+           ========================================= */
+        const PermissionApp = (function () {
+
+            // 1. DATA MASTER: Definisi 5 Modul Permission (System Schema)
+            const permissionSchema = [
+                {
+                    id: 'dashboard',
+                    icon: 'fa-chart-line',
+                    name: 'Dashboard Analytics',
+                    actions: [
+                        { id: 'view_stats', name: 'View Statistics', badge: 'Read' },
+                        { id: 'export_report', name: 'Export Reports', badge: 'Read' }
+                    ]
+                },
+                {
+                    id: 'articles',
+                    icon: 'fa-newspaper',
+                    name: 'Article Management',
+                    color: 'text-primary',
+                    actions: [
+                        { id: 'view_articles', name: 'View Article List', badge: 'Read' },
+                        { id: 'create_article', name: 'Create New Article', badge: 'Write' },
+                        { id: 'edit_article', name: 'Edit Any Article', badge: 'Write' },
+                        { id: 'publish_article', name: 'Publish / Unpublish', badge: 'Write' },
+                        { id: 'delete_article', name: 'Delete Article', badge: 'Dangerous' }
+                    ]
+                },
+                {
+                    id: 'users',
+                    icon: 'fa-users',
+                    name: 'User Management',
+                    color: 'text-info',
+                    actions: [
+                        { id: 'view_users', name: 'View User List', badge: 'Read' },
+                        { id: 'create_user', name: 'Create User', badge: 'Write' },
+                        { id: 'edit_user', name: 'Edit User Details', badge: 'Write' },
+                        { id: 'ban_user', name: 'Ban / Delete User', badge: 'Dangerous' }
+                    ]
+                },
+                {
+                    id: 'products',
+                    icon: 'fa-box',
+                    name: 'Product Inventory',
+                    color: 'text-success',
+                    actions: [
+                        { id: 'view_products', name: 'View Products', badge: 'Read' },
+                        { id: 'adjust_stock', name: 'Adjust Stock', badge: 'Write' },
+                        { id: 'manage_categories', name: 'Manage Categories', badge: 'Write' }
+                    ]
+                },
+                {
+                    id: 'settings',
+                    icon: 'fa-gears',
+                    name: 'System Settings',
+                    color: 'text-warning',
+                    actions: [
+                        { id: 'general_settings', name: 'General Config', badge: 'Write' },
+                        { id: 'payment_gateways', name: 'Payment Gateways', badge: 'Dangerous' },
+                        { id: 'api_keys', name: 'API Keys', badge: 'Dangerous' }
+                    ]
+                }
+            ];
+
+            // 2. STATE: Data Role & Permission Aktif (Simulasi Database)
+            let rolesData = [
+                {
+                    id: 1,
+                    name: 'Super Admin',
+                    desc: 'Full access to all system features.',
+                    permissions: ['ALL'] // Keyword khusus
+                },
+                {
+                    id: 2,
+                    name: 'Manager',
+                    desc: 'Can manage contents and view reports.',
+                    permissions: ['view_stats', 'view_articles', 'create_article', 'edit_article', 'publish_article', 'view_users', 'view_products']
+                },
+                {
+                    id: 3,
+                    name: 'Editor',
+                    desc: 'Focused on content creation only.',
+                    permissions: ['view_articles', 'create_article', 'edit_article']
+                }
+            ];
+
+            let currentRoleId = 1; // Default select Super Admin
+
+            // --- DOM ELEMENTS ---
+            const els = {
+                roleList: document.getElementById('roleListContainer'),
+                roleTitle: document.getElementById('selectedRoleTitle'),
+                roleDesc: document.getElementById('selectedRoleDesc'),
+                treeContainer: document.getElementById('permissionTreeContainer'),
+                filterInput: document.getElementById('permissionFilter'),
+                roleSearch: document.getElementById('roleSearchInput'),
+                cloneSelect: document.getElementById('roleCloneSelect'),
+                addRoleForm: document.getElementById('addRoleForm')
+            };
+
+            // --- CORE FUNCTIONS ---
+
+            // 1. Render Sidebar List Role
+            function renderRoleList() {
+                els.roleList.innerHTML = '';
+                els.cloneSelect.innerHTML = '<option value="">-- Start from Scratch --</option>';
+
+                rolesData.forEach(role => {
+                    // Populate Sidebar
+                    const isActive = role.id === currentRoleId ? 'active' : '';
+                    const item = document.createElement('a');
+                    item.className = `list-group-item list-group-item-action border-0 py-3 px-4 ${isActive}`;
+                    item.href = "#";
+                    item.onclick = (e) => { e.preventDefault(); switchRole(role.id); };
+                    item.innerHTML = `
+                <div class="d-flex align-center justify-between">
+                    <div class="d-flex align-center gap-2">
+                        <i class="fa-solid fa-user-shield"></i>
+                        <strong>${role.name}</strong>
+                    </div>
+                    ${isActive ? '<i class="fa-solid fa-chevron-right text-xs"></i>' : ''}
+                </div>
+            `;
+                    els.roleList.appendChild(item);
+
+                    // Populate Clone Select Option in Modal
+                    const option = document.createElement('option');
+                    option.value = role.id;
+                    option.innerText = role.name;
+                    els.cloneSelect.appendChild(option);
+                });
+            }
+
+            // 2. Render Tree Permission (Kanan)
+            // 2. Render Tree Permission (Kanan) - FIXED VERSION
+            function renderPermissions() {
+                const role = rolesData.find(r => r.id === currentRoleId);
+                if (!role) return;
+
+                // --- FIX: SNAPSHOT STATE ---
+                // Sebelum menghapus HTML, kita simpan dulu group mana yang sedang terbuka
+                const openGroups = [];
+                // Cari semua UL yang punya class 'show' (sedang terbuka)
+                if (els.treeContainer) {
+                    els.treeContainer.querySelectorAll('.pure-tree-nested.show').forEach(ul => {
+                        // Kita cari ID group dari checkbox parent di atasnya
+                        const parentNode = ul.previousElementSibling;
+                        if (parentNode) {
+                            const cb = parentNode.querySelector('.parent-check');
+                            if (cb) openGroups.push(cb.dataset.group);
+                        }
+                    });
+                }
+                // ---------------------------
+
+                // Update Header
+                els.roleTitle.innerText = role.name;
+                els.roleDesc.innerText = role.desc;
+
+                els.treeContainer.innerHTML = '';
+
+                permissionSchema.forEach(group => {
+                    const groupLi = document.createElement('li');
+
+                    // Cek apakah semua anak terpilih (untuk parent check)
+                    const groupActionsIds = group.actions.map(a => a.id);
+                    const isAllChecked = role.permissions.includes('ALL') || groupActionsIds.every(id => role.permissions.includes(id));
+                    const isPartial = !isAllChecked && groupActionsIds.some(id => role.permissions.includes(id));
+
+                    // HTML Structure
+                    groupLi.innerHTML = `
+                <div class="pure-tree-node">
+                    <span class="pure-tree-toggle"><i class="fa-solid fa-chevron-right"></i></span>
+                    <label class="pure-tree-label">
+                        <input type="checkbox" class="pure-tree-checkbox parent-check" 
+                            data-group="${group.id}" 
+                            ${isAllChecked ? 'checked' : ''}>
+                        <span class="fw-bold text-main ${group.color || ''}">
+                            <i class="fa-solid ${group.icon} me-2"></i> ${group.name}
+                        </span>
+                    </label>
+                </div>
+                <ul class="pure-tree-nested">
+                    ${group.actions.map(action => {
+                        const isChecked = role.permissions.includes('ALL') || role.permissions.includes(action.id);
+                        let badgeClass = 'badge-outline-primary';
+                        if (action.badge === 'Write') badgeClass = 'badge-outline-success';
+                        if (action.badge === 'Dangerous') badgeClass = 'badge-outline-danger';
+
+                        return `
+                        <li>
+                            <div class="pure-tree-node">
+                                <span class="pure-tree-spacer"></span>
+                                <label class="pure-tree-label">
+                                    <input type="checkbox" class="pure-tree-checkbox child-check" 
+                                        data-id="${action.id}" 
+                                        data-parent="${group.id}"
+                                        ${isChecked ? 'checked' : ''}> 
+                                    <span>${action.name}</span>
+                                </label>
+                                <span class="badge ${badgeClass} badge-sm ms-auto">${action.badge}</span>
+                            </div>
+                        </li>
+                        `;
+                    }).join('')}
+                </ul>
+            `;
+
+                    // Handle Indeterminate State secara visual
+                    const parentCb = groupLi.querySelector('.parent-check');
+                    if (isPartial) parentCb.indeterminate = true;
+
+                    els.treeContainer.appendChild(groupLi);
+                });
+
+                // --- FIX: RESTORE STATE ---
+                // Buka kembali folder yang tadi terbuka
+                openGroups.forEach(groupId => {
+                    // Cari elemen checkbox parent berdasarkan ID
+                    const cb = els.treeContainer.querySelector(`.parent-check[data-group="${groupId}"]`);
+                    if (cb) {
+                        const node = cb.closest('.pure-tree-node');
+                        const toggle = node.querySelector('.pure-tree-toggle');
+                        const nested = node.nextElementSibling; // ul.pure-tree-nested
+
+                        // Paksa buka kembali class-nya
+                        if (toggle) toggle.classList.add('open');
+                        if (nested) nested.classList.add('show');
+                    }
+                });
+                // --------------------------
+
+                // Re-attach Event Listeners untuk Toggle Tree
+                attachTreeEvents();
+            }
+
+            // 3. Logic Toggle Tree & Checkbox
+            function attachTreeEvents() {
+                // Toggle Buka/Tutup Folder
+                document.querySelectorAll('.pure-tree-toggle').forEach(btn => {
+                    btn.addEventListener('click', function (e) {
+                        e.stopPropagation(); // Stop event bubbling
+                        this.classList.toggle('open');
+                        const nested = this.parentElement.nextElementSibling;
+                        if (nested) nested.classList.toggle('show');
+                    });
+                });
+
+                // Logic Checkbox Parent
+                document.querySelectorAll('.parent-check').forEach(cb => {
+                    cb.addEventListener('change', function () {
+                        const groupId = this.dataset.group;
+                        const isChecked = this.checked;
+                        const role = rolesData.find(r => r.id === currentRoleId);
+
+                        // Update Data
+                        const group = permissionSchema.find(g => g.id === groupId);
+                        group.actions.forEach(act => {
+                            if (isChecked) {
+                                if (!role.permissions.includes(act.id)) role.permissions.push(act.id);
+                            } else {
+                                role.permissions = role.permissions.filter(p => p !== act.id);
+                                role.permissions = role.permissions.filter(p => p !== 'ALL'); // Remove ALL flag
+                            }
+                        });
+
+                        renderPermissions(); // Re-render visual
+                    });
+                });
+
+                // Logic Checkbox Child
+                document.querySelectorAll('.child-check').forEach(cb => {
+                    cb.addEventListener('change', function () {
+                        const actionId = this.dataset.id;
+                        const role = rolesData.find(r => r.id === currentRoleId);
+
+                        if (this.checked) {
+                            role.permissions.push(actionId);
+                        } else {
+                            role.permissions = role.permissions.filter(p => p !== actionId);
+                            role.permissions = role.permissions.filter(p => p !== 'ALL');
+                        }
+                        renderPermissions();
+                    });
+                });
+            }
+
+            // --- PUBLIC ACTIONS ---
+
+            function switchRole(id) {
+                currentRoleId = id;
+                renderRoleList();
+                renderPermissions();
+            }
+
+            function selectAll() {
+                const role = rolesData.find(r => r.id === currentRoleId);
+                role.permissions = ['ALL']; // Shortcut
+                renderPermissions();
+                window.Toast.fire({ title: 'Selected', message: 'All permissions enabled', type: 'info' });
+            }
+
+            function deselectAll() {
+                const role = rolesData.find(r => r.id === currentRoleId);
+                role.permissions = [];
+                renderPermissions();
+            }
+
+            function saveChanges() {
+                // Simulasi Ajax Call
+                const btn = document.querySelector('.builder-header .btn-primary');
+                const originalHtml = btn.innerHTML;
+                btn.disabled = true;
+                btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Saving...';
+
+                setTimeout(() => {
+                    btn.disabled = false;
+                    btn.innerHTML = originalHtml;
+                    window.Toast.fire({
+                        title: 'Success',
+                        message: 'Role permissions updated successfully!',
+                        type: 'success'
+                    });
+                }, 800);
+            }
+
+            // Handle Form Add Role
+            if (els.addRoleForm) {
+                els.addRoleForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    const formData = new FormData(this);
+                    const name = formData.get('roleName');
+                    const desc = formData.get('roleDesc');
+                    const cloneId = formData.get('roleCloneSelect'); // value nya ID role atau string kosong
+
+                    let newPermissions = [];
+
+                    // Jika user memilih clone, copy permissions
+                    if (cloneId) {
+                        const sourceRole = rolesData.find(r => r.id == cloneId);
+                        if (sourceRole) {
+                            newPermissions = [...sourceRole.permissions]; // Spread operator deep copy array string
+                        }
+                    }
+
+                    const newRole = {
+                        id: Date.now(), // Random ID
+                        name: name,
+                        desc: desc || 'No description provided.',
+                        permissions: newPermissions
+                    };
+
+                    rolesData.push(newRole);
+                    currentRoleId = newRole.id; // Switch ke role baru
+
+                    // Close Modal (Manual karena kita pakai Vanilla JS)
+                    const modalEl = document.getElementById('addRoleModal');
+                    modalEl.classList.remove('show');
+                    document.body.style.overflow = '';
+
+                    renderRoleList();
+                    renderPermissions();
+                    this.reset();
+
+                    window.Toast.fire({ title: 'Role Created', message: `${name} has been added.`, type: 'success' });
+                });
+            }
+
+            // Search Filter Permission
+            els.filterInput.addEventListener('input', function (e) {
+                const val = e.target.value.toLowerCase();
+                document.querySelectorAll('.pure-tree-nested li').forEach(li => {
+                    const text = li.innerText.toLowerCase();
+                    if (text.includes(val)) {
+                        li.style.display = 'block';
+                        // Buka parentnya jika ketemu anak
+                        li.closest('.pure-tree-nested').classList.add('show');
+                        // Putar panah parent
+                        const toggle = li.closest('ul').previousElementSibling.querySelector('.pure-tree-toggle');
+                        if (toggle) toggle.classList.add('open');
+                    } else {
+                        li.style.display = 'none';
+                    }
+                });
+            });
+
+            // Search Filter Role
+            els.roleSearch.addEventListener('input', function (e) {
+                const val = e.target.value.toLowerCase();
+                document.querySelectorAll('#roleListContainer a').forEach(a => {
+                    if (a.innerText.toLowerCase().includes(val)) {
+                        a.style.display = 'block';
+                    } else {
+                        a.style.display = 'none';
+                    }
+                });
+            });
+
+            // Init
+            return {
+                init: function () {
+                    renderRoleList();
+                    renderPermissions();
+                },
+                selectAll,
+                deselectAll,
+                saveChanges
+            };
+
+        })();
+
+        // Jalankan saat DOM Ready
+        document.addEventListener('DOMContentLoaded', () => {
+            PermissionApp.init();
+        });
+    </script>
+</body>
+
+</html>

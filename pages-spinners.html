@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Spinners - Daily Admin</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="assets/css/core.css" />
+    <link rel="stylesheet" href="assets/css/utilities.css" />
+    <link rel="stylesheet" href="assets/css/layout.css" />
+    <link rel="stylesheet" href="assets/css/components.css" />
+
+    <style>
+        /* Agar wrapper demo terlihat rapi */
+        .demo-wrapper {
+            position: relative;
+            border: 1px dashed var(--border-color);
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 12px;
+            padding: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 120px;
+        }
+
+        .btn-copy-code {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 28px;
+            height: 28px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            z-index: 10;
+        }
+
+        .btn-copy-code:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+    </style>
+</head>
+
+<body>
+    <header class="app-header">
+        <div class="header-left-actions">
+            <button class="header-icon-btn mobile-toggle-btn" id="mobileToggle">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+            <div class="mobile-search-bar" id="mobileSearchBar">
+                <i class="fa-solid fa-magnifying-glass search-icon-mobile"></i>
+                <input type="text" class="mobile-search-input" placeholder="Search anything..."
+                    id="mobileSearchInput" />
+                <button class="mobile-search-close" id="mobileSearchClose">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="logo desktop-only">
+            <i class="fa-solid fa-code" style="color: var(--text-main)"></i>
+            <span>daily.dev</span>
+        </div>
+        <div id="horizontal-menu-container" class="desktop-only" style="flex: 1; margin-left: 20px"></div>
+        <div class="search-wrapper search-wrapper-inline desktop-only">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <input type="text" class="search-input" placeholder="Search..." id="searchInputInline" />
+            <div class="search-shortcut">Ctrl K</div>
+        </div>
+
+        <div class="header-right-actions">
+            <button class="header-icon-btn" id="searchTrigger" title="Search" style="display: none">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </div>
+
+        <div class="search-overlay" id="searchOverlay">
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass search-box-icon"></i>
+                <input type="text" class="search-box-input" placeholder="Search pages..." id="searchInputFloating" />
+                <button class="search-box-close" id="searchClose">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="header-right">
+            <div class="notification-wrapper">
+                <button class="header-icon-btn" id="notifTrigger" title="Notifications">
+                    <i class="fa-regular fa-bell"></i>
+                    <div class="notification-dot"></div>
+                </button>
+                <div class="notification-dropdown" id="notifDropdown">
+                    <div class="notif-header">
+                        <h4>
+                            Notifications
+                            <span class="badge badge-danger"
+                                style="margin-left: 8px; font-size: 10px; padding: 2px 6px">4 New</span>
+                        </h4>
+                        <span class="notif-mark-read">Mark all as read</span>
+                    </div>
+                    <div class="notif-list">
+                        <div class="notif-item unread">
+                            <div class="notif-icon-box error">
+                                <i class="fa-solid fa-circle-exclamation"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Server Connection Failed</h5>
+                                <p>Could not sync data with main server.</p>
+                                <span class="notif-time">2 minutes ago</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="notif-footer">View All Notifications</div>
+                </div>
+            </div>
+
+            <div class="profile-wrapper">
+                <img src="https://i.pravatar.cc/150?img=12" alt="Profile" class="user-img header-icon-btn"
+                    id="profileTrigger" />
+                <div class="profile-dropdown" id="profileDropdown">
+                    <div class="pd-header">
+                        <img src="https://i.pravatar.cc/150?img=12" class="pd-avatar" />
+                        <div class="pd-info">
+                            <h4>Irvan Maulana</h4>
+                            <span>@irvanmaulana</span>
+                        </div>
+                    </div>
+                    <div class="pd-menu-list">
+                        <a href="pages-profile.html" class="pd-menu-item"><i class="fa-regular fa-user"></i> Your
+                            profile</a>
+                    </div>
+                    <div class="pd-divider"></div>
+                    <div class="pd-theme-toggle">
+                        <span>Theme</span>
+                        <div class="theme-options">
+                            <div class="theme-opt active" id="themeDark">
+                                <i class="fa-solid fa-moon"></i>
+                            </div>
+                            <div class="theme-opt" id="themeLight">
+                                <i class="fa-solid fa-sun"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pd-divider"></div>
+                    <div class="pd-menu-list">
+                        <a class="pd-menu-item text-muted"><i class="fa-solid fa-arrow-right-from-bracket"></i>
+                            Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="app-body-wrapper">
+        <div class="app-body">
+            <div id="sidebar-container"></div>
+
+            <main class="main-content" id="mainContent">
+                <div class="page-header-card">
+                    <div class="header-hero-content">
+                        <h1 class="hero-title">Spinners & Loaders</h1>
+                        <p class="hero-desc">
+                            Koleksi indikator loading visual yang siap pakai. Klik ikon copy
+                            untuk mengambil kodenya.
+                        </p>
+                    </div>
+                    <div class="header-hero-actions">
+                        <nav class="hero-breadcrumb">
+                            <div class="home-icon-box">
+                                <i class="fa-solid fa-home"></i>
+                            </div>
+                            <span class="breadcrumb-sep"><i class="fa-solid fa-chevron-right"></i></span>
+                            <a href="#" class="breadcrumb-link">Components</a>
+                            <span class="breadcrumb-sep"><i class="fa-solid fa-chevron-right"></i></span>
+                            <span class="breadcrumb-link active">Spinners</span>
+                        </nav>
+                    </div>
+                    <i class="fa-solid fa-spinner header-bg-icon"></i>
+                </div>
+
+                <div class="section-title">
+                    <div class="section-line"></div>
+                    <div class="section-badge">
+                        <i class="fa-solid fa-circle-notch"></i> Basic Indicators
+                    </div>
+                    <div class="section-line"></div>
+                </div>
+
+                <div class="content-grid">
+                    <div class="col-span-4">
+                        <div class="card h-100">
+                            <div class="card-header border-0 pb-0 text-center">
+                                <h6 class="card-title text-sm">Standard Circle</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="demo-wrapper">
+                                    <button class="btn-copy-code" title="Copy Code">
+                                        <i class="fa-regular fa-copy"></i>
+                                    </button>
+                                    <div class="demo-content d-flex gap-3 align-items-center">
+                                        <div class="spin-circle spin-sm"></div>
+                                        <div class="spin-circle"></div>
+                                        <div class="spin-circle spin-lg"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-span-4">
+                        <div class="card h-100">
+                            <div class="card-header border-0 pb-0 text-center">
+                                <h6 class="card-title text-sm">Contextual Colors</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="demo-wrapper">
+                                    <button class="btn-copy-code" title="Copy Code">
+                                        <i class="fa-regular fa-copy"></i>
+                                    </button>
+                                    <div class="demo-content d-flex gap-3 align-items-center">
+                                        <div class="spin-circle spin-success"></div>
+                                        <div class="spin-circle spin-danger"></div>
+                                        <div class="spin-circle text-warning" style="border-top-color: #f1c40f"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-span-4">
+                        <div class="card h-100">
+                            <div class="card-header border-0 pb-0 text-center">
+                                <h6 class="card-title text-sm">Bouncing Dots</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="demo-wrapper">
+                                    <button class="btn-copy-code" title="Copy Code">
+                                        <i class="fa-regular fa-copy"></i>
+                                    </button>
+                                    <div class="demo-content d-flex flex-column gap-3 align-items-center">
+                                        <div class="loader-dots">
+                                            <div class="loader-dot"></div>
+                                            <div class="loader-dot"></div>
+                                            <div class="loader-dot"></div>
+                                        </div>
+                                        <div class="loader-dots">
+                                            <div class="loader-dot" style="background: #e74c3c"></div>
+                                            <div class="loader-dot" style="background: #e74c3c"></div>
+                                            <div class="loader-dot" style="background: #e74c3c"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-span-4">
+                        <div class="card h-100">
+                            <div class="card-header border-0 pb-0 text-center">
+                                <h6 class="card-title text-sm">Pulse Animation</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="demo-wrapper">
+                                    <button class="btn-copy-code" title="Copy Code">
+                                        <i class="fa-regular fa-copy"></i>
+                                    </button>
+                                    <div class="demo-content">
+                                        <div class="loader-pulse"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-title">
+                    <div class="section-line"></div>
+                    <div class="section-badge">
+                        <i class="fa-solid fa-bolt"></i> Advanced & Interactive
+                    </div>
+                    <div class="section-line"></div>
+                </div>
+
+                <div class="content-grid mb-2">
+                    <div class="col-span-4 col-md-12">
+                        <div class="card h-100" style="background: #050505; border-color: #333">
+                            <div class="card-header border-0 pb-0 text-center">
+                                <h6 class="card-title text-sm text-white">Cyber/Neon Mode</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="demo-wrapper" style="border-color: #333">
+                                    <button class="btn-copy-code" title="Copy Code">
+                                        <i class="fa-regular fa-copy"></i>
+                                    </button>
+                                    <div class="demo-content">
+                                        <div class="spin-cyber"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-span-8 col-md-12">
+                        <div class="card h-100">
+                            <div class="card-header">
+                                <h5 class="card-title">Button Loading State</h5>
+                            </div>
+                            <div class="card-body">
+                                <p class="text-muted text-sm mb-3">
+                                    Klik tombol di bawah untuk melihat simulasi loading (2
+                                    detik). Code akan mengcopy struktur tombol.
+                                </p>
+
+                                <div class="demo-wrapper">
+                                    <button class="btn-copy-code" title="Copy Code">
+                                        <i class="fa-regular fa-copy"></i>
+                                    </button>
+                                    <div class="demo-content d-flex flex-wrap gap-3 justify-content-center">
+                                        <button class="btn btn-primary text-main" onclick="simulateLoad(this)">
+                                            <i class="fa-solid fa-save"></i> Save Changes
+                                        </button>
+
+                                        <button class="btn btn-danger" onclick="simulateLoad(this)">
+                                            Delete Data
+                                        </button>
+
+                                        <button class="btn btn-secondary" onclick="simulateLoad(this)">
+                                            <i class="fa-solid fa-cloud-arrow-up"></i> Upload
+                                        </button>
+
+                                        <button class="btn btn-icon bg-card" onclick="simulateLoad(this)">
+                                            <i class="fa-solid fa-sync"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-span-12">
+                        <div class="card">
+                            <div class="card-body d-flex flex-column align-items-center text-center p-4">
+                                <h5 class="font-bold mb-1">Fullscreen Overlay</h5>
+                                <p class="text-muted text-sm mb-3">
+                                    Menampilkan loader di seluruh layar untuk proses blocking.
+                                </p>
+                                <button class="btn btn-outline-primary" onclick="toggleOverlay()">
+                                    Test Fullscreen Overlay
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <footer class="app-footer">
+                    <div class="footer-left">
+                        <span class="footer-logo-icon"><i class="fa-solid fa-code"></i></span>
+                        <span>&copy; 2025 <strong>Daily.dev</strong>. Created with
+                            <i class="fa-solid fa-heart heart-icon"></i> by Irvan
+                            Maulana.</span>
+                    </div>
+                    <div class="footer-links">
+                        <a href="#" class="footer-link-item">Privacy Policy</a>
+                        <a href="#" class="footer-link-item">Terms</a>
+                        <a href="#" class="footer-link-item">Support</a>
+                    </div>
+                </footer>
+            </main>
+        </div>
+    </div>
+
+    <div id="toast-notification" class="toast-box">
+        <i class="fa-solid fa-check-circle"></i> Code Copied!
+    </div>
+
+    <div id="loadingOverlay" style="
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        z-index: 9999;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        backdrop-filter: blur(5px);
+      ">
+        <div class="text-center">
+            <div class="spin-circle spin-xl spin-success mb-3"></div>
+            <h5 class="text-white font-bold">Processing...</h5>
+            <p class="text-white opacity-50 text-sm">Please wait moment</p>
+        </div>
+    </div>
+
+    <div class="sidebar-overlay desktop-only" id="sidebarOverlay"></div>
+    <div id="settings-container"></div>
+
+    <script src="assets/js/core.js"></script>
+
+    <script>
+        // --- 1. LOGIC COPY CODE ---
+        document.querySelectorAll(".btn-copy-code").forEach((btn) => {
+            btn.addEventListener("click", function () {
+                // Cari konten demo di sebelahnya
+                const wrapper = this.closest(".demo-wrapper");
+                const content = wrapper.querySelector(".demo-content");
+
+                if (content) {
+                    // Ambil HTML
+                    const html = content.innerHTML.trim();
+
+                    // Copy ke Clipboard
+                    navigator.clipboard.writeText(html).then(() => {
+                        // Feedback Visual di tombol
+                        const originalIcon = this.innerHTML;
+                        this.innerHTML =
+                            '<i class="fa-solid fa-check" style="color: var(--accent-green)"></i>';
+
+                        // Tampilkan Toast Global (jika ada fungsi showToast)
+                        if (typeof showToast === "function") {
+                            showToast("Spinner Code Copied!");
+                        } else {
+                            // Fallback Toast sederhana
+                            const toast = document.getElementById("toast-notification");
+                            if (toast) {
+                                toast.classList.add("show");
+                                setTimeout(() => toast.classList.remove("show"), 2000);
+                            }
+                        }
+
+                        // Reset icon tombol
+                        setTimeout(() => {
+                            this.innerHTML = originalIcon;
+                        }, 1500);
+                    });
+                }
+            });
+        });
+
+        // --- 2. LOGIC SIMULASI LOADING ---
+        function simulateLoad(btn) {
+            btn.classList.add("btn-loading");
+            setTimeout(() => {
+                btn.classList.remove("btn-loading");
+            }, 2000);
+        }
+
+        // --- 3. LOGIC OVERLAY ---
+        function toggleOverlay() {
+            const overlay = document.getElementById("loadingOverlay");
+            overlay.style.display = "flex";
+            setTimeout(() => {
+                overlay.style.display = "none";
+            }, 3000);
+        }
+    </script>
+</body>
+
+</html>

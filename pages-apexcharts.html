@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ApexCharts - Daily Admin</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/core.css">
+    <link rel="stylesheet" href="assets/css/utilities.css">
+    <link rel="stylesheet" href="assets/css/layout.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+</head>
+
+<body>
+
+    <header class="app-header">
+        <div class="header-left-actions">
+            <button class="header-icon-btn mobile-toggle-btn" id="mobileToggle">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+            <div class="mobile-search-bar" id="mobileSearchBar">
+                <i class="fa-solid fa-magnifying-glass search-icon-mobile"></i>
+                <input type="text" class="mobile-search-input" placeholder="Search anything..."
+                    id="mobileSearchInput" />
+                <button class="mobile-search-close" id="mobileSearchClose">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="logo desktop-only">
+            <i class="fa-solid fa-code" style="color: var(--text-main)"></i>
+            <span>daily.dev</span>
+        </div>
+        <div id="horizontal-menu-container" class="desktop-only" style="flex: 1; margin-left: 20px">
+        </div>
+        <div class="search-wrapper search-wrapper-inline desktop-only">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <input type="text" class="search-input" placeholder="Search..." id="searchInputInline">
+            <div class="search-shortcut">Ctrl K</div>
+        </div>
+
+        <div class="header-right-actions">
+
+            <button class="header-icon-btn" id="searchTrigger" title="Search" style="display: none;">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+
+        </div>
+
+        <div class="search-overlay" id="searchOverlay">
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass search-box-icon"></i>
+                <input type="text" class="search-box-input" placeholder="Search pages..." id="searchInputFloating">
+                <button class="search-box-close" id="searchClose">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="header-right">
+            <div class="notification-wrapper">
+                <button class="header-icon-btn" id="notifTrigger" title="Notifications">
+                    <i class="fa-regular fa-bell"></i>
+                    <div class="notification-dot"></div>
+                </button>
+
+                <div class="notification-dropdown" id="notifDropdown">
+                    <div class="notif-header">
+                        <h4>
+                            Notifications
+                            <span class="badge badge-danger"
+                                style="margin-left: 8px; font-size: 10px; padding: 2px 6px">4
+                                New</span>
+                        </h4>
+                        <span class="notif-mark-read">Mark all as read</span>
+                    </div>
+
+                    <div class="notif-list">
+                        <div class="notif-item unread">
+                            <div class="notif-icon-box error">
+                                <i class="fa-solid fa-circle-exclamation"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Server Connection Failed</h5>
+                                <p>
+                                    Could not sync data with main server. Please check your API
+                                    Key configuration.
+                                </p>
+                                <span class="notif-time">2 minutes ago</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item unread">
+                            <div class="notif-icon-box success">
+                                <i class="fa-solid fa-check-double"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Project Exported</h5>
+                                <p>
+                                    Your dashboard layout "Q3 Report" has been successfully
+                                    exported to PDF.
+                                </p>
+                                <span class="notif-time">1 hour ago</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item">
+                            <div class="notif-icon-box warning">
+                                <i class="fa-solid fa-triangle-exclamation"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Storage Usage High</h5>
+                                <p>
+                                    You have used 85% of your allocated cloud storage. Consider
+                                    upgrading.
+                                </p>
+                                <span class="notif-time">Yesterday at 4:30 PM</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item">
+                            <div class="notif-icon-box info">
+                                <i class="fa-solid fa-circle-info"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>New Feature Available</h5>
+                                <p>
+                                    Dark mode is now customizable. Check settings for more
+                                    themes.
+                                </p>
+                                <span class="notif-time">2 days ago</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="notif-footer">View All Notifications</div>
+                </div>
+            </div>
+
+            <div class="profile-wrapper">
+                <img src="https://i.pravatar.cc/150?img=12" alt="Profile" class="user-img header-icon-btn"
+                    id="profileTrigger" />
+
+                <div class="profile-dropdown" id="profileDropdown">
+                    <div class="pd-header">
+                        <img src="https://i.pravatar.cc/150?img=12" class="pd-avatar" />
+                        <div class="pd-info">
+                            <h4>Irvan Maulana</h4>
+                            <span>@irvanmaulana</span>
+                        </div>
+                    </div>
+                    <div class="pd-menu-list">
+                        <a href="pages-profile.html" class="pd-menu-item"><i class="fa-regular fa-user"></i> Your
+                            profile</a>
+                    </div>
+                    <div class="pd-divider"></div>
+                    <div class="pd-theme-toggle">
+                        <span>Theme</span>
+                        <div class="theme-options">
+                            <div class="theme-opt active" id="themeDark">
+                                <i class="fa-solid fa-moon"></i>
+                            </div>
+                            <div class="theme-opt" id="themeLight">
+                                <i class="fa-solid fa-sun"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pd-divider"></div>
+                    <div class="pd-menu-list">
+                        <a class="pd-menu-item text-muted"><i class="fa-solid fa-arrow-right-from-bracket"></i>
+                            Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="app-body-wrapper">
+        <div class="app-body">
+
+            <div id="sidebar-container"></div>
+
+            <main class="main-content" id="mainContent">
+                <!-- PAGE HEADER -->
+                <div class="page-header-card">
+                    <i class="fa-solid fa-gamepad header-bg-icon"></i>
+                    <div class="header-hero-content">
+                        <h1 class="hero-title">Visual Charts</h1>
+                        <p class="hero-desc">Interactive and responsive charts powered by ApexCharts. Optimized for dark
+                            mode data
+                            visualization.
+                        </p>
+                    </div>
+                    <div class="header-hero-actions">
+                        <nav class="hero-breadcrumb">
+                            <div class="home-icon-box"><i class="fa-solid fa-home"></i></div>
+
+                            <span class="breadcrumb-sep"><i class="fa-solid fa-chevron-right"></i></span>
+                            <a href="index.html" class="breadcrumb-link">Dashboard</a>
+                            <span class="breadcrumb-sep"><i class="fa-solid fa-chevron-right"></i></span>
+                            <span class="breadcrumb-link active">ApexCharts</span>
+                        </nav>
+                    </div>
+                </div>
+
+                <!-- PAGE HEADER END -->
+
+
+                <!-- CONTENT HERE -->
+                <div class="content-grid mb-2">
+
+                    <div class="section-title col-span-12">
+                        <div class="section-line"></div>
+                        <div class="section-badge"><i class="fa-solid fa-chart-area"></i> <span>1. Neon Area
+                                (Traffic)</span></div>
+                        <div class="section-line"></div>
+                    </div>
+
+                    <div class="card col-span-12">
+                        <div class="card-header"><span class="card-title">Monthly Traffic</span></div>
+                        <div class="card-body">
+                            <div id="chartNeonArea" class="chart-container"></div>
+                        </div>
+                    </div>
+
+                    <div class="section-title col-span-12">
+                        <div class="section-line"></div>
+                        <div class="section-badge"><i class="fa-solid fa-chart-simple"></i> <span>2. Sales &
+                                Devices</span>
+                        </div>
+                        <div class="section-line"></div>
+                    </div>
+
+                    <div class="card col-span-6">
+                        <div class="card-header"><span class="card-title">Revenue (Gradient Bar)</span></div>
+                        <div class="card-body">
+                            <div id="chartGradientBar" class="chart-container"></div>
+                        </div>
+                    </div>
+
+                    <div class="card col-span-6">
+                        <div class="card-header"><span class="card-title">Device Usage (Donut)</span></div>
+                        <div class="card-body d-flex align-center justify-center">
+                            <div id="chartDonut" class="chart-container" style="min-height: 350px;"></div>
+                        </div>
+                    </div>
+
+                    <div class="section-title col-span-12">
+                        <div class="section-line"></div>
+                        <div class="section-badge"><i class="fa-solid fa-bullseye"></i> <span>3. Performance
+                                Radar</span>
+                        </div>
+                        <div class="section-line"></div>
+                    </div>
+
+                    <div class="card col-span-6">
+                        <div class="card-header"><span class="card-title">Skill Analysis</span></div>
+                        <div class="card-body">
+                            <div id="chartRadar" class="chart-container"></div>
+                        </div>
+                    </div>
+
+                    <div class="card col-span-6">
+                        <div class="card-header"><span class="card-title">Crypto Market (BTC/USD)</span></div>
+                        <div class="card-body">
+                            <div id="chartCandle" class="chart-container"></div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- CONTENT END -->
+                <footer class="app-footer">
+                    <div class="footer-left">
+                        <span class="footer-logo-icon"><i class="fa-solid fa-code"></i></span>
+                        <span>&copy; 2025 <strong>Daily.dev</strong>. Created with <i
+                                class="fa-solid fa-heart heart-icon"></i>
+                            by Irvan Maulana.</span>
+                    </div>
+                    <div class="footer-links">
+                        <a href="#" class="footer-link-item">Privacy Policy</a>
+                        <a href="#" class="footer-link-item">Terms</a>
+                        <a href="#" class="footer-link-item">Support</a>
+                    </div>
+                </footer>
+            </main>
+        </div>
+    </div>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <div id="settings-container"></div>
+
+    <script src="assets/js/core.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            // COMMON OPTIONS (Shared Styles)
+            const commonOptions = {
+                chart: {
+                    background: 'transparent',
+                    toolbar: { show: false },
+                    fontFamily: 'Inter, sans-serif'
+                },
+                theme: { mode: 'dark' },
+                grid: {
+                    borderColor: '#2d323b', // var(--border-color)
+                },
+                dataLabels: { enabled: false }
+            };
+
+            // 1. NEON AREA CHART
+            const optionsArea = {
+                ...commonOptions,
+                series: [{
+                    name: 'Visitors',
+                    data: [31, 40, 28, 51, 42, 109, 100, 120, 80, 95, 110, 130]
+                }],
+                chart: {
+                    type: 'area',
+                    height: 350,
+                    background: 'transparent',
+                    toolbar: { show: false }
+                },
+                stroke: {
+                    curve: 'smooth',
+                    width: 3
+                },
+                colors: ['#a855f7'], // Ungu Neon
+                fill: {
+                    type: 'gradient',
+                    gradient: {
+                        shadeIntensity: 1,
+                        opacityFrom: 0.7,
+                        opacityTo: 0.1,
+                        stops: [0, 90, 100]
+                    }
+                },
+                xaxis: {
+                    categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                    axisBorder: { show: false },
+                    axisTicks: { show: false }
+                }
+            };
+            new ApexCharts(document.querySelector("#chartNeonArea"), optionsArea).render();
+
+
+            // 2. GRADIENT BAR CHART
+            const optionsBar = {
+                ...commonOptions,
+                series: [{
+                    name: 'Revenue',
+                    data: [400, 430, 448, 470, 540, 580, 690, 1100, 1200, 1380]
+                }],
+                chart: {
+                    type: 'bar',
+                    height: 350,
+                    toolbar: { show: false }
+                },
+                plotOptions: {
+                    bar: {
+                        borderRadius: 8,
+                        columnWidth: '50%',
+                    }
+                },
+                colors: ['#3b82f6'], // Biru
+                fill: {
+                    type: 'gradient',
+                    gradient: {
+                        shade: 'dark',
+                        type: "vertical",
+                        shadeIntensity: 0.5,
+                        gradientToColors: ['#a855f7'], // Gradasi ke Ungu
+                        inverseColors: true,
+                        opacityFrom: 1,
+                        opacityTo: 1,
+                        stops: [0, 100]
+                    }
+                },
+                xaxis: {
+                    categories: ['ID', 'SG', 'MY', 'TH', 'VN', 'PH', 'CN', 'US', 'UK', 'AU'],
+                }
+            };
+            new ApexCharts(document.querySelector("#chartGradientBar"), optionsBar).render();
+
+
+            // 3. DONUT CHART (With Center Text)
+            const optionsDonut = {
+                ...commonOptions,
+                series: [44, 55, 41, 17],
+                labels: ['Desktop', 'Mobile', 'Tablet', 'Console'],
+                chart: {
+                    type: 'donut',
+                    height: 350
+                },
+                plotOptions: {
+                    pie: {
+                        donut: {
+                            size: '70%',
+                            labels: {
+                                show: true,
+                                total: {
+                                    show: true,
+                                    label: 'Total Users',
+                                    fontSize: '14px',
+                                    color: '#9ca3af',
+                                    formatter: function (w) {
+                                        return w.globals.seriesTotals.reduce((a, b) => a + b, 0)
+                                    }
+                                },
+                                value: {
+                                    color: '#ffffff',
+                                    fontSize: '24px',
+                                    fontWeight: 700
+                                }
+                            }
+                        }
+                    }
+                },
+                colors: ['#3b82f6', '#a855f7', '#2ecc71', '#e74c3c'],
+                stroke: { show: false }, // Hapus border putih
+                legend: { position: 'bottom' }
+            };
+            new ApexCharts(document.querySelector("#chartDonut"), optionsDonut).render();
+
+
+            // 4. RADAR CHART
+            const optionsRadar = {
+                ...commonOptions,
+                series: [{
+                    name: 'Player A',
+                    data: [80, 50, 30, 40, 100, 20],
+                }, {
+                    name: 'Player B',
+                    data: [20, 30, 40, 80, 20, 80],
+                }],
+                chart: {
+                    height: 350,
+                    type: 'radar',
+                    toolbar: { show: false }
+                },
+                xaxis: {
+                    categories: ['Speed', 'Power', 'Endurance', 'Technique', 'Tactics', 'Defense']
+                },
+                stroke: { width: 2 },
+                fill: { opacity: 0.2 },
+                markers: { size: 4 },
+                colors: ['#2ecc71', '#e74c3c']
+            };
+            new ApexCharts(document.querySelector("#chartRadar"), optionsRadar).render();
+
+
+            // 5. CANDLESTICK CHART
+            const optionsCandle = {
+                ...commonOptions,
+                series: [{
+                    data: [
+                        { x: new Date(1538778600000), y: [6629.81, 6650.5, 6623.04, 6633.33] },
+                        { x: new Date(1538780400000), y: [6632.01, 6643.59, 6620, 6630.11] },
+                        { x: new Date(1538782200000), y: [6630.71, 6648.95, 6623.34, 6635.65] },
+                        { x: new Date(1538784000000), y: [6635.65, 6651, 6629.67, 6638.24] },
+                        { x: new Date(1538785800000), y: [6638.24, 6640, 6620, 6624.47] },
+                        { x: new Date(1538787600000), y: [6624.53, 6636.03, 6621.68, 6624.31] },
+                        { x: new Date(1538789400000), y: [6624.61, 6632.2, 6617, 6626.02] },
+                        { x: new Date(1538791200000), y: [6627, 6627.62, 6584.22, 6603.02] },
+                        { x: new Date(1538793000000), y: [6605, 6608.03, 6598.95, 6604.01] },
+                        { x: new Date(1538794800000), y: [6604.5, 6614.4, 6602.26, 6608.02] }
+                    ]
+                }],
+                chart: {
+                    type: 'candlestick',
+                    height: 350,
+                    toolbar: { show: false }
+                },
+                plotOptions: {
+                    candlestick: {
+                        colors: {
+                            upward: '#2ecc71', // Hijau naik
+                            downward: '#e74c3c' // Merah turun
+                        }
+                    }
+                },
+                xaxis: {
+                    type: 'datetime'
+                }
+            };
+            new ApexCharts(document.querySelector("#chartCandle"), optionsCandle).render();
+
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modals - Daily Admin</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/core.css">
+    <link rel="stylesheet" href="assets/css/utilities.css">
+    <link rel="stylesheet" href="assets/css/layout.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+</head>
+
+<body>
+
+    <header class="app-header">
+
+        <div class="header-left-actions">
+            <button class="header-icon-btn mobile-toggle-btn" id="mobileToggle">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+
+            <button class="header-icon-btn mobile-search-btn">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+
+            <div class="mobile-search-bar" id="mobileSearchBar">
+                <i class="fa-solid fa-magnifying-glass search-icon-mobile"></i>
+                <input type="text" class="mobile-search-input" placeholder="Search anything..." id="mobileSearchInput">
+                <button class="mobile-search-close" id="mobileSearchClose">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+
+
+
+        <div class="logo desktop-only">
+            <i class="fa-solid fa-code" style="color: var(--text-main);"></i>
+            <span>daily.dev</span>
+        </div>
+
+        <div class="search-wrapper desktop-only">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <input type="text" class="search-input" placeholder="Search..." id="searchInput">
+            <div class="search-shortcut">Ctrl K</div>
+        </div>
+
+        <div class="header-right">
+            <div class="notification-wrapper">
+                <button class="header-icon-btn" id="notifTrigger" title="Notifications">
+                    <i class="fa-regular fa-bell"></i>
+                    <div class="notification-dot"></div>
+                </button>
+
+                <div class="notification-dropdown" id="notifDropdown">
+                    <div class="notif-header">
+                        <h4>Notifications <span class="badge badge-danger"
+                                style="margin-left:8px; font-size:10px; padding:2px 6px;">4 New</span></h4>
+                        <span class="notif-mark-read">Mark all as read</span>
+                    </div>
+
+                    <div class="notif-list">
+
+                        <div class="notif-item unread">
+                            <div class="notif-icon-box error">
+                                <i class="fa-solid fa-circle-exclamation"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Server Connection Failed</h5>
+                                <p>Could not sync data with main server. Please check your API Key configuration.</p>
+                                <span class="notif-time">2 minutes ago</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item unread">
+                            <div class="notif-icon-box success">
+                                <i class="fa-solid fa-check-double"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Project Exported</h5>
+                                <p>Your dashboard layout "Q3 Report" has been successfully exported to PDF.</p>
+                                <span class="notif-time">1 hour ago</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item">
+                            <div class="notif-icon-box warning">
+                                <i class="fa-solid fa-triangle-exclamation"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Storage Usage High</h5>
+                                <p>You have used 85% of your allocated cloud storage. Consider upgrading.</p>
+                                <span class="notif-time">Yesterday at 4:30 PM</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item">
+                            <div class="notif-icon-box info">
+                                <i class="fa-solid fa-circle-info"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>New Feature Available</h5>
+                                <p>Dark mode is now customizable. Check settings for more themes.</p>
+                                <span class="notif-time">2 days ago</span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="notif-footer">
+                        View All Notifications
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-wrapper">
+                <img src="https://i.pravatar.cc/150?img=12" alt="Profile" class="user-img header-icon-btn"
+                    id="profileTrigger">
+
+                <div class="profile-dropdown" id="profileDropdown">
+                    <div class="pd-header">
+                        <img src="https://i.pravatar.cc/150?img=12" class="pd-avatar">
+                        <div class="pd-info">
+                            <h4>Irvan Maulana</h4>
+                            <span>@irvanmaulana</span>
+                        </div>
+                    </div>
+                    <div class="pd-menu-list">
+                        <a href="pages-profile.html" class="pd-menu-item"><i class="fa-regular fa-user"></i> Your
+                            profile</a>
+                    </div>
+                    <div class="pd-divider"></div>
+                    <div class="pd-theme-toggle">
+                        <span>Theme</span>
+                        <div class="theme-options">
+                            <div class="theme-opt active" id="themeDark"><i class="fa-solid fa-moon"></i></div>
+                            <div class="theme-opt" id="themeLight"><i class="fa-solid fa-sun"></i></div>
+                        </div>
+                    </div>
+                    <div class="pd-divider"></div>
+                    <div class="pd-menu-list">
+                        <a class="pd-menu-item text-muted"><i class="fa-solid fa-arrow-right-from-bracket"></i>
+                            Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="app-body">
+
+        <div id="sidebar-container"></div>
+
+        <main class="main-content" id="mainContent">
+            <!-- PAGE HEADER -->
+            <div class="page-header-card">
+                <i class="fa-regular fa-window-restore header-bg-icon"></i>
+                <div class="header-hero-content">
+                    <h1 class="hero-title">Modals & Drawers</h1>
+                    <p class="hero-desc">Interactive overlays for confirmations, forms, and side-panels without leaving
+                        the
+                        page.</p>
+                </div>
+                <nav class="hero-breadcrumb">
+                    <div class="home-icon-box"><i class="fa-solid fa-home"></i></div>
+
+                    <span class="breadcrumb-sep"><i class="fa-solid fa-chevron-right"></i></span>
+                    <a href="index.html" class="breadcrumb-link">Dashboard</a>
+                    <span class="breadcrumb-sep"><i class="fa-solid fa-chevron-right"></i></span>
+                    <span class="breadcrumb-link active">Modals</span>
+                </nav>
+            </div>
+
+            <!-- PAGE HEADER END -->
+
+
+            <!-- CONTENT HERE -->
+
+
+            <div class="content-grid ">
+
+                <div class="card col-span-4">
+                    <div class="card-header"><span class="card-title">1. Standard Modal</span></div>
+                    <div class="card-body text-center">
+                        <p class="text-muted mb-3">Basic modal with header, body, and footer actions.</p>
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#modalStandard">
+                            Launch Standard
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card col-span-4"
+                    style="background-image: url('https://source.unsplash.com/random/400x300?neon'); background-size: cover;">
+                    <div class="card-header"><span class="card-title text-white">2. Glass Modal</span></div>
+                    <div class="card-body text-center" style="backdrop-filter: blur(2px); background: rgba(0,0,0,0.3);">
+                        <p class="text-white mb-3">Beautiful frosted glass effect for premium feel.</p>
+                        <button class="btn btn-glass-action" data-toggle="modal" data-target="#modalGlass">
+                            Open Glass Modal
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card col-span-4">
+                    <div class="card-header"><span class="card-title">3. Status Alerts</span></div>
+                    <div class="card-body d-flex gap-2 justify-center">
+                        <button class="btn btn-success" data-toggle="modal" data-target="#modalSuccess">Success</button>
+                        <button class="btn btn-danger" data-toggle="modal" data-target="#modalDanger">Delete</button>
+                    </div>
+                </div>
+
+                <div class="card col-span-4">
+                    <div class="card-header"><span class="card-title">4. Offcanvas Drawer (Right)</span></div>
+                    <div class="card-body d-flex justify-between align-center">
+                        <p class="text-muted m-0">Slide-in panel from the right. Perfect for filters or details.</p>
+                        <button class="btn btn-outline-primary" data-toggle="drawer" data-target="#drawerRight">
+                            <i class="fa-solid fa-filter"></i> Open Filter Drawer
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card col-span-12">
+                    <div class="card-header"><span class="card-title">6. Modal Sizes</span></div>
+                    <div class="card-body">
+                        <p class="text-muted mb-3 text-center">Flexibility for different types of content.</p>
+
+                        <div class="d-flex flex-wrap gap-3 justify-center">
+                            <button class="btn btn-outline-primary" data-toggle="modal" data-target="#modalSizeSM">
+                                Small (350px)
+                            </button>
+
+                            <button class="btn btn-primary" data-toggle="modal" data-target="#modalStandard">
+                                Default (500px)
+                            </button>
+
+                            <button class="btn btn-outline-primary" data-toggle="modal" data-target="#modalSizeLG">
+                                Large (800px)
+                            </button>
+
+                            <button class="btn btn-outline-primary" data-toggle="modal" data-target="#modalSizeXL">
+                                Extra Large (1140px)
+                            </button>
+
+                            <button class="btn btn-neon" data-toggle="modal" data-target="#modalSizeFull">
+                                <i class="fa-solid fa-expand"></i> Full Screen
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- CONTENT END -->
+            <footer class="app-footer mt-2">
+                <div class="footer-left">
+                    <span class="footer-logo-icon"><i class="fa-solid fa-code"></i></span>
+                    <span>&copy; 2025 <strong>Daily.dev</strong>. Created with <i
+                            class="fa-solid fa-heart heart-icon"></i>
+                        by Irvan Maulana.</span>
+                </div>
+                <div class="footer-links">
+                    <a href="#" class="footer-link-item">Privacy Policy</a>
+                    <a href="#" class="footer-link-item">Terms</a>
+                    <a href="#" class="footer-link-item">Support</a>
+                </div>
+            </footer>
+        </main>
+    </div>
+
+    <div class="modal-backdrop" id="modalStandard">
+        <div class="modal-panel">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Profile</h5>
+                <button class="modal-close-btn" data-dismiss="modal"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body">
+                <p>Make changes to your profile here. Click save when you're done.</p>
+                <div class="form-group mt-3">
+                    <label class="form-label">Username</label>
+                    <input type="text" class="form-control" value="@irvanmaulana">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-ghost" data-dismiss="modal">Cancel</button>
+                <button class="btn btn-primary">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-backdrop" id="modalGlass">
+        <div class="modal-panel glass">
+            <div class="modal-header">
+                <h5 class="modal-title">Premium Access</h5>
+                <button class="modal-close-btn text-white" data-dismiss="modal"><i
+                        class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body text-center">
+                <i class="fa-regular fa-gem fa-3x mb-3" style="color: #a855f7;"></i>
+                <h3 class="text-white mb-2">Upgrade to Pro</h3>
+                <p class="text-white opacity-75">Unlock all features including AI analytics and unlimited storage.</p>
+            </div>
+            <div class="modal-footer justify-center">
+                <button class="btn btn-neon w-full" style="--accent-color: #a855f7;">Get Started</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-backdrop" id="modalSuccess">
+        <div class="modal-panel status-modal">
+            <div class="modal-status-icon success"><i class="fa-solid fa-check"></i></div>
+            <h3>Payment Successful!</h3>
+            <p class="text-muted">Your transaction #12345 has been processed successfully.</p>
+            <button class="btn btn-success w-full mt-3" data-dismiss="modal">Continue</button>
+        </div>
+    </div>
+
+    <div class="modal-backdrop" id="modalDanger">
+        <div class="modal-panel status-modal">
+            <div class="modal-status-icon danger"><i class="fa-solid fa-trash"></i></div>
+            <h3>Are you sure?</h3>
+            <p class="text-muted">Do you really want to delete these records? This process cannot be undone.</p>
+            <div class="d-flex gap-2 mt-4 w-full">
+                <button class="btn btn-ghost w-full" data-dismiss="modal">Cancel</button>
+                <button class="btn btn-danger w-full">Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="drawer-backdrop" id="drawerRight">
+        <div class="drawer-panel">
+            <div class="modal-header">
+                <h5 class="modal-title">Filters</h5>
+                <button class="modal-close-btn" data-dismiss="drawer"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label">Category</label>
+                    <select class="form-control">
+                        <option>All</option>
+                        <option>Electronics</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Price Range</label>
+                    <input type="range" class="form-range" style="width:100%;">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Status</label>
+                    <div class="d-flex gap-2 flex-wrap">
+                        <span class="badge badge-soft-primary cursor-pointer border border-primary">Active</span>
+                        <span class="badge badge-soft-dark cursor-pointer">Inactive</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary w-full">Apply Filters</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal-backdrop" id="modalSizeSM">
+        <div class="modal-panel modal-sm">
+            <div class="modal-header">
+                <h5 class="modal-title">Small Modal</h5>
+                <button class="modal-close-btn" data-dismiss="modal"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body">
+                <p class="text-sm">This is a compact modal suitable for small forms or simple confirmations.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-sm btn-primary w-full" data-dismiss="modal">Okay, Got it</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-backdrop" id="modalSizeLG">
+        <div class="modal-panel modal-lg">
+            <div class="modal-header">
+                <h5 class="modal-title">Large Modal (Grid Layout)</h5>
+                <button class="modal-close-btn" data-dismiss="modal"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body">
+                <p class="mb-3">Perfect for displaying tables or complex grid layouts.</p>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="p-3 border border-dark rounded bg-hover">Column Left</div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-3 border border-dark rounded bg-hover">Column Right</div>
+                    </div>
+                    <div class="col-12">
+                        <div class="p-3 border border-dark rounded bg-hover">Full Width Row</div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-ghost" data-dismiss="modal">Close</button>
+                <button class="btn btn-primary">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-backdrop" id="modalSizeXL">
+        <div class="modal-panel modal-xl">
+            <div class="modal-header">
+                <h5 class="modal-title">Extra Large (Table Preview)</h5>
+                <button class="modal-close-btn" data-dismiss="modal"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Project Name</th>
+                                <th>Status</th>
+                                <th>Assignee</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>#1</td>
+                                <td>Website Redesign</td>
+                                <td><span class="badge badge-soft-success">Done</span></td>
+                                <td>Irvan</td>
+                            </tr>
+                            <tr>
+                                <td>#2</td>
+                                <td>Mobile App v2</td>
+                                <td><span class="badge badge-soft-warning">Pending</span></td>
+                                <td>Sarah</td>
+                            </tr>
+                            <tr>
+                                <td>#3</td>
+                                <td>Database Migration</td>
+                                <td><span class="badge badge-soft-danger">Failed</span></td>
+                                <td>John</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" data-dismiss="modal">Close Preview</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-backdrop" id="modalSizeFull">
+        <div class="modal-panel modal-full">
+            <div class="modal-header">
+                <h5 class="modal-title">Full Screen Editor</h5>
+                <button class="modal-close-btn" data-dismiss="modal"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body d-flex align-center justify-center" style="background: var(--bg-body);">
+                <div class="text-center">
+                    <i class="fa-solid fa-expand fa-4x text-muted mb-3"></i>
+                    <h2>Immersive Experience</h2>
+                    <p class="text-muted">Use this for rich text editors, document previews, or detailed analytics
+                        dashboards.</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline-danger" data-dismiss="modal">Exit Full Screen</button>
+                <button class="btn btn-success">Publish Content</button>
+            </div>
+        </div>
+    </div>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <script src="assets/js/core.js"></script>
+
+</body>
+
+</html>

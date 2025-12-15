@@ -1,0 +1,223 @@
+/* =========================================
+   4. PAGES: AUTH, ERRORS, PROFILE
+   ========================================= */
+
+/* --- AUTH PAGE LAYOUT (Login/Register) --- */
+.auth-body {
+  background-color: var(--bg-body);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Background Decoration (Glow Effects) */
+.auth-body::before,
+.auth-body::after {
+  content: "";
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.15;
+  z-index: 0;
+}
+.auth-body::before {
+  background: var(--accent-color);
+  top: -200px;
+  left: -200px;
+}
+.auth-body::after {
+  background: var(--accent-green);
+  bottom: -200px;
+  right: -200px;
+}
+
+.auth-card {
+  background: rgba(28, 31, 38, 0.7); /* Transparan */
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border-color);
+  border-radius: 24px;
+  padding: 48px;
+  width: 100%;
+  max-width: 420px;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+/* Penyesuaian Auth Card untuk Light Mode */
+[data-theme="light"] .auth-card {
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+}
+
+.auth-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.auth-logo {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--text-main);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.auth-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 8px;
+}
+
+.auth-subtitle {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.auth-divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 24px 0;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+.auth-divider::before,
+.auth-divider::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px solid var(--border-color);
+}
+.auth-divider span {
+  padding: 0 10px;
+}
+
+.social-buttons {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.btn-social {
+  flex: 1;
+  background: var(--bg-search);
+  color: var(--text-main);
+  border: 1px solid transparent;
+  border-radius: 10px;
+  height: 44px;
+  font-weight: 600;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-social:hover {
+  background: var(--bg-hover);
+  border-color: var(--border-color);
+}
+
+.auth-footer {
+  text-align: center;
+  margin-top: 24px;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+.auth-footer a {
+  color: var(--accent-color);
+  text-decoration: none;
+  font-weight: 600;
+}
+.auth-footer a:hover {
+  text-decoration: underline;
+}
+
+/* --- ERROR PAGE LAYOUT (404/500) --- */
+.error-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: var(--bg-body);
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+  transition: background-color 0.3s ease;
+}
+
+.error-code {
+  font-size: 10rem;
+  font-weight: 900;
+  line-height: 1;
+  background: linear-gradient(135deg, var(--accent-color), #a855f7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  /* Menghapus opacity agar warna lebih tajam */
+  opacity: 1;
+  margin-bottom: 0;
+  letter-spacing: -5px;
+  text-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Tambahan shadow halus */
+}
+
+.error-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 16px;
+}
+
+.error-desc {
+  color: var(--text-muted);
+  max-width: 500px;
+  margin-bottom: 32px;
+  line-height: 1.6;
+  font-size: 1.1rem; /* Ukuran font sedikit diperbesar agar lebih terbaca */
+}
+
+.error-illustration {
+  font-size: 5rem; /* Icon diperbesar */
+  margin-bottom: 20px;
+  color: var(--text-muted);
+  /* Mengubah opacity dari 0.5 menjadi 1 agar terlihat jelas di light mode */
+  opacity: 1;
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Khusus Light Mode: Berikan warna aksen pada ilustrasi agar lebih hidup */
+[data-theme="light"] .error-illustration {
+  color: var(--accent-color);
+  opacity: 0.8;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+/* Di core.css */
+.relative {
+  position: relative;
+}
+.absolute-center-y-right {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+}

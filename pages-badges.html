@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Badges - Daily Admin</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/core.css">
+    <link rel="stylesheet" href="assets/css/utilities.css">
+    <link rel="stylesheet" href="assets/css/layout.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+</head>
+
+<body>
+
+    <header class="app-header">
+        <div class="header-left-actions">
+            <button class="header-icon-btn mobile-toggle-btn" id="mobileToggle">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+            <div class="mobile-search-bar" id="mobileSearchBar">
+                <i class="fa-solid fa-magnifying-glass search-icon-mobile"></i>
+                <input type="text" class="mobile-search-input" placeholder="Search anything..."
+                    id="mobileSearchInput" />
+                <button class="mobile-search-close" id="mobileSearchClose">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="logo desktop-only">
+            <i class="fa-solid fa-code" style="color: var(--text-main)"></i>
+            <span>daily.dev</span>
+        </div>
+        <div id="horizontal-menu-container" class="desktop-only" style="flex: 1; margin-left: 20px">
+        </div>
+        <div class="search-wrapper search-wrapper-inline desktop-only">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <input type="text" class="search-input" placeholder="Search..." id="searchInputInline">
+            <div class="search-shortcut">Ctrl K</div>
+        </div>
+
+        <div class="header-right-actions">
+
+            <button class="header-icon-btn" id="searchTrigger" title="Search" style="display: none;">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+
+        </div>
+
+        <div class="search-overlay" id="searchOverlay">
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass search-box-icon"></i>
+                <input type="text" class="search-box-input" placeholder="Search pages..." id="searchInputFloating">
+                <button class="search-box-close" id="searchClose">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="header-right">
+            <div class="notification-wrapper">
+                <button class="header-icon-btn" id="notifTrigger" title="Notifications">
+                    <i class="fa-regular fa-bell"></i>
+                    <div class="notification-dot"></div>
+                </button>
+
+                <div class="notification-dropdown" id="notifDropdown">
+                    <div class="notif-header">
+                        <h4>
+                            Notifications
+                            <span class="badge badge-danger"
+                                style="margin-left: 8px; font-size: 10px; padding: 2px 6px">4
+                                New</span>
+                        </h4>
+                        <span class="notif-mark-read">Mark all as read</span>
+                    </div>
+
+                    <div class="notif-list">
+                        <div class="notif-item unread">
+                            <div class="notif-icon-box error">
+                                <i class="fa-solid fa-circle-exclamation"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Server Connection Failed</h5>
+                                <p>
+                                    Could not sync data with main server. Please check your API
+                                    Key configuration.
+                                </p>
+                                <span class="notif-time">2 minutes ago</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item unread">
+                            <div class="notif-icon-box success">
+                                <i class="fa-solid fa-check-double"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Project Exported</h5>
+                                <p>
+                                    Your dashboard layout "Q3 Report" has been successfully
+                                    exported to PDF.
+                                </p>
+                                <span class="notif-time">1 hour ago</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item">
+                            <div class="notif-icon-box warning">
+                                <i class="fa-solid fa-triangle-exclamation"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Storage Usage High</h5>
+                                <p>
+                                    You have used 85% of your allocated cloud storage. Consider
+                                    upgrading.
+                                </p>
+                                <span class="notif-time">Yesterday at 4:30 PM</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item">
+                            <div class="notif-icon-box info">
+                                <i class="fa-solid fa-circle-info"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>New Feature Available</h5>
+                                <p>
+                                    Dark mode is now customizable. Check settings for more
+                                    themes.
+                                </p>
+                                <span class="notif-time">2 days ago</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="notif-footer">View All Notifications</div>
+                </div>
+            </div>
+
+            <div class="profile-wrapper">
+                <img src="https://i.pravatar.cc/150?img=12" alt="Profile" class="user-img header-icon-btn"
+                    id="profileTrigger" />
+
+                <div class="profile-dropdown" id="profileDropdown">
+                    <div class="pd-header">
+                        <img src="https://i.pravatar.cc/150?img=12" class="pd-avatar" />
+                        <div class="pd-info">
+                            <h4>Irvan Maulana</h4>
+                            <span>@irvanmaulana</span>
+                        </div>
+                    </div>
+                    <div class="pd-menu-list">
+                        <a href="pages-profile.html" class="pd-menu-item"><i class="fa-regular fa-user"></i> Your
+                            profile</a>
+                    </div>
+                    <div class="pd-divider"></div>
+                    <div class="pd-theme-toggle">
+                        <span>Theme</span>
+                        <div class="theme-options">
+                            <div class="theme-opt active" id="themeDark">
+                                <i class="fa-solid fa-moon"></i>
+                            </div>
+                            <div class="theme-opt" id="themeLight">
+                                <i class="fa-solid fa-sun"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pd-divider"></div>
+                    <div class="pd-menu-list">
+                        <a class="pd-menu-item text-muted"><i class="fa-solid fa-arrow-right-from-bracket"></i>
+                            Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="app-body-wrapper">
+        <div class="app-body">
+
+            <div id="sidebar-container"></div>
+
+            <main class="main-content" id="mainContent">
+                <!-- PAGE HEADER -->
+                <div class="page-header-card">
+                    <i class="fa-solid fa-certificate header-bg-icon"></i>
+                    <div class="header-hero-content">
+                        <h1 class="hero-title">Badges & Chips</h1>
+                        <p class="hero-desc">Visual indicators for status, categories, and tags. Essential for tables
+                            and
+                            lists.</p>
+                    </div>
+                    <div class="header-hero-actions">
+                        <nav class="hero-breadcrumb">
+                            <div class="home-icon-box"><i class="fa-solid fa-home"></i></div>
+
+                            <span class="breadcrumb-sep"><i class="fa-solid fa-chevron-right"></i></span>
+                            <a href="index.html" class="breadcrumb-link">Dashboard</a>
+                            <span class="breadcrumb-sep"><i class="fa-solid fa-chevron-right"></i></span>
+                            <span class="breadcrumb-link active">Badges</span>
+                        </nav>
+                    </div>
+                </div>
+
+                <!-- PAGE HEADER END -->
+
+
+                <!-- CONTENT HERE -->
+
+
+                <div class="content-grid">
+
+                    <div class="section-title col-span-12">
+                        <div class="section-line"></div>
+                        <div class="section-badge">
+                            <i class="fa-solid fa-layer-group"></i>
+                            <span>1. Soft Pills</span>
+                        </div>
+                        <div class="section-line"></div>
+                    </div>
+
+                    <div class="card col-span-6">
+                        <div class="card-header"><span class="card-title">Status Indicators</span></div>
+                        <div class="card-body">
+                            <div class="demo-wrapper">
+                                <button class="btn-copy-code"><i class="fa-regular fa-copy"></i></button>
+                                <div class="demo-content">
+                                    <span class="badge badge-pill badge-soft-primary copy-click">Primary</span>
+                                    <span class="badge badge-pill badge-soft-success copy-click">Paid</span>
+                                    <span class="badge badge-pill badge-soft-warning copy-click">Pending</span>
+                                    <span class="badge badge-pill badge-soft-danger copy-click">Failed</span>
+                                    <span class="badge badge-pill badge-soft-dark copy-click">Archived</span>
+                                </div>
+                            </div>
+                            <p class="text-xs text-muted text-center">Most common style for SaaS dashboards.</p>
+                        </div>
+                    </div>
+
+                    <div class="card col-span-6">
+                        <div class="card-header"><span class="card-title">2. Outline & Icons</span></div>
+                        <div class="card-body">
+                            <div class="demo-wrapper">
+                                <button class="btn-copy-code"><i class="fa-regular fa-copy"></i></button>
+                                <div class="demo-content">
+                                    <span class="badge badge-square badge-outline-success copy-click">
+                                        <i class="fa-solid fa-check"></i> Verified
+                                    </span>
+                                    <span class="badge badge-square badge-outline-primary copy-click">
+                                        <i class="fa-solid fa-shield-halved"></i> Admin
+                                    </span>
+                                    <span class="badge badge-square badge-outline-danger copy-click">
+                                        <i class="fa-solid fa-bug"></i> Bug
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="section-title col-span-12">
+                        <div class="section-line"></div>
+                        <div class="section-badge">
+                            <i class="fa-solid fa-circle-dot"></i>
+                            <span>3. Status Dots</span>
+                        </div>
+                        <div class="section-line"></div>
+                    </div>
+
+                    <div class="card col-span-6">
+                        <div class="card-header"><span class="card-title">Online Status</span></div>
+                        <div class="card-body d-flex flex-column gap-2 align-center">
+
+                            <div class="badge-dot-container copy-click p-2">
+                                <div class="status-dot pulse" style="background: #2ecc71; color: #2ecc71;"></div>
+                                System Operational
+                            </div>
+
+                            <div class="badge-dot-container copy-click p-2">
+                                <div class="status-dot" style="background: #f1c40f;"></div>
+                                Maintenance Mode
+                            </div>
+
+                            <div class="badge-dot-container copy-click p-2">
+                                <div class="status-dot" style="background: #e74c3c;"></div>
+                                Server Offline
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="card col-span-6">
+                        <div class="card-header"><span class="card-title">Table Use Case</span></div>
+                        <div class="card-body">
+                            <table class="table table-sm">
+                                <tr>
+                                    <td>Server A</td>
+                                    <td class="text-end"><span class="badge badge-pill badge-soft-success">
+                                            <div class="status-dot"
+                                                style="background: currentColor; width: 6px; height: 6px;">
+                                            </div>
+                                            Running
+                                        </span></td>
+                                </tr>
+                                <tr>
+                                    <td>Database</td>
+                                    <td class="text-end"><span class="badge badge-pill badge-soft-danger">
+                                            <div class="status-dot"
+                                                style="background: currentColor; width: 6px; height: 6px;">
+                                            </div> Down
+                                        </span></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="section-title col-span-12">
+                        <div class="section-line"></div>
+                        <div class="section-badge">
+                            <i class="fa-solid fa-bolt"></i>
+                            <span>4. High Impact</span>
+                        </div>
+                        <div class="section-line"></div>
+                    </div>
+
+                    <div class=" card col-span-6">
+                        <div class="card-header"><span class="card-title">4. Neon / Glowing</span></div>
+                        <div class="card-body bg-black rounded" style="border: 1px solid #333;">
+                            <div class="demo-wrapper" style="border-color: #444;">
+                                <button class="btn-copy-code"><i class="fa-regular fa-copy"></i></button>
+                                <div class="demo-content">
+                                    <span class="badge badge-pill badge-neon fire copy-click">HOT DEAL</span>
+                                    <span class="badge badge-pill badge-neon blue copy-click">NEW v2.0</span>
+                                    <span class="badge badge-pill badge-neon copy-click"
+                                        style="background: #fff; color: #000;">FEATURED</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="section-title col-span-12">
+                        <div class="section-line"></div>
+                        <div class="section-badge">
+                            <i class="fa-solid fa-user-tag"></i>
+                            <span>5. Smart Chips</span>
+                        </div>
+                        <div class="section-line"></div>
+                    </div>
+
+                    <div class=" card col-span-6">
+                        <div class="card-header"><span class="card-title">Avatar & Deletable Tags</span></div>
+                        <div class="card-body">
+                            <div class="demo-wrapper">
+                                <button class="btn-copy-code"><i class="fa-regular fa-copy"></i></button>
+                                <div class="demo-content">
+
+                                    <div class="chip copy-click">
+                                        <img src="https://i.pravatar.cc/150?img=12">
+                                        Irvan Maulana
+                                    </div>
+
+                                    <div class="chip copy-click">
+                                        <img src="https://i.pravatar.cc/150?img=32">
+                                        Jane Doe
+                                    </div>
+
+                                    <div class="chip copy-click" style="padding-left: 12px;">
+                                        Design
+                                        <span class="chip-close"><i class="fa-solid fa-xmark"></i></span>
+                                    </div>
+
+                                    <div class="chip copy-click" style="padding-left: 12px;">
+                                        Development
+                                        <span class="chip-close"><i class="fa-solid fa-xmark"></i></span>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <p class="text-xs text-muted text-center mt-2">Perfect for "Assigned To" fields or filtering
+                                tags.</p>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- CONTENT END -->
+                <footer class="app-footer mt-2">
+                    <div class="footer-left">
+                        <span class="footer-logo-icon"><i class="fa-solid fa-code"></i></span>
+                        <span>&copy; 2025 <strong>Daily.dev</strong>. Created with <i
+                                class="fa-solid fa-heart heart-icon"></i>
+                            by Irvan Maulana.</span>
+                    </div>
+                    <div class="footer-links">
+                        <a href="#" class="footer-link-item">Privacy Policy</a>
+                        <a href="#" class="footer-link-item">Terms</a>
+                        <a href="#" class="footer-link-item">Support</a>
+                    </div>
+                </footer>
+            </main>
+        </div>
+    </div>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <div id="settings-container"></div>
+
+    <script src="assets/js/core.js"></script>
+
+</body>
+
+</html>

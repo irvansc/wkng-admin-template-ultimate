@@ -1,0 +1,159 @@
+
+
+1. Dashboard
+1.	Analytics Dashboard✔️
+o	Chart penjualan, traffic, konversi, top produk.
+2.	Sales / Ecommerce Dashboard
+o	Order summary, revenue, best selling items.
+3.	CRM Dashboard
+o	Leads, contact status, activity timeline.
+________________________________________
+
+________________________________________
+3. UI Elements (ESSENTIAL)
+
+A. General Elements
+1.	Alerts ✔️
+2.	Buttons ✔️
+3.	Badges ✔️
+4.	Breadcrumbs✔️
+5.	Cards ✔️
+6.	Dropdowns✔️
+7.	Progress✔️
+8.	Spinners
+9.	Tabs ✔️
+10.	Tooltips & Popovers 
+
+B. Layout Elements
+1.	Grid System ✔️
+2.	List Group✔️
+3.	Modals ✔️
+4.	Offcanvas ✔️
+5.	Accordions ✔️
+
+C. Advanced Elements
+1.	Notifications ✔️
+2.	SweetAlert✔️
+3.	Carousel / Sliders ✔️
+4.	Timeline✔️
+5.	Tree View✔️
+6.	Avatar / User Info Components✔️
+________________________________________
+4. Forms
+A. Form Elements
+1.	Input, Textarea ✔️
+2.	Select, Multiple Select✔️
+3.	Checkbox & Radio✔️
+4.	Switches✔️
+5.	Input Groups✔️
+6.	File Upload✔️
+7.	Datepicker / Timepicker ✔️
+8.	Tag Input
+
+B. Form Layouts
+1.	Vertical Forms
+2.	Horizontal Forms
+3.	Multi Column Forms
+4.	Compact Forms
+
+C. Form Validation
+1.	Client-side Validation✔️
+2.	Server-side Validation✔️
+
+3.	Form Error Handling
+D. Form Wizard
+1.	Stepper Wizard 
+2.	Progress Wizard
+3.	Confirmation Wizard 
+________________________________________
+5. Tables
+
+1.	Basic Table ✔️
+2.	Responsive Table ✔️
+3.	DataTable (Search, Sort, Pagination) ✔️
+4.	Editable Table ✔️
+5.	Exportable Table (CSV, Excel, PDF) ✔️
+________________________________________
+6. Charts & Data Visualization
+
+1.	ApexCharts ✔️
+2.	ChartJS
+3.	Advanced Charts (Heatmap, Radial, Radar, Candlestick)
+4.	Map Charts (Vector / Leaflet) ✔️
+________________________________________
+7. Icons
+
+1.	Font Awesome
+2.	Remix Icons
+3.	Feather Icons
+4.	Material Icons
+________________________________________
+8. Pages
+1.	Profile ✔️
+2.	Settings
+3.	FAQ
+4.	Pricing
+5.	Gallery
+6.	Timeline
+________________________________________
+9. Authentication
+
+1.	Login ✔️
+2.	Register ✔️
+3.	Forgot Password ✔️
+4.	Reset Password✔️
+5.	Email Verification✔️
+6.	Two-Factor Auth (2FA)
+________________________________________
+10. Error Pages
+
+1.	404 Not Found✔️
+2.	500 Server Error
+3.	Maintenance Mode
+________________________________________
+11. Utilities
+
+1.	Colors✔️
+2.	Typography✔️
+3.	Borders✔️
+4.	Shadows✔️
+5.	Spacing✔️
+6.	Sizing✔️
+________________________________________
+12. User Management
+
+1.	User List ✔️
+2.	User Roles✔️
+3.	Permissions✔️
+4.	Activity Logs✔️
+________________________________________
+13. Settings
+
+1.	General Settings
+2.	Theme (Dark / Light)
+3.	Notifications
+4.	Backup
+5.	API Keys
+________________________________________
+14. Developer Tools
+
+1.	API Tester
+2.	Swagger Docs
+3.	Changelog
+4.	Code Generator
+5.	Database Designer (optional)
+________________________________________
+15. Documentation
+
+1.	Getting Started
+2.	Installation
+3.	Components Usage
+4.	Theming Guide
+5.	Changelog
+
+RESPONSIVE RULES
+========================================
+✔ Desktop ≥ 1280px
+✔ Laptop ≤ 1024px
+✔ Tablet ≤ 768px
+✔ Mobile ≤ 480px

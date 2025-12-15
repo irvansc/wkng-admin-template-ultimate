@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ultimate Horizontal Form - Daily Admin</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+
+    <link rel="stylesheet" href="assets/css/core.css" />
+    <link rel="stylesheet" href="assets/css/utilities.css" />
+    <link rel="stylesheet" href="assets/css/layout.css" />
+    <link rel="stylesheet" href="assets/css/components.css" />
+</head>
+
+<body>
+    <header class="app-header">
+        <div class="header-left-actions">
+            <button class="header-icon-btn mobile-toggle-btn" id="mobileToggle">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+            <div class="mobile-search-bar" id="mobileSearchBar">
+                <i class="fa-solid fa-magnifying-glass search-icon-mobile"></i>
+                <input type="text" class="mobile-search-input" placeholder="Search anything..."
+                    id="mobileSearchInput" />
+                <button class="mobile-search-close" id="mobileSearchClose">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="logo desktop-only">
+            <i class="fa-solid fa-code" style="color: var(--text-main)"></i>
+            <span>daily.dev</span>
+        </div>
+        <div id="horizontal-menu-container" class="desktop-only" style="flex: 1; margin-left: 20px"></div>
+        <div class="search-wrapper search-wrapper-inline desktop-only">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <input type="text" class="search-input" placeholder="Search..." id="searchInputInline" />
+            <div class="search-shortcut">Ctrl K</div>
+        </div>
+
+        <div class="header-right-actions">
+            <button class="header-icon-btn" id="searchTrigger" title="Search" style="display: none">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </div>
+
+        <div class="search-overlay" id="searchOverlay">
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass search-box-icon"></i>
+                <input type="text" class="search-box-input" placeholder="Search pages..." id="searchInputFloating" />
+                <button class="search-box-close" id="searchClose">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="header-right">
+            <div class="notification-wrapper">
+                <button class="header-icon-btn" id="notifTrigger" title="Notifications">
+                    <i class="fa-regular fa-bell"></i>
+                    <div class="notification-dot"></div>
+                </button>
+
+                <div class="notification-dropdown" id="notifDropdown">
+                    <div class="notif-header">
+                        <h4>
+                            Notifications
+                            <span class="badge badge-danger"
+                                style="margin-left: 8px; font-size: 10px; padding: 2px 6px">4 New</span>
+                        </h4>
+                        <span class="notif-mark-read">Mark all as read</span>
+                    </div>
+
+                    <div class="notif-list">
+                        <div class="notif-item unread">
+                            <div class="notif-icon-box error">
+                                <i class="fa-solid fa-circle-exclamation"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Server Connection Failed</h5>
+                                <p>
+                                    Could not sync data with main server. Please check your API
+                                    Key configuration.
+                                </p>
+                                <span class="notif-time">2 minutes ago</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item unread">
+                            <div class="notif-icon-box success">
+                                <i class="fa-solid fa-check-double"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Project Exported</h5>
+                                <p>
+                                    Your dashboard layout "Q3 Report" has been successfully
+                                    exported to PDF.
+                                </p>
+                                <span class="notif-time">1 hour ago</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item">
+                            <div class="notif-icon-box warning">
+                                <i class="fa-solid fa-triangle-exclamation"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Storage Usage High</h5>
+                                <p>
+                                    You have used 85% of your allocated cloud storage. Consider
+                                    upgrading.
+                                </p>
+                                <span class="notif-time">Yesterday at 4:30 PM</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item">
+                            <div class="notif-icon-box info">
+                                <i class="fa-solid fa-circle-info"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>New Feature Available</h5>
+                                <p>
+                                    Dark mode is now customizable. Check settings for more
+                                    themes.
+                                </p>
+                                <span class="notif-time">2 days ago</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="notif-footer">View All Notifications</div>
+                </div>
+            </div>
+
+            <div class="profile-wrapper">
+                <img src="https://i.pravatar.cc/150?img=12" alt="Profile" class="user-img header-icon-btn"
+                    id="profileTrigger" />
+
+                <div class="profile-dropdown" id="profileDropdown">
+                    <div class="pd-header">
+                        <img src="https://i.pravatar.cc/150?img=12" class="pd-avatar" />
+                        <div class="pd-info">
+                            <h4>Irvan Maulana</h4>
+                            <span>@irvanmaulana</span>
+                        </div>
+                    </div>
+                    <div class="pd-menu-list">
+                        <a href="pages-profile.html" class="pd-menu-item"><i class="fa-regular fa-user"></i> Your
+                            profile</a>
+                    </div>
+                    <div class="pd-divider"></div>
+                    <div class="pd-theme-toggle">
+                        <span>Theme</span>
+                        <div class="theme-options">
+                            <div class="theme-opt active" id="themeDark">
+                                <i class="fa-solid fa-moon"></i>
+                            </div>
+                            <div class="theme-opt" id="themeLight">
+                                <i class="fa-solid fa-sun"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pd-divider"></div>
+                    <div class="pd-menu-list">
+                        <a class="pd-menu-item text-muted"><i class="fa-solid fa-arrow-right-from-bracket"></i>
+                            Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="app-body-wrapper">
+        <div class="app-body">
+            <div id="sidebar-container"></div>
+
+            <main class="main-content" id="mainContent">
+                <div class="page-header-card">
+                    <i class="fa-solid fa-chart-pie header-bg-icon"></i>
+
+                    <div class="header-hero-content">
+                        <h1 class="hero-title">System Preferences</h1>
+                        <p class="hero-desc">
+                            Configure your application settings and environment variables.
+                            <button class="btn btn-ghost border" onclick="resetDefaults()">
+                                <i class="fa-solid fa-rotate-left"></i>
+                                <span class="d-none d-md-inline ms-2">Reset Defaults</span>
+                            </button>
+                        </p>
+                    </div>
+
+                    <div class="header-hero-actions">
+                        <div style="
+                  font-size: 12px;
+                  color: var(--text-muted);
+                  font-weight: 600;
+                  text-transform: uppercase;
+                  letter-spacing: 1px;
+                ">
+                            <i class="fa-regular fa-calendar" style="margin-right: 6px"></i>
+                            Today, Oct 24
+                        </div>
+
+                        <nav aria-label="breadcrumb">
+                            <ol class="hero-breadcrumb">
+                                <li>
+                                    <a href="index.html" class="breadcrumb-link">
+                                        <div class="home-icon-box">
+                                            <i class="fa-solid fa-house"></i>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="breadcrumb-sep">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </li>
+                                <li>
+                                    <a href="#" class="breadcrumb-link">Admin</a>
+                                </li>
+                                <li class="breadcrumb-sep">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </li>
+                                <li>
+                                    <a href="#" class="breadcrumb-link active">Dashboard</a>
+                                </li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+
+                <form id="systemConfigForm">
+                    <div class="card">
+                        <div class="card-body py-0 px-4">
+                            <div class="form-row-premium">
+                                <div class="label-col">
+                                    <span class="label-title">Site Identity</span>
+                                    <span class="label-desc">Name and logo displayed on header.</span>
+                                </div>
+                                <div class="input-col d-flex align-items-center gap-3">
+                                    <div class="position-relative">
+                                        <img id="logoPreview" src="https://picsum.photos/200/300?random=1"
+                                            class="rounded-3 border border-color" width="48" height="48"
+                                            style="object-fit: cover" />
+                                        <input type="file" id="logoInput" hidden accept="image/*" />
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <input type="text" class="form-control mb-2" id="siteName"
+                                            placeholder="Application Name" />
+                                        <button type="button" class="btn btn-xs btn-ghost text-accent"
+                                            onclick="document.getElementById('logoInput').click()">
+                                            Upload Logo
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row-premium">
+                                <div class="label-col">
+                                    <span class="label-title">Brand Color</span>
+                                    <span class="label-desc">Primary theme color for buttons.</span>
+                                </div>
+                                <div class="input-col">
+                                    <div class="color-picker-wrapper">
+                                        <div class="color-circle" id="colorDisplay" style="background-color: #a855f7">
+                                        </div>
+                                        <span class="text-sm font-monospace text-muted" id="colorHex">#a855f7</span>
+                                        <input type="color" id="colorInput" value="#a855f7" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row-premium">
+                                <div class="label-col">
+                                    <span class="label-title">API Endpoint</span>
+                                    <span class="label-desc">Public access point for integrations.</span>
+                                </div>
+                                <div class="input-col">
+                                    <div class="input-group">
+                                        <span class="input-group-text bg-search"><i class="fa-solid fa-link"></i></span>
+                                        <input type="text" class="form-control bg-search" id="apiEndpoint"
+                                            value="https://api.daily.dev/v1/webhook" readonly />
+                                        <button type="button" class="btn btn-ghost border" onclick="copyToClipboard()">
+                                            <i class="fa-regular fa-copy" id="iconCopy"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row-premium">
+                                <div class="label-col">
+                                    <span class="label-title">Storage Limit</span>
+                                    <span class="label-desc">Maximum upload size per user.</span>
+                                </div>
+                                <div class="input-col">
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span class="text-xs fw-bold text-main" id="storageVal">2048 MB</span>
+                                        <span class="text-xs text-muted">Max: 10GB</span>
+                                    </div>
+                                    <input type="range" class="form-range" min="512" max="10240" step="512" value="2048"
+                                        id="storageRange" />
+                                </div>
+                            </div>
+
+                            <div class="form-row-premium">
+                                <div class="label-col">
+                                    <span class="label-title">Maintenance Mode</span>
+                                    <span class="label-desc">Disable public access temporarily.</span>
+                                </div>
+                                <div class="input-col d-flex align-items-center">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="maintSwitch"
+                                            onchange="toggleMaint(this)" />
+                                    </div>
+                                    <span class="badge badge-soft-success ms-3" id="maintStatus">Live</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sticky-footer">
+                        <button type="button" class="btn btn-ghost text-muted" onclick="location.reload()">
+                            Cancel
+                        </button>
+                        <button type="submit" class="btn btn-primary px-4 shadow-glow">
+                            <i class="fa-solid fa-check me-2"></i> Save Changes
+                        </button>
+                    </div>
+                </form>
+                <footer class="app-footer mt-2">
+                    <div class="footer-left">
+                        <span class="footer-logo-icon"><i class="fa-solid fa-code"></i></span>
+                        <span>&copy; 2025 <strong>Daily.dev</strong>. Created with
+                            <i class="fa-solid fa-heart heart-icon"></i> by Irvan
+                            Maulana.</span>
+                    </div>
+                    <div class="footer-links">
+                        <a href="#" class="footer-link-item">Privacy Policy</a>
+                        <a href="#" class="footer-link-item">Terms</a>
+                        <a href="#" class="footer-link-item">Support</a>
+                    </div>
+                </footer>
+            </main>
+        </div>
+    </div>
+    <div class="sidebar-overlay desktop-only" id="sidebarOverlay"></div>
+    <div id="settings-container"></div>
+    <script src="assets/js/core.js"></script>
+</body>
+
+</html>

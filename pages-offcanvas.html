@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Offcanvas / Drawer - Daily Admin</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet" />
+
+    <link rel="stylesheet" href="assets/css/core.css" />
+    <link rel="stylesheet" href="assets/css/utilities.css" />
+    <link rel="stylesheet" href="assets/css/layout.css" />
+    <link rel="stylesheet" href="assets/css/components.css" />
+
+    <style>
+        /* Styling tambahan untuk demo code */
+        .code-box {
+            background: #0d1117;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            padding: 16px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: #c9d1d9;
+            margin-top: 10px;
+            overflow-x: auto;
+        }
+
+        .code-tag {
+            color: #7ee787;
+        }
+
+        .code-attr {
+            color: #79c0ff;
+        }
+
+        .code-val {
+            color: #a5d6ff;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="app-header">
+        <div class="header-left-actions">
+            <button class="header-icon-btn mobile-toggle-btn" id="mobileToggle">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+            <div class="mobile-search-bar" id="mobileSearchBar">
+                <i class="fa-solid fa-magnifying-glass search-icon-mobile"></i>
+                <input type="text" class="mobile-search-input" placeholder="Search anything..."
+                    id="mobileSearchInput" />
+                <button class="mobile-search-close" id="mobileSearchClose">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="logo desktop-only">
+            <i class="fa-solid fa-code" style="color: var(--text-main)"></i>
+            <span>daily.dev</span>
+        </div>
+        <div id="horizontal-menu-container" class="desktop-only" style="flex: 1; margin-left: 20px">
+        </div>
+        <div class="search-wrapper search-wrapper-inline desktop-only">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <input type="text" class="search-input" placeholder="Search..." id="searchInputInline">
+            <div class="search-shortcut">Ctrl K</div>
+        </div>
+
+        <div class="header-right-actions">
+
+            <button class="header-icon-btn" id="searchTrigger" title="Search" style="display: none;">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+
+        </div>
+
+        <div class="search-overlay" id="searchOverlay">
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass search-box-icon"></i>
+                <input type="text" class="search-box-input" placeholder="Search pages..." id="searchInputFloating">
+                <button class="search-box-close" id="searchClose">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="header-right">
+            <div class="notification-wrapper">
+                <button class="header-icon-btn" id="notifTrigger" title="Notifications">
+                    <i class="fa-regular fa-bell"></i>
+                    <div class="notification-dot"></div>
+                </button>
+
+                <div class="notification-dropdown" id="notifDropdown">
+                    <div class="notif-header">
+                        <h4>
+                            Notifications
+                            <span class="badge badge-danger"
+                                style="margin-left: 8px; font-size: 10px; padding: 2px 6px">4
+                                New</span>
+                        </h4>
+                        <span class="notif-mark-read">Mark all as read</span>
+                    </div>
+
+                    <div class="notif-list">
+                        <div class="notif-item unread">
+                            <div class="notif-icon-box error">
+                                <i class="fa-solid fa-circle-exclamation"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Server Connection Failed</h5>
+                                <p>
+                                    Could not sync data with main server. Please check your API
+                                    Key configuration.
+                                </p>
+                                <span class="notif-time">2 minutes ago</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item unread">
+                            <div class="notif-icon-box success">
+                                <i class="fa-solid fa-check-double"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Project Exported</h5>
+                                <p>
+                                    Your dashboard layout "Q3 Report" has been successfully
+                                    exported to PDF.
+                                </p>
+                                <span class="notif-time">1 hour ago</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item">
+                            <div class="notif-icon-box warning">
+                                <i class="fa-solid fa-triangle-exclamation"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Storage Usage High</h5>
+                                <p>
+                                    You have used 85% of your allocated cloud storage. Consider
+                                    upgrading.
+                                </p>
+                                <span class="notif-time">Yesterday at 4:30 PM</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item">
+                            <div class="notif-icon-box info">
+                                <i class="fa-solid fa-circle-info"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>New Feature Available</h5>
+                                <p>
+                                    Dark mode is now customizable. Check settings for more
+                                    themes.
+                                </p>
+                                <span class="notif-time">2 days ago</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="notif-footer">View All Notifications</div>
+                </div>
+            </div>
+
+            <div class="profile-wrapper">
+                <img src="https://i.pravatar.cc/150?img=12" alt="Profile" class="user-img header-icon-btn"
+                    id="profileTrigger" />
+
+                <div class="profile-dropdown" id="profileDropdown">
+                    <div class="pd-header">
+                        <img src="https://i.pravatar.cc/150?img=12" class="pd-avatar" />
+                        <div class="pd-info">
+                            <h4>Irvan Maulana</h4>
+                            <span>@irvanmaulana</span>
+                        </div>
+                    </div>
+                    <div class="pd-menu-list">
+                        <a href="pages-profile.html" class="pd-menu-item"><i class="fa-regular fa-user"></i> Your
+                            profile</a>
+                    </div>
+                    <div class="pd-divider"></div>
+                    <div class="pd-theme-toggle">
+                        <span>Theme</span>
+                        <div class="theme-options">
+                            <div class="theme-opt active" id="themeDark">
+                                <i class="fa-solid fa-moon"></i>
+                            </div>
+                            <div class="theme-opt" id="themeLight">
+                                <i class="fa-solid fa-sun"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pd-divider"></div>
+                    <div class="pd-menu-list">
+                        <a class="pd-menu-item text-muted"><i class="fa-solid fa-arrow-right-from-bracket"></i>
+                            Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="app-body-wrapper">
+        <div class="app-body">
+            <div id="sidebar-container"></div>
+
+            <main class="main-content" id="mainContent">
+
+                <div class="page-header-card">
+                    <div class="header-hero-content">
+                        <h1 class="hero-title">Offcanvas (Drawer)</h1>
+                        <p class="hero-desc">
+                            Panel geser yang muncul dari sisi kanan layar. Berguna untuk navigasi mobile, filter detail,
+                            atau form edit cepat tanpa meninggalkan halaman utama.
+                        </p>
+                    </div>
+                    <nav class="hero-breadcrumb">
+                        <div class="home-icon-box"><i class="fa-solid fa-home"></i></div>
+
+                        <span class="breadcrumb-sep"><i class="fa-solid fa-chevron-right"></i></span>
+                        <a href="index.html" class="breadcrumb-link">Dashboard</a>
+                        <span class="breadcrumb-sep"><i class="fa-solid fa-chevron-right"></i></span>
+                        <span class="breadcrumb-link active">Activity Logs</span>
+                    </nav>
+                </div>
+
+                <div class="alert alert-soft-primary mb-4">
+                    <div class="alert-icon"><i class="fa-solid fa-circle-info"></i></div>
+                    <div>
+                        <h5 style="margin-bottom: 4px; font-weight: 700;">Cara Penggunaan</h5>
+                        <p class="m-0 text-sm text-muted">
+                            Gunakan atribut <code>data-toggle="drawer"</code> dan <code>data-target="#ID_DRAWER"</code>
+                            pada tombol pemicu. Struktur drawer menggunakan class <code>.drawer-backdrop</code> dan
+                            <code>.drawer-panel</code>.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="section-title">
+                    <div class="section-line"></div>
+                    <div class="section-badge"><i class="fa-solid fa-sliders"></i> Live Demo</div>
+                    <div class="section-line"></div>
+                </div>
+
+                <div class="row g-4">
+                    <div class="col-12 col-md-6">
+                        <div class="card h-100">
+                            <div class="card-header">
+                                <h4 class="card-title">Basic Drawer</h4>
+                            </div>
+                            <div class="card-body">
+                                <p class="text-muted text-sm mb-4">
+                                    Drawer standar dengan header, body, dan footer. Klik tombol di bawah untuk melihat
+                                    animasi slide-in.
+                                </p>
+
+                                <button class="btn btn-primary w-full" data-toggle="drawer" data-target="#drawerBasic">
+                                    <i class="fa-solid fa-arrow-right-to-bracket fa-rotate-180 me-2"></i> Open Right
+                                    Drawer
+                                </button>
+
+                                <div class="code-box copy-click">
+                                    &lt;<span class="code-tag">button</span> <span
+                                        class="code-attr">data-toggle</span>=<span class="code-val">"drawer"</span>
+                                    <span class="code-attr">data-target</span>=<span
+                                        class="code-val">"#drawerBasic"</span>&gt;
+                                    Open Drawer
+                                    &lt;/<span class="code-tag">button</span>&gt;
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-6">
+                        <div class="card h-100">
+                            <div class="card-header">
+                                <h4 class="card-title">Action / Form Drawer</h4>
+                            </div>
+                            <div class="card-body">
+                                <p class="text-muted text-sm mb-4">
+                                    Contoh penggunaan drawer untuk formulir edit profil atau filter pencarian lanjutan.
+                                </p>
+
+                                <button class="btn btn-secondary w-full" data-toggle="drawer" data-target="#drawerForm">
+                                    <i class="fa-solid fa-filter me-2"></i> Open Filter Drawer
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <footer class="app-footer mt-2">
+                    <div class="footer-left">
+                        <span class="footer-logo-icon"><i class="fa-solid fa-code"></i></span>
+                        <span>&copy; 2025 <strong>Daily.dev</strong>. Created with <i
+                                class="fa-solid fa-heart heart-icon"></i>
+                            by Irvan Maulana.</span>
+                    </div>
+                    <div class="footer-links">
+                        <a href="#" class="footer-link-item">Privacy Policy</a>
+                        <a href="#" class="footer-link-item">Terms</a>
+                        <a href="#" class="footer-link-item">Support</a>
+                    </div>
+                </footer>
+            </main>
+        </div>
+    </div>
+
+    <div class="drawer-backdrop" id="drawerBasic">
+        <div class="drawer-panel">
+            <div class="modal-header">
+                <h5 class="modal-title">System Information</h5>
+                <button class="modal-close-btn" data-dismiss="drawer">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div class="text-center mb-4">
+                    <div class="avatar avatar-xl avatar-soft-primary mb-3">
+                        <i class="fa-solid fa-server"></i>
+                    </div>
+                    <h4>Server Status</h4>
+                    <p class="text-muted text-sm">Running normally on Port 8080</p>
+                </div>
+
+                <div class="list-group border-1 border-solid border-dark rounded overflow-hidden">
+                    <div class="list-group-item d-flex justify-between">
+                        <span>CPU Usage</span>
+                        <span class="text-success font-bold">12%</span>
+                    </div>
+                    <div class="list-group-item d-flex justify-between">
+                        <span>Memory</span>
+                        <span class="text-warning font-bold">64%</span>
+                    </div>
+                    <div class="list-group-item d-flex justify-between">
+                        <span>Disk Space</span>
+                        <span class="text-muted">240GB / 512GB</span>
+                    </div>
+                </div>
+
+                <p class="mt-4 text-sm text-muted">
+                    This drawer slides from the right and has a backdrop that closes the drawer when clicked.
+                </p>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-ghost" data-dismiss="drawer">Close</button>
+                <button class="btn btn-primary">Refresh Data</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="drawer-backdrop" id="drawerForm">
+        <div class="drawer-panel">
+            <div class="modal-header">
+                <h5 class="modal-title">Filter Results</h5>
+                <button class="modal-close-btn" data-dismiss="drawer">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label class="form-label">Date Range</label>
+                        <select class="form-control">
+                            <option>Last 7 Days</option>
+                            <option>Last 30 Days</option>
+                            <option>This Year</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Status</label>
+                        <div class="d-flex flex-column gap-2 mt-2">
+                            <label class="d-flex align-center gap-2 text-sm text-muted cursor-pointer">
+                                <input type="checkbox" checked style="accent-color: var(--accent-color);"> Active
+                            </label>
+                            <label class="d-flex align-center gap-2 text-sm text-muted cursor-pointer">
+                                <input type="checkbox" style="accent-color: var(--accent-color);"> Pending
+                            </label>
+                            <label class="d-flex align-center gap-2 text-sm text-muted cursor-pointer">
+                                <input type="checkbox" style="accent-color: var(--accent-color);"> Suspended
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Minimum Amount ($)</label>
+                        <input type="range" class="form-range" min="0" max="1000">
+                        <div class="d-flex justify-between text-xs text-muted mt-1">
+                            <span>$0</span>
+                            <span>$1000</span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-ghost" data-dismiss="drawer">Reset</button>
+                <button class="btn btn-primary" data-dismiss="drawer">Apply Filter</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="sidebar-overlay desktop-only" id="sidebarOverlay"></div>
+    <div id="settings-container"></div>
+
+    <script src="assets/js/core.js"></script>
+</body>
+
+</html>

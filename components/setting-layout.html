@@ -1,0 +1,20 @@
+<button id="settings-trigger" class="settings-btn-float desktop-only">
+    <i class="fa-solid fa-gear fa-spin"></i>
+</button>
+
+<div id="settings-panel" class="settings-panel">
+    <div class="settings-header">
+        <h5>Theme Customizer</h5>
+        <button id="settings-close" class="btn-close-simple"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="settings-body">
+        <h6 class="settings-title">Choose Layout</h6>
+        <div class="layout-grid">
+            <div class="layout-option" onclick="changeLayout('default')"><span>Vertical</span></div>
+            <div class="layout-option" onclick="changeLayout('horizontal')"><span>Horizontal</span></div>
+            <div class="layout-option" onclick="changeLayout('collapsed')"><span>Collapsed</span></div>
+            <div class="layout-option" onclick="changeLayout('compact')"><span>Compact</span></div>
+            <div class="layout-option" onclick="changeLayout('boxed')"><span>Boxed</span></div>
+        </div>
+    </div>
+</div>

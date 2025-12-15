@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SweetAlert - Daily Admin</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/core.css">
+    <link rel="stylesheet" href="assets/css/utilities.css">
+    <link rel="stylesheet" href="assets/css/layout.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+</head>
+
+<body>
+
+    <header class="app-header">
+
+        <div class="header-left-actions">
+            <button class="header-icon-btn mobile-toggle-btn" id="mobileToggle">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+
+            <button class="header-icon-btn mobile-search-btn">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+
+            <div class="mobile-search-bar" id="mobileSearchBar">
+                <i class="fa-solid fa-magnifying-glass search-icon-mobile"></i>
+                <input type="text" class="mobile-search-input" placeholder="Search anything..." id="mobileSearchInput">
+                <button class="mobile-search-close" id="mobileSearchClose">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+
+
+
+        <div class="logo desktop-only">
+            <i class="fa-solid fa-code" style="color: var(--text-main);"></i>
+            <span>daily.dev</span>
+        </div>
+
+        <div class="search-wrapper desktop-only">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <input type="text" class="search-input" placeholder="Search..." id="searchInput">
+            <div class="search-shortcut">Ctrl K</div>
+        </div>
+
+        <div class="header-right">
+            <div class="notification-wrapper">
+                <button class="header-icon-btn" id="notifTrigger" title="Notifications">
+                    <i class="fa-regular fa-bell"></i>
+                    <div class="notification-dot"></div>
+                </button>
+
+                <div class="notification-dropdown" id="notifDropdown">
+                    <div class="notif-header">
+                        <h4>Notifications <span class="badge badge-danger"
+                                style="margin-left:8px; font-size:10px; padding:2px 6px;">4 New</span></h4>
+                        <span class="notif-mark-read">Mark all as read</span>
+                    </div>
+
+                    <div class="notif-list">
+
+                        <div class="notif-item unread">
+                            <div class="notif-icon-box error">
+                                <i class="fa-solid fa-circle-exclamation"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Server Connection Failed</h5>
+                                <p>Could not sync data with main server. Please check your API Key configuration.</p>
+                                <span class="notif-time">2 minutes ago</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item unread">
+                            <div class="notif-icon-box success">
+                                <i class="fa-solid fa-check-double"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Project Exported</h5>
+                                <p>Your dashboard layout "Q3 Report" has been successfully exported to PDF.</p>
+                                <span class="notif-time">1 hour ago</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item">
+                            <div class="notif-icon-box warning">
+                                <i class="fa-solid fa-triangle-exclamation"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Storage Usage High</h5>
+                                <p>You have used 85% of your allocated cloud storage. Consider upgrading.</p>
+                                <span class="notif-time">Yesterday at 4:30 PM</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item">
+                            <div class="notif-icon-box info">
+                                <i class="fa-solid fa-circle-info"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>New Feature Available</h5>
+                                <p>Dark mode is now customizable. Check settings for more themes.</p>
+                                <span class="notif-time">2 days ago</span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="notif-footer">
+                        View All Notifications
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-wrapper">
+                <img src="https://i.pravatar.cc/150?img=12" alt="Profile" class="user-img header-icon-btn"
+                    id="profileTrigger">
+
+                <div class="profile-dropdown" id="profileDropdown">
+                    <div class="pd-header">
+                        <img src="https://i.pravatar.cc/150?img=12" class="pd-avatar">
+                        <div class="pd-info">
+                            <h4>Irvan Maulana</h4>
+                            <span>@irvanmaulana</span>
+                        </div>
+                    </div>
+                    <div class="pd-menu-list">
+                        <a href="pages-profile.html" class="pd-menu-item"><i class="fa-regular fa-user"></i> Your
+                            profile</a>
+                    </div>
+                    <div class="pd-divider"></div>
+                    <div class="pd-theme-toggle">
+                        <span>Theme</span>
+                        <div class="theme-options">
+                            <div class="theme-opt active" id="themeDark"><i class="fa-solid fa-moon"></i></div>
+                            <div class="theme-opt" id="themeLight"><i class="fa-solid fa-sun"></i></div>
+                        </div>
+                    </div>
+                    <div class="pd-divider"></div>
+                    <div class="pd-menu-list">
+                        <a class="pd-menu-item text-muted"><i class="fa-solid fa-arrow-right-from-bracket"></i>
+                            Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="app-body-wrapper">
+        <div class="app-body">
+        
+            <div id="sidebar-container"></div>
+        
+            <main class="main-content" id="mainContent">
+                <!-- PAGE HEADER -->
+                <div class="page-header-card">
+                    <i class="fa-regular fa-face-smile-wink header-bg-icon"></i>
+                    <div class="header-hero-content">
+                        <h1 class="hero-title">SweetAlert2</h1>
+                        <p class="hero-desc">Beautiful, responsive, and customizable replacement for Javascript's popup
+                            boxes.
+                        </p>
+                    </div>
+                    <nav class="hero-breadcrumb">
+                        <div class="home-icon-box"><i class="fa-solid fa-home"></i></div>
+        
+                        <span class="breadcrumb-sep"><i class="fa-solid fa-chevron-right"></i></span>
+                        <a href="index.html" class="breadcrumb-link">Dashboard</a>
+                        <span class="breadcrumb-sep"><i class="fa-solid fa-chevron-right"></i></span>
+                        <span class="breadcrumb-link active">SweetAlert2</span>
+                    </nav>
+                </div>
+        
+                <!-- PAGE HEADER END -->
+        
+        
+                <!-- CONTENT HERE -->
+        
+        
+                <div class="content-grid">
+        
+                    <div class="section-title col-span-12">
+                        <div class="section-line"></div>
+                        <div class="section-badge"><i class="fa-regular fa-comment-dots"></i> <span>SweetAlert2 <span>
+                        </div>
+                        <div class="section-line"></div>
+                    </div>
+        
+                    <div class="card col-span-6">
+                        <div class="card-body d-flex flex-wrap gap-3 justify-center">
+                            <button class="btn btn-outline-primary" onclick="Swal.fire('Hello World!')">
+                                Basic Message
+                            </button>
+        
+                            <button class="btn btn-outline-primary"
+                                onclick="Swal.fire('The Internet?', 'That thing is still around?', 'question')">
+                                With Title & Icon
+                            </button>
+        
+                            <button class="btn btn-outline-primary" onclick="Swal.fire({
+                            icon: 'info',
+                            title: 'Did you know?',
+                            text: 'You can use keyboard shortcuts to close this modal.',
+                            footer: '<a href=\'#\'>Learn more about shortcuts</a>'
+                        })">
+                                With Footer
+                            </button>
+                        </div>
+                    </div>
+        
+        
+        
+                    <div class="card col-span-6">
+                        <div class="card-body text-center">
+                            <h5 class="mb-3">Success State</h5>
+                            <button class="btn btn-success w-full" onclick="Swal.fire({
+                            icon: 'success',
+                            title: 'Payment Successful',
+                            text: 'Your transaction #9923 has been processed.',
+                            confirmButtonText: 'Great!',
+                            timer: 3000
+                        })">Launch Success</button>
+                        </div>
+                    </div>
+        
+                    <div class="card col-span-4">
+                        <div class="card-body text-center">
+                            <h5 class="mb-3">Error State</h5>
+                            <button class="btn btn-danger w-full" onclick="Swal.fire({
+                            icon: 'error',
+                            title: 'Access Denied',
+                            text: 'You do not have permission to view this file.',
+                            confirmButtonText: 'Contact Admin'
+                        })">Launch Error</button>
+                        </div>
+                    </div>
+        
+        
+        
+                    <div class="card col-span-4">
+                        <div class="card-body text-center p-5">
+                            <h3 class="mb-2">Are you sure?</h3>
+                            <p class="text-muted mb-4">Try clicking the button below to see a confirm dialog with logic.</p>
+        
+                            <button class="btn btn-neon copy-click" style="--accent-color: #e74c3c;"
+                                onclick="showDeleteConfirm()">
+                                <i class="fa-solid fa-trash"></i> Delete Account
+                            </button>
+                        </div>
+                    </div>
+        
+        
+        
+                    <div class="card col-span-4">
+                        <div class="card-body">
+                            <button class="btn btn-secondary w-full" onclick="Swal.fire({
+                            title: 'Sweet!',
+                            text: 'Modal with a custom image.',
+                            imageUrl: 'https://picsum.photos/400/200?random=1',
+                            imageWidth: 400,
+                            imageHeight: 200,
+                            imageAlt: 'Custom image',
+                        })">Image Modal</button>
+                        </div>
+                    </div>
+        
+                    <div class="card col-span-4">
+                        <div class="card-body">
+                            <button class="btn btn-secondary w-full" onclick="let timerInterval;
+                        Swal.fire({
+                          title: 'Auto close alert!',
+                          html: 'I will close in <b></b> milliseconds.',
+                          timer: 2000,
+                          timerProgressBar: true,
+                          didOpen: () => {
+                            Swal.showLoading();
+                            const b = Swal.getHtmlContainer().querySelector('b');
+                            timerInterval = setInterval(() => {
+                              b.textContent = Swal.getTimerLeft();
+                            }, 100);
+                          },
+                          willClose: () => {
+                            clearInterval(timerInterval);
+                          }
+                        })">Auto Close Timer</button>
+                        </div>
+                    </div>
+        
+                </div>
+                <!-- CONTENT END -->
+                <footer class="app-footer mt-2">
+                    <div class="footer-left">
+                        <span class="footer-logo-icon"><i class="fa-solid fa-code"></i></span>
+                        <span>&copy; 2025 <strong>Daily.dev</strong>. Created with <i class="fa-solid fa-heart heart-icon"></i>
+                            by Irvan Maulana.</span>
+                    </div>
+                    <div class="footer-links">
+                        <a href="#" class="footer-link-item">Privacy Policy</a>
+                        <a href="#" class="footer-link-item">Terms</a>
+                        <a href="#" class="footer-link-item">Support</a>
+                    </div>
+                </footer>
+            </main>
+        </div>
+    </div>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <script src="assets/js/core.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        // Fungsi Delete dengan Logika
+        function showDeleteConfirm() {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#e74c3c', // Override warna merah
+                cancelButtonColor: '#2d323b',
+                confirmButtonText: 'Yes, delete it!',
+                background: 'var(--bg-card)', // Pastikan ambil variabel CSS
+                color: 'var(--text-main)'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Simulasi Loading / Hapus
+                    Swal.fire(
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success'
+                    )
+                }
+            })
+        }
+    </script>
+</body>
+
+</html>

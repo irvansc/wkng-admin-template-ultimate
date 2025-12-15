@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typography - Daily Admin</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/core.css">
+    <link rel="stylesheet" href="assets/css/utilities.css">
+    <link rel="stylesheet" href="assets/css/layout.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+
+    <style>
+        /* CSS Khusus Halaman Typography (Demo Style) */
+        .type-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 24px;
+            transition: transform 0.2s;
+        }
+
+        .type-card:hover {
+            border-color: var(--text-muted);
+        }
+
+        .type-row {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border-color);
+            gap: 20px;
+        }
+
+        .type-row:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .type-row:first-child {
+            padding-top: 0;
+        }
+
+        /* Kolom Contoh Teks */
+        .type-sample {
+            flex: 1;
+            color: var(--text-main);
+            /* Reset margin default browser agar rapi di tabel */
+            margin: 0;
+        }
+
+        /* Kolom Info Class (Code) */
+        .type-meta {
+            text-align: right;
+            min-width: 140px;
+        }
+
+        .code-badge {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            background: var(--bg-search);
+            color: var(--accent-color);
+            padding: 6px 10px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .code-badge:hover {
+            background: var(--accent-color);
+            color: #fff;
+            border-color: var(--accent-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(var(--accent-rgb), 0.2);
+        }
+
+        /* Helper untuk visualisasi Font Weight */
+        .weight-scale {
+            display: flex;
+            gap: 4px;
+            margin-top: 8px;
+        }
+
+        .weight-brick {
+            height: 4px;
+            flex: 1;
+            background: var(--border-color);
+            border-radius: 2px;
+        }
+
+        .weight-brick.active {
+            background: var(--accent-color);
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="app-header">
+        <div class="header-left-actions">
+            <button class="header-icon-btn mobile-toggle-btn" id="mobileToggle">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+            <div class="mobile-search-bar" id="mobileSearchBar">
+                <i class="fa-solid fa-magnifying-glass search-icon-mobile"></i>
+                <input type="text" class="mobile-search-input" placeholder="Search anything..."
+                    id="mobileSearchInput" />
+                <button class="mobile-search-close" id="mobileSearchClose">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="logo desktop-only">
+            <i class="fa-solid fa-code" style="color: var(--text-main)"></i>
+            <span>daily.dev</span>
+        </div>
+        <div id="horizontal-menu-container" class="desktop-only" style="flex: 1; margin-left: 20px">
+        </div>
+        <div class="search-wrapper search-wrapper-inline desktop-only">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <input type="text" class="search-input" placeholder="Search..." id="searchInputInline">
+            <div class="search-shortcut">Ctrl K</div>
+        </div>
+
+        <div class="header-right-actions">
+
+            <button class="header-icon-btn" id="searchTrigger" title="Search" style="display: none;">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+
+        </div>
+
+        <div class="search-overlay" id="searchOverlay">
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass search-box-icon"></i>
+                <input type="text" class="search-box-input" placeholder="Search pages..." id="searchInputFloating">
+                <button class="search-box-close" id="searchClose">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="header-right">
+            <div class="notification-wrapper">
+                <button class="header-icon-btn" id="notifTrigger" title="Notifications">
+                    <i class="fa-regular fa-bell"></i>
+                    <div class="notification-dot"></div>
+                </button>
+
+                <div class="notification-dropdown" id="notifDropdown">
+                    <div class="notif-header">
+                        <h4>
+                            Notifications
+                            <span class="badge badge-danger"
+                                style="margin-left: 8px; font-size: 10px; padding: 2px 6px">4
+                                New</span>
+                        </h4>
+                        <span class="notif-mark-read">Mark all as read</span>
+                    </div>
+
+                    <div class="notif-list">
+                        <div class="notif-item unread">
+                            <div class="notif-icon-box error">
+                                <i class="fa-solid fa-circle-exclamation"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Server Connection Failed</h5>
+                                <p>
+                                    Could not sync data with main server. Please check your API
+                                    Key configuration.
+                                </p>
+                                <span class="notif-time">2 minutes ago</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item unread">
+                            <div class="notif-icon-box success">
+                                <i class="fa-solid fa-check-double"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Project Exported</h5>
+                                <p>
+                                    Your dashboard layout "Q3 Report" has been successfully
+                                    exported to PDF.
+                                </p>
+                                <span class="notif-time">1 hour ago</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item">
+                            <div class="notif-icon-box warning">
+                                <i class="fa-solid fa-triangle-exclamation"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Storage Usage High</h5>
+                                <p>
+                                    You have used 85% of your allocated cloud storage. Consider
+                                    upgrading.
+                                </p>
+                                <span class="notif-time">Yesterday at 4:30 PM</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item">
+                            <div class="notif-icon-box info">
+                                <i class="fa-solid fa-circle-info"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>New Feature Available</h5>
+                                <p>
+                                    Dark mode is now customizable. Check settings for more
+                                    themes.
+                                </p>
+                                <span class="notif-time">2 days ago</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="notif-footer">View All Notifications</div>
+                </div>
+            </div>
+
+            <div class="profile-wrapper">
+                <img src="https://i.pravatar.cc/150?img=12" alt="Profile" class="user-img header-icon-btn"
+                    id="profileTrigger" />
+
+                <div class="profile-dropdown" id="profileDropdown">
+                    <div class="pd-header">
+                        <img src="https://i.pravatar.cc/150?img=12" class="pd-avatar" />
+                        <div class="pd-info">
+                            <h4>Irvan Maulana</h4>
+                            <span>@irvanmaulana</span>
+                        </div>
+                    </div>
+                    <div class="pd-menu-list">
+                        <a href="pages-profile.html" class="pd-menu-item"><i class="fa-regular fa-user"></i> Your
+                            profile</a>
+                    </div>
+                    <div class="pd-divider"></div>
+                    <div class="pd-theme-toggle">
+                        <span>Theme</span>
+                        <div class="theme-options">
+                            <div class="theme-opt active" id="themeDark">
+                                <i class="fa-solid fa-moon"></i>
+                            </div>
+                            <div class="theme-opt" id="themeLight">
+                                <i class="fa-solid fa-sun"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pd-divider"></div>
+                    <div class="pd-menu-list">
+                        <a class="pd-menu-item text-muted"><i class="fa-solid fa-arrow-right-from-bracket"></i>
+                            Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="app-body-wrapper">
+        <div class="app-body">
+            <div id="sidebar-container"></div>
+
+            <main class="main-content" id="mainContent">
+
+                <div class="page-header-card">
+                    <div class="header-hero-content">
+                        <h1 class="hero-title">Typography</h1>
+                        <p class="hero-desc">Panduan gaya teks, heading, dan utilitas font menggunakan font family
+                            <strong>Inter</strong>.
+                        </p>
+                    </div>
+                    <div class="header-hero-actions">
+                        <nav class="hero-breadcrumb">
+                            <div class="home-icon-box"><i class="fa-solid fa-home"></i></div>
+                            <span class="breadcrumb-sep"><i class="fa-solid fa-chevron-right"></i></span>
+                            <a href="#" class="breadcrumb-link">Utilities</a>
+                            <span class="breadcrumb-sep"><i class="fa-solid fa-chevron-right"></i></span>
+                            <span class="breadcrumb-link active">Typography</span>
+                        </nav>
+                    </div>
+                    <i class="fa-solid fa-paragraph header-bg-icon"></i>
+                </div>
+
+                <div class="content-grid">
+
+                    <div class="col-span-8 col-md-12">
+                        <div class="section-title simple">
+                            <div class="section-line"></div>
+                            <div class="section-badge">Standard Headings</div>
+                            <div class="section-line"></div>
+                        </div>
+
+                        <div class="type-card">
+                            <div class="type-row">
+                                <h1 class="type-sample">H1. Dashboard Heading</h1>
+                                <div class="type-meta" onclick="copyClass('<h1>')"><span
+                                        class="code-badge">&lt;h1&gt;</span></div>
+                            </div>
+                            <div class="type-row">
+                                <h2 class="type-sample">H2. Section Title</h2>
+                                <div class="type-meta" onclick="copyClass('<h2>')"><span
+                                        class="code-badge">&lt;h2&gt;</span></div>
+                            </div>
+                            <div class="type-row">
+                                <h3 class="type-sample">H3. Card Title</h3>
+                                <div class="type-meta" onclick="copyClass('<h3>')"><span
+                                        class="code-badge">&lt;h3&gt;</span></div>
+                            </div>
+                            <div class="type-row">
+                                <h4 class="type-sample">H4. Sub-section Heading</h4>
+                                <div class="type-meta" onclick="copyClass('<h4>')"><span
+                                        class="code-badge">&lt;h4&gt;</span></div>
+                            </div>
+                            <div class="type-row">
+                                <h5 class="type-sample">H5. Widget Title</h5>
+                                <div class="type-meta" onclick="copyClass('<h5>')"><span
+                                        class="code-badge">&lt;h5&gt;</span></div>
+                            </div>
+                            <div class="type-row">
+                                <h6 class="type-sample">H6. Small Label</h6>
+                                <div class="type-meta" onclick="copyClass('<h6>')"><span
+                                        class="code-badge">&lt;h6&gt;</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-span-4 col-md-12">
+                        <div class="section-title simple">
+                            <div class="section-line"></div>
+                            <div class="section-badge">Display & Hero</div>
+                            <div class="section-line"></div>
+                        </div>
+
+                        <div class="type-card" style="background: var(--bg-body);">
+                            <div class="p-2">
+                                <h1 class="hero-title mb-2">Hero Title Gradient</h1>
+                                <p class="hero-desc mb-3">Digunakan pada Page Header utama untuk memberikan kesan modern
+                                    dan highlight.</p>
+                                <div onclick="copyClass('hero-title')"><span
+                                        class="code-badge w-full justify-center">.hero-title</span></div>
+                            </div>
+                        </div>
+
+                        <div class="type-card">
+                            <h3 class="card-title mb-2">Card Title</h3>
+                            <p class="text-muted text-sm mb-3">Standard judul untuk komponen kartu.</p>
+                            <div onclick="copyClass('card-title')"><span
+                                    class="code-badge w-full justify-center">.card-title</span></div>
+                        </div>
+                    </div>
+
+                    <div class="col-span-6 col-md-12">
+                        <div class="section-title simple">
+                            <div class="section-line"></div>
+                            <div class="section-badge">Body Sizes</div>
+                            <div class="section-line"></div>
+                        </div>
+
+                        <div class="type-card">
+                            <div class="type-row">
+                                <p class="type-sample">
+                                    <strong>Default Body.</strong> Inter font, 16px base size. Used for general content
+                                    reading.
+                                </p>
+                                <div class="type-meta" onclick="copyClass('body')"><span
+                                        class="code-badge">&lt;body&gt;</span></div>
+                            </div>
+                            <div class="type-row">
+                                <p class="type-sample text-sm">
+                                    <strong>Small Text.</strong> Used for secondary information, tables, or dense UI
+                                    areas. (0.875rem)
+                                </p>
+                                <div class="type-meta" onclick="copyClass('text-sm')"><span
+                                        class="code-badge">.text-sm</span></div>
+                            </div>
+                            <div class="type-row">
+                                <p class="type-sample text-xs">
+                                    <strong>Extra Small.</strong> Used for captions, labels, or footnotes. (0.75rem)
+                                </p>
+                                <div class="type-meta" onclick="copyClass('text-xs')"><span
+                                        class="code-badge">.text-xs</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-span-6 col-md-12">
+                        <div class="section-title simple">
+                            <div class="section-line"></div>
+                            <div class="section-badge">Styles & Colors</div>
+                            <div class="section-line"></div>
+                        </div>
+
+                        <div class="type-card">
+                            <div class="type-row">
+                                <p class="type-sample text-muted">
+                                    Muted text for subtitles or hints.
+                                </p>
+                                <div class="type-meta" onclick="copyClass('text-muted')">
+                                    <span class="code-badge">.text-muted</span>
+                                </div>
+                            </div>
+
+                            <div class="type-row">
+                                <p class="type-sample font-bold">
+                                    Bold text weight (700).
+                                </p>
+                                <div class="type-meta" onclick="copyClass('font-bold')">
+                                    <span class="code-badge">.font-bold</span>
+                                </div>
+                            </div>
+
+                            <div class="type-row">
+                                <p class="type-sample text-success">
+                                    Success State Text
+                                </p>
+                                <div class="type-meta" onclick="copyClass('text-success')">
+                                    <span class="code-badge">.text-success</span>
+                                </div>
+                            </div>
+
+                            <div class="type-row">
+                                <p class="type-sample text-danger">
+                                    Error / Danger State Text
+                                </p>
+                                <div class="type-meta" onclick="copyClass('text-danger')">
+                                    <span class="code-badge">.text-danger</span>
+                                </div>
+                            </div>
+
+                            <div class="type-row">
+                                <p class="type-sample text-warning">
+                                    Warning / Alert State Text
+                                </p>
+                                <div class="type-meta" onclick="copyClass('text-warning')">
+                                    <span class="code-badge">.text-warning</span>
+                                </div>
+                            </div>
+
+                            <div class="type-row">
+                                <p class="type-sample text-info">
+                                    Information State Text
+                                </p>
+                                <div class="type-meta" onclick="copyClass('text-info')">
+                                    <span class="code-badge">.text-info</span>
+                                </div>
+                            </div>
+
+                            <div class="type-row"
+                                style="background: var(--bg-hover); padding-left: 10px; border-radius: 8px;">
+                                <p class="type-sample text-white mb-0">
+                                    White Text (On Dark Bg)
+                                </p>
+                                <div class="type-meta" onclick="copyClass('text-white')">
+                                    <span class="code-badge">.text-white</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-span-12">
+                        <div class="section-title simple">
+                            <div class="section-line"></div>
+                            <div class="section-badge">Links & Interactions</div>
+                            <div class="section-line"></div>
+                        </div>
+
+                        <div class="content-grid">
+                            <div class="col-span-4 col-md-12">
+                                <div class="type-card text-center">
+                                    <a href="#" class="mb-2 d-block">Default Link</a>
+                                    <p class="text-xs text-muted mb-3">Warna aksen ungu, hover cerah.</p>
+                                    <div onclick="copyClass('<a>')"><span class="code-badge">&lt;a&gt;</span></div>
+                                </div>
+                            </div>
+                            <div class="col-span-4 col-md-12">
+                                <div class="type-card text-center">
+                                    <a href="#" class="link-muted mb-2 d-block">Muted Link</a>
+                                    <p class="text-xs text-muted mb-3">Abu-abu, berubah warna saat hover.</p>
+                                    <div onclick="copyClass('link-muted')"><span class="code-badge">.link-muted</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-span-4 col-md-12">
+                                <div class="type-card text-center">
+                                    <a href="#" class="link-primary mb-2 d-block">Primary Link</a>
+                                    <p class="text-xs text-muted mb-3">Warna brand merah/accent, bold.</p>
+                                    <div onclick="copyClass('link-primary')"><span
+                                            class="code-badge">.link-primary</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-span-12">
+                        <div class="section-title simple">
+                            <div class="section-line"></div>
+                            <div class="section-badge">Alignment Utilities</div>
+                            <div class="section-line"></div>
+                        </div>
+
+                        <div class="type-card p-0 overflow-hidden">
+                            <table class="table table-bordered mb-0">
+                                <tbody>
+                                    <tr>
+                                        <td class="text-start" style="width: 33%;">
+                                            <div class="mb-2">Left Aligned</div>
+                                            <span class="code-badge"
+                                                onclick="copyClass('text-start')">.text-start</span>
+                                        </td>
+                                        <td class="text-center" style="width: 33%;">
+                                            <div class="mb-2">Center Aligned</div>
+                                            <span class="code-badge"
+                                                onclick="copyClass('text-center')">.text-center</span>
+                                        </td>
+                                        <td class="text-end" style="width: 33%;">
+                                            <div class="mb-2">Right Aligned</div>
+                                            <span class="code-badge" onclick="copyClass('text-end')">.text-end</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+
+                <footer class="app-footer">
+                    <div class="footer-left">
+                        <span class="footer-logo-icon"><i class="fa-solid fa-code"></i></span>
+                        <span>&copy; 2025 <strong>Daily.dev</strong>. Created with
+                            <i class="fa-solid fa-heart heart-icon"></i> by Irvan
+                            Maulana.</span>
+                    </div>
+                    <div class="footer-links">
+                        <a href="#" class="footer-link-item">Privacy Policy</a>
+                        <a href="#" class="footer-link-item">Terms</a>
+                        <a href="#" class="footer-link-item">Support</a>
+                    </div>
+                </footer>
+
+            </main>
+        </div>
+    </div>
+
+    <div class="sidebar-overlay desktop-only" id="sidebarOverlay"></div>
+    <div id="settings-container"></div>
+
+    <script src="assets/js/core.js"></script>
+    <script>
+        // Fungsi Copy Class Name
+        function copyClass(className) {
+            // Bersihkan format tag HTML jika ada (misal <h1> jadi h1) untuk keperluan user, 
+            // tapi user biasanya copy class. Jika inputnya class (.text-sm), copy langsung.
+
+            // Jika user klik tombol <h1>, kita copy tagnya atau classnya? 
+            // Di sini saya buat copy teks persis yang ada di parameter.
+
+            navigator.clipboard.writeText(className).then(() => {
+                // Menggunakan Toast Engine bawaan core.js
+                if (window.Toast) {
+                    window.Toast.fire({
+                        title: "Copied!",
+                        message: `Class copied: ${className}`,
+                        type: "success", // Gunakan style success
+                        icon: '<i class="fa-solid fa-code"></i>',
+                        duration: 2000
+                    });
+                } else {
+                    alert(`Copied: ${className}`);
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

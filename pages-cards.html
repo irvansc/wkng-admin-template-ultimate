@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cards - Daily Admin</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="../assets/css/core.css">
+    <link rel="stylesheet" href="../assets/css/utilities.css">
+    <link rel="stylesheet" href="../assets/css/layout.css">
+    <link rel="stylesheet" href="../assets/css/components.css">
+</head>
+
+<body>
+
+    <header class="app-header">
+
+        <div class="header-left-actions">
+            <button class="header-icon-btn mobile-toggle-btn" id="mobileToggle">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+
+            <button class="header-icon-btn mobile-search-btn">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+
+            <div class="mobile-search-bar" id="mobileSearchBar">
+                <i class="fa-solid fa-magnifying-glass search-icon-mobile"></i>
+                <input type="text" class="mobile-search-input" placeholder="Search anything..." id="mobileSearchInput">
+                <button class="mobile-search-close" id="mobileSearchClose">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+
+
+
+        <div class="logo desktop-only">
+            <i class="fa-solid fa-code" style="color: var(--text-main);"></i>
+            <span>daily.dev</span>
+        </div>
+
+        <div class="search-wrapper desktop-only">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <input type="text" class="search-input" placeholder="Search..." id="searchInput">
+            <div class="search-shortcut">Ctrl K</div>
+        </div>
+
+        <div class="header-right">
+            <div class="notification-wrapper">
+                <button class="header-icon-btn" id="notifTrigger" title="Notifications">
+                    <i class="fa-regular fa-bell"></i>
+                    <div class="notification-dot"></div>
+                </button>
+
+                <div class="notification-dropdown" id="notifDropdown">
+                    <div class="notif-header">
+                        <h4>Notifications <span class="badge badge-danger"
+                                style="margin-left:8px; font-size:10px; padding:2px 6px;">4 New</span></h4>
+                        <span class="notif-mark-read">Mark all as read</span>
+                    </div>
+
+                    <div class="notif-list">
+
+                        <div class="notif-item unread">
+                            <div class="notif-icon-box error">
+                                <i class="fa-solid fa-circle-exclamation"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Server Connection Failed</h5>
+                                <p>Could not sync data with main server. Please check your API Key configuration.</p>
+                                <span class="notif-time">2 minutes ago</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item unread">
+                            <div class="notif-icon-box success">
+                                <i class="fa-solid fa-check-double"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Project Exported</h5>
+                                <p>Your dashboard layout "Q3 Report" has been successfully exported to PDF.</p>
+                                <span class="notif-time">1 hour ago</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item">
+                            <div class="notif-icon-box warning">
+                                <i class="fa-solid fa-triangle-exclamation"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Storage Usage High</h5>
+                                <p>You have used 85% of your allocated cloud storage. Consider upgrading.</p>
+                                <span class="notif-time">Yesterday at 4:30 PM</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item">
+                            <div class="notif-icon-box info">
+                                <i class="fa-solid fa-circle-info"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>New Feature Available</h5>
+                                <p>Dark mode is now customizable. Check settings for more themes.</p>
+                                <span class="notif-time">2 days ago</span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="notif-footer">
+                        View All Notifications
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-wrapper">
+                <img src="https://i.pravatar.cc/150?img=12" alt="Profile" class="user-img header-icon-btn"
+                    id="profileTrigger">
+
+                <div class="profile-dropdown" id="profileDropdown">
+                    <div class="pd-header">
+                        <img src="https://i.pravatar.cc/150?img=12" class="pd-avatar">
+                        <div class="pd-info">
+                            <h4>Irvan Maulana</h4>
+                            <span>@irvanmaulana</span>
+                        </div>
+                    </div>
+                    <div class="pd-menu-list">
+                        <a href="pages-profile.html" class="pd-menu-item"><i class="fa-regular fa-user"></i> Your
+                            profile</a>
+                    </div>
+                    <div class="pd-divider"></div>
+                    <div class="pd-theme-toggle">
+                        <span>Theme</span>
+                        <div class="theme-options">
+                            <div class="theme-opt active" id="themeDark"><i class="fa-solid fa-moon"></i></div>
+                            <div class="theme-opt" id="themeLight"><i class="fa-solid fa-sun"></i></div>
+                        </div>
+                    </div>
+                    <div class="pd-divider"></div>
+                    <div class="pd-menu-list">
+                        <a class="pd-menu-item text-muted"><i class="fa-solid fa-arrow-right-from-bracket"></i>
+                            Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="app-body-wrapper">
+        <div class="app-body">
+
+            <div id="sidebar-container"></div>
+
+            <main class="main-content" id="mainContent">
+                <div class="page-header-card">
+                    <i class="fa-solid fa-gamepad header-bg-icon"></i>
+                    <div class="header-hero-content">
+                        <h1 class="hero-title">Premium Cards</h1>
+                        <p class="hero-desc">Five distinct styles for every need: from stats, profiles, to media
+                            content.
+                        </p>
+                    </div>
+                    <div class="header-hero-actions">
+                        <nav class="hero-breadcrumb">
+                            <div class="home-icon-box"><i class="fa-solid fa-home"></i></div>
+
+                            <span class="breadcrumb-sep"><i class="fa-solid fa-chevron-right"></i></span>
+                            <a href="index.html" class="breadcrumb-link">Dashboard</a>
+                            <span class="breadcrumb-sep"><i class="fa-solid fa-chevron-right"></i></span>
+                            <span class="breadcrumb-link active">Cards</span>
+                        </nav>
+                    </div>
+                </div>
+                <div class="content-grid mb-2">
+
+                    <div class="section-title col-span-12">
+                        <div class="section-line"></div>
+                        <div class="section-badge">
+                            <i class="fa-regular fa-gem"></i>
+                            <span>1. Glassmorphism</span>
+                        </div>
+                        <div class="section-line"></div>
+                    </div>
+
+                    <div class="card card-glass col-span-6">
+                        <div class="card-header" style="border-bottom-color: rgba(255,255,255,0.1);">
+                            <span class="card-title">Glass Effect</span>
+                            <i class="fa-solid fa-ellipsis text-muted"></i>
+                        </div>
+                        <div style="padding: 10px 0;">
+                            <h2 style="font-size: 36px; font-weight: 800; margin-bottom: 8px;">$84,200</h2>
+                            <p class="text-muted mb-4">Total revenue this month</p>
+                            <div
+                                style="background: rgba(255,255,255,0.1); border-radius: 8px; padding: 12px; display: flex; align-items: center; gap: 12px;">
+                                <i class="fa-solid fa-arrow-trend-up" style="color: var(--accent-green);"></i>
+                                <span style="font-size: 13px;"><strong>+12%</strong> vs last month</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card card-glass col-span-6" style="background: rgba(255, 71, 87, 0.05);">
+                        <div class="card-header" style="border-bottom-color: rgba(255,255,255,0.1);">
+                            <span class="card-title" style="color: #ff6b81;">Alert Glass</span>
+                        </div>
+                        <p style="font-size: 14px; opacity: 0.8; line-height: 1.6;">
+                            Glassmorphism with a subtle red tint. Perfect for error states or warnings that need to look
+                            beautiful.
+                        </p>
+                        <button class="btn btn-sm btn-danger mt-2" style="width: fit-content;">Fix Issue</button>
+                    </div>
+
+                    <div class="d-none d-lg-block"></div>
+
+                    <div class="section-title col-span-12">
+                        <div class="section-line"></div>
+                        <div class="section-badge">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                            <span>2. GradientMesh</span>
+                        </div>
+                        <div class="section-line"></div>
+                    </div>
+
+                    <div class="card card-gradient-mesh col-span-6">
+                        <div class="d-flex justify-between align-center" style="position: relative; z-index: 2;">
+                            <div>
+                                <h2 style="font-size: 28px; margin-bottom: 10px;">Upgrade to Pro</h2>
+                                <p style="opacity: 0.9; margin-bottom: 24px; max-width: 400px;">
+                                    Unlock AI features, unlimited storage, and priority support.
+                                    Start your journey today.
+                                </p>
+                                <button class="btn"
+                                    style="background: white; color: var(--accent-color); border: none; font-weight: 700;">
+                                    Get Started <i class="fa-solid fa-arrow-right" style="margin-left: 8px;"></i>
+                                </button>
+                            </div>
+                            <i class="fa-solid fa-rocket"
+                                style="font-size: 120px; opacity: 0.2; transform: rotate(-45deg);"></i>
+                        </div>
+                    </div>
+
+                    <div class="card card-gradient-mesh col-span-6"
+                        style="background: linear-gradient(135deg, #3b82f6, #2ecc71);">
+                        <div class="text-center" style="padding: 20px 0;">
+                            <div style="font-size: 48px; font-weight: 800;">98%</div>
+                            <div style="opacity: 0.9; letter-spacing: 1px; text-transform: uppercase; font-size: 12px;">
+                                Customer
+                                Satisfaction</div>
+                        </div>
+                    </div>
+
+
+                    <div class="section-title col-span-12">
+                        <div class="section-line"></div>
+                        <div class="section-badge"><i class="fa-regular fa-image"></i> <span>3. Media Reveal</span>
+                        </div>
+                        <div class="section-line"></div>
+                    </div>
+
+                    <div class="card card-reveal col-span-4">
+                        <img src="https://picsum.photos/400/300?random=1" class="card-reveal-img">
+                        <div class="card-reveal-overlay">
+                            <h4 style="color: white; margin-bottom: 8px;">Tech Setup</h4>
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-sm btn-primary rounded-full"><i
+                                        class="fa-solid fa-eye"></i></button>
+                                <button class="btn btn-sm btn-secondary rounded-full"><i
+                                        class="fa-solid fa-heart"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card card-reveal col-span-4">
+                        <img src="https://picsum.photos/400/300?random=2" class="card-reveal-img">
+                        <div class="card-reveal-overlay">
+                            <h4 style="color: white; margin-bottom: 8px;">Coding Life</h4>
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-sm btn-primary rounded-full"><i
+                                        class="fa-solid fa-eye"></i></button>
+                                <button class="btn btn-sm btn-secondary rounded-full"><i
+                                        class="fa-solid fa-heart"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card card-reveal col-span-4">
+                        <img src="https://picsum.photos/400/300?random=5" class="card-reveal-img">
+                        <div class="card-reveal-overlay">
+                            <h4 style="color: white; margin-bottom: 8px;">Workspace</h4>
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-sm btn-primary rounded-full"><i
+                                        class="fa-solid fa-eye"></i></button>
+                                <button class="btn btn-sm btn-secondary rounded-full"><i
+                                        class="fa-solid fa-heart"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="section-title col-span-12">
+                        <div class="section-line"></div>
+                        <div class="section-badge"><i class="fa-solid fa-chart"></i> <span>4. Neumorphic
+                                Stats</span>
+                        </div>
+                        <div class="section-line"></div>
+                    </div>
+
+                    <div class="card card-neumorphic col-span-4">
+                        <div class="stat-icon-blob" style="background: rgba(59, 130, 246, 0.2); color: #3b82f6;">
+                            <i class="fa-solid fa-user-group"></i>
+                        </div>
+                        <h3 style="font-size: 28px; margin-bottom: 4px;">12,540</h3>
+                        <span class="text-muted text-sm">Active Users</span>
+                        <div class="mt-3"
+                            style="height: 4px; background: var(--bg-hover); border-radius: 4px; overflow: hidden;">
+                            <div style="width: 70%; height: 100%; background: #3b82f6;"></div>
+                        </div>
+                    </div>
+
+                    <div class="card card-neumorphic col-span-4">
+                        <div class="stat-icon-blob" style="background: rgba(231, 76, 60, 0.2); color: #e74c3c;">
+                            <i class="fa-solid fa-bug"></i>
+                        </div>
+                        <h3 style="font-size: 28px; margin-bottom: 4px;">23</h3>
+                        <span class="text-muted text-sm">Pending Issues</span>
+                        <div class="mt-3"
+                            style="height: 4px; background: var(--bg-hover); border-radius: 4px; overflow: hidden;">
+                            <div style="width: 30%; height: 100%; background: #e74c3c;"></div>
+                        </div>
+                    </div>
+
+                    <div class="card card-neumorphic col-span-4">
+                        <div class="stat-icon-blob" style="background: rgba(46, 204, 113, 0.2); color: #2ecc71;">
+                            <i class="fa-solid fa-wallet"></i>
+                        </div>
+                        <h3 style="font-size: 28px; margin-bottom: 4px;">$4,200</h3>
+                        <span class="text-muted text-sm">Daily Sales</span>
+                        <div class="mt-3"
+                            style="height: 4px; background: var(--bg-hover); border-radius: 4px; overflow: hidden;">
+                            <div style="width: 85%; height: 100%; background: #2ecc71;"></div>
+                        </div>
+                    </div>
+
+
+                    <div class="section-title col-span-12">
+                        <div class="section-line"></div>
+                        <div class="section-badge"><i class="fa-solid fa-id-card-clip"></i> <span>5. Horizontal
+                                Profile</span></div>
+                        <div class="section-line"></div>
+                    </div>
+
+                    <div class="card card-horizontal col-span-6">
+                        <img src="https://i.pravatar.cc/150?img=60"
+                            style="width: 100px; height: 100px; border-radius: 16px; object-fit: cover;">
+                        <div style="flex: 1;">
+                            <div class="d-flex justify-between align-start">
+                                <div>
+                                    <h4 class="mb-1">Sarah Connor</h4>
+                                    <span class="badge badge-info mb-2">Lead Designer</span>
+                                    <p class="text-muted text-sm">
+                                        Passionate about creating intuitive user experiences and pixel-perfect designs.
+                                    </p>
+                                </div>
+                                <button class="btn btn-sm btn-ghost"><i
+                                        class="fa-solid fa-ellipsis-vertical"></i></button>
+                            </div>
+                            <div class="d-flex gap-2 mt-3">
+                                <button class="btn btn-sm btn-primary">View Profile</button>
+                                <button class="btn btn-sm btn-secondary"><i class="fa-regular fa-envelope"></i>
+                                    Message</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <footer class="app-footer">
+                    <div class="footer-left">
+                        <span class="footer-logo-icon"><i class="fa-solid fa-code"></i></span>
+                        <span>&copy; 2025 <strong>Daily.dev</strong>. Created with <i
+                                class="fa-solid fa-heart heart-icon"></i>
+                            by Irvan Maulana.</span>
+                    </div>
+                    <div class="footer-links">
+                        <a href="#" class="footer-link-item">Privacy Policy</a>
+                        <a href="#" class="footer-link-item">Terms</a>
+                        <a href="#" class="footer-link-item">Support</a>
+                    </div>
+                </footer>
+            </main>
+        </div>
+    </div>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <div id="settings-container"></div>
+
+    <script src="../assets/js/core.js"></script>
+
+</body>
+
+</html>

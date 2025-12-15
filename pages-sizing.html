@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sizing - Daily Admin</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/core.css">
+    <link rel="stylesheet" href="assets/css/utilities.css">
+    <link rel="stylesheet" href="assets/css/layout.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+</head>
+
+<body>
+
+    <header class="app-header">
+        <div class="header-left-actions">
+            <button class="header-icon-btn mobile-toggle-btn" id="mobileToggle">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+            <div class="mobile-search-bar" id="mobileSearchBar">
+                <i class="fa-solid fa-magnifying-glass search-icon-mobile"></i>
+                <input type="text" class="mobile-search-input" placeholder="Search anything..."
+                    id="mobileSearchInput" />
+                <button class="mobile-search-close" id="mobileSearchClose">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="logo desktop-only">
+            <i class="fa-solid fa-code" style="color: var(--text-main)"></i>
+            <span>daily.dev</span>
+        </div>
+        <div id="horizontal-menu-container" class="desktop-only" style="flex: 1; margin-left: 20px"></div>
+
+        <div class="search-wrapper search-wrapper-inline desktop-only">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <input type="text" class="search-input" placeholder="Search..." id="searchInputInline">
+            <div class="search-shortcut">Ctrl K</div>
+        </div>
+
+        <div class="header-right-actions">
+            <button class="header-icon-btn" id="searchTrigger" title="Search" style="display: none;">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </div>
+
+        <div class="header-right">
+            <div class="notification-wrapper">
+                <button class="header-icon-btn" id="notifTrigger" title="Notifications">
+                    <i class="fa-regular fa-bell"></i>
+                    <div class="notification-dot"></div>
+                </button>
+                <div class="notification-dropdown" id="notifDropdown">
+                    <div class="notif-header">
+                        <h4>Notifications <span class="badge badge-danger"
+                                style="margin-left: 8px; font-size: 10px; padding: 2px 6px">4 New</span></h4>
+                        <span class="notif-mark-read">Mark all as read</span>
+                    </div>
+                    <div class="notif-list">
+                        <div class="notif-item unread">
+                            <div class="notif-icon-box error"><i class="fa-solid fa-circle-exclamation"></i></div>
+                            <div class="notif-content">
+                                <h5>Server Connection Failed</h5>
+                                <p>Could not sync data with main server.</p>
+                                <span class="notif-time">2 minutes ago</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="notif-footer">View All Notifications</div>
+                </div>
+            </div>
+
+            <div class="profile-wrapper">
+                <img src="https://i.pravatar.cc/150?img=12" alt="Profile" class="user-img header-icon-btn"
+                    id="profileTrigger" />
+                <div class="profile-dropdown" id="profileDropdown">
+                    <div class="pd-header">
+                        <img src="https://i.pravatar.cc/150?img=12" class="pd-avatar" />
+                        <div class="pd-info">
+                            <h4>Irvan Maulana</h4>
+                            <span>@irvanmaulana</span>
+                        </div>
+                    </div>
+                    <div class="pd-menu-list">
+                        <a href="pages-profile.html" class="pd-menu-item"><i class="fa-regular fa-user"></i> Your
+                            profile</a>
+                    </div>
+                    <div class="pd-divider"></div>
+                    <div class="pd-theme-toggle">
+                        <span>Theme</span>
+                        <div class="theme-options">
+                            <div class="theme-opt active" id="themeDark"><i class="fa-solid fa-moon"></i></div>
+                            <div class="theme-opt" id="themeLight"><i class="fa-solid fa-sun"></i></div>
+                        </div>
+                    </div>
+                    <div class="pd-divider"></div>
+                    <div class="pd-menu-list">
+                        <a class="pd-menu-item text-muted"><i class="fa-solid fa-arrow-right-from-bracket"></i>
+                            Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="app-body-wrapper">
+        <div class="app-body">
+            <div id="sidebar-container"></div>
+
+            <main class="main-content" id="mainContent">
+
+                <div class="page-header-card">
+                    <div class="header-hero-content">
+                        <h1 class="hero-title">Sizing & Grid</h1>
+                        <p class="hero-desc">Sistem kolom responsif (12 Grid) dan utilitas ukuran mikro (rem-based)
+                            untuk elemen kecil.</p>
+                    </div>
+                    <div class="header-hero-actions">
+                        <nav class="hero-breadcrumb">
+                            <div class="home-icon-box"><i class="fa-solid fa-home"></i></div>
+                            <span class="breadcrumb-sep"><i class="fa-solid fa-chevron-right"></i></span>
+                            <a href="#" class="breadcrumb-link">Utilities</a>
+                            <span class="breadcrumb-sep"><i class="fa-solid fa-chevron-right"></i></span>
+                            <span class="breadcrumb-link active">Sizing</span>
+                        </nav>
+                    </div>
+                    <i class="fa-solid fa-expand header-bg-icon"></i>
+                </div>
+
+                <div class="section-title">
+                    <div class="section-line"></div>
+                    <div class="section-badge"><i class="fa-solid fa-table-columns"></i> 12-Column Grid</div>
+                    <div class="section-line"></div>
+                </div>
+
+                <div class="card p-4 mb-4">
+                    <p class="text-muted text-sm mb-4">
+                        Menggunakan Flexbox. Tambahkan class <code>.row</code> pada pembungkus dan <code>.col-*</code>
+                        pada item.
+                    </p>
+
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <div class="sizing-bar copy-click">.col-12</div>
+                        </div>
+
+                        <div class="col-6">
+                            <div class="sizing-bar copy-click">.col-6</div>
+                        </div>
+                        <div class="col-6">
+                            <div class="sizing-bar copy-click">.col-6</div>
+                        </div>
+
+                        <div class="col-4">
+                            <div class="sizing-bar copy-click">.col-4</div>
+                        </div>
+                        <div class="col-4">
+                            <div class="sizing-bar copy-click">.col-4</div>
+                        </div>
+                        <div class="col-4">
+                            <div class="sizing-bar copy-click">.col-4</div>
+                        </div>
+
+                        <div class="col-3">
+                            <div class="sizing-bar copy-click">.col-3</div>
+                        </div>
+                        <div class="col-3">
+                            <div class="sizing-bar copy-click">.col-3</div>
+                        </div>
+                        <div class="col-3">
+                            <div class="sizing-bar copy-click">.col-3</div>
+                        </div>
+                        <div class="col-3">
+                            <div class="sizing-bar copy-click">.col-3</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="section-title">
+                    <div class="section-line"></div>
+                    <div class="section-badge"><i class="fa-solid fa-table-cells"></i> Flexbox Grid (.row & .col)</div>
+                    <div class="section-line"></div>
+                </div>
+
+                <div class="card p-4 mb-4">
+                    <p class="text-muted text-sm mb-4">
+                        Digunakan untuk layout <strong>internal</strong> (di dalam card/form). Menggunakan
+                        <code>.row</code> sebagai
+                        pembungkus.
+                    </p>
+
+                    <div class="row g-3 mb-3">
+                        <div class="col-12">
+                            <div class="sizing-bar copy-click">.col-12</div>
+                        </div>
+                        <div class="col-6">
+                            <div class="sizing-bar copy-click">.col-6</div>
+                        </div>
+                        <div class="col-6">
+                            <div class="sizing-bar copy-click">.col-6</div>
+                        </div>
+                        <div class="col-4">
+                            <div class="sizing-bar copy-click">.col-4</div>
+                        </div>
+                        <div class="col-4">
+                            <div class="sizing-bar copy-click">.col-4</div>
+                        </div>
+                        <div class="col-4">
+                            <div class="sizing-bar copy-click">.col-4</div>
+                        </div>
+                    </div>
+
+                    <h6 class="text-xs text-muted text-uppercase mt-4 mb-3">Responsive (Resize Browser to Test)</h6>
+                    <div class="row g-3">
+                        <div class="col-12 col-md-6 col-lg-3">
+                            <div class="sizing-bar bg-soft-success text-success copy-click">.col-12 .col-md-6 .col-lg-3
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-3">
+                            <div class="sizing-bar bg-soft-success text-success copy-click">.col-12 .col-md-6 .col-lg-3
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-3">
+                            <div class="sizing-bar bg-soft-success text-success copy-click">.col-12 .col-md-6 .col-lg-3
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-3">
+                            <div class="sizing-bar bg-soft-success text-success copy-click">.col-12 .col-md-6 .col-lg-3
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-title">
+                    <div class="section-line"></div>
+                    <div class="section-badge"><i class="fa-solid fa-border-all"></i> Layout Grid (.content-grid)</div>
+                    <div class="section-line"></div>
+                </div>
+
+                <div class="card p-4 mb-4">
+                    <p class="text-muted text-sm mb-4">
+                        Digunakan untuk <strong>kerangka utama halaman</strong>. Menggunakan <code>.content-grid</code>
+                        sebagai
+                        pembungkus.
+                    </p>
+
+                    <div class="content-grid" style="gap: 12px;">
+                        <div class="col-span-12">
+                            <div class="sizing-bar border-dashed text-muted copy-click">.col-span-12 (Full Width)</div>
+                        </div>
+                        <div class="col-span-8">
+                            <div class="sizing-bar border-dashed text-muted copy-click">.col-span-8 (Main Content)</div>
+                        </div>
+                        <div class="col-span-4">
+                            <div class="sizing-bar border-dashed text-muted copy-click">.col-span-4 (Sidebar Widget)
+                            </div>
+                        </div>
+                        <div class="col-span-6">
+                            <div class="sizing-bar border-dashed text-muted copy-click">.col-span-6</div>
+                        </div>
+                        <div class="col-span-6">
+                            <div class="sizing-bar border-dashed text-muted copy-click">.col-span-6</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-title">
+                    <div class="section-line"></div>
+                    <div class="section-badge"><i class="fa-regular fa-square"></i> Containers</div>
+                    <div class="section-line"></div>
+                </div>
+
+                <div class="content-grid">
+                    <div class="col-span-6 col-md-12">
+                        <div class="card h-100">
+                            <h5 class="card-title text-sm mb-2">Fixed Container</h5>
+                            <p class="text-xs text-muted mb-3">Lebar mengikuti breakpoint (misal: 1140px di desktop).
+                            </p>
+                            <div class="p-3 bg-body rounded border-dashed text-center mb-2">
+                                <div class="container bg-hover border rounded py-2 text-xs text-muted copy-click">
+                                    .container</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-span-6 col-md-12">
+                        <div class="card h-100">
+                            <h5 class="card-title text-sm mb-2">Fluid Container</h5>
+                            <p class="text-xs text-muted mb-3">Selalu lebar penuh 100% layar.</p>
+                            <div class="p-3 bg-body rounded border-dashed text-center mb-2">
+                                <div class="container-fluid bg-hover border rounded py-2 text-xs text-muted copy-click">
+                                    .container-fluid
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-title mt-4">
+                    <div class="section-line"></div>
+                    <div class="section-badge"><i class="fa-solid fa-compress"></i> Micro Sizing</div>
+                    <div class="section-line"></div>
+                </div>
+
+                <div class="content-grid">
+                    <div class="col-span-6 col-md-12">
+                        <div class="card h-100">
+                            <h5 class="card-title text-sm mb-3">Micro Widths</h5>
+                            <div class="d-flex flex-wrap align-items-end gap-2">
+                                <div class="d-flex flex-column align-items-center">
+                                    <div class="sizing-box w-4 h-4 mb-1 copy-click"></div><span
+                                        class="text-xs text-muted">.w-4</span>
+                                </div>
+                                <div class="d-flex flex-column align-items-center">
+                                    <div class="sizing-box w-8 h-4 mb-1 copy-click"></div><span
+                                        class="text-xs text-muted">.w-8</span>
+                                </div>
+                                <div class="d-flex flex-column align-items-center">
+                                    <div class="sizing-box w-12 h-4 mb-1 copy-click"></div><span
+                                        class="text-xs text-muted">.w-12</span>
+                                </div>
+                                <div class="d-flex flex-column align-items-center">
+                                    <div class="sizing-box w-full h-4 mb-1 copy-click" style="min-width: 60px;">Full
+                                    </div><span class="text-xs text-muted">.w-full</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-span-6 col-md-12">
+                        <div class="card h-100">
+                            <h5 class="card-title text-sm mb-3">Micro Heights</h5>
+                            <div class="d-flex align-items-end gap-3">
+                                <div class="d-flex flex-column align-items-center">
+                                    <div class="sizing-box w-4 h-4 mb-1 copy-click"></div><span
+                                        class="text-xs text-muted">.h-4</span>
+                                </div>
+                                <div class="d-flex flex-column align-items-center">
+                                    <div class="sizing-box w-4 h-8 mb-1 copy-click"></div><span
+                                        class="text-xs text-muted">.h-8</span>
+                                </div>
+                                <div class="d-flex flex-column align-items-center">
+                                    <div class="sizing-box w-4 h-12 mb-1 copy-click"></div><span
+                                        class="text-xs text-muted">.h-12</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="section-title">
+                    <div class="section-line"></div>
+                    <div class="section-badge"><i class="fa-solid fa-compress"></i> Micro Sizing</div>
+                    <div class="section-line"></div>
+                </div>
+
+                <div class="content-grid">
+                    <div class="col-span-6 col-md-12">
+                        <div class="card h-100">
+                            <h5 class="card-title text-sm mb-3">Micro Widths</h5>
+                            <p class="text-xs text-muted mb-4">Digunakan untuk ikon, avatar kecil, atau spacer. (1 unit
+                                = 0.25rem)</p>
+
+                            <div class="d-flex flex-wrap align-items-end gap-2">
+                                <div class="d-flex flex-column align-items-center">
+                                    <div class="sizing-box w-4 h-4 mb-1 copy-click"></div>
+                                    <span class="text-xs text-muted">.w-4</span>
+                                </div>
+                                <div class="d-flex flex-column align-items-center">
+                                    <div class="sizing-box w-6 h-4 mb-1 copy-click"></div>
+                                    <span class="text-xs text-muted">.w-6</span>
+                                </div>
+                                <div class="d-flex flex-column align-items-center">
+                                    <div class="sizing-box w-8 h-4 mb-1 copy-click"></div>
+                                    <span class="text-xs text-muted">.w-8</span>
+                                </div>
+                                <div class="d-flex flex-column align-items-center">
+                                    <div class="sizing-box w-10 h-4 mb-1 copy-click"></div>
+                                    <span class="text-xs text-muted">.w-10</span>
+                                </div>
+                                <div class="d-flex flex-column align-items-center">
+                                    <div class="sizing-box w-full h-4 mb-1 copy-click" style="min-width: 60px;">Full
+                                    </div>
+                                    <span class="text-xs text-muted">.w-full</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-span-6 col-md-12">
+                        <div class="card h-100">
+                            <h5 class="card-title text-sm mb-3">Micro Heights</h5>
+                            <p class="text-xs text-muted mb-4">Sangat berguna untuk menyamakan tinggi tombol atau input.
+                            </p>
+
+                            <div class="d-flex align-items-end gap-3">
+                                <div class="d-flex flex-column align-items-center">
+                                    <div class="sizing-box w-4 h-4 mb-1 copy-click"></div>
+                                    <span class="text-xs text-muted">.h-4</span>
+                                </div>
+                                <div class="d-flex flex-column align-items-center">
+                                    <div class="sizing-box w-4 h-6 mb-1 copy-click"></div>
+                                    <span class="text-xs text-muted">.h-6</span>
+                                </div>
+                                <div class="d-flex flex-column align-items-center">
+                                    <div class="sizing-box w-4 h-8 mb-1 copy-click"></div>
+                                    <span class="text-xs text-muted">.h-8</span>
+                                </div>
+                                <div class="d-flex flex-column align-items-center">
+                                    <div class="sizing-box w-4 h-10 mb-1 copy-click"></div>
+                                    <span class="text-xs text-muted">.h-10</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-title">
+                    <div class="section-line"></div>
+                    <div class="section-badge"><i class="fa-solid fa-box-open"></i> Container Max-Width</div>
+                    <div class="section-line"></div>
+                </div>
+
+                <div class="card overflow-hidden p-0">
+                    <table class="table table-bordered mb-0">
+                        <thead class="bg-hover">
+                            <tr>
+                                <th class="text-muted pl-4">Breakpoint</th>
+                                <th class="text-muted">Min-Width</th>
+                                <th class="text-muted">Container Max-Width</th>
+                                <th class="text-muted text-end pr-4">Visual Check</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="pl-4 font-bold">Extra Small (Default)</td>
+                                <td class="text-muted">&lt; 576px</td>
+                                <td class="text-main">100%</td>
+                                <td class="text-end pr-4"><span class="badge badge-soft-primary">Fluid</span></td>
+                            </tr>
+                            <tr>
+                                <td class="pl-4 font-bold">Small (sm)</td>
+                                <td class="text-muted">≥ 576px</td>
+                                <td class="text-main font-mono">540px</td>
+                                <td class="text-end pr-4"><i class="fa-solid fa-mobile-screen"></i></td>
+                            </tr>
+                            <tr>
+                                <td class="pl-4 font-bold">Medium (md)</td>
+                                <td class="text-muted">≥ 768px</td>
+                                <td class="text-main font-mono">720px</td>
+                                <td class="text-end pr-4"><i class="fa-solid fa-tablet-screen-button"></i></td>
+                            </tr>
+                            <tr>
+                                <td class="pl-4 font-bold">Large (lg)</td>
+                                <td class="text-muted">≥ 992px</td>
+                                <td class="text-main font-mono">960px</td>
+                                <td class="text-end pr-4"><i class="fa-solid fa-laptop"></i></td>
+                            </tr>
+                            <tr>
+                                <td class="pl-4 font-bold">Extra Large (xl)</td>
+                                <td class="text-muted">≥ 1200px</td>
+                                <td class="text-main font-mono">1140px</td>
+                                <td class="text-end pr-4"><i class="fa-solid fa-desktop"></i></td>
+                            </tr>
+                            <tr>
+                                <td class="pl-4 font-bold">XXL (xxl)</td>
+                                <td class="text-muted">≥ 1400px</td>
+                                <td class="text-main font-mono">1320px</td>
+                                <td class="text-end pr-4"><i class="fa-solid fa-tv"></i></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="mt-4 text-center">
+                    <p class="text-muted text-sm mb-2">Visualisasi Container Saat Ini:</p>
+                    <div class="container container-visual w-full">
+                        <span>.container (Auto)</span>
+                    </div>
+                </div>
+
+                <footer class="app-footer">
+                    <div class="footer-left">
+                        <span class="footer-logo-icon"><i class="fa-solid fa-code"></i></span>
+                        <span>&copy; 2025 <strong>Daily.dev</strong>. Created with <i
+                                class="fa-solid fa-heart heart-icon"></i> by Irvan Maulana.</span>
+                    </div>
+                    <div class="footer-links">
+                        <a href="#" class="footer-link-item">Privacy Policy</a>
+                        <a href="#" class="footer-link-item">Terms</a>
+                        <a href="#" class="footer-link-item">Support</a>
+                    </div>
+                </footer>
+
+            </main>
+        </div>
+    </div>
+
+    <div class="sidebar-overlay desktop-only" id="sidebarOverlay"></div>
+    <div id="settings-container"></div>
+
+    <script src="assets/js/core.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carousel - Daily Admin</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+
+    <link rel="stylesheet" href="assets/css/core.css">
+    <link rel="stylesheet" href="assets/css/utilities.css">
+    <link rel="stylesheet" href="assets/css/layout.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+
+    <style>
+        /* Custom height untuk contoh agar rapi */
+        .swiper-basic,
+        .swiper-fade,
+        .swiper-vertical {
+            height: 350px;
+        }
+
+        .swiper-multi {
+            height: 200px;
+            padding-bottom: 40px;
+        }
+
+        /* Space untuk pagination bawah */
+        .swiper-3d {
+            height: 300px;
+            padding: 50px 0;
+        }
+
+        .swiper-3d .swiper-slide {
+            width: 300px;
+            height: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="app-header">
+
+        <div class="header-left-actions">
+            <button class="header-icon-btn mobile-toggle-btn" id="mobileToggle">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+
+            <button class="header-icon-btn mobile-search-btn">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+
+            <div class="mobile-search-bar" id="mobileSearchBar">
+                <i class="fa-solid fa-magnifying-glass search-icon-mobile"></i>
+                <input type="text" class="mobile-search-input" placeholder="Search anything..." id="mobileSearchInput">
+                <button class="mobile-search-close" id="mobileSearchClose">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+
+
+
+        <div class="logo desktop-only">
+            <i class="fa-solid fa-code" style="color: var(--text-main);"></i>
+            <span>daily.dev</span>
+        </div>
+
+        <div class="search-wrapper desktop-only">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <input type="text" class="search-input" placeholder="Search..." id="searchInput">
+            <div class="search-shortcut">Ctrl K</div>
+        </div>
+
+        <div class="header-right">
+            <div class="notification-wrapper">
+                <button class="header-icon-btn" id="notifTrigger" title="Notifications">
+                    <i class="fa-regular fa-bell"></i>
+                    <div class="notification-dot"></div>
+                </button>
+
+                <div class="notification-dropdown" id="notifDropdown">
+                    <div class="notif-header">
+                        <h4>Notifications <span class="badge badge-danger"
+                                style="margin-left:8px; font-size:10px; padding:2px 6px;">4 New</span></h4>
+                        <span class="notif-mark-read">Mark all as read</span>
+                    </div>
+
+                    <div class="notif-list">
+
+                        <div class="notif-item unread">
+                            <div class="notif-icon-box error">
+                                <i class="fa-solid fa-circle-exclamation"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Server Connection Failed</h5>
+                                <p>Could not sync data with main server. Please check your API Key configuration.</p>
+                                <span class="notif-time">2 minutes ago</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item unread">
+                            <div class="notif-icon-box success">
+                                <i class="fa-solid fa-check-double"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Project Exported</h5>
+                                <p>Your dashboard layout "Q3 Report" has been successfully exported to PDF.</p>
+                                <span class="notif-time">1 hour ago</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item">
+                            <div class="notif-icon-box warning">
+                                <i class="fa-solid fa-triangle-exclamation"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Storage Usage High</h5>
+                                <p>You have used 85% of your allocated cloud storage. Consider upgrading.</p>
+                                <span class="notif-time">Yesterday at 4:30 PM</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item">
+                            <div class="notif-icon-box info">
+                                <i class="fa-solid fa-circle-info"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>New Feature Available</h5>
+                                <p>Dark mode is now customizable. Check settings for more themes.</p>
+                                <span class="notif-time">2 days ago</span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="notif-footer">
+                        View All Notifications
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-wrapper">
+                <img src="https://i.pravatar.cc/150?img=12" alt="Profile" class="user-img header-icon-btn"
+                    id="profileTrigger">
+
+                <div class="profile-dropdown" id="profileDropdown">
+                    <div class="pd-header">
+                        <img src="https://i.pravatar.cc/150?img=12" class="pd-avatar">
+                        <div class="pd-info">
+                            <h4>Irvan Maulana</h4>
+                            <span>@irvanmaulana</span>
+                        </div>
+                    </div>
+                    <div class="pd-menu-list">
+                        <a href="pages-profile.html" class="pd-menu-item"><i class="fa-regular fa-user"></i> Your
+                            profile</a>
+                    </div>
+                    <div class="pd-divider"></div>
+                    <div class="pd-theme-toggle">
+                        <span>Theme</span>
+                        <div class="theme-options">
+                            <div class="theme-opt active" id="themeDark"><i class="fa-solid fa-moon"></i></div>
+                            <div class="theme-opt" id="themeLight"><i class="fa-solid fa-sun"></i></div>
+                        </div>
+                    </div>
+                    <div class="pd-divider"></div>
+                    <div class="pd-menu-list">
+                        <a class="pd-menu-item text-muted"><i class="fa-solid fa-arrow-right-from-bracket"></i>
+                            Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="app-body">
+        <div id="sidebar-container"></div>
+
+        <main class="main-content" id="mainContent">
+
+            <div class="page-header-card">
+                <i class="fa-regular fa-images header-bg-icon"></i>
+                <div class="header-hero-content">
+                    <h1 class="hero-title">Touch Carousel</h1>
+                    <p class="hero-desc">Powered by Swiper.js. The most modern mobile touch slider with hardware
+                        accelerated transitions.</p>
+                </div>
+                <nav class="hero-breadcrumb">
+                    <div class="home-icon-box"><i class="fa-solid fa-home"></i></div>
+
+                    <span class="breadcrumb-sep"><i class="fa-solid fa-chevron-right"></i></span>
+                    <a href="index.html" class="breadcrumb-link">Dashboard</a>
+                    <span class="breadcrumb-sep"><i class="fa-solid fa-chevron-right"></i></span>
+                    <span class="breadcrumb-link active">Carousel</span>
+                </nav>
+            </div>
+
+            <div class="content-grid col-span-12">
+
+                <div class="section-title col-span-12">
+                    <div class="section-line"></div>
+                    <div class="section-badge"><i class="fa-solid fa-play"></i> <span>1. Standard Slider</span></div>
+                    <div class="section-line"></div>
+                </div>
+
+                <div class="card col-span-12">
+                    <div class="card-body p-0 overflow-hidden rounded">
+                        <div class="swiper swiper-basic">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <img src="https://loremflickr.com/800/400/nature?random=1" alt="Slide 1">
+                                    <div class="slide-caption">
+                                        <h3>Amazing Nature</h3>
+                                        <p>Explore the wilderness.</p>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="https://loremflickr.com/800/400/nature?random=1
+" alt="Slide 2">
+                                    <div class="slide-caption">
+                                        <h3>Urban Life</h3>
+                                        <p>City lights and busy streets.</p>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="https://loremflickr.com/800/400/nature?random=1
+" alt="Slide 3">
+                                </div>
+                            </div>
+                            <div class="swiper-pagination"></div>
+                            <div class="swiper-button-prev"></div>
+                            <div class="swiper-button-next"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-title col-span-12">
+                    <div class="section-line"></div>
+                    <div class="section-badge"><i class="fa-solid fa-layer-group"></i> <span>2. Multi-Item
+                            (Responsive)</span></div>
+                    <div class="section-line"></div>
+                </div>
+
+                <div class="card col-span-4">
+                    <div class="card-header"><span class="card-title">Product Showcase</span></div>
+                    <div class="card-body">
+                        <div class="swiper swiper-multi">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide bg-dark border border-dark">
+                                    <div class="p-3 text-center">
+                                        <div class="avatar-lg bg-primary rounded-full mb-3 d-flex align-center justify-center mx-auto"
+                                            style="width:60px; height:60px;"><i
+                                                class="fa-solid fa-shirt text-white"></i></div>
+                                        <h5>T-Shirt</h5>
+                                        <span class="badge badge-soft-success">$25.00</span>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide bg-dark border border-dark">
+                                    <div class="p-3 text-center">
+                                        <div class="avatar-lg bg-warning rounded-full mb-3 d-flex align-center justify-center mx-auto"
+                                            style="width:60px; height:60px;"><i
+                                                class="fa-solid fa-shoe-prints text-black"></i></div>
+                                        <h5>Sneakers</h5>
+                                        <span class="badge badge-soft-success">$120.00</span>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide bg-dark border border-dark">
+                                    <div class="p-3 text-center">
+                                        <div class="avatar-lg bg-danger rounded-full mb-3 d-flex align-center justify-center mx-auto"
+                                            style="width:60px; height:60px;"><i
+                                                class="fa-solid fa-glasses text-white"></i></div>
+                                        <h5>Glasses</h5>
+                                        <span class="badge badge-soft-success">$50.00</span>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide bg-dark border border-dark">
+                                    <div class="p-3 text-center">
+                                        <div class="avatar-lg bg-info rounded-full mb-3 d-flex align-center justify-center mx-auto"
+                                            style="width:60px; height:60px;"><i
+                                                class="fa-solid fa-hat-cowboy text-white"></i></div>
+                                        <h5>Hat</h5>
+                                        <span class="badge badge-soft-success">$15.00</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-pagination"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card col-span-4">
+                    <div class="card-header"><span class="card-title">3. Fade Effect</span></div>
+                    <div class="card-body p-0 rounded overflow-hidden">
+                        <div class="swiper swiper-fade">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide"><img src="https://loremflickr.com/400/300/nature?random=1">
+                                </div>
+                                <div class="swiper-slide"><img src="https://loremflickr.com/400/300/nature?random=2">
+                                </div>
+                                <div class="swiper-slide"><img src="https://loremflickr.com/400/300/nature?random=3">
+                                </div>
+                            </div>
+                            <div class="swiper-pagination"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card col-span-4">
+                    <div class="card-header"><span class="card-title">4. Vertical Scroll</span></div>
+                    <div class="card-body p-0 rounded overflow-hidden">
+                        <div class="swiper swiper-vertical">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide bg-primary">
+                                    <h2 class="text-white">Slide 1</h2>
+                                </div>
+                                <div class="swiper-slide bg-success">
+                                    <h2 class="text-white">Slide 2</h2>
+                                </div>
+                                <div class="swiper-slide bg-warning">
+                                    <h2 class="text-black">Slide 3</h2>
+                                </div>
+                            </div>
+                            <div class="swiper-pagination"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-title col-span-12">
+                    <div class="section-line"></div>
+                    <div class="section-badge"><i class="fa-solid fa-cube"></i> <span>5. 3D Coverflow</span></div>
+                    <div class="section-line"></div>
+                </div>
+
+                <div class="card col-span-12">
+                    <div class="swiper swiper-3d">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide"><img src="https://loremflickr.com/300/300/nature?random=1"></div>
+                            <div class="swiper-slide"><img src="https://loremflickr.com/300/300/nature?random=2"></div>
+                            <div class="swiper-slide"><img src="https://loremflickr.com/300/300/nature?random=3"></div>
+                            <div class="swiper-slide"><img src="https://loremflickr.com/300/300/nature?random=4"></div>
+                            <div class="swiper-slide"><img src="https://loremflickr.com/300/300/nature?random=5"></div>
+                        </div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+
+            </div>
+            <footer class="app-footer mt-2">
+                <div class="footer-left">
+                    <span class="footer-logo-icon"><i class="fa-solid fa-code"></i></span>
+                    <span>&copy; 2025 <strong>Daily.dev</strong>. Created with <i
+                            class="fa-solid fa-heart heart-icon"></i>
+                        by Irvan Maulana.</span>
+                </div>
+                <div class="footer-links">
+                    <a href="#" class="footer-link-item">Privacy Policy</a>
+                    <a href="#" class="footer-link-item">Terms</a>
+                    <a href="#" class="footer-link-item">Support</a>
+                </div>
+            </footer>
+        </main>
+    </div>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <div id="settings-container"></div>
+    <script src="assets/js/core.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Load Sidebar
+            fetch('components/sidebar.html').then(r => r.text()).then(d => {
+                document.getElementById('sidebar-container').innerHTML = d;
+                initSidebarLogic();
+            });
+
+            // 1. Basic Swiper
+            new Swiper(".swiper-basic", {
+                loop: true,
+                autoplay: { delay: 3000, disableOnInteraction: false },
+                pagination: { el: ".swiper-pagination", clickable: true },
+                navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
+            });
+
+            // 2. Multi Slides (Responsive)
+            new Swiper(".swiper-multi", {
+                slidesPerView: 1,
+                spaceBetween: 10,
+                pagination: { el: ".swiper-pagination", clickable: true },
+                breakpoints: {
+                    640: { slidesPerView: 2, spaceBetween: 20 },
+                    768: { slidesPerView: 3, spaceBetween: 30 },
+                },
+            });
+
+            // 3. Fade Effect
+            new Swiper(".swiper-fade", {
+                effect: "fade",
+                loop: true,
+                pagination: { el: ".swiper-pagination", clickable: true },
+            });
+
+            // 4. Vertical Scroll
+            new Swiper(".swiper-vertical", {
+                direction: "vertical",
+                loop: true,
+                pagination: { el: ".swiper-pagination", clickable: true },
+            });
+
+            // 5. 3D Coverflow
+            new Swiper(".swiper-3d", {
+                effect: "coverflow",
+                grabCursor: true,
+                centeredSlides: true,
+                slidesPerView: "auto",
+                coverflowEffect: {
+                    rotate: 50,
+                    stretch: 0,
+                    depth: 100,
+                    modifier: 1,
+                    slideShadows: true,
+                },
+                pagination: { el: ".swiper-pagination" },
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breadcrumbs - Daily Admin</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/core.css">
+    <link rel="stylesheet" href="assets/css/utilities.css">
+    <link rel="stylesheet" href="assets/css/layout.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+
+    <style>
+        /* Demo Container */
+        .demo-box {
+            padding: 30px;
+            border: 1px dashed var(--border-color);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.01);
+            margin-bottom: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="app-header">
+        <div class="header-left-actions">
+            <button class="header-icon-btn mobile-toggle-btn" id="mobileToggle">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+            <div class="logo">
+                <i class="fa-solid fa-diamond-turn-right" style="color: var(--accent-color)"></i>
+                <span>Nav API</span>
+            </div>
+        </div>
+
+        <div class="header-right-actions">
+            <div class="profile-wrapper">
+                <img src="https://i.pravatar.cc/150?img=12" alt="Profile" class="user-img header-icon-btn"
+                    id="profileTrigger" />
+                <div class="profile-dropdown" id="profileDropdown">
+                    <div class="pd-header">
+                        <img src="https://i.pravatar.cc/150?img=12" class="pd-avatar" />
+                        <div class="pd-info">
+                            <h4>Admin</h4>
+                            <span>@admin</span>
+                        </div>
+                    </div>
+                    <div class="pd-divider"></div>
+                    <div class="pd-theme-toggle">
+                        <span>Theme</span>
+                        <div class="theme-options">
+                            <div class="theme-opt active" id="themeDark"><i class="fa-solid fa-moon"></i></div>
+                            <div class="theme-opt" id="themeLight"><i class="fa-solid fa-sun"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="app-body-wrapper">
+        <div class="app-body">
+            <div id="sidebar-container"></div>
+
+            <main class="main-content" id="mainContent">
+
+                <div class="page-header-card">
+                    <div class="header-hero-content">
+                        <h1 class="hero-title">Breadcrumbs</h1>
+                        <p class="hero-desc">Navigasi hierarki halaman dengan gaya <strong>Glassmorphism</strong> modern
+                            untuk Page Header dan gaya minimalis untuk konten.</p>
+                    </div>
+                    <div class="header-hero-actions">
+                        <nav class="hero-breadcrumb">
+                            <div class="home-icon-box"><i class="fa-solid fa-home"></i></div>
+                            <span class="breadcrumb-sep"><i class="fa-solid fa-chevron-right"></i></span>
+                            <a href="#" class="breadcrumb-link">Components</a>
+                            <span class="breadcrumb-sep"><i class="fa-solid fa-chevron-right"></i></span>
+                            <span class="breadcrumb-link active">Breadcrumbs</span>
+                        </nav>
+                    </div>
+                    <i class="fa-solid fa-location-arrow header-bg-icon"></i>
+                </div>
+
+                <div class="section-title">
+                    <div class="section-line"></div>
+                    <div class="section-badge"><i class="fa-solid fa-wand-magic-sparkles"></i> Hero Glass Style</div>
+                    <div class="section-line"></div>
+                </div>
+
+                <div class="content-grid">
+                    <div class="col-span-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Page Header Navigation</h3>
+                            </div>
+                            <div class="card-body">
+                                <p class="text-muted text-sm mb-4">
+                                    Gaya standar untuk bagian atas halaman (Page Header). Menggunakan efek kaca
+                                    (Glassmorphism) dan ikon rumah yang menonjol.
+                                </p>
+
+                                <div class="demo-wrapper">
+                                    <button class="btn-copy-code"><i class="fa-regular fa-copy"></i></button>
+                                    <div class="demo-content">
+                                        <nav class="hero-breadcrumb">
+                                            <div class="home-icon-box"><i class="fa-solid fa-home"></i></div>
+
+                                            <span class="breadcrumb-sep"><i
+                                                    class="fa-solid fa-chevron-right"></i></span>
+                                            <a href="#" class="breadcrumb-link">Dashboard</a>
+
+                                            <span class="breadcrumb-sep"><i
+                                                    class="fa-solid fa-chevron-right"></i></span>
+                                            <a href="#" class="breadcrumb-link">Analytics</a>
+
+                                            <span class="breadcrumb-sep"><i
+                                                    class="fa-solid fa-chevron-right"></i></span>
+                                            <span class="breadcrumb-link active">Overview</span>
+                                        </nav>
+                                    </div>
+                                </div>
+
+                                <div class="alert alert-soft-info mt-3 mb-0">
+                                    <i class="fa-solid fa-circle-info alert-icon"></i>
+                                    <div>
+                                        <strong>Tips:</strong> Class <code>.active</code> pada elemen terakhir
+                                        memberikan background highlight dan warna aksen.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-title">
+                    <div class="section-line"></div>
+                    <div class="section-badge"><i class="fa-solid fa-font"></i> Simple Text</div>
+                    <div class="section-line"></div>
+                </div>
+
+                <div class="content-grid">
+                    <div class="col-span-6 col-md-12">
+                        <div class="card h-100">
+                            <div class="card-header">
+                                <h3 class="card-title">Minimalist (Inside Card)</h3>
+                            </div>
+                            <div class="card-body">
+                                <p class="text-muted text-sm mb-4">Versi tanpa background untuk penggunaan di dalam
+                                    kartu atau area konten sempit.</p>
+
+                                <div class="demo-wrapper">
+                                    <button class="btn-copy-code"><i class="fa-regular fa-copy"></i></button>
+                                    <div class="demo-content w-full justify-center">
+                                        <nav class="d-flex align-items-center gap-2 text-sm">
+                                            <a href="#" class="link-muted">Home</a>
+                                            <span class="text-muted"><i class="fa-solid fa-chevron-right"
+                                                    style="font-size: 10px;"></i></span>
+                                            <a href="#" class="link-muted">Library</a>
+                                            <span class="text-muted"><i class="fa-solid fa-chevron-right"
+                                                    style="font-size: 10px;"></i></span>
+                                            <span class="text-main font-bold">Data</span>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-span-6 col-md-12">
+                        <div class="card h-100">
+                            <div class="card-header">
+                                <h3 class="card-title">Slash Separator</h3>
+                            </div>
+                            <div class="card-body">
+                                <p class="text-muted text-sm mb-4">Menggunakan garis miring (slash) sebagai pemisah.</p>
+
+                                <div class="demo-wrapper">
+                                    <button class="btn-copy-code"><i class="fa-regular fa-copy"></i></button>
+                                    <div class="demo-content w-full justify-center">
+                                        <nav class="d-flex align-items-center gap-2 text-sm">
+                                            <a href="#" class="link-primary">Root</a>
+                                            <span class="text-muted">/</span>
+                                            <a href="#" class="link-primary">System</a>
+                                            <span class="text-muted">/</span>
+                                            <span class="text-muted">Logs</span>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-title">
+                    <div class="section-line"></div>
+                    <div class="section-badge"><i class="fa-solid fa-puzzle-piece"></i> Anatomy</div>
+                    <div class="section-line"></div>
+                </div>
+
+                <div class="card">
+                    <div class="card-body p-0 overflow-hidden">
+                        <table class="table table-hover mb-0">
+                            <thead>
+                                <tr>
+                                    <th class="pl-4">Class Name</th>
+                                    <th>Description</th>
+                                    <th>Preview</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="pl-4 font-mono text-accent">.hero-breadcrumb</td>
+                                    <td class="text-muted">Container utama dengan efek <em>Glassmorphism</em>, border,
+                                        dan padding.</td>
+                                    <td>
+                                        <div class="bg-card border p-1 rounded" style="width: 20px; height: 20px;">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="pl-4 font-mono text-accent">.home-icon-box</td>
+                                    <td class="text-muted">Kotak ikon rumah di awal navigasi. Hijau aksen + shadow.</td>
+                                    <td>
+                                        <div class="home-icon-box" style="transform: scale(0.8)"><i
+                                                class="fa-solid fa-home"></i></div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="pl-4 font-mono text-accent">.breadcrumb-link</td>
+                                    <td class="text-muted">Link navigasi standar. Hover effect: Text color + translateY.
+                                    </td>
+                                    <td><a href="#" class="breadcrumb-link">Link</a></td>
+                                </tr>
+                                <tr>
+                                    <td class="pl-4 font-mono text-accent">.active</td>
+                                    <td class="text-muted">State aktif. Menambahkan background merah muda transparan dan
+                                        warna teks aksen.</td>
+                                    <td><span class="breadcrumb-link active">Current</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="pl-4 font-mono text-accent">.breadcrumb-sep</td>
+                                    <td class="text-muted">Pemisah (Separator). Biasanya berisi ikon chevron atau slash.
+                                    </td>
+                                    <td><span class="breadcrumb-sep"><i class="fa-solid fa-chevron-right"></i></span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            <footer class="app-footer">
+                <div class="footer-left">
+                    <span class="footer-logo-icon"><i class="fa-solid fa-code"></i></span>
+                    <span>&copy; 2025 <strong>Daily.dev</strong>. Created with
+                        <i class="fa-solid fa-heart heart-icon"></i> by Irvan
+                        Maulana.</span>
+                </div>
+                <div class="footer-links">
+                    <a href="#" class="footer-link-item">Privacy Policy</a>
+                    <a href="#" class="footer-link-item">Terms</a>
+                    <a href="#" class="footer-link-item">Support</a>
+                </div>
+            </footer>
+
+            </main>
+        </div>
+    </div>
+
+    <div class="sidebar-overlay desktop-only" id="sidebarOverlay"></div>
+    <div id="settings-container"></div>
+
+    <script src="assets/js/core.js"></script>
+</body>
+
+</html>

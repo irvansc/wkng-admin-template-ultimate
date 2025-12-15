@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daily Docs - Documentation</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap"
+        rel="stylesheet" />
+
+    <link rel="stylesheet" href="assets/css/core.css" />
+    <link rel="stylesheet" href="assets/css/utilities.css" />
+    <link rel="stylesheet" href="assets/css/layout.css" />
+    <link rel="stylesheet" href="assets/css/components.css" />
+
+    <style>
+        /* --- NOTION-LIKE CUSTOM STYLES (Overrides) --- */
+
+        /* 1. Reset Body untuk Reading Mode */
+        .doc-layout {
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+            background: var(--bg-body);
+        }
+
+        /* 2. Sidebar ala Notion (Tree View) */
+        .doc-sidebar {
+            width: 280px;
+            background: var(--bg-sidebar);
+            /*  */
+            border-right: 1px solid var(--border-color);
+            /*  */
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+            transition: transform 0.3s ease;
+            z-index: 50;
+        }
+
+        .doc-sidebar-header {
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            color: var(--text-main);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .doc-tree-scroll {
+            flex: 1;
+            overflow-y: auto;
+            padding: 12px 0;
+        }
+
+        /* Override Pure Tree agar lebih mirip Notion Sidebar */
+        .pure-tree-node {
+            padding: 4px 12px !important;
+            /* Lebih rapat [cite: 1246] */
+            border-radius: 4px;
+            font-size: 13.5px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .pure-tree-node:hover {
+            background: var(--bg-hover);
+            /*  */
+            color: var(--text-main);
+        }
+
+        .pure-tree ul {
+            border-left: 1px solid var(--border-color);
+            /* Garis hierarki [cite: 1243] */
+            margin-left: 22px;
+        }
+
+        /* 3. Main Content Area (Reading Canvas) */
+        .doc-main {
+            flex: 1;
+            overflow-y: auto;
+            position: relative;
+            scroll-behavior: smooth;
+        }
+
+        .doc-container {
+            max-width: 850px;
+            /* Lebar nyaman baca ala Notion */
+            margin: 0 auto;
+            padding: 40px 24px 100px 24px;
+        }
+
+        /* 4. Notion-like Header Elements */
+        .doc-cover {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 0 0 0 0;
+            /* Full width di atas */
+            margin-bottom: -40px;
+            /* Icon overlap */
+            display: none;
+            /* Hidden by default */
+        }
+
+        .doc-cover.has-cover {
+            display: block;
+        }
+
+        .doc-icon {
+            font-size: 64px;
+            margin-bottom: 16px;
+            display: inline-block;
+        }
+
+        .doc-title {
+            font-size: 40px;
+            font-weight: 800;
+            color: var(--text-main);
+            line-height: 1.2;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        .doc-meta {
+            display: flex;
+            gap: 16px;
+            color: var(--text-muted);
+            font-size: 13px;
+            margin-bottom: 40px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 24px;
+        }
+
+        /* 5. Typography Content */
+        .doc-content h2 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-top: 40px;
+            margin-bottom: 16px;
+            color: var(--text-main);
+            scroll-margin-top: 20px;
+        }
+
+        .doc-content h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-top: 32px;
+            margin-bottom: 12px;
+            color: var(--text-main);
+        }
+
+        .doc-content p {
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--text-muted);
+            /*  */
+            margin-bottom: 16px;
+        }
+
+        .doc-content code {
+            background: var(--bg-hover);
+            color: var(--accent-color);
+            /*  */
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9em;
+        }
+
+        /* 6. Blocks (Callouts, Code) */
+        .notion-callout {
+            padding: 16px;
+            border-radius: 8px;
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            margin-bottom: 24px;
+            border: 1px solid transparent;
+        }
+
+        /* Menggunakan style alert Anda [cite: 174] */
+        .callout-info {
+            background: rgba(52, 152, 219, 0.1);
+            color: var(--text-main);
+            border-color: rgba(52, 152, 219, 0.2);
+        }
+
+        .callout-warn {
+            background: rgba(241, 196, 15, 0.1);
+            color: var(--text-main);
+            border-color: rgba(241, 196, 15, 0.2);
+        }
+
+        .notion-code-block {
+            background: #0e1217;
+            /* Darker than card */
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin-bottom: 24px;
+            position: relative;
+        }
+
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 16px;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 12px;
+            color: var(--text-muted);
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .code-body {
+            padding: 16px;
+            overflow-x: auto;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            line-height: 1.5;
+            color: #c9d1d9;
+        }
+
+        /* 7. Right TOC (Table of Contents) - Floating */
+        .doc-toc {
+            width: 240px;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            height: calc(100vh - 40px);
+            overflow-y: auto;
+            display: none;
+            /* Hidden on mobile */
+        }
+
+        @media (min-width: 1200px) {
+            .doc-toc {
+                display: block;
+            }
+
+            .doc-container {
+                margin-right: 280px;
+            }
+
+            /* Geser konten agar tidak tertutup TOC */
+        }
+
+        .toc-header {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+        }
+
+        .toc-list {
+            list-style: none;
+            padding: 0;
+            border-left: 1px solid var(--border-color);
+        }
+
+        .toc-item a {
+            display: block;
+            padding: 6px 16px;
+            font-size: 13px;
+            color: var(--text-muted);
+            text-decoration: none;
+            border-left: 2px solid transparent;
+            margin-left: -1px;
+            transition: all 0.2s;
+        }
+
+        .toc-item a:hover,
+        .toc-item a.active {
+            color: var(--text-main);
+            border-left-color: var(--accent-color);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .doc-sidebar {
+                position: fixed;
+                left: -280px;
+                height: 100%;
+                background: var(--bg-card);
+                /* [cite: 85] */
+            }
+
+            .doc-sidebar.show {
+                left: 0;
+            }
+
+            .doc-container {
+                padding: 20px 16px;
+            }
+
+            .doc-title {
+                font-size: 32px;
+            }
+
+            .mobile-menu-btn {
+                display: block !important;
+            }
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 100;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--text-main);
+            color: var(--bg-body);
+            border: none;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+
+<body class="doc-layout">
+
+    <aside class="doc-sidebar" id="docSidebar">
+        <div class="doc-sidebar-header">
+            <div class="avatar avatar-xs avatar-soft-primary rounded">D</div>
+            <span>Daily Documentation</span>
+        </div>
+
+        <div class="px-3 py-3 border-bottom border-color">
+            <div class="search-wrapper w-full m-0"> <i class="fa-solid fa-magnifying-glass search-icon text-sm"></i>
+                <input type="text" class="search-input bg-search h-8 text-sm" placeholder="Quick Find..."
+                    style="height: 36px;">
+            </div>
+        </div>
+
+        <div class="doc-tree-scroll">
+            <ul class="pure-tree main-tree" id="pure-tree">
+
+                <li>
+                    <div class="pure-tree-node">
+                        <span class="pure-tree-toggle open"><i class="fa-solid fa-chevron-right"></i></span>
+                        <span class="pure-tree-label"><i class="fa-regular fa-compass me-2"></i> Getting Started</span>
+                    </div>
+                    <ul class="pure-tree-nested show">
+                        <li>
+                            <div class="pure-tree-node">
+                                <span class="pure-tree-spacer"></span>
+                                <span class="pure-tree-label" style="color: var(--accent-color)">Introduction</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="pure-tree-node">
+                                <span class="pure-tree-spacer"></span>
+                                <span class="pure-tree-label">Installation</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="pure-tree-node">
+                                <span class="pure-tree-spacer"></span>
+                                <span class="pure-tree-label">Folder Structure</span>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <div class="pure-tree-node">
+                        <span class="pure-tree-toggle"><i class="fa-solid fa-chevron-right"></i></span>
+                        <span class="pure-tree-label"><i class="fa-solid fa-layer-group me-2"></i> Components</span>
+                    </div>
+                    <ul class="pure-tree-nested">
+                        <li>
+                            <div class="pure-tree-node">
+                                <span class="pure-tree-toggle"><i class="fa-solid fa-chevron-right"></i></span>
+                                <span class="pure-tree-label">Buttons</span>
+                            </div>
+                            <ul class="pure-tree-nested">
+                                <li>
+                                    <div class="pure-tree-node"><span class="pure-tree-spacer"></span><span
+                                            class="pure-tree-label ps-4">Solid</span></div>
+                                </li>
+                                <li>
+                                    <div class="pure-tree-node"><span class="pure-tree-spacer"></span><span
+                                            class="pure-tree-label ps-4">Outline</span></div>
+                                </li>
+                                <li>
+                                    <div class="pure-tree-node"><span class="pure-tree-spacer"></span><span
+                                            class="pure-tree-label ps-4">Ghost</span></div>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <div class="pure-tree-node">
+                                <span class="pure-tree-spacer"></span>
+                                <span class="pure-tree-label">Cards</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="pure-tree-node">
+                                <span class="pure-tree-spacer"></span>
+                                <span class="pure-tree-label">Tables</span>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <div class="pure-tree-node">
+                        <span class="pure-tree-toggle"><i class="fa-solid fa-chevron-right"></i></span>
+                        <span class="pure-tree-label"><i class="fa-regular fa-keyboard me-2"></i> Forms</span>
+                    </div>
+                    <ul class="pure-tree-nested">
+                        <li>
+                            <div class="pure-tree-node"><span class="pure-tree-spacer"></span><span
+                                    class="pure-tree-label">Inputs</span></div>
+                        </li>
+                        <li>
+                            <div class="pure-tree-node"><span class="pure-tree-spacer"></span><span
+                                    class="pure-tree-label">Select</span></div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="p-3 border-top border-color">
+            <div class="d-flex align-items-center gap-2 text-muted text-sm">
+                <div class="avatar avatar-xs avatar-soft-success">V2</div>
+                <span>Daily Admin v2.0</span>
+            </div>
+        </div>
+    </aside>
+
+    <main class="doc-main">
+
+        <div class="doc-container">
+            <div class="doc-icon">🚀</div>
+            <h1 class="doc-title">Introduction</h1>
+
+            <div class="doc-meta">
+                <span><i class="fa-regular fa-user me-1"></i> Irvan Maulana</span>
+                <span><i class="fa-regular fa-calendar me-1"></i> Updated 2 hrs ago</span>
+                <span class="badge badge-soft-success badge-pill">Stable</span>
+            </div>
+
+            <div class="doc-content">
+                <p class="lead" style="font-size: 18px; color: var(--text-main);">
+                    Selamat datang di dokumentasi resmi <strong>Daily Admin</strong>. Ini adalah framework UI/UX modern
+                    yang dibangun di atas CSS murni dan Vanilla JS, dirancang untuk kecepatan dan kemudahan penggunaan.
+                </p>
+
+                <div class="notion-callout callout-info">
+                    <div class="text-info fs-5"><i class="fa-solid fa-circle-info"></i></div>
+                    <div>
+                        <strong>Info Penting:</strong> Dokumentasi ini menggunakan struktur kode asli Anda (CSS Core,
+                        Components, dll). Tidak ada library pihak ketiga yang berat.
+                    </div>
+                </div>
+
+                <h2 id="installation">Installation</h2>
+                <p>Untuk memulai proyek baru, cukup salin folder <code>assets</code> ke dalam root direktori proyek Anda
+                    dan pautkan file CSS utama.</p>
+
+                <div class="notion-code-block demo-wrapper border-0 p-0 mb-4">
+                    <div class="code-header">
+                        <span>HTML</span>
+                        <button
+                            class="btn-copy-code position-static bg-transparent border-0 text-muted p-0 h-auto w-auto"><i
+                                class="fa-regular fa-copy"></i> Copy</button>
+                    </div>
+                    <div class="code-body demo-content" style="white-space: pre; justify-content: start !important;">
+                        &lt;!-- Core Styles --&gt;
+                        &lt;link rel="stylesheet" href="assets/css/core.css" /&gt;
+                        &lt;link rel="stylesheet" href="assets/css/layout.css" /&gt;
+                        &lt;link rel="stylesheet" href="assets/css/components.css" /&gt;
+
+                        &lt;!-- Scripts --&gt;
+                        &lt;script src="assets/js/core.js"&gt;&lt;/script&gt;</div>
+                </div>
+
+                <h2 id="folder-structure">Folder Structure</h2>
+                <p>Struktur folder direkomendasikan agar semua aset terorganisir dengan rapi.</p>
+
+                <div class="accordion accordion-flush" id="folderStruct">
+                    <div class="accordion-item bg-transparent border-color">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed bg-transparent text-main px-0 shadow-none"
+                                type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne">
+                                <i class="fa-solid fa-folder me-2 text-warning"></i> /assets
+                            </button>
+                        </h2>
+                        <div id="flush-collapseOne" class="accordion-collapse collapse show">
+                            <div class="accordion-body px-0 pt-0 pb-3 ps-4 text-muted">
+                                Berisi semua file statis: <code>css/</code>, <code>js/</code>, <code>img/</code>, dan
+                                <code>webfonts/</code>.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item bg-transparent border-color">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed bg-transparent text-main px-0 shadow-none"
+                                type="button">
+                                <i class="fa-solid fa-folder me-2 text-info"></i> /components
+                            </button>
+                        </h2>
+                    </div>
+                </div>
+
+                <h2 id="features">Key Features</h2>
+                <p>Template ini dilengkapi dengan berbagai fitur premium yang siap pakai:</p>
+
+                <ul style="padding-left: 20px; color: var(--text-muted); line-height: 1.8;">
+                    <li><strong>Dark Mode Native:</strong> Menggunakan CSS Variables <code>var(--bg-body)</code>.</li>
+                    <li><strong>Pure CSS Tree:</strong> Navigasi folder tanpa JS berat.</li>
+                    <li><strong>Glassmorphism:</strong> Utilitas <code>.glass</code> untuk efek modern.</li>
+                    <li><strong>Responsive:</strong> Grid system 12 kolom yang solid.</li>
+                </ul>
+
+                <div class="mt-5 pt-4 border-top border-color d-flex justify-between">
+                    <div></div> <a href="#" class="btn btn-ghost text-end">
+                        Next: Components <i class="fa-solid fa-arrow-right ms-2"></i>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <aside class="doc-toc">
+        <div class="toc-header">On this page</div>
+        <ul class="toc-list">
+            <li class="toc-item"><a href="#installation" class="active">Installation</a></li>
+            <li class="toc-item"><a href="#folder-structure">Folder Structure</a></li>
+            <li class="toc-item"><a href="#features">Key Features</a></li>
+        </ul>
+    </aside>
+
+    <button class="mobile-menu-btn" onclick="document.getElementById('docSidebar').classList.toggle('show')">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <script src="assets/js/core.js"></script>
+    <script>
+        // Script tambahan khusus untuk interaksi halaman Dokumentasi ini
+        document.addEventListener("DOMContentLoaded", () => {
+
+            // 1. Logic Toggle Tree (Menggunakan logic pure-tree dari core.js Anda)
+            // Namun kita pastikan toggle bekerja untuk style sidebar ini
+            const treeToggles = document.querySelectorAll('.pure-tree-toggle');
+            treeToggles.forEach(toggle => {
+                toggle.addEventListener('click', (e) => {
+                    e.stopPropagation(); // Stop bubbling
+                    const parent = toggle.closest('li');
+                    const nested = parent.querySelector('.pure-tree-nested');
+                    if (nested) {
+                        nested.classList.toggle('show');
+                        toggle.classList.toggle('open');
+                    }
+                });
+            });
+
+            // 2. Logic Active TOC on Scroll (Spy)
+            const headings = document.querySelectorAll('.doc-content h2');
+            const tocLinks = document.querySelectorAll('.toc-item a');
+
+            window.addEventListener('scroll', () => {
+                let current = '';
+                headings.forEach(h2 => {
+                    const sectionTop = h2.offsetTop;
+                    if (scrollY >= sectionTop - 100) {
+                        current = h2.getAttribute('id');
+                    }
+                });
+
+                tocLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').includes(current)) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

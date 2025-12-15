@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Daily Admin</title>
+
+    <!-- External Libs -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Modular CSS -->
+    <link rel="stylesheet" href="assets/css/core.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/auth.css">
+
+
+</head>
+
+<body class="auth-body">
+
+    <!-- FLOATING THEME TOGGLE -->
+    <button class="theme-toggle-btn" id="themeToggle" style="position: fixed; top: 20px; right: 20px; z-index: 100;">
+        <i class="fa-solid fa-moon"></i>
+    </button>
+
+    <div class="auth-card">
+        <div class="auth-header">
+            <div class="auth-logo">
+                <i class="fa-solid fa-code" style="color: var(--text-main);"></i>
+                <span>daily.dev</span>
+            </div>
+            <h1 class="auth-title">Welcome Back</h1>
+            <p class="auth-subtitle">Enter your credentials to access the dashboard.</p>
+        </div>
+
+        <div class="social-buttons">
+            <button class="btn-social">
+                <i class="fa-brands fa-google"></i> Google
+            </button>
+            <button class="btn-social">
+                <i class="fa-brands fa-github"></i> Github
+            </button>
+        </div>
+
+        <div class="auth-divider">
+            <span>OR CONTINUE WITH EMAIL</span>
+        </div>
+
+        <form action="index.html">
+            <div class="form-group">
+                <label class="form-label">Email Address</label>
+                <input type="email" class="form-control" placeholder="name@company.com">
+            </div>
+
+            <div class="form-group">
+                <div class="d-flex justify-between">
+                    <label class="form-label">Password</label>
+                    <a href="auth-forgot-password.html" class="text-xs text-muted"
+                        style="text-decoration: none;">Forgot?</a>
+                </div>
+                <!-- WRAPPER RELATIVE UNTUK INPUT + ICON -->
+                <div class="relative">
+                    <input type="password" class="form-control" id="passwordInput" placeholder="••••••••">
+                    <i class="fa-regular fa-eye-slash" id="togglePassword" class="absolute-center-y-right"></i>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-full" style="height: 48px; font-size: 16px;">Sign In</button>
+        </form>
+
+        <div class="auth-footer">
+            Don't have an account? <a href="auth-register.html">Create Account</a>
+        </div>
+    </div>
+
+    <!-- Minimal JS for Theme Toggle & Password Show -->
+    <script>
+        const html = document.documentElement;
+        const toggleBtn = document.getElementById('themeToggle');
+        const icon = toggleBtn.querySelector('i');
+
+        // Load Theme
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        html.setAttribute('data-theme', savedTheme);
+        updateIcon(savedTheme);
+
+        toggleBtn.addEventListener('click', () => {
+            const current = html.getAttribute('data-theme');
+            const next = current === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', next);
+            localStorage.setItem('theme', next);
+            updateIcon(next);
+        });
+
+        function updateIcon(theme) {
+            icon.className = theme === 'dark' ? 'fa-solid fa-moon' : 'fa-solid fa-sun';
+        }
+
+        // --- PASSWORD TOGGLE LOGIC ---
+        const togglePassword = document.querySelector('#togglePassword');
+        const passwordInput = document.querySelector('#passwordInput');
+
+        if (togglePassword && passwordInput) {
+            togglePassword.addEventListener('click', function () {
+                // Toggle type
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+
+                // Toggle icon
+                this.classList.toggle('fa-eye');
+                this.classList.toggle('fa-eye-slash');
+            });
+        }
+    </script>
+</body>
+
+</html>

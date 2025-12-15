@@ -1,0 +1,1449 @@
+/* =========================================
+   ASSETS/CSS/LAYOUT.CSS
+   COMPLETE FIXED VERSION
+   ========================================= */
+
+/* --- 1. APP BODY WRAPPER --- */
+.app-body {
+  display: flex;
+  padding-top: var(--header-height);
+  min-height: 100vh;
+  overflow: hidden; /* Mencegah scroll ganda pada body */
+}
+
+/* =========================================
+   2. HEADER & NAVIGATION
+   ========================================= */
+
+.app-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--header-height);
+  background-color: var(--bg-header);
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Pisahkan grup Kiri & Kanan */
+  padding: 0 24px;
+  z-index: 1000;
+  border-bottom: 1px solid var(--border-color);
+  backdrop-filter: blur(10px);
+}
+
+/* --- UNIFIED HEADER BUTTONS (PREMIUM SQUIRCLE STYLE) --- */
+/* Class ini dipakai oleh: Menu Toggle, Mobile Search, Notif Btn, & Profile Img */
+.header-icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* UKURAN PASTI (KUNCI KERAPIHAN) */
+  width: 42px !important;
+  height: 42px !important;
+  padding: 0 !important;
+  flex-shrink: 0;
+
+  /* Tampilan Premium Glass */
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px; /* Squircle */
+  color: var(--text-muted);
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+  position: relative;
+  object-fit: cover; /* Khusus untuk img profile */
+  line-height: 1;
+}
+
+.header-icon-btn:hover {
+  background: var(--bg-hover);
+  color: var(--text-main);
+  border-color: var(--border-color);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.header-icon-btn:active {
+  transform: scale(0.95);
+}
+
+/* Khusus Profile Img agar border terlihat jelas */
+img.header-icon-btn {
+  border: 2px solid var(--border-color);
+}
+
+/* --- HEADER GROUPS --- */
+.header-left-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* --- DESKTOP ELEMENTS --- */
+.logo {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  /* Logo di kiri tapi setelah tombol toggle (jika ada) */
+  margin-right: auto;
+  margin-left: 0;
+}
+
+/* Default Hidden untuk Element Mobile */
+.mobile-toggle-btn {
+  display: none;
+}
+.mobile-search-btn {
+  display: none;
+}
+
+/* =========================================
+   3. SIDEBAR (FIXED, SCROLLABLE MENU, STICKY UPGRADE)
+   ========================================= */
+
+.sidebar {
+  width: var(--sidebar-width);
+  background: var(--bg-sidebar);
+  position: fixed;
+  top: var(--header-height);
+  bottom: 0;
+  left: 0;
+  z-index: 90;
+  padding: 24px 16px;
+  border-right: 1px solid var(--border-color);
+
+  /* Animasi Transisi Halus */
+  transition: width 0.3s cubic-bezier(0.25, 0.8, 0.25, 1),
+    transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+  display: flex;
+  flex-direction: column;
+  overflow: hidden !important; /* Matikan scroll induk */
+}
+
+/* Sidebar Header */
+.sidebar-header {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  padding: 0 8px;
+  height: 32px;
+}
+
+.sidebar-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0.7;
+  white-space: nowrap;
+}
+
+/* --- NAV SECTION (SCROLLABLE AREA) --- */
+.nav-section {
+  flex: 1;
+  width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin-bottom: 16px;
+  padding-right: 4px; /* Space untuk scrollbar */
+
+  /* Firefox Thin Scrollbar */
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+
+/* Hover Effect: Scrollbar muncul saat mouse masuk */
+.sidebar:hover .nav-section {
+  scrollbar-color: var(--border-color) transparent;
+}
+
+/* Webkit Scrollbar (Chrome/Edge) */
+.nav-section::-webkit-scrollbar {
+  width: 3px;
+}
+.nav-section::-webkit-scrollbar-track {
+  background: transparent;
+}
+.nav-section::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border-radius: 10px;
+}
+.sidebar:hover .nav-section::-webkit-scrollbar-thumb {
+  background-color: var(--border-color);
+}
+.nav-section::-webkit-scrollbar-thumb:hover {
+  background-color: var(--text-muted);
+}
+
+/* --- MENU ITEMS --- */
+.nav-link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 10px;
+  transition: all 0.2s ease;
+  min-height: 44px;
+  cursor: pointer;
+  margin-bottom: 4px;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.nav-link:hover {
+  background: var(--bg-hover);
+  color: var(--text-main);
+  transform: translateX(3px);
+}
+
+.nav-link.active {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-main) !important;
+  border-left: 3px solid var(--text-main);
+  border-radius: 4px 10px 10px 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.nav-link i.nav-icon {
+  width: 20px;
+  text-align: center;
+  font-size: 18px;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-text {
+  flex: 1;
+  transition: opacity 0.2s;
+}
+
+.nav-arrow {
+  font-size: 10px;
+  opacity: 0.6;
+  margin-left: auto;
+}
+
+/* SUBMENU */
+.submenu {
+  display: none;
+  list-style: none;
+  padding-left: 12px;
+  margin-left: 10px;
+  border-left: 1px solid var(--border-color);
+}
+.submenu.show {
+  display: block;
+  animation: slideDown 0.3s ease;
+}
+
+.submenu .nav-link {
+  padding: 8px 12px 8px 16px;
+  font-size: 13.5px;
+  height: 38px;
+  min-height: 38px;
+  margin-bottom: 2px;
+  border-radius: 0 8px 8px 0;
+  border-left: none;
+  box-shadow: none;
+}
+.submenu .nav-link::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 10px;
+  height: 1px;
+  background: var(--border-color);
+  transform: translateY(-50%);
+  opacity: 0.5;
+}
+.submenu .nav-link.active {
+  background: var(--bg-hover);
+  font-weight: 600;
+}
+.submenu .nav-link.active::before {
+  background: var(--text-main);
+  opacity: 1;
+}
+
+/* --- UPGRADE BUTTON (STICKY BOTTOM) --- */
+.upgrade-link {
+  flex-shrink: 0;
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 14px;
+  height: 44px;
+  background: linear-gradient(135deg, rgba(46, 204, 113, 0.1), transparent);
+  color: var(--accent-green);
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 10px;
+  border: 1px solid rgba(46, 204, 113, 0.2);
+  transition: all 0.3s;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.upgrade-link:hover {
+  background: rgba(46, 204, 113, 0.15);
+  transform: translateY(-2px);
+}
+
+/* =========================================
+   4. SIDEBAR COLLAPSED (DESKTOP MINI MODE)
+   ========================================= */
+
+.sidebar.collapsed {
+  width: var(--sidebar-collapsed-width);
+  padding: 24px 8px;
+}
+
+.sidebar.collapsed .sidebar-label,
+.sidebar.collapsed .nav-text,
+.sidebar.collapsed .nav-arrow,
+.sidebar.collapsed .upgrade-link span,
+.sidebar.collapsed .submenu {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  display: none !important;
+}
+
+.sidebar.collapsed .sidebar-header {
+  justify-content: center;
+  padding: 0;
+  margin-bottom: 30px;
+}
+.sidebar.collapsed .collapse-btn i {
+  transform: rotate(180deg);
+}
+
+.sidebar.collapsed .nav-link {
+  justify-content: center;
+  padding: 0;
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 6px auto;
+  border-radius: 12px;
+}
+.sidebar.collapsed .nav-link:hover {
+  transform: none;
+  background: var(--bg-hover);
+}
+.sidebar.collapsed .nav-link i.nav-icon {
+  margin: 0;
+  font-size: 20px;
+}
+
+.sidebar.collapsed .upgrade-link {
+  justify-content: center;
+  padding: 0;
+  width: 48px;
+  height: 48px;
+  margin: auto auto 0 auto;
+}
+.sidebar.collapsed .upgrade-link i {
+  margin: 0;
+  font-size: 18px;
+}
+
+/* =========================================
+   5. MAIN CONTENT & STICKY FOOTER
+   ========================================= */
+
+.main-content {
+  margin-left: var(--sidebar-width);
+  flex: 1;
+  padding: 40px 48px;
+  width: calc(100% - var(--sidebar-width));
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+  /* Flex Config untuk Sticky Footer */
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - var(--header-height));
+}
+.main-content.expanded {
+  margin-left: var(--sidebar-collapsed-width);
+  width: calc(100% - var(--sidebar-collapsed-width));
+}
+
+.content-grid {
+  display: grid;
+  /* Kita gunakan 12 kolom untuk presisi tinggi */
+  grid-template-columns: repeat(12, 1fr);
+  gap: 24px;
+  width: 100%;
+}
+/* --- GRID SPANS (HELPER CLASSES) --- */
+/* Gunakan class ini di HTML menggantikan style="grid-column..." */
+
+/* Full Width (100%) */
+.col-span-12 {
+  grid-column: span 12;
+}
+
+/* 2/3 Width (~66%) */
+.col-span-8 {
+  grid-column: span 8;
+}
+
+/* Half Width (50%) */
+.col-span-6 {
+  grid-column: span 6;
+}
+
+/* 1/3 Width (~33%) */
+.col-span-4 {
+  grid-column: span 4;
+}
+
+/* --- RESPONSIVE BREAKPOINTS --- */
+
+/* Tablet & Laptop Kecil (Max 1200px) */
+/* Saat layar menyempit (misal ada Sidebar), sesuaikan rasio */
+@media (max-width: 1200px) {
+  .col-span-8 {
+    grid-column: span 12;
+  } /* 2/3 jadi Full */
+  .col-span-4 {
+    grid-column: span 12;
+  } /* 1/3 jadi Full */
+}
+/* --- MODERN FOOTER --- */
+.app-footer {
+  margin-top: auto; /* Sticky Bottom */
+  padding: 30px 0;
+  border-top: 1px solid var(--border-color);
+  color: var(--text-muted);
+  font-size: 13.5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.2));
+}
+
+.footer-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.footer-links {
+  display: flex;
+  gap: 24px;
+}
+.footer-link-item {
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-link-item:hover {
+  color: var(--text-main);
+}
+
+/* =========================================
+   6. RESPONSIVE MEDIA QUERIES (MOBILE)
+   ========================================= */
+
+@media (max-width: 992px) {
+  /* 1. HEADER MOBILE SETUP */
+  .desktop-only {
+    display: none !important;
+  }
+
+  /* Munculkan Tombol Mobile (Menu & Search) */
+  .mobile-toggle-btn {
+    display: flex;
+  }
+  .mobile-search-btn {
+    display: flex;
+  }
+
+  .app-header {
+    justify-content: space-between;
+    padding: 0 16px;
+  }
+
+  .header-left-actions,
+  .header-right {
+    gap: 10px;
+  }
+
+  /* 2. SIDEBAR MOBILE (FULL HEIGHT) */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh; /* Full Height */
+    width: 280px;
+    transform: translateX(-100%);
+    z-index: 2000; /* Di atas Header */
+    box-shadow: none;
+    padding-top: 20px; /* Jarak aman */
+  }
+
+  .sidebar.show {
+    transform: translateX(0);
+    box-shadow: 10px 0 30px rgba(0, 0, 0, 0.5);
+  }
+
+  .collapse-btn {
+    display: none;
+  }
+
+  /* Perbaiki Logo Sidebar di Mobile */
+  .sidebar-header .sidebar-label {
+    display: none;
+  }
+  .sidebar-header::before {
+    content: "Daily.dev";
+    font-weight: 800;
+    font-size: 20px;
+    color: var(--text-main);
+    display: block;
+  }
+
+  /* 3. MAIN CONTENT FIX */
+  .main-content {
+    margin-left: 0 !important;
+    width: 100% !important;
+    padding: 24px 16px;
+  }
+
+  .profile-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* 4. FOOTER MOBILE (STACKING) */
+  .app-footer {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+    padding-bottom: 80px; /* Safe area bawah */
+  }
+
+  .footer-left {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .footer-links {
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  /* 5. OVERLAY */
+  .sidebar-overlay {
+    z-index: 1500;
+  }
+  .settings-btn-float {
+    display: none !important;
+  }
+}
+
+/* --- ANIMATIONS --- */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================================
+   MOBILE SEARCH BAR (SLIDE DOWN OVERLAY)
+   ========================================= */
+
+.mobile-search-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; /* Menutupi tinggi header (70px) */
+  background: var(--bg-header);
+  z-index: 1100; /* Di atas elemen header lainnya */
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  gap: 12px;
+
+  /* Animasi Slide */
+  transform: translateY(-100%); /* Sembunyi di atas layar */
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+  /* Garis bawah tipis */
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* Class active untuk memunculkan search bar */
+.mobile-search-bar.active {
+  transform: translateY(0); /* Turun ke posisi normal */
+}
+
+/* Input Field Style */
+.mobile-search-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--text-main);
+  font-size: 16px;
+  font-weight: 500;
+  height: 100%;
+  outline: none;
+}
+
+.mobile-search-input::placeholder {
+  color: var(--text-muted);
+}
+
+/* Icon Kaca Pembesar (Hiasan) */
+.search-icon-mobile {
+  color: var(--text-muted);
+  font-size: 18px;
+}
+
+/* Tombol Close (X) */
+.mobile-search-close {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: var(--text-muted);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.mobile-search-close:hover {
+  background: rgba(231, 76, 60, 0.2);
+  color: #e74c3c;
+  transform: rotate(90deg);
+}
+
+/* =========================================
+   LAYOUT MODIFIERS (ADDITION)
+   Paste di paling bawah layout.css
+   ========================================= */
+
+/* --- 1. HORIZONTAL LAYOUT STYLES --- */
+body.layout-horizontal .sidebar {
+  display: none !important; /* Sembunyikan Sidebar */
+}
+body.layout-horizontal .main-content {
+  margin-left: 0 !important;
+  width: 100% !important;
+  padding-top: calc(var(--header-height) + 20px);
+}
+/* Styling Menu Horizontal */
+.horizontal-menu-wrapper {
+  flex: 1;
+  margin-left: 40px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.h-menu {
+  display: flex;
+  list-style: none;
+  gap: 5px;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+.h-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 8px;
+  transition: 0.2s;
+}
+.h-link:hover,
+.h-link.active {
+  background: var(--bg-hover);
+  color: var(--text-main);
+}
+/* Dropdown Horizontal */
+.h-dropdown {
+  position: relative;
+}
+.h-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 200px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: 0.2s;
+}
+.h-dropdown:hover .h-dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.h-dropdown-menu a {
+  display: block;
+  padding: 8px 12px;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 13px;
+  border-radius: 6px;
+}
+.h-dropdown-menu a:hover {
+  background: var(--bg-hover);
+  color: var(--text-main);
+}
+
+/* --- 2. COLLAPSED / MINI SIDEBAR --- */
+body.layout-collapsed .sidebar {
+  width: var(--sidebar-collapsed-width);
+  padding: 24px 8px;
+}
+body.layout-collapsed .sidebar .nav-text,
+body.layout-collapsed .sidebar .sidebar-label,
+body.layout-collapsed .sidebar .nav-arrow,
+body.layout-collapsed .sidebar .upgrade-link span,
+body.layout-collapsed .sidebar .submenu {
+  display: none !important;
+}
+body.layout-collapsed .sidebar .sidebar-header {
+  justify-content: center;
+  padding: 0;
+}
+body.layout-collapsed .nav-link {
+  justify-content: center;
+  padding: 0;
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 4px auto;
+}
+body.layout-collapsed .nav-link i.nav-icon {
+  margin: 0;
+  font-size: 20px;
+}
+body.layout-collapsed .main-content {
+  margin-left: var(--sidebar-collapsed-width);
+  width: calc(100% - var(--sidebar-collapsed-width));
+}
+
+/* --- 3. COMPACT LAYOUT (Rapat) --- */
+body.layout-compact {
+  --header-height: 55px;
+  --sidebar-width: 220px;
+  font-size: 13px;
+}
+body.layout-compact .nav-link {
+  padding: 8px 12px;
+  min-height: 36px;
+}
+body.layout-compact .card {
+  padding: 16px;
+  margin-bottom: 16px;
+}
+body.layout-compact .main-content {
+  padding: 20px 24px;
+}
+
+/* --- 4. BOXED LAYOUT --- */
+body.layout-boxed {
+  background-color: #000;
+}
+body.layout-boxed .app-body-wrapper {
+  /* Wrapper baru yg akan kita buat di HTML */
+  max-width: 1240px;
+  margin: 0 auto;
+  background-color: var(--bg-body);
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+  min-height: 100vh;
+  position: relative;
+}
+body.layout-boxed .app-header {
+  max-width: 1240px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+body.layout-boxed .sidebar {
+  left: auto;
+}
+/* =========================================
+   THEME CUSTOMIZER STYLES
+   Paste di layout.css paling bawah
+   ========================================= */
+
+/* Tombol Floating Gear */
+.settings-btn-float {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  background: var(--accent-color); /* Merah/Ungu tema Anda */
+  color: white;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s;
+}
+.settings-btn-float:hover {
+  transform: rotate(45deg) scale(1.1);
+}
+
+/* Panel Utama */
+.settings-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 320px;
+  height: 100vh;
+  background: var(--bg-card); /* Warna Kartu */
+  border-left: 1px solid var(--border-color);
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+  z-index: 10000;
+  transform: translateX(100%); /* Sembunyi di kanan */
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  display: flex;
+  flex-direction: column;
+}
+.settings-panel.show {
+  transform: translateX(0);
+}
+
+/* Header Panel */
+.settings-header {
+  padding: 20px;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.settings-header h5 {
+  margin: 0;
+  color: var(--text-main);
+  font-weight: 700;
+}
+.btn-close-simple {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 18px;
+}
+
+/* Body Panel */
+.settings-body {
+  padding: 20px;
+  overflow-y: auto;
+}
+.settings-title {
+  color: var(--text-muted);
+  text-transform: uppercase;
+  font-size: 11px;
+  margin-bottom: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+.settings-section {
+  margin-bottom: 30px;
+}
+
+/* Grid Pilihan Layout */
+.layout-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.layout-option {
+  cursor: pointer;
+  text-align: center;
+}
+.layout-option span {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 6px;
+  display: block;
+}
+.layout-option:hover span {
+  color: var(--text-main);
+}
+
+/* Preview Kotak-kotak Kecil */
+.layout-preview {
+  height: 60px;
+  background: var(--bg-body);
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+  transition: 0.2s;
+}
+.layout-option:hover .layout-preview {
+  border-color: var(--accent-color);
+}
+
+/* Ilustrasi Layout (CSS Art Simple) */
+.layout-preview .preview-sidebar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 30%;
+  background: var(--bg-hover);
+  border-right: 1px solid var(--border-color);
+}
+.layout-preview .preview-content {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 70%;
+  background: transparent;
+}
+/* Variasi Ilustrasi */
+.layout-preview.horizontal .preview-sidebar {
+  display: none;
+}
+.layout-preview.horizontal .preview-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 20%;
+  background: var(--bg-hover);
+  border-bottom: 1px solid var(--border-color);
+}
+.layout-preview.collapsed .preview-sidebar.mini {
+  width: 15%;
+}
+.layout-preview.boxed .preview-content {
+  width: 60%;
+  left: 20%;
+  border-left: 1px solid var(--border-color);
+  border-right: 1px solid var(--border-color);
+}
+
+.btn-reset-layout {
+  width: 100%;
+  padding: 10px;
+  background: var(--bg-hover);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+}
+.btn-reset-layout:hover {
+  background: var(--border-color);
+}
+/* =========================================
+   LAYOUT MODIFIERS & SETTINGS
+   (Paste di paling bawah layout.css)
+   ========================================= */
+
+/* --- A. LAYOUT: HORIZONTAL --- */
+body.layout-horizontal .sidebar {
+  display: none !important;
+}
+body.layout-horizontal .main-content {
+  margin-left: 0 !important;
+  width: 100% !important;
+  padding-top: calc(var(--header-height) + 20px);
+}
+
+/* Styling Menu Navbar Horizontal */
+.horizontal-menu-wrapper {
+  flex: 1;
+  margin-left: 40px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.h-menu {
+  display: flex;
+  list-style: none;
+  gap: 5px;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+.h-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 8px;
+  transition: 0.2s;
+}
+.h-link:hover,
+.h-link.active {
+  background: var(--bg-hover);
+  color: var(--text-main);
+}
+/* Dropdown Horizontal */
+.h-dropdown {
+  position: relative;
+}
+.h-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 200px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: 0.2s;
+  z-index: 999;
+}
+.h-dropdown:hover .h-dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.h-dropdown-menu a {
+  display: block;
+  padding: 8px 12px;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 13px;
+  border-radius: 6px;
+}
+.h-dropdown-menu a:hover {
+  background: var(--bg-hover);
+  color: var(--text-main);
+}
+
+/* --- B. LAYOUT: COLLAPSED --- */
+body.layout-collapsed .sidebar {
+  width: var(--sidebar-collapsed-width);
+  padding: 24px 8px;
+}
+body.layout-collapsed .sidebar .nav-text,
+body.layout-collapsed .sidebar .sidebar-label,
+body.layout-collapsed .sidebar .nav-arrow,
+body.layout-collapsed .sidebar .upgrade-link span,
+body.layout-collapsed .sidebar .submenu {
+  display: none !important;
+}
+body.layout-collapsed .sidebar .sidebar-header {
+  justify-content: center;
+  padding: 0;
+}
+body.layout-collapsed .nav-link {
+  justify-content: center;
+  padding: 0;
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 4px auto;
+}
+body.layout-collapsed .nav-link i.nav-icon {
+  margin: 0;
+  font-size: 20px;
+}
+body.layout-collapsed .main-content {
+  margin-left: var(--sidebar-collapsed-width);
+  width: calc(100% - var(--sidebar-collapsed-width));
+}
+
+/* --- C. LAYOUT: COMPACT --- */
+body.layout-compact {
+  --header-height: 55px;
+  --sidebar-width: 220px;
+  font-size: 13px;
+}
+body.layout-compact .nav-link {
+  padding: 8px 12px;
+  min-height: 36px;
+}
+body.layout-compact .card {
+  padding: 16px;
+  margin-bottom: 16px;
+}
+body.layout-compact .main-content {
+  padding: 20px 24px;
+}
+
+/* --- D. LAYOUT: BOXED --- */
+body.layout-boxed {
+  background-color: #000;
+}
+body.layout-boxed .app-body-wrapper {
+  max-width: 1240px;
+  margin: 0 auto;
+  background-color: var(--bg-body);
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+  min-height: 100vh;
+  position: relative;
+}
+body.layout-boxed .app-header {
+  max-width: 1240px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+body.layout-boxed .sidebar {
+  left: auto;
+}
+
+/* --- E. SETTINGS PANEL STYLE --- */
+.settings-btn-float {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  background: var(--accent-color);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s;
+}
+.settings-btn-float:hover {
+  transform: rotate(45deg) scale(1.1);
+}
+.settings-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 280px;
+  height: 100vh;
+  background: var(--bg-card);
+  border-left: 1px solid var(--border-color);
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+  z-index: 10000;
+  transform: translateX(100%);
+  transition: 0.3s;
+  display: flex;
+  flex-direction: column;
+}
+.settings-panel.show {
+  transform: translateX(0);
+}
+.settings-header {
+  padding: 20px;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.settings-body {
+  padding: 20px;
+}
+.layout-grid {
+  display: grid;
+  gap: 10px;
+}
+.layout-option {
+  padding: 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  text-align: center;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+  transition: 0.2s;
+}
+.layout-option:hover {
+  background: var(--bg-hover);
+  color: var(--text-main);
+  border-color: var(--accent-color);
+}
+.btn-close-simple {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 18px;
+}
+
+/* =========================================
+   ULTIMATE FLOATING SEARCH (OVERLAY)
+   ========================================= */
+
+/* Overlay Gelap (Backdrop) */
+.search-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6); /* Gelap transparan */
+  backdrop-filter: blur(5px); /* Efek blur kekinian */
+  z-index: 9999; /* Paling atas */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 100px; /* Jarak dari atas */
+
+  /* Animasi Masuk */
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Saat Aktif */
+.search-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Kotak Input Pencarian */
+.search-box {
+  width: 100%;
+  max-width: 600px; /* Lebar maksimal */
+  background: var(--bg-card);
+  border: 1px solid var(--accent-color); /* Border menyala */
+  border-radius: 16px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  transform: scale(0.95);
+  transition: transform 0.2s;
+}
+
+.search-overlay.active .search-box {
+  transform: scale(1);
+}
+
+.search-box-icon {
+  font-size: 20px;
+  color: var(--text-muted);
+}
+
+.search-box-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  color: var(--text-main);
+  font-weight: 500;
+  outline: none;
+}
+
+.search-box-shortcuts {
+  font-size: 12px;
+  color: var(--text-muted);
+  background: var(--bg-hover);
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+}
+
+.search-box-close {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 20px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.search-box-close:hover {
+  color: #e74c3c;
+  transform: rotate(90deg);
+}
+
+/* Preview Hasil (Optional) */
+.search-results-preview {
+  width: 100%;
+  max-width: 600px;
+  background: var(--bg-card);
+  margin-top: 10px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  padding: 12px;
+  display: none; /* Sembunyi dulu, bisa dimunculkan JS nanti */
+}
+
+/* Modifikasi agar tombol search di header sejajar dengan notif */
+.header-right-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+/* =========================================
+   HYBRID SEARCH LOGIC (SWITCHER)
+   ========================================= */
+
+/* --- KONDISI 1: DEFAULT / VERTIKAL --- */
+/* Search Inline (Kotak Panjang) -> TAMPIL */
+.search-wrapper-inline {
+  display: block;
+  width: 250px; /* Atur lebar sesuai selera */
+  margin: 0 20px;
+  position: relative;
+}
+
+/* Tombol Trigger (Icon Kaca Pembesar) -> SEMBUNYI */
+#searchTrigger {
+  display: none;
+}
+
+/* --- KONDISI 2: LAYOUT HORIZONTAL --- */
+/* Saat body punya class 'layout-horizontal' */
+
+body.layout-horizontal .search-wrapper-inline {
+  display: none !important; /* Sembunyikan kotak panjang */
+}
+
+body.layout-horizontal #searchTrigger {
+  display: flex !important; /* Munculkan tombol icon */
+}
+
+/* Optional: Atur posisi Header Right agar tombol icon rapi */
+body.layout-horizontal .header-right-actions {
+  margin-left: auto;
+  margin-right: 10px; /* Dorong ke kanan mentok */
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+/* =========================================
+   MOBILE RESPONSIVE FIX FOR SEARCH OVERLAY
+   (Paste di paling bawah layout.css)
+   ========================================= */
+
+@media (max-width: 768px) {
+  /* 1. POSISI LEBIH KE ATAS */
+  .search-overlay {
+    padding-top: 20px; /* Kurangi drastis dari 100px agar tidak kena keyboard */
+    padding-left: 16px; /* Beri jarak pinggir kiri */
+    padding-right: 16px; /* Beri jarak pinggir kanan */
+    align-items: stretch; /* Agar lebar kotak mengikuti layar */
+    background: rgba(0, 0, 0, 0.85); /* Lebih gelap di HP biar fokus */
+  }
+
+  /* 2. UKURAN KOTAK SEARCH */
+  .search-box {
+    width: 100%;
+    max-width: 100%;
+    padding: 12px 16px; /* Padding lebih hemat */
+    border-radius: 12px;
+  }
+
+  /* 3. SEMBUNYIKAN SHORTCUT (ESC) */
+  /* Karena di HP tidak ada tombol fisik ESC */
+  .search-box-shortcuts {
+    display: none;
+  }
+
+  /* 4. FONT SIZE INPUT */
+  .search-box-input {
+    font-size: 16px; /* Standar iOS agar tidak auto-zoom */
+    margin-left: 8px; /* Sedikit jarak dari icon */
+  }
+
+  /* 5. ICON CLOSE LEBIH BESAR (TOUCH FRIENDLY) */
+  .search-box-close {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%; /* Jadi tombol bulat biar gampang ditekan */
+  }
+
+  /* 6. HASIL PREVIEW (JIKA ADA) */
+  .search-results-preview {
+    max-width: 100%;
+    margin-top: 8px;
+  }
+}
+/* FORCE ICON TRIGGER ON MOBILE */
+@media (max-width: 768px) {
+  /* Sembunyikan Input Panjang Inline di HP */
+  .search-wrapper-inline {
+    display: none !important;
+  }
+
+  /* Paksa Munculkan Tombol Trigger Icon di HP */
+  #searchTrigger {
+    display: flex !important;
+  }
+}
+/* =========================================
+   FIX: SPACING MAIN CONTENT (HORIZONTAL)
+   Agar header card tidak terlalu turun
+   ========================================= */
+
+body.layout-horizontal .main-content {
+  /* 1. Hapus tambahan jarak "calc" */
+  /* Cukup setinggi header saja */
+  padding-top: var(--header-height) !important;
+
+  /* 2. Kurangi padding dalam container */
+  /* Dari 40px (default) menjadi 20px atau 24px */
+  padding: 24px 30px !important;
+}
+
+/* Optional: Jika di Mobile ingin lebih rapat lagi */
+@media (max-width: 768px) {
+  body.layout-horizontal .main-content {
+    padding: 16px 16px !important;
+    padding-top: var(--header-height) !important;
+  }
+}

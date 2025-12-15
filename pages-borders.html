@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Borders - Daily Admin</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/core.css">
+    <link rel="stylesheet" href="assets/css/utilities.css">
+    <link rel="stylesheet" href="assets/css/layout.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+
+    <style>
+        /* Custom Component untuk Halaman Ini Saja */
+        .border-demo-box {
+            width: 100%;
+            height: 100px;
+            background: var(--bg-card);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+
+        .border-demo-box:hover {
+            background: var(--bg-hover);
+            color: var(--text-main);
+            transform: scale(1.02);
+            z-index: 5;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="app-header">
+        <div class="header-left-actions">
+            <button class="header-icon-btn mobile-toggle-btn" id="mobileToggle">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+            <div class="mobile-search-bar" id="mobileSearchBar">
+                <i class="fa-solid fa-magnifying-glass search-icon-mobile"></i>
+                <input type="text" class="mobile-search-input" placeholder="Search anything..."
+                    id="mobileSearchInput" />
+                <button class="mobile-search-close" id="mobileSearchClose">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="logo desktop-only">
+            <i class="fa-solid fa-code" style="color: var(--text-main)"></i>
+            <span>daily.dev</span>
+        </div>
+        <div id="horizontal-menu-container" class="desktop-only" style="flex: 1; margin-left: 20px">
+        </div>
+        <div class="search-wrapper search-wrapper-inline desktop-only">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <input type="text" class="search-input" placeholder="Search..." id="searchInputInline">
+            <div class="search-shortcut">Ctrl K</div>
+        </div>
+
+        <div class="header-right-actions">
+            <button class="header-icon-btn" id="searchTrigger" title="Search" style="display: none;">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </div>
+
+        <div class="search-overlay" id="searchOverlay">
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass search-box-icon"></i>
+                <input type="text" class="search-box-input" placeholder="Search pages..." id="searchInputFloating">
+                <button class="search-box-close" id="searchClose">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="header-right">
+            <div class="notification-wrapper">
+                <button class="header-icon-btn" id="notifTrigger" title="Notifications">
+                    <i class="fa-regular fa-bell"></i>
+                    <div class="notification-dot"></div>
+                </button>
+
+                <div class="notification-dropdown" id="notifDropdown">
+                    <div class="notif-header">
+                        <h4>
+                            Notifications
+                            <span class="badge badge-danger badge-sm" style="margin-left: 8px;">4 New</span>
+                        </h4>
+                        <span class="notif-mark-read">Mark all as read</span>
+                    </div>
+
+                    <div class="notif-list">
+                        <div class="notif-item unread">
+                            <div class="notif-icon-box error">
+                                <i class="fa-solid fa-circle-exclamation"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Server Connection Failed</h5>
+                                <p>Could not sync data with main server. Please check your API Key configuration.</p>
+                                <span class="notif-time">2 minutes ago</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="notif-footer">View All Notifications</div>
+                </div>
+            </div>
+
+            <div class="profile-wrapper">
+                <img src="https://i.pravatar.cc/150?img=12" alt="Profile" class="user-img header-icon-btn"
+                    id="profileTrigger" />
+
+                <div class="profile-dropdown" id="profileDropdown">
+                    <div class="pd-header">
+                        <img src="https://i.pravatar.cc/150?img=12" class="pd-avatar" />
+                        <div class="pd-info">
+                            <h4>Irvan Maulana</h4>
+                            <span>@irvanmaulana</span>
+                        </div>
+                    </div>
+                    <div class="pd-menu-list">
+                        <a href="pages-profile.html" class="pd-menu-item"><i class="fa-regular fa-user"></i> Your
+                            profile</a>
+                    </div>
+                    <div class="pd-divider"></div>
+                    <div class="pd-theme-toggle">
+                        <span>Theme</span>
+                        <div class="theme-options">
+                            <div class="theme-opt active" id="themeDark">
+                                <i class="fa-solid fa-moon"></i>
+                            </div>
+                            <div class="theme-opt" id="themeLight">
+                                <i class="fa-solid fa-sun"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pd-divider"></div>
+                    <div class="pd-menu-list">
+                        <a class="pd-menu-item text-muted"><i class="fa-solid fa-arrow-right-from-bracket"></i>
+                            Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="app-body-wrapper">
+        <div class="app-body">
+            <div id="sidebar-container"></div>
+
+            <main class="main-content" id="mainContent">
+
+                <div class="page-header-card">
+                    <div class="header-hero-content">
+                        <h1 class="hero-title">Borders & Radius</h1>
+                        <p class="hero-desc">Utilitas untuk mengatur kelengkungan sudut, ketebalan garis, dan gaya
+                            border elemen UI.</p>
+                    </div>
+                    <div class="header-hero-actions">
+                        <nav class="hero-breadcrumb">
+                            <div class="home-icon-box"><i class="fa-solid fa-home"></i></div>
+                            <span class="breadcrumb-sep"><i class="fa-solid fa-chevron-right"></i></span>
+                            <a href="#" class="breadcrumb-link">Utilities</a>
+                            <span class="breadcrumb-sep"><i class="fa-solid fa-chevron-right"></i></span>
+                            <span class="breadcrumb-link active">Borders</span>
+                        </nav>
+                    </div>
+                    <i class="fa-solid fa-border-all header-bg-icon"></i>
+                </div>
+
+                <div class="section-title">
+                    <div class="section-line"></div>
+                    <div class="section-badge"><i class="fa-regular fa-circle"></i> Border Radius</div>
+                    <div class="section-line"></div>
+                </div>
+
+                <div class="content-grid">
+                    <div class="col-span-4">
+                        <div class="card p-0 overflow-hidden">
+                            <div class="border-demo-box rounded-0 border-solid border-1 border-dark copy-click">
+                                .rounded-0
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-span-4">
+                        <div class="card p-0 overflow-hidden">
+                            <div class="border-demo-box rounded-sm border-solid border-1 border-dark copy-click">
+                                .rounded-sm
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-span-4">
+                        <div class="card p-0 overflow-hidden">
+                            <div class="border-demo-box rounded border-solid border-1 border-dark copy-click">
+                                .rounded
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-span-4">
+                        <div class="card p-0 overflow-hidden">
+                            <div class="border-demo-box rounded-full border-solid border-1 border-dark copy-click">
+                                .rounded-full
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-title">
+                    <div class="section-line"></div>
+                    <div class="section-badge"><i class="fa-solid fa-arrows-up-down-left-right"></i> Width & Position
+                    </div>
+                    <div class="section-line"></div>
+                </div>
+
+                <div class="content-grid">
+                    <div class="col-span-4">
+                        <div class="border-demo-box rounded border-solid border-1 border-dark copy-click">
+                            All Side
+                        </div>
+                    </div>
+                    <div class="col-span-4">
+                        <div class="border-demo-box rounded border-t copy-click">
+                            Top Only
+                        </div>
+                    </div>
+                    <div class="col-span-4">
+                        <div class="border-demo-box rounded border-b copy-click">
+                            Bottom Only
+                        </div>
+                    </div>
+                    <div class="col-span-4">
+                        <div class="border-demo-box rounded border-l-4 border-primary copy-click"
+                            style="background: var(--bg-hover);">
+                            Left Accent
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-title">
+                    <div class="section-line"></div>
+                    <div class="section-badge"><i class="fa-solid fa-pen-nib"></i> Border Styles</div>
+                    <div class="section-line"></div>
+                </div>
+
+                <div class="content-grid">
+                    <div class="col-span-4">
+                        <div class="border-demo-box rounded border-solid border-2 border-dark copy-click">
+                            Solid (2px)
+                        </div>
+                    </div>
+                    <div class="col-span-4">
+                        <div class="border-demo-box rounded border-dashed border-2 border-dark copy-click">
+                            Dashed
+                        </div>
+                    </div>
+                    <div class="col-span-4 col-md-12">
+                        <div class="border-demo-box rounded border-dotted border-2 border-dark copy-click">
+                            Dotted
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-title">
+                    <div class="section-line"></div>
+                    <div class="section-badge"><i class="fa-solid fa-palette"></i> Contextual Colors</div>
+                    <div class="section-line"></div>
+                </div>
+
+                <div class="content-grid">
+                    <div class="col-span-4">
+                        <div class="border-demo-box rounded border-solid border-1 border-dark text-muted copy-click">
+                            Default
+                        </div>
+                    </div>
+                    <div class="col-span-4">
+                        <div
+                            class="border-demo-box rounded border-solid border-1 border-primary text-primary copy-click">
+                            Accent
+                        </div>
+                    </div>
+                    <div class="col-span-4">
+                        <div
+                            class="border-demo-box rounded border-solid border-1 border-success text-success copy-click">
+                            Success
+                        </div>
+                    </div>
+                    <div class="col-span-4">
+                        <div class="border-demo-box rounded border-solid border-1 border-danger text-danger copy-click">
+                            Danger
+                        </div>
+                    </div>
+                </div>
+
+                <footer class="app-footer mt-2">
+                    <div class="footer-left">
+                        <span class="footer-logo-icon"><i class="fa-solid fa-code"></i></span>
+                        <span>&copy; 2025 <strong>Daily.dev</strong>. Created with <i
+                                class="fa-solid fa-heart heart-icon"></i> by Irvan Maulana.</span>
+                    </div>
+                    <div class="footer-links">
+                        <a href="#" class="footer-link-item">Privacy Policy</a>
+                        <a href="#" class="footer-link-item">Terms</a>
+                        <a href="#" class="footer-link-item">Support</a>
+                    </div>
+                </footer>
+
+            </main>
+        </div>
+    </div>
+    <div class="sidebar-overlay desktop-only" id="sidebarOverlay"></div>
+    <div id="settings-container"></div>
+
+    <script src="assets/js/core.js"></script>
+</body>
+
+</html>

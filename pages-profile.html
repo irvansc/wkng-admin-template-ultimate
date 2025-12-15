@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile - Daily Admin</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/core.css">
+    <link rel="stylesheet" href="assets/css/layout.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="app-header">
+
+        <div class="header-left-actions">
+            <button class="header-icon-btn mobile-toggle-btn" id="mobileToggle">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+
+            <button class="header-icon-btn mobile-search-btn">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+
+            <div class="mobile-search-bar" id="mobileSearchBar">
+                <i class="fa-solid fa-magnifying-glass search-icon-mobile"></i>
+                <input type="text" class="mobile-search-input" placeholder="Search anything..." id="mobileSearchInput">
+                <button class="mobile-search-close" id="mobileSearchClose">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="logo desktop-only">
+            <i class="fa-solid fa-code" style="color: var(--text-main);"></i>
+            <span>daily.dev</span>
+        </div>
+
+        <div class="search-wrapper desktop-only">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <input type="text" class="search-input" placeholder="Search..." id="searchInput">
+            <div class="search-shortcut">Ctrl K</div>
+        </div>
+
+        <div class="header-right">
+            <div class="notification-wrapper">
+                <button class="header-icon-btn" id="notifTrigger" title="Notifications">
+                    <i class="fa-regular fa-bell"></i>
+                    <div class="notification-dot"></div>
+                </button>
+
+                <div class="notification-dropdown" id="notifDropdown">
+                    <div class="notif-header">
+                        <h4>Notifications <span class="badge badge-danger"
+                                style="margin-left:8px; font-size:10px; padding:2px 6px;">4
+                                New</span></h4>
+                        <span class="notif-mark-read">Mark all as read</span>
+                    </div>
+
+                    <div class="notif-list">
+
+                        <div class="notif-item unread">
+                            <div class="notif-icon-box error">
+                                <i class="fa-solid fa-circle-exclamation"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Server Connection Failed</h5>
+                                <p>Could not sync data with main server. Please check your API Key configuration.</p>
+                                <span class="notif-time">2 minutes ago</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item unread">
+                            <div class="notif-icon-box success">
+                                <i class="fa-solid fa-check-double"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Project Exported</h5>
+                                <p>Your dashboard layout "Q3 Report" has been successfully exported to PDF.</p>
+                                <span class="notif-time">1 hour ago</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item">
+                            <div class="notif-icon-box warning">
+                                <i class="fa-solid fa-triangle-exclamation"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Storage Usage High</h5>
+                                <p>You have used 85% of your allocated cloud storage. Consider upgrading.</p>
+                                <span class="notif-time">Yesterday at 4:30 PM</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item">
+                            <div class="notif-icon-box info">
+                                <i class="fa-solid fa-circle-info"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>New Feature Available</h5>
+                                <p>Dark mode is now customizable. Check settings for more themes.</p>
+                                <span class="notif-time">2 days ago</span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="notif-footer">
+                        View All Notifications
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-wrapper">
+                <img src="https://i.pravatar.cc/150?img=12" alt="Profile" class="user-img header-icon-btn"
+                    id="profileTrigger">
+
+                <div class="profile-dropdown" id="profileDropdown">
+                    <div class="pd-header">
+                        <img src="https://i.pravatar.cc/150?img=12" class="pd-avatar">
+                        <div class="pd-info">
+                            <h4>Irvan Maulana</h4>
+                            <span>@irvanmaulana</span>
+                        </div>
+                    </div>
+                    <div class="pd-menu-list">
+                        <a href="pages-profile.html" class="pd-menu-item"><i class="fa-regular fa-user"></i> Your
+                            profile</a>
+                    </div>
+                    <div class="pd-divider"></div>
+                    <div class="pd-theme-toggle">
+                        <span>Theme</span>
+                        <div class="theme-options">
+                            <div class="theme-opt active" id="themeDark"><i class="fa-solid fa-moon"></i></div>
+                            <div class="theme-opt" id="themeLight"><i class="fa-solid fa-sun"></i></div>
+                        </div>
+                    </div>
+                    <div class="pd-divider"></div>
+                    <div class="pd-menu-list">
+                        <a class="pd-menu-item text-muted"><i class="fa-solid fa-arrow-right-from-bracket"></i>
+                            Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="app-body-wrapper">
+        <div class="app-body">
+            <div id="sidebar-container"></div>
+
+
+            <main class="main-content" id="mainContent">
+
+                <div class="profile-header-wrapper">
+                    <div class="profile-cover"></div>
+
+                    <div class="profile-user-info">
+                        <div class="profile-avatar-group">
+                            <img src="https://i.pravatar.cc/150?img=12" class="profile-avatar-lg">
+                            <div class="profile-texts">
+                                <h1 class="profile-name">Irvan Maulana</h1>
+                                <div class="profile-role">
+                                    <i class="fa-solid fa-code-branch"></i> Full Stack Developer
+                                    <span style="margin: 0 8px;">•</span>
+                                    <i class="fa-solid fa-location-dot"></i> Bandung, ID
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="profile-actions">
+                            <a href="#" class="social-btn ig" title="Instagram" target="_blank"><i
+                                    class="fa-brands fa-instagram"></i></a>
+                            <a href="#" class="social-btn fb" title="Facebook" target="_blank"><i
+                                    class="fa-brands fa-facebook-f"></i></a>
+                            <a href="#" class="social-btn li" title="LinkedIn" target="_blank"><i
+                                    class="fa-brands fa-linkedin-in"></i></a>
+                            <a href="#" class="social-btn web" title="Website" target="_blank"><i
+                                    class="fa-solid fa-globe"></i></a>
+                            <a href="#" class="social-btn tt" title="TikTok" target="_blank"><i
+                                    class="fa-brands fa-tiktok"></i></a>
+                            <a href="#" class="social-btn tw" title="Twitter/X" target="_blank"><i
+                                    class="fa-brands fa-x-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tabs-container">
+
+                    <div class="premium-tabs-container">
+                        <div class="premium-tab tab-link active" data-tab="tab-overview">
+                            <i class="fa-regular fa-eye"></i> Overview
+                        </div>
+                        <div class="premium-tab tab-link" data-tab="tab-settings">
+                            <i class="fa-solid fa-pen-to-square"></i> Edit Profile
+                        </div>
+                    </div>
+
+                    <div class="tab-content">
+                        <div id="tab-overview" class="tab-pane active">
+                            <div class="profile-grid">
+                                <div style="display: flex; flex-direction: column; gap: 24px;">
+                                    <div class="card">
+                                        <div class="stats-wrapper">
+                                            <div class="stat-box">
+                                                <span class="stat-value">128</span>
+                                                <span class="stat-label">Posts</span>
+                                            </div>
+                                            <div class="stat-box">
+                                                <span class="stat-value">4.5k</span>
+                                                <span class="stat-label">Followers</span>
+                                            </div>
+                                            <div class="stat-box">
+                                                <span class="stat-value">230</span>
+                                                <span class="stat-label">Following</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="card">
+                                        <div class="card-header"><span class="card-title">About</span></div>
+                                        <p class="text-muted text-sm" style="line-height: 1.6;">
+                                            Passionate developer building scalable web apps. Love clean code, coffee,
+                                            and
+                                            contributing to open source. Currently learning AI integration.
+                                        </p>
+                                        <div class="mt-2" style="display: flex; flex-direction: column; gap: 12px;">
+                                            <div class="d-flex align-center gap-2 text-sm text-muted">
+                                                <i class="fa-regular fa-envelope" style="width: 20px;"></i>
+                                                irvan@daily.dev
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="card mb-2">
+                                        <div class="card-header"><span class="card-title">Skills</span></div>
+                                        <div class="d-flex gap-2" style="flex-wrap: wrap;">
+                                            <span class="badge badge-info">React.js</span>
+                                            <span class="badge badge-success">Node.js</span>
+                                            <span class="badge badge-warning">Python</span>
+                                            <span class="badge">TypeScript</span>
+                                            <span class="badge">UI Design</span>
+                                            <span class="badge">Figma</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-header">
+                                        <span class="card-title">Recent Activity</span>
+                                        <button class="btn btn-sm btn-ghost"><i class="fa-solid fa-filter"></i>
+                                            Filter</button>
+                                    </div>
+                                    <div style="padding: 0 10px;">
+                                        <div class="timeline-item">
+                                            <div class="timeline-icon active"><i class="fa-solid fa-code-commit"></i>
+                                            </div>
+                                            <div class="mb-2">
+                                                <span class="text-sm font-bold text-main">Pushed 3 commits</span>
+                                                <span class="text-xs text-muted ml-2">2 hours ago</span>
+                                            </div>
+                                            <div class="text-sm text-muted"
+                                                style="background: var(--bg-body); padding: 12px; border-radius: 8px;">
+                                                <div style="font-family: monospace;">feat: update layout responsive
+                                                </div>
+                                                <div style="font-family: monospace;">fix: sidebar collapse bug</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="timeline-item">
+                                            <div class="timeline-icon"
+                                                style="color: var(--accent-green); border-color: var(--accent-green);">
+                                                <i class="fa-solid fa-check"></i>
+                                            </div>
+                                            <div class="mb-2">
+                                                <span class="text-sm font-bold text-main">Completed Task</span>
+                                                <span class="text-xs text-muted ml-2">5 hours ago</span>
+                                            </div>
+                                            <p class="text-sm text-muted">Marked <strong>"Design Authentication
+                                                    Pages"</strong> as done.</p>
+                                        </div>
+
+                                        <div class="timeline-item">
+                                            <div class="timeline-icon"><i class="fa-regular fa-comment"></i></div>
+                                            <div class="mb-2">
+                                                <span class="text-sm font-bold text-main">Commented on Post</span>
+                                                <span class="text-xs text-muted ml-2">Yesterday</span>
+                                            </div>
+                                            <p class="text-sm text-muted">"Great work on the new API integration! The
+                                                documentation looks solid."</p>
+                                        </div>
+
+                                        <div class="timeline-item">
+                                            <div class="timeline-icon"><i class="fa-solid fa-image"></i></div>
+                                            <div class="mb-2">
+                                                <span class="text-sm font-bold text-main">Uploaded new shot</span>
+                                                <span class="text-xs text-muted ml-2">2 days ago</span>
+                                            </div>
+                                            <img src="https://picsum.photos/400/200?random=1"
+                                                style="width: 100%; height: 180px; object-fit: cover; border-radius: 8px; margin-top: 8px;">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="tab-settings" class="tab-pane">
+                            <div class="card">
+                                <div class="card-header"><span class="card-title">Edit Profile Information</span></div>
+                                <div style="padding: 24px;">
+                                    <div class="content-grid">
+                                        <div class="avatar-upload-section"
+                                            style="grid-column: 1 / -1; display: flex; align-items: center; gap: 20px; margin-bottom: 20px;">
+                                            <img src="https://i.pravatar.cc/150?img=12"
+                                                style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover;">
+                                            <div>
+                                                <button class="btn btn-secondary btn-sm">Change Avatar</button>
+                                                <button class="btn btn-ghost btn-sm text-danger">Remove</button>
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <div class="form-group">
+                                                <label class="form-label">First Name</label>
+                                                <input type="text" class="form-control" value="Irvan">
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="form-group">
+                                                <label class="form-label">Last Name</label>
+                                                <input type="text" class="form-control" value="Maulana">
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="form-group">
+                                                <label class="form-label">Email Address</label>
+                                                <input type="email" class="form-control" value="irvan@daily.dev">
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="form-group">
+                                                <label class="form-label">Phone Number</label>
+                                                <input type="text" class="form-control" value="+62 812 3456 7890">
+                                            </div>
+                                        </div>
+                                        <div style="grid-column: 1 / -1;">
+                                            <div class="form-group">
+                                                <label class="form-label">Bio</label>
+                                                <textarea class="form-control"
+                                                    rows="4">Passionate developer building scalable web apps. Love clean code, coffee, and contributing to open source.</textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div
+                                        style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 32px; border-top: 1px solid var(--border-color); padding-top: 20px;">
+                                        <button class="btn btn-ghost">Cancel</button>
+                                        <button class="btn btn-primary">Save Changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <footer class="app-footer mt-2">
+                    <div class="footer-left">
+                        <span class="footer-logo-icon"><i class="fa-solid fa-code"></i></span>
+                        <span>&copy; 2025 <strong>Daily.dev</strong>. Created with <i
+                                class="fa-solid fa-heart heart-icon"></i>
+                            by Irvan Maulana.</span>
+                    </div>
+                    <div class="footer-links">
+                        <a href="#" class="footer-link-item">Privacy Policy</a>
+                        <a href="#" class="footer-link-item">Terms</a>
+                        <a href="#" class="footer-link-item">Support</a>
+                    </div>
+                </footer>
+
+            </main>
+        </div>
+    </div>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <div id="settings-container"></div>
+
+    <script src="assets/js/core.js"></script>
+</body>
+
+</html>

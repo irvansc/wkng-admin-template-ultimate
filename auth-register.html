@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account - Daily Admin</title>
+
+    <!-- External Libs -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Modular CSS -->
+    <link rel="stylesheet" href="assets/css/core.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/auth.css">
+
+    <!-- OVERRIDE STYLE UNTUK RESPONSIVE -->
+    <style>
+        .auth-body {
+            overflow-y: auto !important;
+            height: auto !important;
+            min-height: 100vh;
+            display: flex;
+            align-items: flex-start !important;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .auth-body::before,
+        .auth-body::after {
+            position: fixed !important;
+        }
+
+        .auth-card {
+            margin: auto;
+            width: 100%;
+            max-width: 450px;
+            position: relative;
+            z-index: 10;
+        }
+
+        @media (max-width: 576px) {
+            .auth-card {
+                padding: 24px 20px !important;
+            }
+        }
+    </style>
+</head>
+
+<body class="auth-body">
+
+    <!-- FLOATING THEME TOGGLE -->
+    <button class="theme-toggle-btn" id="themeToggle" style="position: fixed; top: 20px; right: 20px; z-index: 100;">
+        <i class="fa-solid fa-moon"></i>
+    </button>
+
+    <div class="auth-card">
+        <div class="auth-header">
+            <div class="auth-logo">
+                <i class="fa-solid fa-code" style="color: var(--text-main);"></i>
+                <span>daily.dev</span>
+            </div>
+            <h1 class="auth-title">Create Account</h1>
+            <p class="auth-subtitle">Join us and start managing your dashboard.</p>
+        </div>
+
+        <div class="social-buttons">
+            <button class="btn-social">
+                <i class="fa-brands fa-google"></i> Google
+            </button>
+            <button class="btn-social">
+                <i class="fa-brands fa-github"></i> Github
+            </button>
+        </div>
+
+        <div class="auth-divider">
+            <span>OR REGISTER WITH EMAIL</span>
+        </div>
+
+        <form action="index.html">
+            <div class="form-group">
+                <label class="form-label">Full Name</label>
+                <input type="text" class="form-control" placeholder="John Doe">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Email Address</label>
+                <input type="email" class="form-control" placeholder="name@company.com">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Password</label>
+                <!-- WRAPPER RELATIVE UNTUK PASSWORD -->
+                <div class="relative">
+                    <input type="password" class="form-control" id="passwordInput" placeholder="Create a password">
+                    <i class="fa-regular fa-eye-slash absolute-center-y-right" id="togglePassword"></i>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Confirm Password</label>
+                <!-- WRAPPER RELATIVE UNTUK CONFIRM PASSWORD -->
+                <div class="relative">
+                    <input type="password" class="form-control" id="confirmInput" placeholder="Repeat password">
+                    <i class="fa-regular fa-eye-slash absolute-center-y-right" id="toggleConfirm"></i>
+                </div>
+            </div>
+
+            <div class="form-group d-flex align-center gap-2" style="margin-bottom: 24px;">
+                <input type="checkbox" id="terms"
+                    style="width: 16px; height: 16px; cursor: pointer; accent-color: var(--accent-color);">
+                <label for="terms" class="text-muted text-sm cursor-pointer" style="margin-bottom: 0;">
+                    I agree to the <a href="#"
+                        style="color: var(--accent-color); text-decoration: none; font-weight: 600;">Terms &
+                        Conditions</a>
+                </label>
+            </div>
+
+            <!-- Tombol Utama -->
+            <button type="submit" class="btn btn-primary w-full" style="height: 48px; font-size: 16px;">Create
+                Account</button>
+
+        </form>
+
+        <div class="auth-footer">
+            Already have an account? <a href="auth-login.html">Sign In</a>
+        </div>
+    </div>
+
+    <!-- Minimal JS for Theme Toggle & Password Show -->
+    <script>
+        const html = document.documentElement;
+        const toggleBtn = document.getElementById('themeToggle');
+        const icon = toggleBtn.querySelector('i');
+
+        // Load Theme
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        html.setAttribute('data-theme', savedTheme);
+        updateIcon(savedTheme);
+
+        toggleBtn.addEventListener('click', () => {
+            const current = html.getAttribute('data-theme');
+            const next = current === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', next);
+            localStorage.setItem('theme', next);
+            updateIcon(next);
+        });
+
+        function updateIcon(theme) {
+            icon.className = theme === 'dark' ? 'fa-solid fa-moon' : 'fa-solid fa-sun';
+        }
+
+        // --- PASSWORD TOGGLE LOGIC ---
+        function setupPasswordToggle(inputId, toggleId) {
+            const input = document.getElementById(inputId);
+            const toggle = document.getElementById(toggleId);
+
+            if (input && toggle) {
+                toggle.addEventListener('click', function () {
+                    const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+                    input.setAttribute('type', type);
+
+                    this.classList.toggle('fa-eye');
+                    this.classList.toggle('fa-eye-slash');
+                });
+            }
+        }
+
+        // Init Toggle for Both Fields
+        setupPasswordToggle('passwordInput', 'togglePassword');
+        setupPasswordToggle('confirmInput', 'toggleConfirm');
+    </script>
+</body>
+
+</html>
