@@ -1,0 +1,421 @@
+/* --- GALLERY LAYOUT CONFIG --- */
+.gallery-header-wrapper {
+    position: sticky;
+    top: var(--header-height); /* Menempel tepat di bawah app-header */
+    background: rgba(14, 18, 23, 0.85); /* Transparan gelap */
+    backdrop-filter: blur(12px);
+    z-index: 40; /* Di atas konten, di bawah header utama */
+    padding: 16px 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+/* --- PHOTO GRID (Visual First) --- */
+.gallery-section {
+    margin-bottom: 32px;
+}
+
+.gallery-date-header {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.gallery-date-header i {
+    font-size: 10px;
+    color: var(--accent-color);
+}
+
+.photo-grid {
+    display: grid;
+    /* Grid responsif otomatis tanpa media query berlebihan */
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 4px; /* Gap tipis ala Google Photos */
+}
+
+/* ITEM PHOTO */
+.photo-item {
+    position: relative;
+    aspect-ratio: 1 / 1; /* Kotak sempurna */
+    border-radius: 4px; /* Rounded minimalis */
+    overflow: hidden;
+    cursor: pointer;
+    background: var(--bg-hover);
+    transition: transform 0.1s;
+}
+
+.photo-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.photo-item:hover img {
+    transform: scale(1.05); /* Zoom halus saat hover */
+}
+
+/* SELECTION CHECKBOX (Overlay Circle) */
+.photo-select-overlay {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.7);
+    background: rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0; /* Sembunyi default */
+    transition: all 0.2s;
+    z-index: 2;
+}
+
+.photo-select-overlay i {
+    color: white;
+    font-size: 12px;
+    display: none;
+}
+
+/* Logic Tampil Checkbox */
+.photo-item:hover .photo-select-overlay,
+.gallery-wrapper.select-mode .photo-select-overlay,
+.photo-item.selected .photo-select-overlay {
+    opacity: 1;
+}
+
+/* State: Selected */
+.photo-item.selected .photo-select-overlay {
+    background: var(--accent-color);
+    border-color: var(--accent-color);
+}
+
+.photo-item.selected .photo-select-overlay i {
+    display: block;
+}
+
+.photo-item.selected img {
+    transform: scale(0.9); /* Mengecil sedikit agar terlihat terpilih */
+}
+
+/* --- ALBUM CARD (FIXED PROPORTION) --- */
+.album-card {
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    width: 100%;
+    display: block; /* Pastikan block agar width 100% jalan */
+}
+
+.album-cover-group {
+    position: relative;
+    width: 100%;
+    /* KUNCI PERBAIKAN: Gunakan aspect-ratio agar tidak gepeng */
+    aspect-ratio: 1 / 1; /* Kotak Sempurna (Instagram style) */
+    /* Atau gunakan 4 / 3 untuk sedikit melebar */
+    
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 12px;
+    background: var(--bg-card);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.album-cover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Gambar akan dicrop rapi mengisi kotak */
+    transition: transform 0.5s ease;
+}
+
+/* Hover Effect: Zoom gambar dalam kotak + angkat kartu sedikit */
+.album-card:hover .album-cover-group {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.album-card:hover .album-cover {
+    transform: scale(1.1);
+}
+
+/* Typography Album */
+.album-info {
+    text-align: left;
+    padding: 0 4px;
+}
+
+.album-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.album-meta {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+/* --- FLOATING SELECTION BAR --- */
+.selection-bar {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px); /* Sembunyi di bawah */
+    background: var(--text-main); /* Kontras tinggi (Putih di dark mode) */
+    color: var(--bg-body);
+    padding: 12px 24px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    z-index: 100;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    min-width: 400px;
+}
+
+.selection-bar.active {
+    transform: translateX(-50%) translateY(0);
+}
+
+.btn-icon-text {
+    background: none;
+    border: none;
+    color: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: 0.2s;
+}
+
+.btn-icon-text:hover {
+    opacity: 1;
+    transform: translateY(-2px);
+}
+
+/* --- LIGHTBOX (Fullscreen) --- */
+.lightbox-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 2000;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.lightbox-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.lightbox-content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 20px;
+}
+
+.lightbox-img {
+    max-height: 90vh;
+    max-width: 100%;
+    border-radius: 4px;
+    box-shadow: 0 0 50px rgba(0,0,0,0.5);
+}
+
+.lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255,255,255,0.1);
+    border: none;
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+}
+
+.lightbox-nav:hover {
+    background: rgba(255,255,255,0.2);
+}
+
+.lightbox-nav.prev { left: 20px; }
+.lightbox-nav.next { right: 20px; }
+
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: rgba(255,255,255,0.1);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.lightbox-footer {
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+}
+
+.lb-info h4 { margin: 0; font-size: 16px; color: white; }
+.lb-info span { font-size: 13px; color: rgba(255,255,255,0.6); }
+
+/* Responsive Grid untuk Mobile */
+@media (max-width: 768px) {
+    .photo-grid {
+        grid-template-columns: repeat(3, 1fr); /* 3 kolom di HP */
+        gap: 2px;
+    }
+    .selection-bar {
+        min-width: 90%;
+        bottom: 20px;
+        padding: 10px 16px;
+    }
+    .btn-icon-text {
+        font-size: 10px;
+    }
+
+    /* --- 1. HEADER LAYOUT --- */
+    .gallery-header-wrapper > .d-flex.justify-between {
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .gallery-header-wrapper h1 {
+        order: 1;
+        font-size: 20px !important;
+        flex: 1;
+    }
+
+    .gallery-header-wrapper .d-flex.gap-2 {
+        order: 2;
+    }
+
+    .gallery-header-wrapper .tabs-segmented {
+        order: 3;
+        width: 100%;
+        display: flex;
+        margin-top: 4px;
+        background: var(--bg-search);
+    }
+
+    .tab-link-segment {
+        flex: 1; 
+        text-align: center;
+        padding: 8px 0;
+    }
+
+    /* --- 2. ALBUM GRID (FIX 2 KOLOM SEJAJAR) --- */
+    
+    /* PENTING: Paksa container kembali jadi GRID, abaikan style tumpuk (stack) bawaan mobile */
+    #albumsGrid {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important; /* 2 Kolom dengan lebar sama */
+        gap: 12px !important; /* Jarak antar album */
+    }
+
+    /* Reset child item agar pas di dalam grid 2 kolom */
+    #albumsGrid > div {
+        grid-column: span 1 !important; /* Ambil 1 slot saja */
+        width: 100% !important;
+        margin: 0 !important;
+    }
+
+    /* Styling Kartu Album Mobile */
+    .album-title {
+        font-size: 13px; /* Perkecil font dikit biar muat */
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    
+    .album-meta {
+        font-size: 10px;
+    }
+
+    /* Pastikan gambar tetap kotak proporsional */
+    .album-cover-group {
+        margin-bottom: 8px;
+        aspect-ratio: 1 / 1;
+        border-radius: 12px; /* Sedikit kurangi radius di mobile */
+    }
+}
+/* --- SKELETON ANIMATION --- */
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* Base Skeleton Class */
+.photo-item.skeleton {
+    background-color: var(--bg-hover); /* Warna dasar abu-abu */
+    position: relative;
+    overflow: hidden;
+}
+
+/* Efek Kilauan (Shimmering) */
+.photo-item.skeleton::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.05), /* Kilauan halus */
+        transparent
+    );
+    animation: shimmer 1.5s infinite;
+    z-index: 1;
+}
+
+/* --- IMAGE FADE IN TRANSITION --- */
+.photo-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0; /* Sembunyi dulu */
+    transition: transform 0.4s ease, opacity 0.3s ease; /* Fade-in halus */
+}
+
+/* Class ini ditambahkan JS saat gambar selesai load */
+.photo-item img.loaded {
+    opacity: 1; /* Muncul */
+}

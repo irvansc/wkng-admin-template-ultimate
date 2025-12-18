@@ -2736,7 +2736,57 @@ textarea.form-control {
   border-radius: 50%;
   position: relative;
 }
+/* --- UPDATED: STATUS DOT VARIATIONS (Fixed Selectors) --- */
+.status-dot.online {
+    background: #2ecc71;
+    color: #2ecc71;
+}
 
+.status-dot.offline {
+    background: #e74c3c;
+    color: #e74c3c;
+}
+
+.status-dot.away {
+    background: #f1c40f;
+    color: #f1c40f;
+}
+
+/* Status dot kecil untuk penggunaan di dalam tabel atau badge */
+.status-dot-sm {
+    width: 6px !important;
+    height: 6px !important;
+    background: currentColor;
+}
+
+/* --- UPDATED: NEON BADGE VARIATIONS --- */
+.badge-neon-white {
+    background: #ffffff !important;
+    color: #000000 !important;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+/* Container khusus demo neon */
+.demo-card-dark {
+    background: #000000;
+    border: 1px solid #333333;
+}
+
+.demo-wrapper-dark {
+    border-color: #444444 !important;
+}
+
+/* --- UPDATED: CHIP VARIATIONS --- */
+.chip-text-only {
+    padding-left: 12px !important;
+}
+
+/* Badge khusus di header notifikasi */
+.badge-header-notif {
+    margin-left: 8px;
+    font-size: 10px;
+    padding: 2px 6px;
+}
 /* Pulse Animation untuk Dot */
 .status-dot.pulse::after {
   content: "";
@@ -10352,3 +10402,1147 @@ input[type="color"] {
         .tag-close:hover {
             opacity: 1;
         }
+
+        /* Base Style untuk Image Selection */
+.img-selection {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    object-fit: cover;
+    /* Default state: Tidak aktif */
+    border: 2px solid var(--border-color);
+    opacity: 0.6; 
+    transition: all 0.2s ease;
+}
+
+/* Hover State */
+.label-img-selection:hover .img-selection {
+    opacity: 1;
+    border-color: var(--text-muted);
+}
+
+/* Active State (Logika Utama) */
+/* Ketika input sibling-nya diceklis, ubah style gambar di sebelahnya */
+input[type="radio"]:checked + .img-selection {
+    border-color: var(--accent-color); /* Warna aktif/ungu */
+    opacity: 1;
+    box-shadow: 0 0 0 4px rgba(var(--accent-rgb), 0.15); /* Efek glow opsional */
+    transform: scale(1.05); /* Sedikit membesar biar kerasa "kepilih" */
+}
+
+/* =========================================
+   FORM SWITCHES (IOS STYLE TOGGLE)
+   ========================================= */
+
+/* 1. Container Switch */
+.form-switch {
+  position: relative;
+  display: inline-block;
+  width: 48px;  /* Lebar total switch */
+  height: 24px; /* Tinggi total switch */
+  margin-bottom: 0;
+  vertical-align: middle;
+}
+
+/* 2. Sembunyikan Checkbox Asli */
+.form-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+
+/* 3. Slider (Track/Latar Belakang) */
+.switch-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--bg-hover); /* Warna saat OFF (Gelap/Abu) */
+  transition: 0.3s;
+  border-radius: 34px; /* Membuat bentuk kapsul (Pill) */
+  border: 1px solid var(--border-color);
+}
+
+/* 4. Knob (Lingkaran Putih/Tombol Geser) */
+.switch-slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 2px;
+  bottom: 2px;
+  background-color: var(--text-muted); /* Warna knob saat OFF */
+  transition: 0.3s;
+  border-radius: 50%; /* Membuat lingkaran sempurna */
+}
+
+/* --- STATE: CHECKED (ON) --- */
+.form-switch input:checked + .switch-slider {
+  background-color: var(--primary); /* Warna saat ON (Brand Color) */
+  border-color: var(--primary);
+}
+
+.form-switch input:checked + .switch-slider:before {
+  transform: translateX(24px); /* Geser knob ke kanan */
+  background-color: #ffffff;   /* Knob jadi putih cerah saat ON */
+}
+
+/* --- STATE: FOCUS (Aksesibilitas) --- */
+.form-switch input:focus + .switch-slider {
+  box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.2);
+}
+
+/* --- STATE: DISABLED --- */
+.form-switch input:disabled + .switch-slider {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+/* --- SWITCH DENGAN ICON --- */
+
+/* 1. Setup FontAwesome di dalam Knob */
+.switch-with-icon .switch-slider:before {
+    font-family: "Font Awesome 6 Free"; /* Panggil FontAwesome */
+    font-weight: 900;
+    content: ""; /* Default kosong */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px; /* Ukuran Icon */
+    color: var(--text-muted); /* Warna icon saat mati */
+}
+
+/* 2. Warna Icon saat Hidup (Checked) */
+.switch-with-icon input:checked + .switch-slider:before {
+    color: var(--accent-color); /* Warna icon saat nyala */
+}
+
+/* --- OPSI A: ICON KAPAL (SHIP) --- */
+.ship-icon .switch-slider:before {
+    content: "\f21a"; /* Kode Unicode Kapal (fa-ship) */
+}
+
+/* --- OPSI B: ICON PESAWAT (PLANE) --- */
+/* Jika ingin balik lagi ke pesawat */
+.plane-icon .switch-slider:before {
+    content: "\f072"; /* Kode Unicode Pesawat (fa-plane) */
+}
+/* Efek saat file di-drag ke dropzone */
+.upload-zone-lg.drag-over {
+    border-color: var(--accent-color) !important;
+    background-color: rgba(var(--accent-rgb), 0.1); /* Pastikan var rgb ada, atau gunakan hex transparan */
+    border-style: solid;
+}
+
+/* --- ERROR PAGE LAYOUT --- */
+.error-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: var(--bg-body);
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+  transition: background-color 0.3s ease;
+}
+
+.error-code {
+  font-size: 10rem;
+  font-weight: 900;
+  line-height: 1;
+  background: linear-gradient(135deg, var(--accent-color), #a855f7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  /* Menghapus opacity agar warna lebih tajam */
+  opacity: 1;
+  margin-bottom: 0;
+  letter-spacing: -5px;
+  text-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Tambahan shadow halus */
+}
+
+.error-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 16px;
+}
+
+.error-desc {
+  color: var(--text-muted);
+  max-width: 500px;
+  margin-bottom: 32px;
+  line-height: 1.6;
+  font-size: 1.1rem; /* Ukuran font sedikit diperbesar agar lebih terbaca */
+}
+
+.error-illustration {
+  font-size: 5rem; /* Icon diperbesar */
+  margin-bottom: 20px;
+  color: var(--text-muted);
+  /* Mengubah opacity dari 0.5 menjadi 1 agar terlihat jelas di light mode */
+  opacity: 1;
+  animation: float 3s ease-in-out infinite;
+}
+
+/* =========================================
+   ULTIMATE DASHBOARD CARDS V2 (NEW)
+   ========================================= */
+
+/* --- 1. SUPER GRADIENT CARD (Revenue) --- */
+.card-ult-gradient {
+    position: relative;
+    background: linear-gradient(135deg, #FF3CAC 0%, #784BA0 50%, #2B86C5 100%);
+    border-radius: 24px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 40px rgba(120, 75, 160, 0.3);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-ult-gradient::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(circle at top right, rgba(255,255,255,0.2), transparent 60%);
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.card-ult-gradient:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 20px 50px rgba(120, 75, 160, 0.5);
+}
+
+.card-ult-gradient:hover::before {
+    opacity: 1;
+}
+
+/* --- 2. NEON GLASS CARD (Orders) --- */
+.card-ult-neon {
+    background: rgba(14, 18, 23, 0.7); /* Base Dark */
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 24px;
+    position: relative;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+/* Efek garis neon bergerak di bawah */
+.card-ult-neon::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #00f2fe, #4facfe, transparent);
+    transform: translateX(-100%);
+    animation: neonFlow 3s infinite linear;
+}
+
+@keyframes neonFlow {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.card-ult-neon:hover {
+    border-color: rgba(79, 172, 254, 0.3);
+    box-shadow: inset 0 0 20px rgba(79, 172, 254, 0.1);
+}
+
+/* --- 3. 3D FLOAT CARD (Avg Order) --- */
+.card-ult-3d {
+    background: var(--bg-card);
+    border-radius: 24px;
+    border: 1px solid var(--border-color);
+    position: relative;
+    transition: all 0.3s ease;
+    transform-style: preserve-3d;
+}
+
+.card-ult-3d:hover {
+    transform: translateY(-8px) rotateX(2deg);
+    border-color: var(--warning);
+    box-shadow: 0 15px 30px -10px rgba(241, 196, 15, 0.15);
+}
+
+.card-ult-3d .icon-float {
+    transition: transform 0.3s;
+}
+
+.card-ult-3d:hover .icon-float {
+    transform: scale(1.2) rotate(10deg);
+}
+
+/* --- 4. MAP PULSE CARD (Active Now) --- */
+.card-ult-map {
+    background-color: #0f172a;
+    background-image: 
+        radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.05) 0%, transparent 50%),
+        url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%231e293b' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    border-radius: 24px;
+    border: 1px solid rgba(16, 185, 129, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.pulsing-dot {
+    width: 12px;
+    height: 12px;
+    background-color: #10b981;
+    border-radius: 50%;
+    position: relative;
+    box-shadow: 0 0 0 rgba(16, 185, 129, 0.7);
+    animation: pulse-green 2s infinite;
+}
+
+@keyframes pulse-green {
+    0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+/* Typography & Layout Helpers for Cards */
+.ult-card-body {
+    padding: 24px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.ult-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    opacity: 0.8;
+    margin-bottom: 4px;
+    display: block;
+}
+
+.ult-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    line-height: 1.2;
+}
+
+.ult-sub {
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 8px;
+}
+
+/* =========================================
+   PREMIUM HEADER & GLASS TABS
+   ========================================= */
+
+/* Layout Header yang lebih Rapi */
+.card-header-premium {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 24px;
+    padding: 0 4px; /* Sedikit padding agar sejajar dengan tabel */
+}
+
+/* Container Tab Kaca */
+.glass-tabs {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    border-radius: 50px; /* Bentuk Pill/Kapsul */
+    padding: 4px;
+    display: flex;
+    gap: 4px;
+}
+
+/* Item Tab Individual */
+.glass-tab {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+/* State Hover */
+.glass-tab:hover:not(.active) {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-main);
+}
+
+/* State Active (Menyala) */
+.glass-tab.active {
+    background: var(--bg-card); /* Warna kartu agar kontras */
+    color: var(--text-main);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Shadow tebal */
+    border: 1px solid var(--border-color);
+}
+
+/* Avatar Glow (Untuk Icon Piala) */
+.avatar.shadow-glow-gold {
+    box-shadow: 0 0 15px rgba(241, 196, 15, 0.4);
+    border: 1px solid rgba(241, 196, 15, 0.5);
+}
+
+
+/* --- ULTIMATE PRODUCT LIST STYLES --- */
+
+/* 1. Kategori Badge (Stealth Pill) */
+.badge-category {
+    background: rgba(255, 255, 255, 0.1); /* Putih transparan */
+    color: var(--text-muted);
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 4px 8px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    display: inline-block;
+    transition: all 0.2s;
+}
+
+/* Efek Hover pada Badge */
+.tr-status:hover .badge-category {
+    background: rgba(255, 255, 255, 0.2);
+    color: var(--text-main);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* 2. Nama Produk */
+.product-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 4px;
+    display: block;
+}
+
+/* 3. Avatar Squircle (Penyempurnaan) */
+.avatar-squircle {
+    border-radius: 12px !important; /* Sudut halus ala iOS */
+    width: 56px;  /* Sedikit lebih besar agar detail terlihat */
+    height: 56px;
+    flex-shrink: 0;
+    background-color: var(--bg-hover); /* Placeholder color */
+    overflow: hidden;
+}
+
+.avatar-squircle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+/* Zoom effect saat hover baris */
+.tr-status:hover .avatar-squircle img {
+    transform: scale(1.1);
+}
+
+/* =========================================
+   CRM DASHBOARD SPECIFIC STYLES
+   ========================================= */
+
+/* --- 1. PIPELINE STAGE CARD (Glass & Glow) --- */
+.crm-pipeline-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+}
+
+.crm-pipeline-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateY(-5px);
+    border-color: var(--accent-color);
+}
+
+.crm-pipeline-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 4px; height: 100%;
+    background: var(--border-color); /* Default */
+}
+
+.crm-pipeline-card.stage-new::before { background: #3b82f6; }
+.crm-pipeline-card.stage-qual::before { background: #f1c40f; }
+.crm-pipeline-card.stage-prop::before { background: #8e44ad; }
+.crm-pipeline-card.stage-win::before { background: #2ecc71; }
+
+/* --- 2. AGENT LEADERBOARD (Podium Style) --- */
+.agent-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+    border-radius: 16px;
+    background: var(--bg-hover);
+    border: 1px solid transparent;
+    transition: 0.2s;
+}
+
+.agent-card:hover {
+    background: var(--bg-card);
+    border-color: var(--border-color);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+.agent-rank {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    font-weight: 800;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    background: var(--bg-body);
+    color: var(--text-muted);
+}
+
+.agent-card.rank-1 { border: 1px solid rgba(241, 196, 15, 0.3); background: linear-gradient(90deg, rgba(241, 196, 15, 0.05), transparent); }
+.agent-card.rank-1 .agent-rank { color: #f1c40f; background: rgba(241, 196, 15, 0.1); }
+
+/* --- 3. INTERACTION BADGES --- */
+.badge-interaction {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border-radius: 50px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.badge-interaction.call { background: rgba(52, 152, 219, 0.1); color: #3498db; }
+.badge-interaction.email { background: rgba(155, 89, 182, 0.1); color: #9b59b6; }
+.badge-interaction.meet { background: rgba(230, 126, 34, 0.1); color: #e67e22; }
+
+/* --- 4. FUNNEL CHART CONTAINER --- */
+.funnel-wrapper {
+    position: relative;
+    padding: 20px 0;
+}
+/* Garis penghubung funnel */
+.funnel-step {
+    margin-bottom: 8px;
+    position: relative;
+    z-index: 2;
+}
+.funnel-bar {
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 13px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: width 1s ease-in-out;
+}
+
+/* =========================================
+   ULTIMATE CRM PIPELINE & TIMELINE (REVISED)
+   ========================================= */
+
+/* --- 1. PIPELINE STAGE CARDS (Visual Progress) --- */
+.pipeline-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.pipeline-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 20px;
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 160px;
+}
+
+/* Hover Effect: Lift & Glow */
+.pipeline-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    border-color: rgba(255,255,255,0.1);
+}
+
+/* Header with Icon */
+.pipeline-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+}
+
+.pipeline-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    background: var(--bg-hover);
+    color: var(--text-muted);
+    transition: 0.3s;
+}
+
+.pipeline-card:hover .pipeline-icon {
+    transform: scale(1.1);
+}
+
+/* Stage Variants (Colors) */
+.pipeline-card.stage-leads .pipeline-icon { background: rgba(59, 130, 246, 0.1); color: #3b82f6; }
+.pipeline-card.stage-leads:hover { border-bottom: 4px solid #3b82f6; }
+
+.pipeline-card.stage-qualified .pipeline-icon { background: rgba(245, 158, 11, 0.1); color: #f59e0b; }
+.pipeline-card.stage-qualified:hover { border-bottom: 4px solid #f59e0b; }
+
+.pipeline-card.stage-proposal .pipeline-icon { background: rgba(168, 85, 247, 0.1); color: #a855f7; }
+.pipeline-card.stage-proposal:hover { border-bottom: 4px solid #a855f7; }
+
+.pipeline-card.stage-won .pipeline-icon { background: rgba(16, 185, 129, 0.1); color: #10b981; }
+.pipeline-card.stage-won:hover { border-bottom: 4px solid #10b981; }
+
+/* Values */
+.pipeline-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--text-main);
+    letter-spacing: -0.5px;
+    margin-bottom: 4px;
+}
+
+.pipeline-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    color: var(--text-muted);
+}
+
+/* Arrow Connector (Optional Decor) */
+.pipeline-card::after {
+    content: '\f054'; /* FontAwesome Chevron Right */
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    position: absolute;
+    right: -10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--border-color);
+    font-size: 20px;
+    z-index: 10;
+    display: none; /* Hidden by default, shown via specialized grid if needed */
+}
+
+/* --- 2. ACTIVITY STREAM (Timeline Reimagined) --- */
+.activity-stream {
+    position: relative;
+    padding-left: 20px;
+}
+
+/* Garis vertikal solid yang elegan */
+.activity-stream::before {
+    content: '';
+    position: absolute;
+    top: 10px; left: 24px; bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--border-color) 0%, var(--border-color) 80%, transparent 100%);
+    z-index: 0;
+}
+
+.activity-item {
+    position: relative;
+    display: flex;
+    gap: 20px;
+    margin-bottom: 24px;
+    z-index: 1;
+}
+
+.activity-icon {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--bg-card);
+    border: 2px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: var(--text-muted);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: 0.2s;
+}
+
+.activity-item:hover .activity-icon {
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+    transform: scale(1.1);
+}
+
+.activity-content {
+    flex: 1;
+    background: var(--bg-hover); /* Bubble style */
+    padding: 16px;
+    border-radius: 0 12px 12px 12px; /* Chat bubble shape */
+    border: 1px solid transparent;
+    transition: 0.2s;
+}
+
+.activity-item:hover .activity-content {
+    background: var(--bg-card);
+    border-color: var(--border-color);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.activity-time {
+    font-size: 11px;
+    color: var(--text-muted);
+    display: block;
+    margin-top: 8px;
+    font-weight: 600;
+}
+
+/* Responsif untuk Mobile */
+@media (max-width: 992px) {
+    .pipeline-grid {
+        grid-template-columns: 1fr 1fr; /* 2 kolom di tablet */
+    }
+}
+@media (max-width: 576px) {
+    .pipeline-grid {
+        grid-template-columns: 1fr; /* 1 kolom di HP */
+    }
+}
+
+/* --- ULTIMATE ICONIC INTERACTIVE CARD --- */
+.card-iconic {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem; /* Gap menggunakan variabel core */
+    padding: 1.5rem !important;
+    background: var(--bg-card); /* Menggunakan warna card dasar */
+    border: 1px solid var(--border-color); /* */
+    border-radius: 1.25rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    z-index: 1;
+}
+
+/* Glassmorphism & Glow Effect on Hover */
+.card-iconic:hover {
+    transform: translateY(-8px);
+    border-color: var(--primary); /* Menggunakan warna brand primary */
+    background: linear-gradient(145deg, var(--bg-card), var(--bg-search)); /* Mix warna dasar */
+    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5), 
+                0 0 15px rgba(89, 130, 246, 0.2); /* Glow warna primary */
+}
+
+/* Decorative Accent Bar */
+.card-iconic::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 20%;
+    height: 60%;
+    width: 4px;
+    background: var(--primary); /* */
+    border-radius: 0 4px 4px 0;
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.card-iconic:hover::after {
+    opacity: 1;
+    height: 80%;
+    top: 10%;
+}
+
+/* Iconic Container (Squircle Style) */
+.icon-squircle {
+    width: 60px;
+    height: 60px;
+    background: var(--bg-hover); /* */
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    flex-shrink: 0;
+    box-shadow: inset 2px 2px 5px rgba(0,0,0,0.3);
+    transition: 0.4s;
+}
+
+.card-iconic:hover .icon-squircle {
+    background: var(--primary); /* */
+    color: #fff;
+    transform: rotate(-10deg) scale(1.1);
+}
+
+/* Proportional Data Layout */
+.iconic-data {
+    flex: 1;
+}
+
+.iconic-label {
+    display: block;
+    color: var(--text-muted); /* */
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 4px;
+}
+
+.iconic-value {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--text-main); /* */
+    line-height: 1;
+}
+
+.iconic-trend {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+/* --- ULTIMATE INTERACTIVE INTELLIGENCE HUB --- */
+.forensic-hub {
+    background: linear-gradient(165deg, rgba(28, 31, 38, 0.9), rgba(14, 18, 23, 0.95));
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(89, 130, 246, 0.2);
+    border-radius: 24px;
+    padding: 0 !important;
+    overflow: hidden;
+}
+
+.hub-sidebar {
+    background: rgba(0, 0, 0, 0.2);
+    border-right: 1px solid var(--border-color); /* */
+    padding: 24px;
+}
+
+.risk-pulse-container {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.risk-pulse-ring {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 4px solid var(--danger); /* */
+    opacity: 0.2;
+    animation: pulse-ring 2s infinite;
+}
+
+@keyframes pulse-ring {
+    0% { transform: scale(0.8); opacity: 0.5; }
+    100% { transform: scale(1.3); opacity: 0; }
+}
+
+.info-grid-compact {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 20px;
+}
+
+.info-item-iconic {
+    background: var(--bg-hover); /* */
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px solid transparent;
+    transition: 0.3s;
+}
+
+.info-item-iconic:hover {
+    border-color: var(--primary); /* */
+    background: rgba(89, 130, 246, 0.05);
+}
+
+/* --- ULTIMATE EDUCATION PREMIUM COMPONENTS --- */
+.academic-gauge {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle, var(--bg-hover) 60%, transparent 61%);
+    border-radius: 50%;
+    border: 4px solid var(--border-color); /* */
+}
+
+.schedule-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 12px;
+    margin-bottom: 12px;
+    border-left: 4px solid transparent;
+    transition: 0.3s;
+}
+
+.schedule-item:hover {
+    background: var(--bg-hover); /* */
+    transform: translateX(8px);
+}
+
+.schedule-item.active {
+    border-left-color: var(--primary); /* */
+    background: rgba(89, 130, 246, 0.05);
+}
+
+.course-card-mini {
+    padding: 12px;
+    border-radius: 12px;
+    background: var(--bg-card); /* */
+    border: 1px solid var(--border-color);
+    transition: 0.3s;
+}
+
+.course-card-mini:hover {
+    border-color: var(--accent-color); /* */
+    box-shadow: 0 10px 20px -10px rgba(0,0,0,0.5);
+}
+
+/* --- ULTIMATE SOCIAL & COMMUNITY COMPONENTS --- */
+.community-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.demographic-bar-group {
+    margin-bottom: 1.5rem;
+}
+
+.demographic-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: var(--text-muted); /* */
+}
+
+.complaint-card {
+    background: var(--bg-hover); /* */
+    border-radius: 16px;
+    padding: 16px;
+    border-left: 4px solid var(--border-color); /* */
+    transition: 0.3s;
+    margin-bottom: 12px;
+}
+
+.complaint-card:hover {
+    background: var(--bg-card); /* */
+    border-left-color: var(--accent-color); /* */
+    transform: translateX(5px);
+}
+
+.economic-pulse-box {
+    padding: 20px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, rgba(89, 130, 246, 0.05), transparent);
+    border: 1px dashed var(--primary); /* */
+}
+/* --- ULTIMATE GOVERNMENT & TRANSPARENCY COMPONENTS --- */
+.budget-monitor-box {
+    padding: 24px;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.02), transparent);
+    border-radius: 20px;
+    border: 1px solid var(--border-color); /* */
+    position: relative;
+    overflow: hidden;
+}
+
+.budget-monitor-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--primary); /* */
+}
+
+.compliance-shield {
+    width: 120px;
+    height: 140px;
+    background: url('https://cdn-icons-png.flaticon.com/512/1067/1067357.png') no-repeat center;
+    background-size: contain;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    filter: drop-shadow(0 0 10px rgba(46, 204, 113, 0.3));
+    margin: 0 auto;
+}
+
+.performance-index-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    background: var(--bg-hover); /* */
+    border-radius: 12px;
+    margin-bottom: 8px;
+    border: 1px solid transparent;
+    transition: 0.3s;
+}
+
+.performance-index-item:hover {
+    border-color: var(--primary); /* */
+    background: var(--bg-card); /* */
+}
+
+/* --- ULTIMATE FINANCE & CAPITAL COMPONENTS --- */
+.finance-glow-card {
+    background: linear-gradient(135deg, var(--bg-card), rgba(89, 130, 246, 0.05));
+    border: 1px solid rgba(89, 130, 246, 0.2);
+    box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.4);
+}
+
+.cashflow-indicator {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    border-radius: 12px;
+    background: var(--bg-hover); /* */
+    border: 1px solid transparent;
+    transition: 0.3s;
+}
+
+.cashflow-indicator:hover {
+    border-color: var(--primary); /* */
+    transform: translateY(-3px);
+}
+
+.invoice-badge-status {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 8px;
+}
+
+.tax-shield-box {
+    padding: 24px;
+    border-radius: 24px;
+    background: radial-gradient(circle at top right, rgba(156, 58, 237, 0.1), transparent);
+    border: 1px solid var(--border-color); /* */
+    text-align: center;
+}
+/* --- ULTIMATE PROJECT & TASK COMPONENTS --- */
+.workload-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    background: var(--bg-hover); /* */
+    border-radius: 12px;
+    margin-bottom: 12px;
+    border: 1px solid transparent;
+    transition: 0.3s ease;
+}
+
+.workload-item:hover {
+    border-color: var(--primary); /* */
+    background: var(--bg-card); /* */
+}
+
+.task-progress-mini {
+    height: 4px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-top: 8px;
+}
+
+.timeline-marker {
+    position: relative;
+    padding-left: 24px;
+    border-left: 2px dashed var(--border-color); /* */
+    padding-bottom: 20px;
+}
+
+.timeline-marker::before {
+    content: '';
+    position: absolute;
+    left: -7px;
+    top: 0;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--bg-body); /* */
+    border: 2px solid var(--primary); /* */
+}
+
+.collab-tool-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-hover); /* */
+    border: 1px solid var(--border-color); /* */
+    transition: 0.2s;
+}
+
+.collab-tool-btn:hover {
+    background: var(--primary); /* */
+    color: #fff;
+    transform: translateY(-3px);
+}

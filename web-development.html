@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Web Development - WKNG Agency</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="assets/css/marketing.css">
+</head>
+
+<body>
+
+    <div class="mobile-menu-overlay ultimate-mobile-menu">
+        <div class="mobile-menu-header">
+            <div class="logo brand-wkng">
+                <i class="fa-solid fa-bolt" style="color: var(--primary);"></i>
+                <span>WKNG<span class="text-primary">.</span></span>
+            </div>
+            <button class="mobile-close-btn">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <div class="mobile-scroll-content">
+            <nav class="mobile-nav-links">
+                <a href="pages-lp.marketing.html" class="mobile-nav-row">
+                    <span class="nav-label">Home</span>
+                </a>
+
+                <details class="mobile-accordion" open>
+                    <summary class="mobile-nav-row active">
+                        <span class="nav-label">Solutions</span>
+                        <i class="fa-solid fa-plus accordion-icon"></i>
+                    </summary>
+                    <div class="mobile-submenu">
+                        <a href="growth-marketing.html" class="submenu-item">
+                            <i class="fa-solid fa-rocket"></i> Growth Marketing
+                        </a>
+                        <a href="creative-studio.html" class="submenu-item">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i> Creative Studio
+                        </a>
+                        <a href="#" class="submenu-item" style="color:var(--primary);">
+                            <i class="fa-solid fa-code"></i> Web Development
+                        </a>
+                    </div>
+                </details>
+
+                <a href="#pricing" class="mobile-nav-row">
+                    <span class="nav-label">Pricing</span>
+                </a>
+
+                <details class="mobile-accordion">
+                    <summary class="mobile-nav-row">
+                        <span class="nav-label">Resources</span>
+                        <i class="fa-solid fa-plus accordion-icon"></i>
+                    </summary>
+                    <div class="mobile-submenu">
+                        <a href="#" class="submenu-item">
+                            <i class="fa-regular fa-newspaper"></i> Articles & Blog
+                        </a>
+                        <a href="#" class="submenu-item">
+                            <i class="fa-solid fa-book-open"></i> Case Studies
+                        </a>
+                    </div>
+                </details>
+
+                <a href="#about" class="mobile-nav-row">
+                    <span class="nav-label">About</span>
+                </a>
+                <a href="#careers" class="mobile-nav-row">
+                    <span class="nav-label">Careers</span>
+                </a>
+            </nav>
+        </div>
+
+        <div class="mobile-menu-footer">
+            <a href="#pricing" class="btn btn-primary btn-large btn-glow btn-block">
+                Start Project <i class="fa-solid fa-arrow-right" style="margin-left:8px; font-size:0.9em;"></i>
+            </a>
+
+            <div class="mobile-utility-bar">
+                <button class="util-item search-trigger-btn" title="Search">
+                    <div class="util-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+                    <span>Search</span>
+                </button>
+                <div class="util-divider"></div>
+                <button id="theme-toggle-mobile" class="util-item theme-toggle-btn" title="Switch Theme">
+                    <div class="util-icon"><i class="fa-solid fa-moon"></i></div>
+                    <span>Theme</span>
+                </button>
+                <div class="util-divider"></div>
+                <a href="#" class="util-item" title="Client Login">
+                    <div class="util-icon login-icon"><i class="fa-solid fa-user"></i></div>
+                    <span>Login</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <header class="navbar premium-nav">
+        <div class="container nav-inner">
+            <a href="pages-lp.marketing.html" class="logo brand-wkng">
+                <i class="fa-solid fa-bolt" style="color: var(--primary);"></i>
+                <span>WKNG<span class="text-primary">.</span></span>
+            </a>
+
+            <nav class="nav-links">
+                <a href="pages-lp.marketing.html" class="nav-link active">Home</a>
+
+                <div class="nav-item-dropdown">
+                    <a href="#" class="nav-link">Solutions <i class="fa-solid fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="growth-marketing.html" class="dropdown-item">
+                            <i class="fa-solid fa-rocket"></i>
+                            <div>
+                                <span>Growth Marketing</span>
+                                <small>Scale your revenue fast</small>
+                            </div>
+                        </a>
+                        <a href="creative-studio.html" class="dropdown-item">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                            <div>
+                                <span>Creative Studio</span>
+                                <small>Premium branding & UI/UX</small>
+                            </div>
+                        </a>
+                        <a href="web-development.html" class="dropdown-item">
+                            <i class="fa-solid fa-code"></i>
+                            <div>
+                                <span>Web Development</span>
+                                <small>Robust tech solutions</small>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <a href="#pricing" class="nav-link">Pricing</a>
+
+                <div class="nav-item-dropdown">
+                    <a href="#" class="nav-link">Resources <i class="fa-solid fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="#" class="dropdown-item">
+                            <i class="fa-regular fa-newspaper"></i>
+                            <div>
+                                <span>Articles & Blog</span>
+                                <small>Latest industry insights</small>
+                            </div>
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            <i class="fa-solid fa-book-open"></i>
+                            <div>
+                                <span>Case Studies</span>
+                                <small>Real results from clients</small>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <a href="#about" class="nav-link">About</a>
+
+                <a href="#careers" class="nav-link">Careers</a>
+            </nav>
+
+            <div class="nav-cta">
+                <button class="nav-icon-btn search-trigger-btn" title="Search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+                <button id="theme-toggle" class="nav-icon-btn theme-toggle-btn" title="Toggle Theme">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                <div class="nav-divider"></div>
+                <a href="#" class="link-login">Sign In</a>
+                <a href="#pricing" class="btn btn-primary btn-glow">
+                    Start Project
+                </a>
+            </div>
+
+            <div style="display:flex; align-items:center; gap:16px;">
+                <button class="mobile-menu-btn">
+                    <i class="fa-solid fa-bars-staggered"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+    <!-- Floating Mobile CTA -->
+    <div class="mobile-floating-cta" id="floating-cta">
+        <div style="display:flex; flex-direction:column; padding-left:8px;">
+            <span style="font-weight:700; font-size:0.9rem; color:white;">Ready to scale?</span>
+            <span style="font-size:0.75rem; color:var(--success);">Limited spots available</span>
+        </div>
+
+        <div style="display:flex; align-items:center; gap:12px;">
+            <a href="#pricing" class="btn btn-gradient" style="padding: 8px 20px; font-size:0.9rem;">Book Audit</a>
+
+            <button class="cta-close-btn" id="close-floating-cta">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Back To Top Button -->
+    <button id="back-to-top" class="back-to-top" title="Back to Top">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+    <main>
+        <section class="hero hero-tech">
+            <div class="tech-grid-bg"></div>
+
+            <div class="container hero-content tech-hero-content">
+                <div class="badge-premium fade-in-up">
+                    <span class="badge-dot" style="background: #3b82f6; box-shadow: 0 0 10px #3b82f6;"></span>
+                    Full-Stack Engineering
+                </div>
+
+                <h1 class="fade-in-up" style="transition-delay: 0.1s;">
+                    Pixel Perfect. <br>
+                    <span class="text-gradient-tech">Logic Driven.</span>
+                </h1>
+
+                <p class="hero-subtitle fade-in-up" style="transition-delay: 0.2s;">
+                    We build robust, scalable, and secure web applications. From complex SaaS platforms to
+                    high-performance e-commerce engines.
+                </p>
+
+                <div class="hero-cta-group fade-in-up" style="transition-delay: 0.3s;">
+                    <a href="#tech-stack" class="btn btn-primary btn-large btn-glow">
+                        View Tech Stack
+                    </a>
+                    <a href="#contact" class="btn btn-outline btn-large">
+                        GitHub Repo
+                    </a>
+                </div>
+
+                <div class="tech-visual-wrapper fade-in-up" style="transition-delay: 0.4s;">
+                    <div class="code-window">
+                        <div class="window-header">
+                            <div class="dots">
+                                <span class="dot red"></span>
+                                <span class="dot yellow"></span>
+                                <span class="dot green"></span>
+                            </div>
+                            <div class="filename">wkng_core_controller.php</div>
+                        </div>
+                        <div class="window-body">
+                            <div class="line"><span class="keyword">class</span> <span
+                                    class="class-name">DigitalDominance</span> <span class="keyword">extends</span>
+                                <span class="class-name">Agency</span> {
+                            </div>
+                            <div class="line indent-1"><span class="keyword">public function</span> <span
+                                    class="function">__construct</span>() {</div>
+                            <div class="line indent-2">$this-><span class="property">stack</span> = [<span
+                                    class="string">'Laravel'</span>, <span class="string">'Vue.js'</span>, <span
+                                    class="string">'Tailwind'</span>];</div>
+                            <div class="line indent-2">$this-><span class="property">performance</span> = <span
+                                    class="number">100</span>;</div>
+                            <div class="line indent-1">}</div>
+                            <div class="line">&nbsp;</div>
+                            <div class="line indent-1"><span class="keyword">public function</span> <span
+                                    class="function">scaleBusiness</span>(<span class="variable">$client</span>) {</div>
+                            <div class="line indent-2"><span class="keyword">return</span> <span
+                                    class="variable">$client</span>-><span class="function">revenue</span> * <span
+                                    class="number">10</span>;</div>
+                            <div class="line indent-1">}</div>
+                            <div class="line">}</div>
+                            <div class="line comment">// Ready to deploy...<span class="cursor">|</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="tech-stack" class="features" style="padding-top: 40px;">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Our Arsenal</span>
+                    <h2>Powered By Modern Tech</h2>
+                </div>
+
+                <div class="tech-grid reveal">
+                    <div class="tech-item"><i class="fa-brands fa-laravel"></i><span>Laravel</span></div>
+                    <div class="tech-item"><i class="fa-brands fa-vuejs"></i><span>Vue.js</span></div>
+                    <div class="tech-item"><i class="fa-brands fa-react"></i><span>React</span></div>
+                    <div class="tech-item"><i class="fa-brands fa-node-js"></i><span>Node.js</span></div>
+                    <div class="tech-item"><i class="fa-brands fa-aws"></i><span>AWS</span></div>
+                    <div class="tech-item"><i class="fa-brands fa-docker"></i><span>Docker</span></div>
+                    <div class="tech-item"><i class="fa-solid fa-database"></i><span>MySQL</span></div>
+                    <div class="tech-item"><i class="fa-brands fa-figma"></i><span>Figma</span></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="container">
+                <div class="features-grid">
+                    <div class="feature-card reveal">
+                        <div class="feature-icon"
+                            style="color:#3b82f6; border-color:rgba(59, 130, 246, 0.2); background:rgba(59, 130, 246, 0.05);">
+                            <i class="fa-solid fa-laptop-code"></i>
+                        </div>
+                        <h3>Custom Web Apps</h3>
+                        <p>Tailor-made solutions using Laravel & Vue.js. We build CRMs, ERPs, and SaaS platforms from
+                            scratch.</p>
+                    </div>
+
+                    <div class="feature-card reveal">
+                        <div class="feature-icon"
+                            style="color:#3b82f6; border-color:rgba(59, 130, 246, 0.2); background:rgba(59, 130, 246, 0.05);">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                        </div>
+                        <h3>E-Commerce</h3>
+                        <p>High-performance online stores that handle thousands of transactions without breaking a
+                            sweat.</p>
+                    </div>
+
+                    <div class="feature-card reveal">
+                        <div class="feature-icon"
+                            style="color:#3b82f6; border-color:rgba(59, 130, 246, 0.2); background:rgba(59, 130, 246, 0.05);">
+                            <i class="fa-solid fa-server"></i>
+                        </div>
+                        <h3>API Integration</h3>
+                        <p>We connect your systems together. Payment gateways, shipping APIs, and third-party tools.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="pricing" class="pricing">
+            <div class="container">
+                <div class="cta-card text-center reveal" style="border-color: rgba(59, 130, 246, 0.3);">
+                    <h2>Have a Complex Project?</h2>
+                    <p class="text-muted" style="max-width:600px; margin:0 auto 40px;">
+                        We love solving hard problems. Let's discuss your technical requirements and build a roadmap.
+                    </p>
+                    <a href="#" class="btn btn-primary btn-large btn-glow">
+                        Technical Consultation
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <div class="mobile-floating-cta" id="floating-cta">
+        <div style="display:flex; flex-direction:column; padding-left:8px;">
+            <span style="font-weight:700; font-size:0.9rem; color:white;">Need a Dev Team?</span>
+            <span style="font-size:0.75rem; color:var(--info);">Available for new projects</span>
+        </div>
+
+        <div style="display:flex; align-items:center; gap:12px;">
+            <a href="#pricing" class="btn btn-primary"
+                style="padding: 8px 20px; font-size:0.9rem; background:#3b82f6; color:white;">Hire Us</a>
+
+            <button class="cta-close-btn" id="close-floating-cta">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+    </div>
+
+    <footer class="footer ultimate-footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand-cta">
+                    <h3>Ready to dominate<br>your market?</h3>
+                    <p class="text-muted">Join the 1% of brands that actually scale.</p>
+                    <a href="#pricing" class="btn btn-primary btn-glow" style="margin-top:24px;">
+                        Start Your Project <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <div class="footer-nav-grid">
+                    <div class="footer-col">
+                        <div class="footer-heading-mobile">
+                            <h4>Company</h4>
+                            <i class="fa-solid fa-chevron-down mobile-only"></i>
+                        </div>
+                        <ul class="footer-links-list">
+                            <li><a href="#about">About WKNG</a></li>
+                            <li><a href="#careers">Careers <span class="hiring-badge">Hiring</span></a></li>
+                            <li><a href="#contact">Contact</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col">
+                        <div class="footer-heading-mobile">
+                            <h4>Solutions</h4>
+                            <i class="fa-solid fa-chevron-down mobile-only"></i>
+                        </div>
+                        <ul class="footer-links-list">
+                            <li><a href="growth-marketing.html">Growth Marketing</a></li>
+                            <li><a href="creative-studio.html">Creative Studio</a></li>
+                            <li><a href="web-development.html">Web Development</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col">
+                        <div class="footer-heading-mobile">
+                            <h4>Resources</h4>
+                            <i class="fa-solid fa-chevron-down mobile-only"></i>
+                        </div>
+                        <ul class="footer-links-list">
+                            <li><a href="#">Marketing Blog</a></li>
+                            <li><a href="#">ROI Calculator</a></li>
+                            <li><a href="#">Client Portal</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col socials-col">
+                        <h4>Connect</h4>
+                        <div style="display:flex; gap:16px; margin-top:16px;">
+                            <a href="#" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="#" class="social-icon"><i class="fa-brands fa-linkedin"></i></a>
+                            <a href="#" class="social-icon"><i class="fa-brands fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-big-brand">
+                <span>WKNG.</span>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="copyright">&copy; 2025 WKNG Agency Inc.</div>
+                <div class="legal-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="search-overlay">
+        <button class="search-close-btn"><i class="fa-solid fa-xmark"></i></button>
+        <div class="search-container">
+            <span class="search-label">What are you looking for?</span>
+            <div class="search-input-wrapper">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" placeholder="Type keywords..." autofocus>
+            </div>
+            <div class="quick-links">
+                <small>Quick Links:</small>
+                <div class="tags">
+                    <a href="#">Pricing</a>
+                    <a href="#">Case Studies</a>
+                    <a href="#">Services</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/marketing.js"></script>
+</body>
+
+</html>

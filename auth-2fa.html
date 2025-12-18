@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2FA Verification - Daily Admin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/core.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+
+    <style>
+        /* Styles Khusus Halaman Auth */
+        body {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-image: radial-gradient(circle at top right, rgba(168, 85, 247, 0.1), transparent 40%);
+        }
+
+        .auth-card {
+            width: 100%;
+            max-width: 420px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .otp-input-group {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin: 24px 0;
+        }
+
+        .otp-input {
+            width: 50px;
+            height: 60px;
+            font-size: 24px;
+            font-weight: 700;
+            text-align: center;
+            background: var(--bg-search);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            color: var(--text-main);
+            transition: all 0.2s;
+        }
+
+        .otp-input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 4px rgba(255, 71, 87, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .icon-lock {
+            width: 60px;
+            height: 60px;
+            background: rgba(168, 85, 247, 0.1);
+            color: #a855f7;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin: 0 auto 20px auto;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(168, 85, 247, 0.4);
+            }
+
+            70% {
+                box-shadow: 0 0 0 10px rgba(168, 85, 247, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(168, 85, 247, 0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="auth-card">
+        <div class="icon-lock">
+            <i class="fa-solid fa-shield-halved"></i>
+        </div>
+
+        <h2 style="font-weight: 800; color: var(--text-main); margin-bottom: 8px;">Two-Factor Auth</h2>
+        <p class="text-muted text-sm mb-4">
+            We sent a verification code to your mobile. Enter the code from the mobile in the box below.
+        </p>
+
+        <span class="text-main font-bold">******8793</span>
+
+        <form id="otpForm">
+            <div class="otp-input-group">
+                <input type="text" class="otp-input" maxlength="1" pattern="[0-9]" inputmode="numeric">
+                <input type="text" class="otp-input" maxlength="1" pattern="[0-9]" inputmode="numeric">
+                <input type="text" class="otp-input" maxlength="1" pattern="[0-9]" inputmode="numeric">
+                <input type="text" class="otp-input" maxlength="1" pattern="[0-9]" inputmode="numeric">
+            </div>
+
+            <button type="submit" class="btn btn-primary w-full mb-3" style="width: 100%;">Verify Code</button>
+        </form>
+
+        <p class="text-sm text-muted">
+            Don't receive the code?
+            <a href="#" class="text-accent font-bold">Resend</a>
+        </p>
+
+        <div class="mt-4">
+            <a href="pages-login.html" class="text-muted text-xs hover:text-white"><i
+                    class="fa-solid fa-arrow-left"></i> Back to Login</a>
+        </div>
+    </div>
+
+    <script>
+        const inputs = document.querySelectorAll('.otp-input');
+        inputs.forEach((input, index) => {
+            input.addEventListener('input', (e) => {
+                const val = e.target.value;
+                if (val.length === 1 && index < inputs.length - 1) {
+                    inputs[index + 1].focus();
+                }
+            });
+
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Backspace' && !e.target.value && index > 0) {
+                    inputs[index - 1].focus();
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>

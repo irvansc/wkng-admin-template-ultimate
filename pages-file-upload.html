@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Upload - Daily Admin</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/core.css">
+    <link rel="stylesheet" href="assets/css/utilities.css">
+    <link rel="stylesheet" href="assets/css/layout.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+</head>
+
+<body>
+
+    <header class="app-header">
+
+        <div class="header-left-actions">
+            <button class="header-icon-btn mobile-toggle-btn" id="mobileToggle">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+
+            <button class="header-icon-btn mobile-search-btn">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+
+            <div class="mobile-search-bar" id="mobileSearchBar">
+                <i class="fa-solid fa-magnifying-glass search-icon-mobile"></i>
+                <input type="text" class="mobile-search-input" placeholder="Search anything..." id="mobileSearchInput">
+                <button class="mobile-search-close" id="mobileSearchClose">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+
+
+
+        <div class="logo desktop-only">
+            <i class="fa-solid fa-code" style="color: var(--text-main);"></i>
+            <span>daily.dev</span>
+        </div>
+
+        <div class="search-wrapper desktop-only">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <input type="text" class="search-input" placeholder="Search..." id="searchInput">
+            <div class="search-shortcut">Ctrl K</div>
+        </div>
+
+        <div class="header-right">
+            <div class="notification-wrapper">
+                <button class="header-icon-btn" id="notifTrigger" title="Notifications">
+                    <i class="fa-regular fa-bell"></i>
+                    <div class="notification-dot"></div>
+                </button>
+
+                <div class="notification-dropdown" id="notifDropdown">
+                    <div class="notif-header">
+                        <h4>Notifications <span class="badge badge-danger"
+                                style="margin-left:8px; font-size:10px; padding:2px 6px;">4 New</span></h4>
+                        <span class="notif-mark-read">Mark all as read</span>
+                    </div>
+
+                    <div class="notif-list">
+
+                        <div class="notif-item unread">
+                            <div class="notif-icon-box error">
+                                <i class="fa-solid fa-circle-exclamation"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Server Connection Failed</h5>
+                                <p>Could not sync data with main server. Please check your API Key configuration.</p>
+                                <span class="notif-time">2 minutes ago</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item unread">
+                            <div class="notif-icon-box success">
+                                <i class="fa-solid fa-check-double"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Project Exported</h5>
+                                <p>Your dashboard layout "Q3 Report" has been successfully exported to PDF.</p>
+                                <span class="notif-time">1 hour ago</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item">
+                            <div class="notif-icon-box warning">
+                                <i class="fa-solid fa-triangle-exclamation"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Storage Usage High</h5>
+                                <p>You have used 85% of your allocated cloud storage. Consider upgrading.</p>
+                                <span class="notif-time">Yesterday at 4:30 PM</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item">
+                            <div class="notif-icon-box info">
+                                <i class="fa-solid fa-circle-info"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>New Feature Available</h5>
+                                <p>Dark mode is now customizable. Check settings for more themes.</p>
+                                <span class="notif-time">2 days ago</span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="notif-footer">
+                        View All Notifications
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-wrapper">
+                <img src="https://i.pravatar.cc/150?img=12" alt="Profile" class="user-img header-icon-btn"
+                    id="profileTrigger">
+
+                <div class="profile-dropdown" id="profileDropdown">
+                    <div class="pd-header">
+                        <img src="https://i.pravatar.cc/150?img=12" class="pd-avatar">
+                        <div class="pd-info">
+                            <h4>Irvan Maulana</h4>
+                            <span>@irvanmaulana</span>
+                        </div>
+                    </div>
+                    <div class="pd-menu-list">
+                        <a href="pages-profile.html" class="pd-menu-item"><i class="fa-regular fa-user"></i> Your
+                            profile</a>
+                    </div>
+                    <div class="pd-divider"></div>
+                    <div class="pd-theme-toggle">
+                        <span>Theme</span>
+                        <div class="theme-options">
+                            <div class="theme-opt active" id="themeDark"><i class="fa-solid fa-moon"></i></div>
+                            <div class="theme-opt" id="themeLight"><i class="fa-solid fa-sun"></i></div>
+                        </div>
+                    </div>
+                    <div class="pd-divider"></div>
+                    <div class="pd-menu-list">
+                        <a class="pd-menu-item text-muted"><i class="fa-solid fa-arrow-right-from-bracket"></i>
+                            Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="app-body-wrapper">
+        <div class="app-body">
+
+            <div id="sidebar-container"></div>
+
+            <main class="main-content" id="mainContent">
+
+                <div class="page-header-card">
+
+                    <i class="fa-solid fa-chart-pie header-bg-icon"></i>
+
+                    <div class="header-hero-content">
+                        <h1 class="hero-title">File Upload</h1>
+                        <p class="hero-desc">
+                            Komponen Text Area membantu Anda menambahkan input teks panjang dengan tampilan modern dan
+                            rapi.
+                            <span style="color: var(--accent-green); font-weight: 600;">Optimized for clarity and
+                                usability.</span>
+                        </p>
+                    </div>
+
+                    <div class="header-hero-actions">
+                        <div
+                            style="font-size: 12px; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">
+                            <i class="fa-regular fa-calendar" style="margin-right: 6px;"></i> Today, Oct 24
+                        </div>
+
+                        <nav aria-label="breadcrumb">
+                            <ol class="hero-breadcrumb">
+                                <li>
+                                    <a href="dashboard.html" class="breadcrumb-link">
+                                        <div class="home-icon-box"><i class="fa-solid fa-house"></i></div>
+                                    </a>
+                                </li>
+                                <li class="breadcrumb-sep"><i class="fa-solid fa-chevron-right"></i></li>
+                                <li>
+                                    <a href="#" class="breadcrumb-link">Form</a>
+                                </li>
+                                <li class="breadcrumb-sep"><i class="fa-solid fa-chevron-right"></i></li>
+                                <li>
+                                    <a href="#" class="breadcrumb-link active">File Upload</a>
+                                </li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+
+                <div class="section-title col-span-12">
+                    <div class="section-line"></div>
+                    <div class="section-badge">
+                        <i class="fa fa-border-style"></i> <span>File Upload</span>
+                    </div>
+                    <div class="section-line"></div>
+                </div>
+                <div class="content-grid">
+                    <div class="card col-span-4">
+                        <div class="card-header">
+                            <h5 class="card-title">1. Main Dropzone</h5>
+                        </div>
+                        <div class="upload-zone-lg" id="dropzoneArea" style="position: relative;">
+                            <input type="file" id="dropzoneInput" class="d-none" multiple>
+
+                            <div id="dropzoneContent">
+                                <i class="fa-solid fa-cloud-arrow-up fa-3x mb-3 text-muted"></i>
+                                <h5>Drag & Drop files here</h5>
+                                <p class="text-muted text-sm">or click button below</p>
+                                <button type="button" class="btn btn-primary"
+                                    onclick="document.getElementById('dropzoneInput').click()">Browse Files</button>
+                            </div>
+
+                            <div id="dropzonePreview" class="d-none flex-column align-center gap-2">
+                                <i class="fa-solid fa-file-circle-check fa-3x text-success"></i>
+                                <h6 id="droppedFileName">Filename.jpg</h6>
+                                <button type="button" class="btn btn-sm btn-ghost text-danger"
+                                    id="btnResetDropzone">Remove</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card col-span-4">
+                        <div class="card-header">
+                            <h5 class="card-title">2. Avatar Upload</h5>
+                        </div>
+                        <div class="d-flex align-center gap-3">
+                            <div style="position: relative;">
+                                <img src="https://i.pravatar.cc/150?img=12" class="rounded-full" width="80" height="80"
+                                    id="avatarPreview">
+
+                                <input type="file" id="avatarInput" class="d-none" accept="image/*">
+
+                                <button class="btn btn-sm btn-primary rounded-full"
+                                    onclick="document.getElementById('avatarInput').click()"
+                                    style="position: absolute; bottom: 0; right: 0; width: 30px; height: 30px; padding: 0;">
+                                    <i class="fa-solid fa-camera"></i>
+                                </button>
+                            </div>
+                            <div>
+                                <h6>Profile Photo</h6>
+                                <p class="text-xs text-muted mb-0">Max 2MB</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card col-span-4">
+                        <div class="card-header">
+                            <h5 class="card-title">3. Minimal Button</h5>
+                        </div>
+                        <label class="btn btn-secondary">
+                            <i class="fa-solid fa-paperclip"></i> Attach Document
+                            <input type="file" class="d-none">
+                        </label>
+                    </div>
+
+                    <div class="card col-span-4">
+                        <div class="card-header">
+                            <h5 class="card-title">4. Uploading...</h5>
+                        </div>
+                        <div class="d-flex align-center justify-between mb-2">
+                            <span class="text-sm"><i class="fa-regular fa-file-pdf"></i> report.pdf</span>
+                            <span class="text-xs text-success">80%</span>
+                        </div>
+                        <div
+                            style="width: 100%; height: 6px; background: var(--bg-hover); border-radius: 10px; overflow: hidden;">
+                            <div style="width: 80%; height: 100%; background: var(--accent-color);"></div>
+                        </div>
+                    </div>
+
+                    <div class="card col-span-4">
+                        <div class="card-header">
+                            <h5 class="card-title">5. Image Preview & Delete</h5>
+                        </div>
+                        <div id="imagePreviewBox"
+                            style="position: relative; width: 100%; height: 150px; border-radius: 12px; overflow: hidden; background: url('https://picsum.photos/400/300?random=1') center/cover; background-color: var(--bg-hover);">
+
+                            <input type="file" id="previewInput" class="d-none" accept="image/*">
+
+                            <div id="uploadPlaceholder" class="d-none"
+                                style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; cursor: pointer;"
+                                onclick="document.getElementById('previewInput').click()">
+                                <span class="text-muted"><i class="fa-solid fa-plus"></i> Upload Image</span>
+                            </div>
+
+                            <button class="btn btn-danger btn-sm" id="btnDeletePreview"
+                                style="position: absolute; top: 10px; right: 10px;">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <footer class="app-footer mt-2">
+                    <div class="footer-left">
+                        <span class="footer-logo-icon"><i class="fa-solid fa-code"></i></span>
+                        <span>&copy; 2025 <strong>Daily.dev</strong>. Created with <i
+                                class="fa-solid fa-heart heart-icon"></i>
+                            by Irvan Maulana.</span>
+                    </div>
+                    <div class="footer-links">
+                        <a href="#" class="footer-link-item">Privacy Policy</a>
+                        <a href="#" class="footer-link-item">Terms</a>
+                        <a href="#" class="footer-link-item">Support</a>
+                    </div>
+                </footer>
+            </main>
+        </div>
+    </div>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <div id="settings-container"></div>
+    <script src="assets/js/core.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            // --- 1. LOGIKA DROPZONE ---
+            const dropzone = document.getElementById('dropzoneArea');
+            const dropInput = document.getElementById('dropzoneInput');
+            const dropContent = document.getElementById('dropzoneContent');
+            const dropPreview = document.getElementById('dropzonePreview');
+            const droppedFileName = document.getElementById('droppedFileName');
+            const btnResetDrop = document.getElementById('btnResetDropzone');
+
+            // Mencegah default browser (membuka file di tab baru)
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                dropzone.addEventListener(eventName, preventDefaults, false);
+            });
+
+            function preventDefaults(e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+
+            // Efek Visual saat Drag
+            ['dragenter', 'dragover'].forEach(eventName => {
+                dropzone.addEventListener(eventName, () => dropzone.classList.add('drag-over'), false);
+            });
+
+            ['dragleave', 'drop'].forEach(eventName => {
+                dropzone.addEventListener(eventName, () => dropzone.classList.remove('drag-over'), false);
+            });
+
+            // Handle File Drop
+            dropzone.addEventListener('drop', handleDrop, false);
+
+            function handleDrop(e) {
+                const dt = e.dataTransfer;
+                const files = dt.files;
+                handleFiles(files);
+            }
+
+            // Handle File dari Tombol Browse
+            dropInput.addEventListener('change', function () {
+                handleFiles(this.files);
+            });
+
+            function handleFiles(files) {
+                if (files.length > 0) {
+                    const file = files[0];
+                    // Tampilkan Preview Nama File
+                    dropContent.classList.add('d-none');
+                    dropPreview.classList.remove('d-none');
+                    dropPreview.classList.add('d-flex'); // Pastikan flex aktif
+                    droppedFileName.innerText = file.name;
+
+                    // (Opsional) Tampilkan Toast notification
+                    if (window.Toast) window.Toast.fire({ title: "File Added", message: file.name, type: "success" });
+                }
+            }
+
+            // Reset Dropzone
+            btnResetDrop.addEventListener('click', function () {
+                dropInput.value = ''; // Reset input
+                dropContent.classList.remove('d-none');
+                dropPreview.classList.add('d-none');
+                dropPreview.classList.remove('d-flex');
+            });
+
+
+            // --- 2. LOGIKA AVATAR UPLOAD ---
+            const avatarInput = document.getElementById('avatarInput');
+            const avatarImg = document.getElementById('avatarPreview');
+
+            avatarInput.addEventListener('change', function () {
+                const file = this.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        avatarImg.src = e.target.result; // Ganti src gambar
+                        if (window.Toast) window.Toast.fire({ title: "Avatar Updated", type: "success" });
+                    }
+                    reader.readAsDataURL(file);
+                }
+            });
+
+
+            // --- 5. LOGIKA IMAGE PREVIEW & DELETE ---
+            const previewBox = document.getElementById('imagePreviewBox');
+            const btnDelete = document.getElementById('btnDeletePreview');
+            const previewInput = document.getElementById('previewInput');
+            const uploadPlaceholder = document.getElementById('uploadPlaceholder');
+
+            // Fungsi Hapus Gambar
+            btnDelete.addEventListener('click', function (e) {
+                e.stopPropagation(); // Agar tidak men-trigger upload
+                previewBox.style.backgroundImage = 'none'; // Hapus background
+                btnDelete.classList.add('d-none'); // Sembunyikan tombol hapus
+                uploadPlaceholder.classList.remove('d-none'); // Tampilkan tombol upload
+            });
+
+            // Fungsi Upload Ulang
+            previewInput.addEventListener('change', function () {
+                const file = this.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        previewBox.style.backgroundImage = `url('${e.target.result}')`;
+                        btnDelete.classList.remove('d-none');
+                        uploadPlaceholder.classList.add('d-none');
+                    }
+                    reader.readAsDataURL(file);
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

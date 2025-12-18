@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard - Daily Admin</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+
+    <link rel="stylesheet" href="assets/css/core.css" />
+    <link rel="stylesheet" href="assets/css/utilities.css" />
+    <link rel="stylesheet" href="assets/css/layout.css" />
+    <link rel="stylesheet" href="assets/css/components.css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+    <style>
+        /* Custom Style untuk Hero Card */
+        .welcome-card {
+            background: linear-gradient(135deg, #1c1f26 0%, #2d1b36 100%);
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .welcome-card::after {
+            content: "";
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.2) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="app-header">
+        <div class="header-left-actions">
+            <button class="header-icon-btn mobile-toggle-btn" id="mobileToggle">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+            <div class="mobile-search-bar" id="mobileSearchBar">
+                <i class="fa-solid fa-magnifying-glass search-icon-mobile"></i>
+                <input type="text" class="mobile-search-input" placeholder="Search anything..."
+                    id="mobileSearchInput" />
+                <button class="mobile-search-close" id="mobileSearchClose">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="logo desktop-only">
+            <i class="fa-solid fa-code" style="color: var(--text-main)"></i>
+            <span>daily.dev</span>
+        </div>
+        <div id="horizontal-menu-container" class="desktop-only" style="flex: 1; margin-left: 20px">
+        </div>
+        <div class="search-wrapper search-wrapper-inline desktop-only">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <input type="text" class="search-input" placeholder="Search..." id="searchInputInline">
+            <div class="search-shortcut">Ctrl K</div>
+        </div>
+
+        <div class="header-right-actions">
+
+            <button class="header-icon-btn" id="searchTrigger" title="Search" style="display: none;">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+
+        </div>
+
+        <div class="search-overlay" id="searchOverlay">
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass search-box-icon"></i>
+                <input type="text" class="search-box-input" placeholder="Search pages..." id="searchInputFloating">
+                <button class="search-box-close" id="searchClose">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="header-right">
+            <div class="dropdown-action">
+                <button class="header-icon-btn dropdown-trigger">
+                    <i class="fa-solid fa-plus"></i>
+                </button>
+                <div class="dropdown-menu-action icon-mode">
+                    <a href="#" class="action-icon-btn text-success" title="New Project"><i
+                            class="fa-solid fa-folder-plus"></i></a>
+                    <a href="#" class="action-icon-btn text-primary" title="New User"><i
+                            class="fa-solid fa-user-plus"></i></a>
+                    <a href="#" class="action-icon-btn text-warning" title="New Invoice"><i
+                            class="fa-solid fa-file-invoice"></i></a>
+                </div>
+            </div>
+            <div class="notification-wrapper">
+                <button class="header-icon-btn" id="notifTrigger" title="Notifications">
+                    <i class="fa-regular fa-bell"></i>
+                    <div class="notification-dot"></div>
+                </button>
+
+                <div class="notification-dropdown" id="notifDropdown">
+                    <div class="notif-header">
+                        <h4>
+                            Notifications
+                            <span class="badge badge-danger"
+                                style="margin-left: 8px; font-size: 10px; padding: 2px 6px">4
+                                New</span>
+                        </h4>
+                        <span class="notif-mark-read">Mark all as read</span>
+                    </div>
+
+                    <div class="notif-list">
+                        <div class="notif-item unread">
+                            <div class="notif-icon-box error">
+                                <i class="fa-solid fa-circle-exclamation"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Server Connection Failed</h5>
+                                <p>
+                                    Could not sync data with main server. Please check your API
+                                    Key configuration.
+                                </p>
+                                <span class="notif-time">2 minutes ago</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item unread">
+                            <div class="notif-icon-box success">
+                                <i class="fa-solid fa-check-double"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Project Exported</h5>
+                                <p>
+                                    Your dashboard layout "Q3 Report" has been successfully
+                                    exported to PDF.
+                                </p>
+                                <span class="notif-time">1 hour ago</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item">
+                            <div class="notif-icon-box warning">
+                                <i class="fa-solid fa-triangle-exclamation"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Storage Usage High</h5>
+                                <p>
+                                    You have used 85% of your allocated cloud storage. Consider
+                                    upgrading.
+                                </p>
+                                <span class="notif-time">Yesterday at 4:30 PM</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item">
+                            <div class="notif-icon-box info">
+                                <i class="fa-solid fa-circle-info"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>New Feature Available</h5>
+                                <p>
+                                    Dark mode is now customizable. Check settings for more
+                                    themes.
+                                </p>
+                                <span class="notif-time">2 days ago</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="notif-footer">View All Notifications</div>
+                </div>
+            </div>
+
+            <div class="profile-wrapper">
+                <img src="https://i.pravatar.cc/150?img=12" alt="Profile" class="user-img header-icon-btn"
+                    id="profileTrigger" />
+
+                <div class="profile-dropdown" id="profileDropdown">
+                    <div class="pd-header">
+                        <img src="https://i.pravatar.cc/150?img=12" class="pd-avatar" />
+                        <div class="pd-info">
+                            <h4>Irvan Maulana</h4>
+                            <span>@irvanmaulana</span>
+                        </div>
+                    </div>
+                    <div class="pd-menu-list">
+                        <a href="pages-profile.html" class="pd-menu-item"><i class="fa-regular fa-user"></i> Your
+                            profile</a>
+                    </div>
+                    <div class="pd-divider"></div>
+                    <div class="pd-theme-toggle">
+                        <span>Theme</span>
+                        <div class="theme-options">
+                            <div class="theme-opt active" id="themeDark">
+                                <i class="fa-solid fa-moon"></i>
+                            </div>
+                            <div class="theme-opt" id="themeLight">
+                                <i class="fa-solid fa-sun"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pd-divider"></div>
+                    <div class="pd-menu-list">
+                        <a class="pd-menu-item text-muted"><i class="fa-solid fa-arrow-right-from-bracket"></i>
+                            Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="app-body-wrapper">
+        <div class="app-body">
+            <div id="sidebar-container"></div>
+
+            <main class="main-content" id="mainContent">
+
+                <div class="card welcome-card mb-4 p-4 rounded-xl">
+                    <div class="d-flex justify-between align-center flex-wrap gap-4">
+                        <div>
+                            <h2 class="text-main mb-1">Welcome back, Irvan! 👋</h2>
+                            <p class="text-muted m-0">Here's what's happening with your projects today.</p>
+                        </div>
+                        <div class="d-flex gap-3">
+                            <div class="text-end desktop-only">
+                                <h4 class="m-0 text-main">$84,200</h4>
+                                <span class="text-xs text-success">Total Earnings</span>
+                            </div>
+                            <div style="width: 1px; background: var(--border-color); height: 40px;"
+                                class="desktop-only"></div>
+                            <a href="dashboard-ecommerce.html" class="btn btn-primary">View Reports</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-grid mb-4">
+                    <div class="card col-span-4">
+                        <div class="card-body">
+                            <div class="d-flex justify-between mb-2">
+                                <span class="text-muted text-xs uppercase font-bold">Active Users</span>
+                                <span class="badge badge-soft-success">+12%</span>
+                            </div>
+                            <div class="d-flex align-center gap-3">
+                                <h3 class="m-0">24.5k</h3>
+                                <div id="spark1"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card col-span-4">
+                        <div class="card-body">
+                            <div class="d-flex justify-between mb-2">
+                                <span class="text-muted text-xs uppercase font-bold">Sales Today</span>
+                                <span class="badge badge-soft-primary">New</span>
+                            </div>
+                            <div class="d-flex align-center gap-3">
+                                <h3 class="m-0">$1,240</h3>
+                                <div id="spark2"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card col-span-4">
+                        <div class="card-body">
+                            <div class="d-flex justify-between mb-2">
+                                <span class="text-muted text-xs uppercase font-bold">New Leads</span>
+                                <span class="badge badge-soft-warning">+5</span>
+                            </div>
+                            <div class="d-flex align-center gap-3">
+                                <h3 class="m-0">84</h3>
+                                <div id="spark3"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card col-span-4">
+                        <div class="card-body">
+                            <div class="d-flex justify-between mb-2">
+                                <span class="text-muted text-xs uppercase font-bold">Server Load</span>
+                                <span class="text-xs text-success">Optimal</span>
+                            </div>
+                            <div class="prog-container sm mt-2 mb-2">
+                                <div class="prog-bar gradient" style="width: 42%;"></div>
+                            </div>
+                            <span class="text-xs text-muted">42% CPU Usage</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-grid mb-4">
+                    <div class="card col-span-8">
+                        <div class="card-header d-flex justify-between align-center">
+                            <h5 class="card-title">Performance Overview</h5>
+                            <button class="btn btn-sm btn-ghost"><i class="fa-solid fa-ellipsis"></i></button>
+                        </div>
+                        <div class="card-body">
+                            <div id="mainChart" style="min-height: 320px;"></div>
+                        </div>
+                    </div>
+
+                    <div class="card col-span-4">
+                        <div class="card-header">
+                            <h5 class="card-title">Active Projects</h5>
+                        </div>
+                        <div class="card-body p-0">
+                            <div class="list-group list-group-flush">
+                                <div class="list-group-item">
+                                    <div class="d-flex justify-between mb-1">
+                                        <span class="text-sm font-bold">Website Redesign</span>
+                                        <span class="text-xs text-muted">70%</span>
+                                    </div>
+                                    <div class="prog-container xs mb-0">
+                                        <div class="prog-bar info" style="width: 70%;"></div>
+                                    </div>
+                                </div>
+                                <div class="list-group-item">
+                                    <div class="d-flex justify-between mb-1">
+                                        <span class="text-sm font-bold">Mobile App API</span>
+                                        <span class="text-xs text-muted">45%</span>
+                                    </div>
+                                    <div class="prog-container xs mb-0">
+                                        <div class="prog-bar warning" style="width: 45%;"></div>
+                                    </div>
+                                </div>
+                                <div class="list-group-item">
+                                    <div class="d-flex justify-between mb-1">
+                                        <span class="text-sm font-bold">Dashboard Migration</span>
+                                        <span class="text-xs text-muted">90%</span>
+                                    </div>
+                                    <div class="prog-container xs mb-0">
+                                        <div class="prog-bar success" style="width: 90%;"></div>
+                                    </div>
+                                </div>
+                                <div class="list-group-item text-center">
+                                    <button class="btn btn-sm btn-outline-primary w-100">View All Projects</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-title">
+                    <div class="section-line"></div>
+                    <div class="section-badge">Quick Access</div>
+                    <div class="section-line"></div>
+                </div>
+
+                <div class="content-grid">
+                    <a href="pages-settings.html" class="card col-span-4 hover-scale text-decoration-none">
+                        <div class="card-body text-center py-4">
+                            <div class="avatar avatar-lg avatar-soft-primary mb-3"><i class="fa-solid fa-gears"></i>
+                            </div>
+                            <h6 class="text-main m-0">Settings</h6>
+                            <p class="text-xs text-muted m-0">System Config</p>
+                        </div>
+                    </a>
+                    <a href="pages-icons.html" class="card col-span-4 hover-scale text-decoration-none">
+                        <div class="card-body text-center py-4">
+                            <div class="avatar avatar-lg avatar-soft-info mb-3"><i class="fa-solid fa-icons"></i></div>
+                            <h6 class="text-main m-0">Icons</h6>
+                            <p class="text-xs text-muted m-0">Library Reference</p>
+                        </div>
+                    </a>
+                    <a href="dashboard-crm.html" class="card col-span-4 hover-scale text-decoration-none">
+                        <div class="card-body text-center py-4">
+                            <div class="avatar avatar-lg avatar-soft-warning mb-3"><i class="fa-solid fa-users"></i>
+                            </div>
+                            <h6 class="text-main m-0">CRM</h6>
+                            <p class="text-xs text-muted m-0">Manage Leads</p>
+                        </div>
+                    </a>
+                    <a href="#" class="card col-span-4 hover-scale text-decoration-none">
+                        <div class="card-body text-center py-4">
+                            <div class="avatar avatar-lg avatar-soft-danger mb-3"><i class="fa-solid fa-life-ring"></i>
+                            </div>
+                            <h6 class="text-main m-0">Support</h6>
+                            <p class="text-xs text-muted m-0">Help Center</p>
+                        </div>
+                    </a>
+                </div>
+
+                <footer class="app-footer mt-5">
+                    <div class="footer-left"><span>&copy; 2025 Daily.dev</span></div>
+                </footer>
+            </main>
+        </div>
+    </div>
+
+    <div class="sidebar-overlay desktop-only" id="sidebarOverlay"></div>
+    <div id="settings-container"></div>
+
+    <script src="assets/js/core.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+
+            // --- 1. MAIN CHART (Mixed: Line & Column) ---
+            const mainOptions = {
+                series: [{
+                    name: 'Website Blog',
+                    type: 'column',
+                    data: [440, 505, 414, 671, 227, 413, 201, 352, 752, 320, 257, 160]
+                }, {
+                    name: 'Social Media',
+                    type: 'line',
+                    data: [23, 42, 35, 27, 43, 22, 17, 31, 22, 22, 12, 16]
+                }],
+                chart: {
+                    height: 350,
+                    type: 'line',
+                    toolbar: { show: false },
+                    fontFamily: 'Inter, sans-serif'
+                },
+                stroke: { width: [0, 4] },
+                dataLabels: { enabled: true, enabledOnSeries: [1] },
+                labels: ['01 Jan', '02 Jan', '03 Jan', '04 Jan', '05 Jan', '06 Jan', '07 Jan', '08 Jan', '09 Jan', '10 Jan', '11 Jan', '12 Jan'],
+                colors: ['rgba(168, 85, 247, 0.6)', '#2ecc71'], // Ungu Transparan & Hijau Solid
+                grid: { borderColor: 'rgba(255,255,255,0.05)' },
+                yaxis: [{
+                    title: { text: 'Website Blog', style: { color: '#9499a6' } },
+                }, {
+                    opposite: true,
+                    title: { text: 'Social Media', style: { color: '#9499a6' } }
+                }],
+                theme: { mode: 'dark' }
+            };
+            new ApexCharts(document.querySelector("#mainChart"), mainOptions).render();
+
+            // --- 2. SPARKLINE CHARTS (Mini) ---
+            const sparkConfig = {
+                chart: { type: 'area', height: 40, width: 80, sparkline: { enabled: true } },
+                stroke: { curve: 'smooth', width: 2 },
+                fill: { opacity: 0.3 },
+                tooltip: { fixed: { enabled: false }, x: { show: false }, y: { title: { formatter: () => '' } }, marker: { show: false } }
+            };
+
+            new ApexCharts(document.querySelector("#spark1"), {
+                ...sparkConfig, series: [{ data: [25, 66, 41, 89, 63, 25, 44, 12, 36, 9, 54] }], colors: ['#2ecc71']
+            }).render();
+
+            new ApexCharts(document.querySelector("#spark2"), {
+                ...sparkConfig, series: [{ data: [12, 14, 2, 47, 42, 15, 47, 75, 65, 19, 14] }], colors: ['#3b82f6']
+            }).render();
+
+            new ApexCharts(document.querySelector("#spark3"), {
+                ...sparkConfig, series: [{ data: [47, 45, 74, 14, 56, 74, 14, 11, 7, 39, 82] }], colors: ['#f1c40f']
+            }).render();
+
+        });
+    </script>
+</body>
+
+</html>

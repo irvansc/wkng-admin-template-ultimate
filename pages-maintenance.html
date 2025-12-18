@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Under Maintenance - Daily Admin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/core.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/error-pages.css">
+</head>
+
+<body class="error-page">
+
+    <div class="bg-grid"></div>
+    <div class="orb orb-1" id="orb1" style="background: #00d2d3;"></div>
+    <div class="orb orb-2" id="orb2" style="background: #2e86de;"></div>
+
+    <div class="content-box mb-2" id="contentBox">
+
+        <div class="ghost-container" style="color: #00d2d3;">
+            <i class="fa-solid fa-gears fa-spin" style="--fa-animation-duration: 5s;"></i>
+        </div>
+
+        <div class="glitch-wrapper">
+            <h1 class="error-code" data-text="503" style="text-shadow: 2px 2px 0px #00d2d3;">503</h1>
+        </div>
+
+        <h2 class="error-title">System Maintenance</h2>
+
+        <p class="error-desc" style="margin-bottom: 1.5rem;">
+            // Status: Sedang melakukan peningkatan sistem terjadwal.<br>
+            // Estimasi: Kami akan kembali online dalam beberapa saat.
+        </p>
+
+        <div
+            style="width: 100%; height: 6px; background: rgba(255,255,255,0.1); border-radius: 10px; margin-bottom: 24px; overflow: hidden; position: relative;">
+            <div
+                style="width: 65%; height: 100%; background: #00d2d3; border-radius: 10px; position: relative; overflow: hidden;">
+                <div
+                    style="position: absolute; top:0; left:0; right:0; bottom:0; background: linear-gradient(45deg,rgba(255,255,255,0.2) 25%,transparent 25%,transparent 50%,rgba(255,255,255,0.2) 50%,rgba(255,255,255,0.2) 75%,transparent 75%,transparent); background-size: 10px 10px; opacity: 0.5;">
+                </div>
+            </div>
+        </div>
+
+        <div class="justify-content-beetween align-items-center gap-3">
+            <button onclick="window.location.reload()" class="btn btn-home rounded-pill mb-2"
+                style="background: #00d2d3; color: #000;">
+                <i class="fa-solid fa-rotate me-2"></i> Check Status
+            </button>
+            <a href="mailto:support@daily.dev" class="btn btn-ghost rounded-pill">
+                Contact Support
+            </a>
+        </div>
+
+    </div>
+
+    <footer class="error-footer">
+        &copy; 2025 DAILY ADMIN SYSTEM. ALL RIGHTS RESERVED.
+    </footer>
+
+    <script src="assets/js/error-pages.js"></script>
+</body>
+
+</html>

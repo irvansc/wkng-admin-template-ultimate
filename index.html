@@ -1,377 +1,294 @@
 <!DOCTYPE html>
-<html lang="id" data-theme="dark">
+<html lang="en" data-theme="dark">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard - Daily Admin</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WKNG - Ultra Premium Admin Template</title>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet" />
+    <!-- Fonts: Space Grotesk (Tech) & Inter (Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700;800&display=swap"
+        rel="stylesheet">
 
-    <link rel="stylesheet" href="assets/css/core.css" />
-    <link rel="stylesheet" href="assets/css/utilities.css" />
-    <link rel="stylesheet" href="assets/css/layout.css" />
-    <link rel="stylesheet" href="assets/css/components.css" />
-    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <!-- Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <link rel="stylesheet" href="assets/css/landing.css">
 </head>
 
 <body>
-    <header class="app-header">
-        <div class="header-left-actions">
-            <button class="header-icon-btn mobile-toggle-btn" id="mobileToggle">
-                <i class="fa-solid fa-bars-staggered"></i>
-            </button>
-            <div class="mobile-search-bar" id="mobileSearchBar">
-                <i class="fa-solid fa-magnifying-glass search-icon-mobile"></i>
-                <input type="text" class="mobile-search-input" placeholder="Search anything..."
-                    id="mobileSearchInput" />
-                <button class="mobile-search-close" id="mobileSearchClose">
-                    <i class="fa-solid fa-xmark"></i>
+
+    <!-- --- BACKGROUND FX (Aurora Mesh) --- -->
+    <div class="fx-container">
+        <div class="mesh-gradient"></div>
+        <div class="noise-texture"></div>
+        <div class="grid-floor"></div>
+    </div>
+
+    <!-- --- NAVBAR --- -->
+    <nav class="navbar">
+        <div class="container nav-inner">
+            <a href="#" class="logo">
+                <div class="logo-mark">W</div>
+                <span>WKNG<span class="text-accent">.</span></span>
+            </a>
+
+            <div class="nav-links desktop-only">
+                <a href="#features" class="link-hover">Features</a>
+                <a href="#showcase" class="link-hover">Components</a>
+                <a href="#pricing" class="link-hover">Pricing</a>
+            </div>
+
+            <div class="nav-actions">
+                <a href="dashboard.html" class="btn btn-sm btn-glow">Get Access</a>
+                <button class="mobile-toggle" aria-label="Menu">
+                    <i class="ph ph-list"></i>
                 </button>
             </div>
         </div>
+    </nav>
 
-        <div class="logo desktop-only">
-            <i class="fa-solid fa-code" style="color: var(--text-main)"></i>
-            <span>daily.dev</span>
-        </div>
-        <div id="horizontal-menu-container" class="desktop-only" style="flex: 1; margin-left: 20px">
-        </div>
-        <div class="search-wrapper search-wrapper-inline desktop-only">
-            <i class="fa-solid fa-magnifying-glass search-icon"></i>
-            <input type="text" class="search-input" placeholder="Search..." id="searchInputInline">
-            <div class="search-shortcut">Ctrl K</div>
-        </div>
+    <!-- --- HERO SECTION --- -->
+    <section class="hero">
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <div class="tag-pill fade-up">
+                    <span class="dot-pulse"></span> v2.0 Enterprise Release
+                </div>
+                <h1 class="hero-title fade-up delay-1">
+                    Build Faster.<br>
+                    Look <span class="text-gradient">Expensive.</span>
+                </h1>
+                <p class="hero-desc fade-up delay-2">
+                    Admin Template HTML5 paling detail yang pernah dibuat.
+                    Arsitektur mobile-first, kode vanilla JS bersih, dan desain sistem siap pakai untuk developer
+                    serius.
+                </p>
+                <div class="hero-btns fade-up delay-3">
+                    <a href="#pricing" class="btn btn-xl btn-primary">
+                        <i class="ph-bold ph-lightning"></i> Buy Now
+                        <div class="btn-shine"></div>
+                    </a>
+                    <a href="dashboard.html" class="btn btn-xl btn-outline">
+                        <i class="ph-bold ph-eye"></i> Live Demo
+                    </a>
+                </div>
 
-        <div class="header-right-actions">
-
-            <button class="header-icon-btn" id="searchTrigger" title="Search" style="display: none;">
-                <i class="fa-solid fa-magnifying-glass"></i>
-            </button>
-
-        </div>
-
-        <div class="search-overlay" id="searchOverlay">
-            <div class="search-box">
-                <i class="fa-solid fa-magnifying-glass search-box-icon"></i>
-                <input type="text" class="search-box-input" placeholder="Search pages..." id="searchInputFloating">
-                <button class="search-box-close" id="searchClose">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
-            </div>
-        </div>
-
-        <div class="header-right">
-            <div class="notification-wrapper">
-                <button class="header-icon-btn" id="notifTrigger" title="Notifications">
-                    <i class="fa-regular fa-bell"></i>
-                    <div class="notification-dot"></div>
-                </button>
-
-                <div class="notification-dropdown" id="notifDropdown">
-                    <div class="notif-header">
-                        <h4>
-                            Notifications
-                            <span class="badge badge-danger"
-                                style="margin-left: 8px; font-size: 10px; padding: 2px 6px">4 New</span>
-                        </h4>
-                        <span class="notif-mark-read">Mark all as read</span>
+                <div class="trust-badge fade-up delay-4">
+                    <span>Trusted by 500+ Architects</span>
+                    <div class="avatars">
+                        <div class="avatar" style="background: #333"></div>
+                        <div class="avatar" style="background: #444"></div>
+                        <div class="avatar" style="background: #555"></div>
+                        <div class="avatar-count">+2k</div>
                     </div>
-
-                    <div class="notif-list">
-                        <div class="notif-item unread">
-                            <div class="notif-icon-box error">
-                                <i class="fa-solid fa-circle-exclamation"></i>
-                            </div>
-                            <div class="notif-content">
-                                <h5>Server Connection Failed</h5>
-                                <p>
-                                    Could not sync data with main server. Please check your API
-                                    Key configuration.
-                                </p>
-                                <span class="notif-time">2 minutes ago</span>
-                            </div>
-                        </div>
-
-                        <div class="notif-item unread">
-                            <div class="notif-icon-box success">
-                                <i class="fa-solid fa-check-double"></i>
-                            </div>
-                            <div class="notif-content">
-                                <h5>Project Exported</h5>
-                                <p>
-                                    Your dashboard layout "Q3 Report" has been successfully
-                                    exported to PDF.
-                                </p>
-                                <span class="notif-time">1 hour ago</span>
-                            </div>
-                        </div>
-
-                        <div class="notif-item">
-                            <div class="notif-icon-box warning">
-                                <i class="fa-solid fa-triangle-exclamation"></i>
-                            </div>
-                            <div class="notif-content">
-                                <h5>Storage Usage High</h5>
-                                <p>
-                                    You have used 85% of your allocated cloud storage. Consider
-                                    upgrading.
-                                </p>
-                                <span class="notif-time">Yesterday at 4:30 PM</span>
-                            </div>
-                        </div>
-
-                        <div class="notif-item">
-                            <div class="notif-icon-box info">
-                                <i class="fa-solid fa-circle-info"></i>
-                            </div>
-                            <div class="notif-content">
-                                <h5>New Feature Available</h5>
-                                <p>
-                                    Dark mode is now customizable. Check settings for more
-                                    themes.
-                                </p>
-                                <span class="notif-time">2 days ago</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="notif-footer">View All Notifications</div>
                 </div>
             </div>
 
-            <div class="profile-wrapper">
-                <img src="https://i.pravatar.cc/150?img=12" alt="Profile" class="user-img header-icon-btn"
-                    id="profileTrigger" />
-
-                <div class="profile-dropdown" id="profileDropdown">
-                    <div class="pd-header">
-                        <img src="https://i.pravatar.cc/150?img=12" class="pd-avatar" />
-                        <div class="pd-info">
-                            <h4>Irvan Maulana</h4>
-                            <span>@irvanmaulana</span>
-                        </div>
-                    </div>
-                    <div class="pd-menu-list">
-                        <a href="pages-profile.html" class="pd-menu-item"><i class="fa-regular fa-user"></i> Your
-                            profile</a>
-                    </div>
-                    <div class="pd-divider"></div>
-                    <div class="pd-theme-toggle">
-                        <span>Theme</span>
-                        <div class="theme-options">
-                            <div class="theme-opt active" id="themeDark">
-                                <i class="fa-solid fa-moon"></i>
+            <!-- CSS-ONLY MOCKUP (3D TILT) -->
+            <div class="hero-visual fade-in delay-2">
+                <div class="tilt-wrapper" id="tiltCard">
+                    <div class="browser-window">
+                        <div class="browser-header">
+                            <div class="traffic-lights">
+                                <span></span><span></span><span></span>
                             </div>
-                            <div class="theme-opt" id="themeLight">
-                                <i class="fa-solid fa-sun"></i>
+                            <div class="browser-address">dashboard.wkng.com</div>
+                        </div>
+                        <div class="browser-body">
+                            <!-- Sidebar -->
+                            <div class="mock-sidebar">
+                                <div class="mock-item active"></div>
+                                <div class="mock-item"></div>
+                                <div class="mock-item"></div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="pd-divider"></div>
-                    <div class="pd-menu-list">
-                        <a class="pd-menu-item text-muted"><i class="fa-solid fa-arrow-right-from-bracket"></i>
-                            Logout</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-    <div class="app-body-wrapper">
-
-        <div class="app-body">
-            <div id="sidebar-container"></div>
-
-            <main class="main-content" id="mainContent">
-                <div class="page-header-card">
-                    <i class="fa-solid fa-chart-pie header-bg-icon"></i>
-
-                    <div class="header-hero-content">
-                        <h1 class="hero-title">Dashboard Analytics</h1>
-                        <p class="hero-desc">
-                            Overview of your daily performance, sales stats, and AI monitoring
-                            logs.
-                            <span style="color: var(--accent-green); font-weight: 600">System is running
-                                smoothly.</span>
-                        </p>
-                    </div>
-
-                    <div class="header-hero-actions">
-                        <div style="
-                font-size: 12px;
-                color: var(--text-muted);
-                font-weight: 600;
-                text-transform: uppercase;
-                letter-spacing: 1px;
-              ">
-                            <i class="fa-regular fa-calendar" style="margin-right: 6px"></i>
-                            Today, Oct 24
-                        </div>
-
-                        <nav aria-label="breadcrumb">
-                            <ol class="hero-breadcrumb">
-                                <li>
-                                    <a href="index.html" class="breadcrumb-link">
-                                        <div class="home-icon-box">
-                                            <i class="fa-solid fa-house"></i>
+                            <!-- Content -->
+                            <div class="mock-main">
+                                <div class="mock-header-row">
+                                    <div class="mock-title">Dashboard</div>
+                                    <div class="mock-user"></div>
+                                </div>
+                                <div class="mock-cards-row">
+                                    <div class="mock-card card-1">
+                                        <div class="mock-label">Revenue</div>
+                                        <div class="mock-value">$42,500</div>
+                                        <div class="mock-chart-mini"></div>
+                                    </div>
+                                    <div class="mock-card card-2">
+                                        <div class="mock-label">Users</div>
+                                        <div class="mock-value">8,200</div>
+                                        <div class="mock-bars">
+                                            <span></span><span></span><span></span><span></span>
                                         </div>
-                                    </a>
-                                </li>
-                                <li class="breadcrumb-sep">
-                                    <i class="fa-solid fa-chevron-right"></i>
-                                </li>
-                                <li>
-                                    <a href="#" class="breadcrumb-link">Admin</a>
-                                </li>
-                                <li class="breadcrumb-sep">
-                                    <i class="fa-solid fa-chevron-right"></i>
-                                </li>
-                                <li>
-                                    <a href="#" class="breadcrumb-link active">Dashboard</a>
-                                </li>
-                            </ol>
-                        </nav>
+                                    </div>
+                                </div>
+                                <div class="mock-big-chart">
+                                    <div class="mock-graph-line"></div>
+                                    <div class="mock-graph-glow"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Reflections -->
+                        <div class="glass-reflection"></div>
+                    </div>
+
+                    <!-- Floating Cards -->
+                    <div class="float-card float-left">
+                        <i class="ph-fill ph-check-circle text-accent"></i> Pure HTML
+                    </div>
+                    <div class="float-card float-right">
+                        <i class="ph-fill ph-rocket-launch text-accent"></i> 100/100 Speed
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
 
-                <footer class="app-footer">
-                    <div class="footer-left">
-                        <span class="footer-logo-icon"><i class="fa-solid fa-code"></i></span>
-                        <span>&copy; 2025 <strong>Daily.dev</strong>. Created with
-                            <i class="fa-solid fa-heart heart-icon"></i> by Irvan
-                            Maulana.</span>
-                    </div>
-                    <div class="footer-links">
-                        <a href="#" class="footer-link-item">Privacy Policy</a>
-                        <a href="#" class="footer-link-item">Terms</a>
-                        <a href="#" class="footer-link-item">Support</a>
-                    </div>
-                </footer>
-            </main>
+    <!-- --- LOGO MARQUEE (TRUST) --- -->
+    <div class="marquee-section">
+        <div class="marquee-content">
+            <span>REACT</span> • <span>VUE</span> • <span>ANGULAR</span> • <span>LARAVEL</span> • <span>HTML5</span> •
+            <span>TAILWIND</span> •
+            <span>REACT</span> • <span>VUE</span> • <span>ANGULAR</span> • <span>LARAVEL</span> • <span>HTML5</span> •
+            <span>TAILWIND</span> •
         </div>
     </div>
 
-    <div class="sidebar-overlay desktop-only" id="sidebarOverlay"></div>
-    <div id="settings-container"></div>c
+    <!-- --- FEATURES (BENTO GRID) --- -->
+    <section id="features" class="section">
+        <div class="container">
+            <div class="section-head text-center">
+                <span class="sub-head">The WKNG Standard</span>
+                <h2 class="section-title">Designed for <span class="text-accent">Obsession.</span></h2>
+            </div>
 
-    <script src="assets/js/core.js"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            // Cek apakah elemen chart ada (agar tidak error di halaman lain)
-            const chartElement = document.querySelector("#salesChart");
+            <div class="bento-grid">
+                <div class="bento-item item-lg glow-card">
+                    <div class="card-bg-mesh"></div>
+                    <div class="bento-content">
+                        <i class="ph-duotone ph-paint-brush-broad icon-xl"></i>
+                        <h3>Pixel Perfection</h3>
+                        <p>Setiap margin, padding, dan border-radius dihitung matematis. Tidak ada elemen "asal jadi".
+                            Harmoni visual mutlak.</p>
+                    </div>
+                </div>
+                <div class="bento-item glow-card">
+                    <div class="bento-content">
+                        <i class="ph-duotone ph-device-mobile-camera icon-xl text-accent"></i>
+                        <h3>Mobile First</h3>
+                        <p>Navigasi off-canvas, touch gestures, dan layout yang adaptif dari 320px.</p>
+                    </div>
+                </div>
+                <div class="bento-item glow-card">
+                    <div class="bento-content">
+                        <i class="ph-duotone ph-code icon-xl text-blue"></i>
+                        <h3>Clean Code</h3>
+                        <p>Tanpa jQuery. Tanpa dependensi berat. Murni Vanilla JS modern.</p>
+                    </div>
+                </div>
+                <div class="bento-item item-wide glow-card">
+                    <div class="bento-content row-layout">
+                        <div class="text-part">
+                            <h3>Dark Mode DNA</h3>
+                            <p>Bukan sekadar invert warna. Warna dikurasi khusus untuk mengurangi mata lelah
+                                (eye-strain) dan memberikan kesan premium.</p>
+                        </div>
+                        <div class="visual-part">
+                            <div class="toggle-switch">
+                                <div class="toggle-knob"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-            if (chartElement) {
-                // Ambil warna dari CSS Variable agar konsisten
-                const style = getComputedStyle(document.body);
-                const isDark =
-                    document.documentElement.getAttribute("data-theme") === "dark";
+    <!-- --- SHOWCASE SECTION --- -->
+    <section id="showcase" class="section bg-darker">
+        <div class="container">
+            <div class="section-head">
+                <h2 class="section-title">Essential Components</h2>
+                <p>50+ komponen siap pakai. Copy, paste, selesai.</p>
+            </div>
 
-                // Konfigurasi Chart
-                var options = {
-                    series: [
-                        {
-                            name: "Total Sales",
-                            data: [31, 40, 28, 51, 42, 109, 100],
-                        },
-                        {
-                            name: "Revenue",
-                            data: [11, 32, 45, 32, 34, 52, 41],
-                        },
-                    ],
-                    chart: {
-                        height: 350,
-                        type: "area", // Tipe Area agar terlihat modern dengan gradasi
-                        fontFamily: "Inter, sans-serif",
-                        toolbar: { show: false }, // Hilangkan menu download bawaan biar bersih
-                        background: "transparent",
-                    },
-                    colors: ["#a855f7", "#ec4899"], // Warna ungu & pink (sesuai tema Anda)
-                    dataLabels: { enabled: false },
-                    stroke: {
-                        curve: "smooth", // Garis melengkung halus
-                        width: 2,
-                    },
-                    xaxis: {
-                        type: "datetime",
-                        categories: [
-                            "2023-09-19T00:00:00.000Z",
-                            "2023-09-20T00:00:00.000Z",
-                            "2023-09-21T00:00:00.000Z",
-                            "2023-09-22T00:00:00.000Z",
-                            "2023-09-23T00:00:00.000Z",
-                            "2023-09-24T00:00:00.000Z",
-                            "2023-09-25T00:00:00.000Z",
-                        ],
-                        labels: {
-                            style: { colors: "var(--text-muted)" }, // Warna teks sumbu X
-                        },
-                        axisBorder: { show: false },
-                        axisTicks: { show: false },
-                    },
-                    yaxis: {
-                        labels: {
-                            style: { colors: "var(--text-muted)" }, // Warna teks sumbu Y
-                        },
-                    },
-                    grid: {
-                        borderColor: "var(--border-color)", // Warna garis grid tipis
-                        strokeDashArray: 4, // Garis putus-putus
-                    },
-                    theme: {
-                        mode: isDark ? "dark" : "light", // Otomatis set mode chart
-                    },
-                    tooltip: {
-                        theme: isDark ? "dark" : "light",
-                    },
-                };
+            <div class="components-scroll">
+                <div class="comp-card">
+                    <div class="comp-header"><span class="dot red"></span><span class="dot yellow"></span></div>
+                    <div class="comp-body chart-preview"></div>
+                    <p>Charts</p>
+                </div>
+                <div class="comp-card">
+                    <div class="comp-header"><span class="dot green"></span></div>
+                    <div class="comp-body table-preview">
+                        <div class="line"></div>
+                        <div class="line"></div>
+                        <div class="line"></div>
+                    </div>
+                    <p>Tables</p>
+                </div>
+                <div class="comp-card">
+                    <div class="comp-header"><span class="dot blue"></span></div>
+                    <div class="comp-body form-preview">
+                        <div class="input-mock"></div>
+                        <div class="btn-mock"></div>
+                    </div>
+                    <p>Forms</p>
+                </div>
+                <div class="comp-card">
+                    <div class="comp-header"><span class="dot purple"></span></div>
+                    <div class="comp-body widget-preview"></div>
+                    <p>Widgets</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                // Render Chart
-                var chart = new ApexCharts(chartElement, options);
-                chart.render();
+    <!-- --- PRICING CTA --- -->
+    <section id="pricing" class="section cta-section">
+        <div class="container">
+            <div class="cta-card">
+                <div class="cta-glow"></div>
+                <div class="cta-content">
+                    <h2>Ready to Build Your Empire?</h2>
+                    <p>Hemat 400+ jam development frontend. Satu lisensi untuk seumur hidup.</p>
+                    <div class="price-tag">
+                        <span class="old">$99</span>
+                        <span class="new">$49</span>
+                    </div>
+                    <div class="cta-actions">
+                        <a href="#" class="btn btn-xl btn-white">Purchase License</a>
+                        <span class="guarantee"><i class="ph-fill ph-seal-check"></i> 30 Days Money Back</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                // LISTEN PERUBAHAN TEMA (Agar chart berubah warna tanpa refresh)
-                // Kita override tombol themeToggle agar me-update chart juga
-                const themeBtn = document.getElementById("themeToggle");
-                if (themeBtn) {
-                    themeBtn.addEventListener("click", function () {
-                        setTimeout(() => {
-                            const newTheme =
-                                document.documentElement.getAttribute("data-theme");
-                            chart.updateOptions({
-                                theme: { mode: newTheme },
-                                tooltip: { theme: newTheme },
-                                grid: {
-                                    borderColor: getComputedStyle(
-                                        document.body
-                                    ).getPropertyValue("--border-color"),
-                                },
-                                xaxis: {
-                                    labels: {
-                                        style: {
-                                            colors: getComputedStyle(
-                                                document.body
-                                            ).getPropertyValue("--text-muted"),
-                                        },
-                                    },
-                                },
-                                yaxis: {
-                                    labels: {
-                                        style: {
-                                            colors: getComputedStyle(
-                                                document.body
-                                            ).getPropertyValue("--text-muted"),
-                                        },
-                                    },
-                                },
-                            });
-                        }, 100); // Delay sedikit agar variabel CSS update dulu
-                    });
-                }
-            }
-        });
-    </script>
+    <!-- --- FOOTER --- -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <h3>WKNG.</h3>
+                    <p>The Architect's Choice for Admin Templates.</p>
+                </div>
+                <div class="footer-nav">
+                    <a href="#">License</a>
+                    <a href="#">Documentation</a>
+                    <a href="#">Support</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2024 WKNG Design System. Crafted with obsession.
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/landing.js"></script>
 </body>
 
 </html>

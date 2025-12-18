@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Finance Dashboard - Daily Admin</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+
+    <link rel="stylesheet" href="assets/css/core.css" />
+    <link rel="stylesheet" href="assets/css/utilities.css" />
+    <link rel="stylesheet" href="assets/css/layout.css" />
+    <link rel="stylesheet" href="assets/css/components.css" />
+</head>
+
+<body>
+    <header class="app-header">
+        <div class="header-left-actions">
+            <button class="header-icon-btn mobile-toggle-btn" id="mobileToggle">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+            <div class="mobile-search-bar" id="mobileSearchBar">
+                <i class="fa-solid fa-magnifying-glass search-icon-mobile"></i>
+                <input type="text" class="mobile-search-input" placeholder="Search anything..."
+                    id="mobileSearchInput" />
+                <button class="mobile-search-close" id="mobileSearchClose">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="logo desktop-only">
+            <i class="fa-solid fa-code" style="color: var(--text-main)"></i>
+            <span>daily.dev</span>
+        </div>
+        <div id="horizontal-menu-container" class="desktop-only" style="flex: 1; margin-left: 20px"></div>
+        <div class="search-wrapper search-wrapper-inline desktop-only">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <input type="text" class="search-input" placeholder="Search..." id="searchInputInline" />
+            <div class="search-shortcut">Ctrl K</div>
+        </div>
+
+        <div class="header-right-actions">
+            <button class="header-icon-btn" id="searchTrigger" title="Search" style="display: none">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </div>
+
+        <div class="search-overlay" id="searchOverlay">
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass search-box-icon"></i>
+                <input type="text" class="search-box-input" placeholder="Search pages..." id="searchInputFloating" />
+                <button class="search-box-close" id="searchClose">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="header-right">
+            <div class="notification-wrapper">
+                <button class="header-icon-btn" id="notifTrigger" title="Notifications">
+                    <i class="fa-regular fa-bell"></i>
+                    <div class="notification-dot"></div>
+                </button>
+
+                <div class="notification-dropdown" id="notifDropdown">
+                    <div class="notif-header">
+                        <h4>
+                            Notifications
+                            <span class="badge badge-danger"
+                                style="margin-left: 8px; font-size: 10px; padding: 2px 6px">4 New</span>
+                        </h4>
+                        <span class="notif-mark-read">Mark all as read</span>
+                    </div>
+
+                    <div class="notif-list">
+                        <div class="notif-item unread">
+                            <div class="notif-icon-box error">
+                                <i class="fa-solid fa-circle-exclamation"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Server Connection Failed</h5>
+                                <p>
+                                    Could not sync data with main server. Please check your API
+                                    Key configuration.
+                                </p>
+                                <span class="notif-time">2 minutes ago</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item unread">
+                            <div class="notif-icon-box success">
+                                <i class="fa-solid fa-check-double"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Project Exported</h5>
+                                <p>
+                                    Your dashboard layout "Q3 Report" has been successfully
+                                    exported to PDF.
+                                </p>
+                                <span class="notif-time">1 hour ago</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item">
+                            <div class="notif-icon-box warning">
+                                <i class="fa-solid fa-triangle-exclamation"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Storage Usage High</h5>
+                                <p>
+                                    You have used 85% of your allocated cloud storage. Consider
+                                    upgrading.
+                                </p>
+                                <span class="notif-time">Yesterday at 4:30 PM</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item">
+                            <div class="notif-icon-box info">
+                                <i class="fa-solid fa-circle-info"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>New Feature Available</h5>
+                                <p>
+                                    Dark mode is now customizable. Check settings for more
+                                    themes.
+                                </p>
+                                <span class="notif-time">2 days ago</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="notif-footer">View All Notifications</div>
+                </div>
+            </div>
+
+            <div class="profile-wrapper">
+                <img src="https://i.pravatar.cc/150?img=12" alt="Profile" class="user-img header-icon-btn"
+                    id="profileTrigger" />
+
+                <div class="profile-dropdown" id="profileDropdown">
+                    <div class="pd-header">
+                        <img src="https://i.pravatar.cc/150?img=12" class="pd-avatar" />
+                        <div class="pd-info">
+                            <h4>Irvan Maulana</h4>
+                            <span>@irvanmaulana</span>
+                        </div>
+                    </div>
+                    <div class="pd-menu-list">
+                        <a href="pages-profile.html" class="pd-menu-item"><i class="fa-regular fa-user"></i> Your
+                            profile</a>
+                    </div>
+                    <div class="pd-divider"></div>
+                    <div class="pd-theme-toggle">
+                        <span>Theme</span>
+                        <div class="theme-options">
+                            <div class="theme-opt active" id="themeDark">
+                                <i class="fa-solid fa-moon"></i>
+                            </div>
+                            <div class="theme-opt" id="themeLight">
+                                <i class="fa-solid fa-sun"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pd-divider"></div>
+                    <div class="pd-menu-list">
+                        <a class="pd-menu-item text-muted"><i class="fa-solid fa-arrow-right-from-bracket"></i>
+                            Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="app-body-wrapper">
+        <div class="app-body">
+            <div id="sidebar-container"></div>
+
+            <main class="main-content" id="mainContent">
+                <div class="page-header-card mb-4">
+                    <div class="header-hero-content">
+                        <div class="badge badge-neon blue mb-2">FISCAL MONITOR • DEC 2025</div>
+                        <h1 class="hero-title">Financial Intelligence Hub</h1>
+                        <p class="hero-desc">Analisis arus kas, laporan laba rugi, dan status faktur secara real-time
+                            untuk
+                            pengambilan keputusan strategis.</p>
+                    </div>
+                    <div class="header-hero-actions">
+                        <button class="btn btn-secondary btn-lg"><i class="fa-solid fa-file-invoice-dollar"></i>
+                            Generate
+                            P&L</button>
+                        <button class="btn btn-primary btn-lg shadow-neon"><i class="fa-solid fa-plus"></i> New
+                            Transaction</button>
+                    </div>
+                    <i class="fa-solid fa-vault header-bg-icon"></i>
+                </div>
+
+                <div class="content-grid mb-4">
+                    <div class="col-span-3">
+                        <div class="card-iconic finance-glow-card">
+                            <div class="icon-squircle text-primary"><i class="fa-solid fa-wallet"></i></div>
+                            <div class="iconic-data">
+                                <span class="iconic-label">Total Revenue</span>
+                                <h2 class="iconic-value">$428.5k</h2>
+                            </div>
+                            <span class="iconic-trend text-success">+15.2%</span>
+                        </div>
+                    </div>
+                    <div class="col-span-3">
+                        <div class="card-iconic">
+                            <div class="icon-squircle text-success"><i class="fa-solid fa-hand-holding-dollar"></i>
+                            </div>
+                            <div class="iconic-data">
+                                <span class="iconic-label">Net Profit</span>
+                                <h2 class="iconic-value">$112.4k</h2>
+                            </div>
+                            <span class="iconic-trend text-success">Optimal</span>
+                        </div>
+                    </div>
+                    <div class="col-span-3">
+                        <div class="card-iconic">
+                            <div class="icon-squircle text-danger"><i class="fa-solid fa-receipt"></i></div>
+                            <div class="iconic-data">
+                                <span class="iconic-label">Total Expenses</span>
+                                <h2 class="iconic-value">$316.1k</h2>
+                            </div>
+                            <span class="iconic-trend text-danger">High</span>
+                        </div>
+                    </div>
+                    <div class="col-span-3">
+                        <div class="card-iconic">
+                            <div class="icon-squircle text-warning"><i class="fa-solid fa-landmark"></i></div>
+                            <div class="iconic-data">
+                                <span class="iconic-label">Tax Payable</span>
+                                <h2 class="iconic-value">$14.2k</h2>
+                            </div>
+                            <span class="iconic-trend text-muted">Q4 Estimate</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-grid mb-4">
+                    <div class="col-span-8">
+                        <div class="card h-100">
+                            <div class="card-header d-flex justify-content-between">
+                                <h3 class="card-title"><i class="fa-solid fa-chart-line text-primary mr-2"></i> Cashflow
+                                    &
+                                    Profit Analysis</h3>
+                                <div class="d-flex gap-2">
+                                    <span class="badge badge-soft-primary">Income</span>
+                                    <span class="badge badge-soft-danger">Expense</span>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="row gap-4 mb-4">
+                                    <div class="col-span-6">
+                                        <div class="cashflow-indicator">
+                                            <div class="icon-squircle-sm bg-soft-success text-success mr-3"><i
+                                                    class="fa-solid fa-arrow-up"></i></div>
+                                            <div class="flex-1">
+                                                <span class="text-xs text-muted d-block">Operating Cashflow</span>
+                                                <h4 class="m-0">$84,200</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-span-6">
+                                        <div class="cashflow-indicator">
+                                            <div class="icon-squircle-sm bg-soft-danger text-danger mr-3"><i
+                                                    class="fa-solid fa-arrow-down"></i></div>
+                                            <div class="flex-1">
+                                                <span class="text-xs text-muted d-block">Investing Cashflow</span>
+                                                <h4 class="m-0">-$12,500</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="p-4 rounded-xl border bg-hover">
+                                    <h5 class="mb-3">Profit & Loss Summary (MTD)</h5>
+                                    <div class="d-flex justify-content-between text-sm mb-2"><span>Gross
+                                            Profit</span><span class="font-bold">$142,000</span></div>
+                                    <div class="progress-container mb-3" style="height: 6px;">
+                                        <div class="progress-bar bg-primary" style="width: 100%"></div>
+                                    </div>
+                                    <div class="d-flex justify-content-between text-sm mb-2"><span>Operating
+                                            Expenses</span><span class="font-bold text-danger">-$30,400</span></div>
+                                    <div class="progress-container" style="height: 6px;">
+                                        <div class="progress-bar bg-danger" style="width: 22%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-span-4">
+                        <div class="card h-100">
+                            <div class="card-header">
+                                <h3 class="card-title text-warning">Outstanding Payments</h3>
+                            </div>
+                            <div class="card-body p-0">
+                                <div class="activity-list p-3">
+                                    <div class="activity-item mb-4">
+                                        <div class="activity-icon border-warning text-warning"><i
+                                                class="fa-solid fa-clock"></i>
+                                        </div>
+                                        <div class="activity-content shadow-sm">
+                                            <div class="d-flex justify-content-between mb-1">
+                                                <strong class="text-sm">Global Tech Inc.</strong>
+                                                <span class="text-xs font-bold text-danger">$12,400</span>
+                                            </div>
+                                            <p class="text-xs text-muted m-0">Invoice #INV-2025-001 • Overdue 5 days</p>
+                                        </div>
+                                    </div>
+                                    <div class="activity-item m-0">
+                                        <div class="activity-icon border-primary text-primary"><i
+                                                class="fa-solid fa-hourglass-half"></i></div>
+                                        <div class="activity-content shadow-sm">
+                                            <div class="d-flex justify-content-between mb-1">
+                                                <strong class="text-sm">Media Corp.</strong>
+                                                <span class="text-xs font-bold">$4,200</span>
+                                            </div>
+                                            <p class="text-xs text-muted m-0">Invoice #INV-2025-042 • Due in 2 days</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-grid">
+                    <div class="col-span-8">
+                        <div class="card">
+                            <div class="card-header d-flex justify-content-between">
+                                <h3 class="card-title">Recent Invoice Status</h3>
+                                <div class="input-group m-0" style="width: 200px;">
+                                    <span class="input-group-text"><i class="fa-solid fa-filter"></i></span>
+                                    <select class="form-select py-1">
+                                        <option>All Status</option>
+                                        <option>Paid</option>
+                                        <option>Unpaid</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-hover table-spaced">
+                                    <thead>
+                                        <tr>
+                                            <th>Invoice ID</th>
+                                            <th>Client</th>
+                                            <th>Amount</th>
+                                            <th class="text-end">Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><code class="text-primary font-bold">#INV-88210</code></td>
+                                            <td>
+                                                <div class="table-user-info">
+                                                    <img src="https://i.pravatar.cc/150?img=11" class="rounded-lg">
+                                                    <div>
+                                                        <h6>Ardyan Putra</h6><span>Premium Client</span>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td><strong>$1,240.00</strong></td>
+                                            <td class="text-end">
+                                                <span class="badge badge-soft-success">
+                                                    <span class="invoice-badge-status bg-success"></span> Paid
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-span-4">
+                        <div class="tax-shield-box h-100">
+                            <div class="stat-icon-blob bg-soft-primary text-primary mx-auto mb-3"
+                                style="width: 60px; height: 60px;">
+                                <i class="fa-solid fa-shield-halved"></i>
+                            </div>
+                            <h4 class="mb-1">Tax Compliance Hub</h4>
+                            <p class="text-xs text-muted mb-4">Status pelaporan pajak Anda untuk tahun fiskal 2025
+                                berjalan
+                                sesuai regulasi.</p>
+
+                            <div class="d-flex justify-content-around mb-4">
+                                <div><span class="text-xs text-muted d-block">VAT (PPN)</span><strong
+                                        class="text-success">Settled</strong></div>
+                                <div class="border-left px-3"></div>
+                                <div><span class="text-xs text-muted d-block">Corporate</span><strong
+                                        class="text-warning">Pending</strong></div>
+                            </div>
+
+                            <button class="btn btn-ghost w-full border text-sm"><i class="fa-solid fa-download"></i> Tax
+                                Summary
+                                Report</button>
+                        </div>
+                    </div>
+                </div>
+                <footer class="app-footer mt-3">
+                    <div class="footer-left">
+                        <span class="footer-logo-icon"><i class="fa-solid fa-code"></i></span>
+                        <span>&copy; 2025 <strong>Daily.dev</strong>. Created with
+                            <i class="fa-solid fa-heart heart-icon"></i> by Irvan
+                            Maulana.</span>
+                    </div>
+                    <div class="footer-links">
+                        <a href="#" class="footer-link-item">Privacy Policy</a>
+                        <a href="#" class="footer-link-item">Terms</a>
+                        <a href="#" class="footer-link-item">Support</a>
+                    </div>
+                </footer>
+            </main>
+        </div>
+    </div>
+
+    <div class="sidebar-overlay desktop-only" id="sidebarOverlay"></div>
+    <div id="settings-container"></div>
+
+    <script src="assets/js/core.js"></script>
+</body>
+
+</html>

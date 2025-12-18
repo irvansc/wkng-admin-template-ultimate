@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>500 Internal Server Error - Daily Admin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/core.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/error-pages.css">
+</head>
+
+<body class="error-page">
+
+    <div class="bg-grid"></div>
+    <div class="orb orb-1" id="orb1" style="background: #e74c3c;"></div>
+    <div class="orb orb-2" id="orb2" style="background: #2c3e50;"></div>
+
+    <div class="content-box" id="contentBox">
+
+        <div class="ghost-container" style="color: #e74c3c;">
+            <span class="fa-stack fa-xs">
+                <i class="fa-solid fa-server fa-stack-1x"></i>
+                <i class="fa-solid fa-bolt fa-stack-2x fa-beat"
+                    style="color: #f1c40f; opacity: 0.8; --fa-animation-duration: 0.5s;"></i>
+            </span>
+        </div>
+
+        <div class="glitch-wrapper">
+            <h1 class="error-code" data-text="500" style="text-shadow: 2px 2px 0px #e74c3c;">500</h1>
+        </div>
+
+        <h2 class="error-title">Internal Server Error</h2>
+        <p class="error-desc">
+            // Critical Failure: Terjadi kesalahan tak terduga pada server.<br>
+            // Status: Tim teknis telah dinotifikasi otomatis.
+        </p>
+
+        <div class="justify-content-beetween align-items-center gap-3">
+            <button onclick="window.location.reload()" class="btn btn-home rounded-pill mb-2"
+                style="background: #e74c3c; color: #fff;">
+                <i class="fa-solid fa-power-off me-2"></i> Try Restart
+            </button>
+            <a href="mailto:support@daily.dev" class="btn btn-ghost rounded-pill">
+                Contact Support
+            </a>
+        </div>
+    </div>
+
+    <footer class="error-footer">
+        &copy; 2025 DAILY ADMIN SYSTEM. ALL RIGHTS RESERVED.
+    </footer>
+
+    <script src="assets/js/error-pages.js"></script>
+</body>
+
+</html>

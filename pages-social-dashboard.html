@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Social Dashboard- Daily Admin</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+
+    <link rel="stylesheet" href="assets/css/core.css" />
+    <link rel="stylesheet" href="assets/css/utilities.css" />
+    <link rel="stylesheet" href="assets/css/layout.css" />
+    <link rel="stylesheet" href="assets/css/components.css" />
+</head>
+
+<body>
+    <header class="app-header">
+        <div class="header-left-actions">
+            <button class="header-icon-btn mobile-toggle-btn" id="mobileToggle">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+            <div class="mobile-search-bar" id="mobileSearchBar">
+                <i class="fa-solid fa-magnifying-glass search-icon-mobile"></i>
+                <input type="text" class="mobile-search-input" placeholder="Search anything..."
+                    id="mobileSearchInput" />
+                <button class="mobile-search-close" id="mobileSearchClose">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="logo desktop-only">
+            <i class="fa-solid fa-code" style="color: var(--text-main)"></i>
+            <span>daily.dev</span>
+        </div>
+        <div id="horizontal-menu-container" class="desktop-only" style="flex: 1; margin-left: 20px"></div>
+        <div class="search-wrapper search-wrapper-inline desktop-only">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <input type="text" class="search-input" placeholder="Search..." id="searchInputInline" />
+            <div class="search-shortcut">Ctrl K</div>
+        </div>
+
+        <div class="header-right-actions">
+            <button class="header-icon-btn" id="searchTrigger" title="Search" style="display: none">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </div>
+
+        <div class="search-overlay" id="searchOverlay">
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass search-box-icon"></i>
+                <input type="text" class="search-box-input" placeholder="Search pages..." id="searchInputFloating" />
+                <button class="search-box-close" id="searchClose">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="header-right">
+            <div class="notification-wrapper">
+                <button class="header-icon-btn" id="notifTrigger" title="Notifications">
+                    <i class="fa-regular fa-bell"></i>
+                    <div class="notification-dot"></div>
+                </button>
+
+                <div class="notification-dropdown" id="notifDropdown">
+                    <div class="notif-header">
+                        <h4>
+                            Notifications
+                            <span class="badge badge-danger"
+                                style="margin-left: 8px; font-size: 10px; padding: 2px 6px">4 New</span>
+                        </h4>
+                        <span class="notif-mark-read">Mark all as read</span>
+                    </div>
+
+                    <div class="notif-list">
+                        <div class="notif-item unread">
+                            <div class="notif-icon-box error">
+                                <i class="fa-solid fa-circle-exclamation"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Server Connection Failed</h5>
+                                <p>
+                                    Could not sync data with main server. Please check your API
+                                    Key configuration.
+                                </p>
+                                <span class="notif-time">2 minutes ago</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item unread">
+                            <div class="notif-icon-box success">
+                                <i class="fa-solid fa-check-double"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Project Exported</h5>
+                                <p>
+                                    Your dashboard layout "Q3 Report" has been successfully
+                                    exported to PDF.
+                                </p>
+                                <span class="notif-time">1 hour ago</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item">
+                            <div class="notif-icon-box warning">
+                                <i class="fa-solid fa-triangle-exclamation"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Storage Usage High</h5>
+                                <p>
+                                    You have used 85% of your allocated cloud storage. Consider
+                                    upgrading.
+                                </p>
+                                <span class="notif-time">Yesterday at 4:30 PM</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item">
+                            <div class="notif-icon-box info">
+                                <i class="fa-solid fa-circle-info"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>New Feature Available</h5>
+                                <p>
+                                    Dark mode is now customizable. Check settings for more
+                                    themes.
+                                </p>
+                                <span class="notif-time">2 days ago</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="notif-footer">View All Notifications</div>
+                </div>
+            </div>
+
+            <div class="profile-wrapper">
+                <img src="https://i.pravatar.cc/150?img=12" alt="Profile" class="user-img header-icon-btn"
+                    id="profileTrigger" />
+
+                <div class="profile-dropdown" id="profileDropdown">
+                    <div class="pd-header">
+                        <img src="https://i.pravatar.cc/150?img=12" class="pd-avatar" />
+                        <div class="pd-info">
+                            <h4>Irvan Maulana</h4>
+                            <span>@irvanmaulana</span>
+                        </div>
+                    </div>
+                    <div class="pd-menu-list">
+                        <a href="pages-profile.html" class="pd-menu-item"><i class="fa-regular fa-user"></i> Your
+                            profile</a>
+                    </div>
+                    <div class="pd-divider"></div>
+                    <div class="pd-theme-toggle">
+                        <span>Theme</span>
+                        <div class="theme-options">
+                            <div class="theme-opt active" id="themeDark">
+                                <i class="fa-solid fa-moon"></i>
+                            </div>
+                            <div class="theme-opt" id="themeLight">
+                                <i class="fa-solid fa-sun"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pd-divider"></div>
+                    <div class="pd-menu-list">
+                        <a class="pd-menu-item text-muted"><i class="fa-solid fa-arrow-right-from-bracket"></i>
+                            Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="app-body-wrapper">
+        <div class="app-body">
+            <div id="sidebar-container"></div>
+
+            <main class="main-content" id="mainContent">
+                <div class="page-header-card mb-4">
+                    <div class="header-hero-content">
+                        <div class="badge badge-neon blue mb-2">URBAN ECOSYSTEM MONITOR</div>
+                        <h1 class="hero-title">Community & Social Hub</h1>
+                        <p class="hero-desc">Analisis demografi warga, distribusi bantuan sosial, dan manajemen keluhan
+                            publik dalam satu platform terpadu.</p>
+                    </div>
+                    <div class="header-hero-actions">
+                        <button class="btn btn-primary btn-lg shadow-neon"><i class="fa-solid fa-users-plus"></i>
+                            Register
+                            Resident</button>
+                    </div>
+                    <i class="fa-solid fa-city header-bg-icon"></i>
+                </div>
+
+                <div class="content-grid mb-4">
+                    <div class="col-span-3">
+                        <div class="card-iconic">
+                            <div class="icon-squircle text-primary"><i class="fa-solid fa-house-user"></i></div>
+                            <div class="iconic-data">
+                                <span class="iconic-label">Total Residents</span>
+                                <h2 class="iconic-value">12,480</h2>
+                            </div>
+                            <span class="iconic-trend text-success">+240 New</span>
+                        </div>
+                    </div>
+                    <div class="col-span-3">
+                        <div class="card-iconic">
+                            <div class="icon-squircle text-success"><i class="fa-solid fa-hand-holding-heart"></i></div>
+                            <div class="iconic-data">
+                                <span class="iconic-label">Social Aid Distributed</span>
+                                <h2 class="iconic-value">Rp 1.2B</h2>
+                            </div>
+                            <span class="iconic-trend text-primary">98% Target</span>
+                        </div>
+                    </div>
+                    <div class="col-span-3">
+                        <div class="card-iconic">
+                            <div class="icon-squircle text-warning"><i class="fa-solid fa-comments-dollar"></i></div>
+                            <div class="iconic-data">
+                                <span class="iconic-label">Economic Growth</span>
+                                <h2 class="iconic-value">5.2%</h2>
+                            </div>
+                            <span class="iconic-trend text-success">Positive</span>
+                        </div>
+                    </div>
+                    <div class="col-span-3">
+                        <div class="card-iconic">
+                            <div class="icon-squircle text-danger">
+                                <div class="status-dot offline pulse m-0"></div>
+                            </div>
+                            <div class="iconic-data">
+                                <span class="iconic-label">Active Complaints</span>
+                                <h2 class="iconic-value">18</h2>
+                            </div>
+                            <span class="iconic-trend text-danger">Urgent</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-grid mb-4">
+                    <div class="col-span-8">
+                        <div class="card">
+                            <div class="card-header d-flex justify-content-between">
+                                <h3 class="card-title"><i class="fa-solid fa-address-book text-primary mr-2"></i>
+                                    Resident
+                                    Directory & Socio-Economic Status</h3>
+                                <div class="search-wrapper-inline" style="max-width: 250px;">
+                                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                                    <input type="text" class="search-input" placeholder="Search by NIK or Name...">
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-hover table-spaced">
+                                    <thead>
+                                        <tr>
+                                            <th>Resident Profile</th>
+                                            <th>District/Area</th>
+                                            <th>Aid Status</th>
+                                            <th class="text-end">Risk Category</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <div class="table-user-info">
+                                                    <img src="https://i.pravatar.cc/150?img=12"
+                                                        class="rounded-lg shadow-sm">
+                                                    <div>
+                                                        <h6>Bambang Heru</h6><span>NIK: 3174XXXXXXXX</span>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="chip">Sector 04 • Green View</div>
+                                            </td>
+                                            <td><span class="badge badge-soft-success">Recipient</span></td>
+                                            <td class="text-end"><span class="badge badge-pill badge-soft-dark">Low
+                                                    Risk</span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-span-4">
+                        <div class="card h-100">
+                            <div class="card-header">
+                                <h3 class="card-title">Demographics & Area Stats</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="demographic-bar-group">
+                                    <div class="demographic-label"><span>Toddlers & Children</span><span>12%</span>
+                                    </div>
+                                    <div class="progress-container" style="height: 6px;">
+                                        <div class="progress-bar bg-info" style="width: 12%"></div>
+                                    </div>
+                                </div>
+                                <div class="demographic-bar-group">
+                                    <div class="demographic-label"><span>Productive Age (17-55)</span><span>68%</span>
+                                    </div>
+                                    <div class="progress-container" style="height: 6px;">
+                                        <div class="progress-bar bg-primary" style="width: 68%"></div>
+                                    </div>
+                                </div>
+                                <div class="demographic-bar-group">
+                                    <div class="demographic-label"><span>Seniors (55+)</span><span>20%</span></div>
+                                    <div class="progress-container" style="height: 6px;">
+                                        <div class="progress-bar bg-warning" style="width: 20%"></div>
+                                    </div>
+                                </div>
+
+                                <div class="economic-pulse-box mt-4">
+                                    <div class="d-flex justify-content-between align-center mb-2">
+                                        <span class="text-xs font-bold text-primary uppercase">Economic Overview</span>
+                                        <i class="fa-solid fa-chart-pie text-primary"></i>
+                                    </div>
+                                    <h4 class="mb-1">Medium-Income Dominant</h4>
+                                    <p class="text-xs text-muted m-0">Rata-rata pendapatan warga per kapita: Rp
+                                        5.8jt/bulan.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-grid">
+                    <div class="col-span-7">
+                        <div class="card">
+                            <div class="card-header d-flex justify-content-between">
+                                <h3 class="card-title">Community Activities Timeline</h3>
+                                <span class="badge badge-soft-primary">Weekly Agenda</span>
+                            </div>
+                            <div class="card-body">
+                                <div class="timeline-feed">
+                                    <div class="tl-feed-item">
+                                        <div class="tl-feed-icon bg-soft-success text-success"><i
+                                                class="fa-solid fa-seedling"></i></div>
+                                        <div class="activity-content shadow-sm">
+                                            <div class="d-flex justify-content-between"><strong>Go-Green
+                                                    Campaign</strong><small class="text-muted">Today, 08:00 AM</small>
+                                            </div>
+                                            <p class="text-xs m-0">Penanaman 1000 pohon di area fasilitas umum sektor
+                                                02.</p>
+                                        </div>
+                                    </div>
+                                    <div class="tl-feed-item m-0">
+                                        <div class="tl-feed-icon bg-soft-primary text-primary"><i
+                                                class="fa-solid fa-stethoscope"></i></div>
+                                        <div class="activity-content shadow-sm">
+                                            <div class="d-flex justify-content-between"><strong>Health Checkup
+                                                    (Elderly)</strong><small class="text-muted">Tomorrow, 09:00
+                                                    AM</small></div>
+                                            <p class="text-xs m-0">Pemeriksaan kesehatan rutin gratis untuk lansia di
+                                                Balai
+                                                Warga.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-span-5">
+                        <div class="card h-100">
+                            <div class="card-header">
+                                <h3 class="card-title text-danger">Public Complaints Feed</h3>
+                            </div>
+                            <div class="card-body p-3">
+                                <div class="complaint-card">
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span class="badge badge-soft-danger badge-sm">Street Lighting</span>
+                                        <small class="text-muted">3h ago</small>
+                                    </div>
+                                    <h6 class="mb-1">Lampu Jalan Padam</h6>
+                                    <p class="text-xs text-muted m-0">Lampu jalan di blok C4 mati total selama 3 malam
+                                        terakhir.
+                                    </p>
+                                </div>
+                                <div class="complaint-card">
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span class="badge badge-soft-warning badge-sm">Waste Management</span>
+                                        <small class="text-muted">Yesterday</small>
+                                    </div>
+                                    <h6 class="mb-1">Penumpukan Sampah</h6>
+                                    <p class="text-xs text-muted m-0">Armada pengangkut belum datang sejak 2 hari yang
+                                        lalu di
+                                        sektor 07.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <footer class="app-footer mt-3">
+                    <div class="footer-left">
+                        <span class="footer-logo-icon"><i class="fa-solid fa-code"></i></span>
+                        <span>&copy; 2025 <strong>Daily.dev</strong>. Created with
+                            <i class="fa-solid fa-heart heart-icon"></i> by Irvan
+                            Maulana.</span>
+                    </div>
+                    <div class="footer-links">
+                        <a href="#" class="footer-link-item">Privacy Policy</a>
+                        <a href="#" class="footer-link-item">Terms</a>
+                        <a href="#" class="footer-link-item">Support</a>
+                    </div>
+                </footer>
+            </main>
+        </div>
+    </div>
+
+    <div class="sidebar-overlay desktop-only" id="sidebarOverlay"></div>
+    <div id="settings-container"></div>
+
+    <script src="assets/js/core.js"></script>
+</body>
+
+</html>

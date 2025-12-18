@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>401 Authorization Required - Daily Admin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/core.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/error-pages.css">
+</head>
+
+<body class="error-page">
+
+    <div class="bg-grid"></div>
+    <div class="orb orb-1" id="orb1" style="background: #a855f7;"></div>
+    <div class="orb orb-2" id="orb2"></div>
+
+    <div class="content-box" id="contentBox">
+
+        <div class="ghost-container" style="color: #a855f7;">
+            <i class="fa-solid fa-user-lock fa-bounce" style="--fa-animation-duration: 3s;"></i>
+        </div>
+
+        <div class="glitch-wrapper">
+            <h1 class="error-code" data-text="401" style="text-shadow: 2px 2px 0px #a855f7;">401</h1>
+        </div>
+
+        <h2 class="error-title">Authorization Required</h2>
+        <p class="error-desc">
+            // Access Denied: Kredensial keamanan tidak valid.<br>
+            // Protocol: Silakan login ulang untuk memverifikasi identitas Anda.
+        </p>
+
+        <div class="justify-content-beetween align-items-center gap-3 ">
+            <a href="auth-login.html" class="btn btn-home rounded-pill mb-2" style="background: #a855f7; color: #fff;">
+                <i class="fa-solid fa-fingerprint me-2"></i> Login Access
+            </a>
+            <a href="dashboard.html" class="btn btn-ghost rounded-pill">
+                Back Home
+            </a>
+        </div>
+    </div>
+    <footer class="error-footer">
+        &copy; 2025 DAILY ADMIN SYSTEM. ALL RIGHTS RESERVED.
+    </footer>
+    <script src="assets/js/error-pages.js"></script>
+</body>
+
+</html>

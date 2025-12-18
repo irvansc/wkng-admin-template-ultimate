@@ -2,58 +2,81 @@
 <html lang="id" data-theme="dark">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Analytics - Daily Admin</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Analytics Dashboard - Daily Admin</title>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet" />
 
-    <link rel="stylesheet" href="assets/css/core.css">
-    <link rel="stylesheet" href="assets/css/utilities.css">
-    <link rel="stylesheet" href="assets/css/layout.css">
-    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/core.css" />
+    <link rel="stylesheet" href="assets/css/utilities.css" />
+    <link rel="stylesheet" href="assets/css/layout.css" />
+    <link rel="stylesheet" href="assets/css/components.css" />
+
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-
 </head>
 
 <body>
-
     <header class="app-header">
-
         <div class="header-left-actions">
             <button class="header-icon-btn mobile-toggle-btn" id="mobileToggle">
                 <i class="fa-solid fa-bars-staggered"></i>
             </button>
-
-            <button class="header-icon-btn mobile-search-btn">
-                <i class="fa-solid fa-magnifying-glass"></i>
-            </button>
-
             <div class="mobile-search-bar" id="mobileSearchBar">
                 <i class="fa-solid fa-magnifying-glass search-icon-mobile"></i>
-                <input type="text" class="mobile-search-input" placeholder="Search anything..." id="mobileSearchInput">
+                <input type="text" class="mobile-search-input" placeholder="Search anything..."
+                    id="mobileSearchInput" />
                 <button class="mobile-search-close" id="mobileSearchClose">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
         </div>
 
-
-
         <div class="logo desktop-only">
-            <i class="fa-solid fa-code" style="color: var(--text-main);"></i>
+            <i class="fa-solid fa-code" style="color: var(--text-main)"></i>
             <span>daily.dev</span>
         </div>
-
-        <div class="search-wrapper desktop-only">
+        <div id="horizontal-menu-container" class="desktop-only" style="flex: 1; margin-left: 20px">
+        </div>
+        <div class="search-wrapper search-wrapper-inline desktop-only">
             <i class="fa-solid fa-magnifying-glass search-icon"></i>
-            <input type="text" class="search-input" placeholder="Search..." id="searchInput">
+            <input type="text" class="search-input" placeholder="Search..." id="searchInputInline">
             <div class="search-shortcut">Ctrl K</div>
         </div>
 
+        <div class="header-right-actions">
+            <button class="header-icon-btn" id="searchTrigger" title="Search" style="display: none;">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </div>
+
+        <div class="search-overlay" id="searchOverlay">
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass search-box-icon"></i>
+                <input type="text" class="search-box-input" placeholder="Search pages..." id="searchInputFloating">
+                <button class="search-box-close" id="searchClose">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+
         <div class="header-right">
+            <div class="dropdown-action">
+                <button class="header-icon-btn dropdown-trigger">
+                    <i class="fa-solid fa-plus"></i>
+                </button>
+                <div class="dropdown-menu-action icon-mode">
+                    <a href="#" class="action-icon-btn text-success" title="New Project"><i
+                            class="fa-solid fa-folder-plus"></i></a>
+                    <a href="#" class="action-icon-btn text-primary" title="New User"><i
+                            class="fa-solid fa-user-plus"></i></a>
+                    <a href="#" class="action-icon-btn text-warning" title="New Invoice"><i
+                            class="fa-solid fa-file-invoice"></i></a>
+                </div>
+            </div>
             <div class="notification-wrapper">
                 <button class="header-icon-btn" id="notifTrigger" title="Notifications">
                     <i class="fa-regular fa-bell"></i>
@@ -62,20 +85,26 @@
 
                 <div class="notification-dropdown" id="notifDropdown">
                     <div class="notif-header">
-                        <h4>Notifications <span class="badge badge-danger"
-                                style="margin-left:8px; font-size:10px; padding:2px 6px;">4 New</span></h4>
+                        <h4>
+                            Notifications
+                            <span class="badge badge-danger"
+                                style="margin-left: 8px; font-size: 10px; padding: 2px 6px">4
+                                New</span>
+                        </h4>
                         <span class="notif-mark-read">Mark all as read</span>
                     </div>
 
                     <div class="notif-list">
-
                         <div class="notif-item unread">
                             <div class="notif-icon-box error">
                                 <i class="fa-solid fa-circle-exclamation"></i>
                             </div>
                             <div class="notif-content">
                                 <h5>Server Connection Failed</h5>
-                                <p>Could not sync data with main server. Please check your API Key configuration.</p>
+                                <p>
+                                    Could not sync data with main server. Please check your API
+                                    Key configuration.
+                                </p>
                                 <span class="notif-time">2 minutes ago</span>
                             </div>
                         </div>
@@ -86,48 +115,26 @@
                             </div>
                             <div class="notif-content">
                                 <h5>Project Exported</h5>
-                                <p>Your dashboard layout "Q3 Report" has been successfully exported to PDF.</p>
+                                <p>
+                                    Your dashboard layout "Q3 Report" has been successfully
+                                    exported to PDF.
+                                </p>
                                 <span class="notif-time">1 hour ago</span>
                             </div>
                         </div>
-
-                        <div class="notif-item">
-                            <div class="notif-icon-box warning">
-                                <i class="fa-solid fa-triangle-exclamation"></i>
-                            </div>
-                            <div class="notif-content">
-                                <h5>Storage Usage High</h5>
-                                <p>You have used 85% of your allocated cloud storage. Consider upgrading.</p>
-                                <span class="notif-time">Yesterday at 4:30 PM</span>
-                            </div>
-                        </div>
-
-                        <div class="notif-item">
-                            <div class="notif-icon-box info">
-                                <i class="fa-solid fa-circle-info"></i>
-                            </div>
-                            <div class="notif-content">
-                                <h5>New Feature Available</h5>
-                                <p>Dark mode is now customizable. Check settings for more themes.</p>
-                                <span class="notif-time">2 days ago</span>
-                            </div>
-                        </div>
-
                     </div>
 
-                    <div class="notif-footer">
-                        View All Notifications
-                    </div>
+                    <div class="notif-footer">View All Notifications</div>
                 </div>
             </div>
 
             <div class="profile-wrapper">
                 <img src="https://i.pravatar.cc/150?img=12" alt="Profile" class="user-img header-icon-btn"
-                    id="profileTrigger">
+                    id="profileTrigger" />
 
                 <div class="profile-dropdown" id="profileDropdown">
                     <div class="pd-header">
-                        <img src="https://i.pravatar.cc/150?img=12" class="pd-avatar">
+                        <img src="https://i.pravatar.cc/150?img=12" class="pd-avatar" />
                         <div class="pd-info">
                             <h4>Irvan Maulana</h4>
                             <span>@irvanmaulana</span>
@@ -141,8 +148,12 @@
                     <div class="pd-theme-toggle">
                         <span>Theme</span>
                         <div class="theme-options">
-                            <div class="theme-opt active" id="themeDark"><i class="fa-solid fa-moon"></i></div>
-                            <div class="theme-opt" id="themeLight"><i class="fa-solid fa-sun"></i></div>
+                            <div class="theme-opt active" id="themeDark">
+                                <i class="fa-solid fa-moon"></i>
+                            </div>
+                            <div class="theme-opt" id="themeLight">
+                                <i class="fa-solid fa-sun"></i>
+                            </div>
                         </div>
                     </div>
                     <div class="pd-divider"></div>
@@ -155,397 +166,321 @@
         </div>
     </header>
 
-    <div class="app-body">
+    <div class="app-body-wrapper">
+        <div class="app-body">
+            <div id="sidebar-container"></div>
 
-        <div id="sidebar-container"></div>
+            <main class="main-content" id="mainContent">
 
-        <main class="main-content" id="mainContent">
-            <!-- PAGE HEADER -->
-
-
-            <!-- PAGE HEADER END -->
-
-
-            <!-- CONTENT HERE -->
-            <div class="page-header-card">
-                <div class="header-hero-content">
-                    <h2 class="hero-title">Analytics Overview</h2>
-                    <p class="hero-desc">Monitor your performance metrics, traffic sources, and user engagement in
-                        real-time.</p>
-                </div>
-                <div class="header-hero-actions">
-                    <div class="hero-breadcrumb">
-                        <div class="home-icon-box"><i class="fa-solid fa-house"></i></div>
-                        <a href="#" class="breadcrumb-link">Dashboard</a>
-                        <span class="breadcrumb-sep"><i class="fa-solid fa-chevron-right"></i></span>
-                        <a href="#" class="breadcrumb-link active">Analytics</a>
+                <div class="page-header-card">
+                    <i class="fa-solid fa-chart-line header-bg-icon"></i>
+                    <div class="header-hero-content">
+                        <h1 class="hero-title">Analytics Overview</h1>
+                        <p class="hero-desc">
+                            Monitor your business performance, revenue streams, and user engagement in real-time.
+                            <span style="color: var(--accent-green); font-weight: 600">
+                                <i class="fa-solid fa-arrow-up"></i> +12.5% Growth this week.
+                            </span>
+                        </p>
                     </div>
-                    <button class="btn btn-sm btn-ghost">
-                        <i class="fa-regular fa-calendar"></i> Last 30 Days
-                    </button>
-                </div>
-                <i class="fa-solid fa-chart-pie header-bg-icon"></i>
-            </div>
-
-            <div class="row mb-4">
-                <div class="col-12 col-md-6 col-xl-3 mb-3">
-                    <div class="card card-glass h-100">
-                        <div class="card-body d-flex align-items-center justify-content-between">
-                            <div>
-                                <span class="text-muted text-uppercase fw-bold text-xs">Total Users</span>
-                                <h3 class="mt-2 mb-0 fw-bold">128,450</h3>
-                                <span class="badge badge-soft-success mt-2">
-                                    <i class="fa-solid fa-arrow-trend-up"></i> +12.5%
-                                </span>
-                            </div>
-                            <div class="stat-icon-blob bg-soft-primary text-primary">
-                                <i class="fa-solid fa-users"></i>
-                            </div>
+                    <div class="header-hero-actions">
+                        <div
+                            style="font-size: 12px; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">
+                            <i class="fa-regular fa-calendar" style="margin-right: 6px"></i>
+                            Last 30 Days
                         </div>
-                        <div id="spark1" style="min-height: 50px;"></div>
+                        <nav aria-label="breadcrumb">
+                            <ol class="hero-breadcrumb">
+                                <li>
+                                    <a href="index.html" class="breadcrumb-link">
+                                        <div class="home-icon-box"><i class="fa-solid fa-house"></i></div>
+                                    </a>
+                                </li>
+                                <li class="breadcrumb-sep"><i class="fa-solid fa-chevron-right"></i></li>
+                                <li><a href="#" class="breadcrumb-link">Dashboards</a></li>
+                                <li class="breadcrumb-sep"><i class="fa-solid fa-chevron-right"></i></li>
+                                <li><a href="#" class="breadcrumb-link active">Analytics</a></li>
+                            </ol>
+                        </nav>
                     </div>
                 </div>
 
-                <div class="col-12 col-md-6 col-xl-3 mb-3">
-                    <div class="card card-glass h-100">
-                        <div class="card-body d-flex align-items-center justify-content-between">
-                            <div>
-                                <span class="text-muted text-uppercase fw-bold text-xs">Avg. Session</span>
-                                <h3 class="mt-2 mb-0 fw-bold">4m 32s</h3>
-                                <span class="badge badge-soft-warning mt-2">
-                                    <i class="fa-solid fa-arrow-trend-down"></i> -2.1%
-                                </span>
-                            </div>
-                            <div class="stat-icon-blob bg-soft-warning text-warning">
-                                <i class="fa-regular fa-clock"></i>
-                            </div>
+                <div class="content-grid mb-4">
+                    <div class="card col-span-4 stat-box" style="text-align: left; align-items: flex-start;">
+                        <div class="d-flex justify-between w-full align-center mb-2">
+                            <span class="stat-label">Total Revenue</span>
+                            <span class="badge badge-soft-success">+14%</span>
                         </div>
-                        <div id="spark2" style="min-height: 50px;"></div>
-                    </div>
-                </div>
-
-                <div class="col-12 col-md-6 col-xl-3 mb-3">
-                    <div class="card card-glass h-100">
-                        <div class="card-body d-flex align-items-center justify-content-between">
-                            <div>
-                                <span class="text-muted text-uppercase fw-bold text-xs">Bounce Rate</span>
-                                <h3 class="mt-2 mb-0 fw-bold">42.8%</h3>
-                                <span class="badge badge-soft-success mt-2">
-                                    <i class="fa-solid fa-check"></i> Good
-                                </span>
-                            </div>
-                            <div class="stat-icon-blob bg-soft-danger text-danger">
-                                <i class="fa-solid fa-chart-simple"></i>
-                            </div>
+                        <h2 class="stat-value">$124,592</h2>
+                        <span class="text-xs text-muted mt-1">vs $109,200 last month</span>
+                        <div class="prog-container xs mt-3 mb-0">
+                            <div class="prog-bar gradient" style="width: 75%"></div>
                         </div>
-                        <div id="spark3" style="min-height: 50px;"></div>
+                    </div>
+
+                    <div class="card col-span-4 stat-box" style="text-align: left; align-items: flex-start;">
+                        <div class="d-flex justify-between w-full align-center mb-2">
+                            <span class="stat-label">Total Orders</span>
+                            <span class="badge badge-soft-warning">-2%</span>
+                        </div>
+                        <h2 class="stat-value">8,542</h2>
+                        <span class="text-xs text-muted mt-1">New orders processing</span>
+                        <div class="prog-container xs mt-3 mb-0">
+                            <div class="prog-bar warning" style="width: 60%"></div>
+                        </div>
+                    </div>
+
+                    <div class="card col-span-4 stat-box" style="text-align: left; align-items: flex-start;">
+                        <div class="d-flex justify-between w-full align-center mb-2">
+                            <span class="stat-label">Conversion Rate</span>
+                            <span class="badge badge-soft-success">+4.2%</span>
+                        </div>
+                        <h2 class="stat-value">3.85%</h2>
+                        <span class="text-xs text-muted mt-1">Visitors to customers</span>
+                        <div class="prog-container xs mt-3 mb-0">
+                            <div class="prog-bar info" style="width: 45%"></div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="col-12 col-md-6 col-xl-3 mb-3">
-                    <div class="card card-gradient-mesh h-100">
-                        <div class="card-body text-white">
-                            <div class="d-flex justify-content-between align-items-start">
-                                <div>
-                                    <span class="text-white-50 text-uppercase fw-bold text-xs">Active Now</span>
-                                    <h2 class="mt-2 mb-0 fw-bold text-white">482</h2>
+                <div class="content-grid mb-4">
+                    <div class="card col-span-8">
+                        <div class="card-header">
+                            <h3 class="card-title">Performance Trends</h3>
+                            <div class="dropdown-action">
+                                <button class="btn btn-sm btn-ghost dropdown-trigger">
+                                    <i class="fa-solid fa-ellipsis"></i>
+                                </button>
+                                <div class="dropdown-menu-action">
+                                    <a href="#" class="action-item">Weekly</a>
+                                    <a href="#" class="action-item">Monthly</a>
+                                    <a href="#" class="action-item">Yearly</a>
                                 </div>
-                                <div class="spinner-grow text-white" role="status" style="width: 1rem; height: 1rem;">
-                                </div>
-                            </div>
-                            <p class="mt-3 mb-0 text-white-50 text-sm">Page views per minute</p>
-                            <div class="progress mt-2" style="height: 4px; background: rgba(255,255,255,0.2);">
-                                <div class="progress-bar bg-white" style="width: 75%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row mb-4">
-                <div class="col-12mb-4 mb-lg-0">
-                    <div class="card h-100">
-                        <div class="card-header d-flex justify-content-between align-items-center">
-                            <h5 class="card-title mb-0">Traffic Overview</h5>
-                            <div class="premium-tabs-container">
-                                <div class="premium-tab active">Week</div>
-                                <div class="premium-tab">Month</div>
-                                <div class="premium-tab">Year</div>
                             </div>
                         </div>
                         <div class="card-body">
-                            <div id="mainTrafficChart" class="chart-container"></div>
-                        </div>
-                    </div>
-                </div>
-
-
-            </div>
-            <div class="row mb-4">
-                <div class="col-12">
-                    <div class="card h-100">
-                        <div class="card-header border-0 pb-0">
-                            <h5 class="card-title mb-0">Sessions by Device</h5>
-                        </div>
-                        <div class="card-body d-flex flex-column justify-content-center align-items-center">
-                            <div id="deviceChart" class="w-100" style="min-height: 250px;"></div>
-
-                            <div class="row w-100 mt-4 text-center">
-                                <div class="col-4">
-                                    <h5 class="mb-0 fw-bold">55%</h5>
-                                    <span class="text-xs text-muted"><i
-                                            class="fa-solid fa-mobile-screen text-primary"></i>
-                                        Mobile</span>
-                                </div>
-                                <div class="col-4">
-                                    <h5 class="mb-0 fw-bold">35%</h5>
-                                    <span class="text-xs text-muted"><i class="fa-solid fa-desktop text-success"></i>
-                                        Desktop</span>
-                                </div>
-                                <div class="col-4">
-                                    <h5 class="mb-0 fw-bold">10%</h5>
-                                    <span class="text-xs text-muted"><i
-                                            class="fa-solid fa-tablet-screen-button text-warning"></i> Tablet</span>
-                                </div>
+                            <div class="chart-container" id="revenueChart" style="min-height: 350px;">
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="row ">
-                <div class="content-grid mb-4">
-                    <div class="card" style="grid-column: 1 / -1;">
+
+                    <div class="card col-span-4">
                         <div class="card-header">
-                            <h5 class="card-title mb-0">Top Visited Pages</h5>
+                            <h3 class="card-title">Traffic Sources</h3>
                         </div>
-                        <div class="card-body p-0">
-                            <div class="table-responsive">
-                                <table class="table table-hover table-spaced mb-0">
-                                    <thead>
-                                        <tr>
-                                            <th>Page URL</th>
-                                            <th>Views</th>
-                                            <th>Unique</th>
-                                            <th>Bounce Rate</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td><a href="#" class="text-main fw-bold">/dashboard/analytics</a></td>
-                                            <td>4,200</td>
-                                            <td>3,100</td>
-                                            <td><span class="badge badge-soft-success">24%</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="#" class="text-main fw-bold">/products/shoes-nike</a></td>
-                                            <td>3,850</td>
-                                            <td>2,950</td>
-                                            <td><span class="badge badge-soft-warning">45%</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="#" class="text-main fw-bold">/auth/login</a></td>
-                                            <td>1,200</td>
-                                            <td>900</td>
-                                            <td><span class="badge badge-soft-danger">65%</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="#" class="text-main fw-bold">/profile/settings</a></td>
-                                            <td>950</td>
-                                            <td>800</td>
-                                            <td><span class="badge badge-soft-success">12%</span></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                        <div class="card-body d-flex flex-column align-items-center justify-center">
+                            <div class="circle-prog-wrapper success mb-4" style="--val: 70%">
+                                <div class="circle-prog-inner">
+                                    <span class="circle-prog-val">70%</span>
+                                    <span class="circle-prog-label">Direct</span>
+                                </div>
+                            </div>
+
+                            <div class="w-full">
+                                <div class="d-flex justify-between mb-2">
+                                    <span class="text-sm text-muted"><i class="fa-brands fa-google me-2"></i>Organic
+                                        Search</span>
+                                    <span class="text-sm font-bold">15%</span>
+                                </div>
+                                <div class="prog-container xs mb-3">
+                                    <div class="prog-bar info" style="width: 15%"></div>
+                                </div>
+
+                                <div class="d-flex justify-between mb-2">
+                                    <span class="text-sm text-muted"><i class="fa-brands fa-facebook me-2"></i>Social
+                                        Media</span>
+                                    <span class="text-sm font-bold">10%</span>
+                                </div>
+                                <div class="prog-container xs mb-3">
+                                    <div class="prog-bar warning" style="width: 10%"></div>
+                                </div>
+
+                                <div class="d-flex justify-between mb-2">
+                                    <span class="text-sm text-muted"><i
+                                            class="fa-solid fa-envelope me-2"></i>Referral</span>
+                                    <span class="text-sm font-bold">5%</span>
+                                </div>
+                                <div class="prog-container xs mb-0">
+                                    <div class="prog-bar danger" style="width: 5%"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="content-grid mb-4">
-                    <div class="card">
+                    <div class="card col-span-12 overflow-visible">
                         <div class="card-header">
-                            <h5 class="card-title mb-0">Live Activity</h5>
+                            <h3 class="card-title">Top Products / Services</h3>
+                            <button class="btn btn-sm btn-ghost">View All</button>
                         </div>
-                        <div class="card-body">
-                            <div class="timeline-feed">
-                                <div class="tl-feed-item">
-                                    <div class="tl-feed-icon text-success"><i class="fa-solid fa-sack-dollar"></i></div>
-                                    <div>
-                                        <p class="mb-1 text-sm"><span class="fw-bold text-main">New Order #8932</span>
-                                            received
-                                            from California.</p>
-                                        <span class="text-xs text-muted">2 mins ago</span>
-                                    </div>
-                                </div>
-                                <div class="tl-feed-item">
-                                    <div class="tl-feed-icon text-primary"><i class="fa-solid fa-user-plus"></i></div>
-                                    <div>
-                                        <p class="mb-1 text-sm"><span class="fw-bold text-main">John Doe</span>
-                                            registered as a
-                                            new customer.</p>
-                                        <span class="text-xs text-muted">15 mins ago</span>
-                                    </div>
-                                </div>
-                                <div class="tl-feed-item">
-                                    <div class="tl-feed-icon text-warning"><i
-                                            class="fa-solid fa-triangle-exclamation"></i>
-                                    </div>
-                                    <div>
-                                        <p class="mb-1 text-sm">Server load high. <span class="fw-bold text-main">CPU at
-                                                92%</span>.</p>
-                                        <span class="text-xs text-muted">1 hour ago</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <button class="btn btn-ghost w-100 mt-2">View All Logs</button>
+                        <div class="table-responsive">
+                            <table class="table table-hover table-borderless align-middle">
+                                <thead>
+                                    <tr>
+                                        <th>Product Name</th>
+                                        <th>Price</th>
+                                        <th>Sold</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="table-user-info">
+                                                <div class="avatar avatar-sm avatar-squircle bg-primary text-white">
+                                                    <i class="fa-brands fa-uikit"></i>
+                                                </div>
+                                                <div>
+                                                    <h6 class="mb-0">UI Kit Ultimate</h6>
+                                                    <span class="text-xs">Digital Asset</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="font-mono">$49.00</td>
+                                        <td>1,240</td>
+                                        <td><span class="badge badge-soft-success">Best Seller</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="table-user-info">
+                                                <div class="avatar avatar-sm avatar-squircle bg-info text-white">
+                                                    <i class="fa-solid fa-cube"></i>
+                                                </div>
+                                                <div>
+                                                    <h6 class="mb-0">3D Abstract Pack</h6>
+                                                    <span class="text-xs">Graphics</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="font-mono">$29.00</td>
+                                        <td>854</td>
+                                        <td><span class="badge badge-soft-primary">Trending</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="table-user-info">
+                                                <div class="avatar avatar-sm avatar-squircle bg-warning text-black">
+                                                    <i class="fa-solid fa-bolt"></i>
+                                                </div>
+                                                <div>
+                                                    <h6 class="mb-0">Admin Template</h6>
+                                                    <span class="text-xs">Web Theme</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="font-mono">$69.00</td>
+                                        <td>620</td>
+                                        <td><span class="badge badge-soft-warning">Low Stock</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- CONTENT END -->
-            <footer class="app-footer">
-                <div class="footer-left">
-                    <span class="footer-logo-icon"><i class="fa-solid fa-code"></i></span>
-                    <span>&copy; 2025 <strong>Daily.dev</strong>. Created with <i
-                            class="fa-solid fa-heart heart-icon"></i>
-                        by Irvan Maulana.</span>
-                </div>
-                <div class="footer-links">
-                    <a href="#" class="footer-link-item">Privacy Policy</a>
-                    <a href="#" class="footer-link-item">Terms</a>
-                    <a href="#" class="footer-link-item">Support</a>
-                </div>
-            </footer>
-        </main>
+
+                <footer class="app-footer">
+                    <div class="footer-left">
+                        <span class="footer-logo-icon"><i class="fa-solid fa-code"></i></span>
+                        <span>&copy; 2025 <strong>Daily.dev</strong>. Created with <i
+                                class="fa-solid fa-heart heart-icon"></i> by Irvan Maulana.</span>
+                    </div>
+                    <div class="footer-links">
+                        <a href="#" class="footer-link-item">Privacy Policy</a>
+                        <a href="#" class="footer-link-item">Terms</a>
+                        <a href="#" class="footer-link-item">Support</a>
+                    </div>
+                </footer>
+            </main>
+        </div>
     </div>
-    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <div class="sidebar-overlay desktop-only" id="sidebarOverlay"></div>
+    <div id="settings-container"></div>
+
     <script src="assets/js/core.js"></script>
+
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            // 1. Ambil Warna dari CSS Variables (Agar sinkron dengan tema)
-            const styles = getComputedStyle(document.documentElement);
-            const colorPrimary = styles.getPropertyValue('--accent-color').trim() || '#ff4757';
-            const colorSuccess = styles.getPropertyValue('--accent-green').trim() || '#2ecc71';
-            const colorText = styles.getPropertyValue('--text-main').trim();
-            const colorMuted = styles.getPropertyValue('--text-muted').trim();
-            const colorBorder = styles.getPropertyValue('--border-color').trim();
+            // Cek apakah elemen chart ada
+            const revenueChartEl = document.querySelector("#revenueChart");
 
-            // --- CHART 1: MAIN TRAFFIC (Area Chart) ---
-            const trafficOptions = {
-                series: [{
-                    name: 'Organic Search',
-                    data: [31, 40, 28, 51, 42, 109, 100]
-                }, {
-                    name: 'Direct Access',
-                    data: [11, 32, 45, 32, 34, 52, 41]
-                }],
-                chart: {
-                    height: 350,
-                    type: 'area',
-                    toolbar: { show: false }, // Bersih tanpa toolbar
-                    fontFamily: 'Inter, sans-serif'
-                },
-                colors: [colorPrimary, '#3b82f6'], // Gunakan warna tema
-                dataLabels: { enabled: false },
-                stroke: {
-                    curve: 'smooth',
-                    width: 2
-                },
-                fill: {
-                    type: 'gradient',
-                    gradient: {
-                        shadeIntensity: 1,
-                        opacityFrom: 0.4,
-                        opacityTo: 0.05,
-                        stops: [0, 90, 100]
-                    }
-                },
-                xaxis: {
-                    categories: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-                    axisBorder: { show: false },
-                    axisTicks: { show: false },
-                    labels: { style: { colors: colorMuted } }
-                },
-                yaxis: {
-                    labels: { style: { colors: colorMuted } }
-                },
-                grid: {
-                    borderColor: colorBorder,
-                    strokeDashArray: 4, // Garis putus-putus halus
-                },
-                tooltip: {
-                    theme: 'dark' // Sesuai styling CSS override Anda
-                }
-            };
+            if (revenueChartEl) {
+                // Hapus isi placeholder jika ada
+                revenueChartEl.innerHTML = "";
 
-            const trafficChart = new ApexCharts(document.querySelector("#mainTrafficChart"), trafficOptions);
-            trafficChart.render();
-
-            // --- CHART 2: DEVICES (Donut) ---
-            const deviceOptions = {
-                series: [55, 35, 10],
-                labels: ['Mobile', 'Desktop', 'Tablet'],
-                chart: {
-                    type: 'donut',
-                    height: 280,
-                    fontFamily: 'Inter, sans-serif'
-                },
-                colors: ['#3b82f6', colorSuccess, '#f1c40f'],
-                plotOptions: {
-                    pie: {
-                        donut: {
-                            size: '75%',
-                            labels: {
-                                show: true,
-                                name: { show: true, color: colorMuted },
-                                value: {
-                                    show: true,
-                                    fontSize: '24px',
-                                    fontWeight: 700,
-                                    color: colorText,
-                                    formatter: function (val) { return val + "%" }
-                                },
-                                total: {
-                                    show: true,
-                                    label: 'Devices',
-                                    color: colorMuted
-                                }
+                const options = {
+                    series: [{
+                        name: 'Revenue',
+                        data: [3100, 4000, 2800, 5100, 4200, 10900, 10000]
+                    }, {
+                        name: 'Expenses',
+                        data: [1100, 3200, 4500, 3200, 3400, 5200, 4100]
+                    }],
+                    chart: {
+                        height: 350,
+                        type: 'area',
+                        toolbar: {
+                            show: false
+                        },
+                        background: 'transparent',
+                        fontFamily: 'Inter, sans-serif'
+                    },
+                    colors: ['#ff4757', '#a855f7'], // Warna sesuai tema kamu
+                    dataLabels: {
+                        enabled: false
+                    },
+                    stroke: {
+                        curve: 'smooth',
+                        width: 2
+                    },
+                    xaxis: {
+                        type: 'datetime',
+                        categories: ["2025-09-19T00:00:00.000Z", "2025-09-19T01:30:00.000Z", "2025-09-19T02:30:00.000Z", "2025-09-19T03:30:00.000Z", "2025-09-19T04:30:00.000Z", "2025-09-19T05:30:00.000Z", "2025-09-19T06:30:00.000Z"],
+                        labels: {
+                            style: {
+                                colors: '#9499a6' // Text muted
                             }
+                        },
+                        axisBorder: {
+                            show: false
+                        },
+                        axisTicks: {
+                            show: false
+                        }
+                    },
+                    yaxis: {
+                        labels: {
+                            style: {
+                                colors: '#9499a6'
+                            },
+                            formatter: (value) => { return "$" + value }
+                        }
+                    },
+                    grid: {
+                        borderColor: '#2d323b', // Warna border table
+                        strokeDashArray: 4,
+                    },
+                    tooltip: {
+                        theme: 'dark', // Tooltip dark mode
+                        x: {
+                            format: 'dd/MM/yy HH:mm'
+                        },
+                    },
+                    fill: {
+                        type: 'gradient',
+                        gradient: {
+                            shadeIntensity: 1,
+                            opacityFrom: 0.7,
+                            opacityTo: 0.1, // Fade ke bawah
+                            stops: [0, 90, 100]
                         }
                     }
-                },
-                stroke: { show: false }, // Hilangkan border putih di antara slice
-                dataLabels: { enabled: false },
-                legend: { show: false } // Kita sudah buat legend custom di HTML
-            };
+                };
 
-            const deviceChart = new ApexCharts(document.querySelector("#deviceChart"), deviceOptions);
-            deviceChart.render();
-
-            // --- CHART 3: SPARKLINES (Mini Charts di Card) ---
-            const sparkOptionsBase = {
-                chart: { type: 'line', height: 50, sparkline: { enabled: true } },
-                stroke: { curve: 'smooth', width: 2 },
-                tooltip: { fixed: { enabled: false }, x: { show: false }, y: { title: { formatter: () => '' } }, marker: { show: false } }
-            };
-
-            new ApexCharts(document.querySelector("#spark1"), {
-                ...sparkOptionsBase,
-                series: [{ data: [25, 66, 41, 89, 63, 25, 44, 12, 36, 9, 54] }],
-                colors: ['#3b82f6']
-            }).render();
-
-            new ApexCharts(document.querySelector("#spark2"), {
-                ...sparkOptionsBase,
-                series: [{ data: [12, 14, 2, 47, 42, 15, 47, 75, 65, 19, 14] }],
-                colors: ['#f1c40f']
-            }).render();
-
-            new ApexCharts(document.querySelector("#spark3"), {
-                ...sparkOptionsBase,
-                series: [{ data: [47, 45, 74, 14, 56, 74, 14, 11, 7, 39, 82] }],
-                colors: ['#e74c3c']
-            }).render();
+                const chart = new ApexCharts(revenueChartEl, options);
+                chart.render();
+            }
         });
     </script>
 </body>

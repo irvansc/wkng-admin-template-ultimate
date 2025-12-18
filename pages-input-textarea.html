@@ -14,6 +14,127 @@
     <link rel="stylesheet" href="assets/css/utilities.css">
     <link rel="stylesheet" href="assets/css/layout.css">
     <link rel="stylesheet" href="assets/css/components.css">
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/theme/dracula.min.css">
+    <style>
+        /* --- CSS OVERRIDES UNTUK DARK THEME --- */
+
+        /* 1. Quill Dark Mode Fix */
+        .ql-toolbar.ql-snow {
+            border-color: var(--border-color) !important;
+            background: var(--bg-hover);
+        }
+
+        .ql-container.ql-snow {
+            border-color: var(--border-color) !important;
+            background: var(--bg-search);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .ql-stroke {
+            stroke: var(--text-muted) !important;
+        }
+
+        .ql-fill {
+            fill: var(--text-muted) !important;
+        }
+
+        .ql-picker {
+            color: var(--text-muted) !important;
+        }
+
+        /* 2. CKEditor Dark Mode Fix (Paksa Invert Warna) */
+        .ck.ck-editor__main>.ck-editor__editable {
+            background: var(--bg-search) !important;
+            color: var(--text-main) !important;
+            border-color: var(--border-color) !important;
+        }
+
+        .ck.ck-toolbar {
+            background: var(--bg-hover) !important;
+            border-color: var(--border-color) !important;
+        }
+
+        .ck.ck-button {
+            color: var(--text-main) !important;
+            cursor: pointer !important;
+        }
+
+        .ck.ck-button:hover {
+            background: var(--accent-color) !important;
+            color: white !important;
+        }
+
+        /* 3. CodeMirror Fix */
+        .CodeMirror {
+            height: 300px;
+            border-radius: 0 0 12px 12px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+        }
+
+        /* 1. Main Container & Toolbar */
+        .ck.ck-editor__main>.ck-editor__editable:not(.ck-focused) {
+            background-color: var(--bg-search) !important;
+            border-color: var(--border-color) !important;
+        }
+
+        .ck.ck-editor__main>.ck-editor__editable {
+            background-color: var(--bg-search) !important;
+            color: var(--text-main) !important;
+        }
+
+        .ck.ck-toolbar {
+            background-color: var(--bg-card) !important;
+            border-color: var(--border-color) !important;
+        }
+
+        /* 2. Text Color (Label, Paragraph, Heading) */
+        .ck.ck-button,
+        .ck.ck-label,
+        .ck-content p,
+        .ck-content h1,
+        .ck-content h2,
+        .ck-content h3 {
+            color: var(--text-main) !important;
+        }
+
+        /* 3. Hover Effect pada Tombol Toolbar */
+        .ck.ck-button:hover {
+            background-color: var(--bg-hover) !important;
+        }
+
+        /* 4. Dropdown Panel (Masalah di Screenshot Anda) */
+        .ck.ck-dropdown__panel {
+            background-color: var(--bg-card) !important;
+            border: 1px solid var(--border-color) !important;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5) !important;
+        }
+
+        /* 5. List Item di dalam Dropdown (Pilihan Paragraph, Heading, dll) */
+        .ck.ck-list {
+            background-color: var(--bg-card) !important;
+        }
+
+        .ck.ck-list__item .ck-button {
+            color: var(--text-muted) !important;
+        }
+
+        .ck.ck-list__item .ck-button:hover,
+        .ck.ck-list__item .ck-button.ck-on {
+            background-color: var(--accent-color) !important;
+            color: #fff !important;
+        }
+
+        /* 6. Input Field (Link URL, dll) */
+        .ck.ck-input {
+            background-color: var(--bg-search) !important;
+            border: 1px solid var(--border-color) !important;
+            color: var(--text-main) !important;
+        }
+    </style>
 </head>
 
 <body>
@@ -183,7 +304,7 @@
                         <nav aria-label="breadcrumb">
                             <ol class="hero-breadcrumb">
                                 <li>
-                                    <a href="index.html" class="breadcrumb-link">
+                                    <a href="dashboard.html" class="breadcrumb-link">
                                         <div class="home-icon-box"><i class="fa-solid fa-house"></i></div>
                                     </a>
                                 </li>
@@ -278,380 +399,55 @@
                             <div class="text-end text-muted text-xs mt-1">0/200 characters</div>
                         </div>
                     </div>
-                </div>
-                <div class="section-title col-span-12">
-                    <div class="section-line"></div>
-                    <div class="section-badge">
-                        <i class="fa fa-border-style"></i> <span>Checks & Radios</span>
-                    </div>
-                    <div class="section-line"></div>
-                </div>
-                <div class="content-grid">
-
-                    <div class="card col-span-4">
+                    <div class="card col-span-6">
                         <div class="card-header">
-                            <h5 class="card-title">1. Rich Radio Cards (Best for Plans)</h5>
+                            <h5 class="card-title">6. Auto-Growing Textarea (Vanilla JS)</h5>
                         </div>
-                        <div class="row g-3">
-                            <div class="col-md-4">
-                                <label class="radio-card-label">
-                                    <input type="radio" name="plan" class="radio-card-input" checked>
-                                    <div class="radio-card-content">
-                                        <div class="radio-check-icon"><i class="fa-solid fa-check"></i></div>
-                                        <i class="fa-solid fa-rocket fa-2x mb-3"
-                                            style="color: var(--accent-color);"></i>
-                                        <h6>Starter</h6>
-                                        <span class="text-muted text-xs">Free forever</span>
-                                    </div>
-                                </label>
+                        <div class="card-body">
+                            <p class="text-xs text-muted mb-2">Textarea ini akan membesar otomatis saat Anda mengetik.
+                            </p>
+                            <textarea class="form-control auto-resize" rows="1"
+                                placeholder="Ketik sesuatu yang panjang di sini..."
+                                style="overflow:hidden; resize:none; min-height:42px;"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="card col-span-6">
+                        <div class="card-header">
+                            <h5 class="card-title">7. Rich Text (Quill.js)</h5>
+                        </div>
+                        <div class="card-body">
+                            <div id="quill-editor" style="height: 150px;">
+                                <p>Hello World!</p>
+                                <p>This is a <strong>rich text</strong> editor.</p>
                             </div>
-                            <div class="col-md-4">
-                                <label class="radio-card-label">
-                                    <input type="radio" name="plan" class="radio-card-input">
-                                    <div class="radio-card-content">
-                                        <div class="radio-check-icon"><i class="fa-solid fa-check"></i></div>
-                                        <i class="fa-solid fa-gem fa-2x mb-3" style="color: #f1c40f;"></i>
-                                        <h6>Pro</h6>
-                                        <span class="text-muted text-xs">$19 / Month</span>
-                                    </div>
-                                </label>
-                            </div>
-                            <div class="col-md-4">
-                                <label class="radio-card-label">
-                                    <input type="radio" name="plan" class="radio-card-input">
-                                    <div class="radio-card-content">
-                                        <div class="radio-check-icon"><i class="fa-solid fa-check"></i></div>
-                                        <i class="fa-solid fa-building fa-2x mb-3" style="color: #3498db;"></i>
-                                        <h6>Enterprise</h6>
-                                        <span class="text-muted text-xs">Custom Price</span>
-                                    </div>
-                                </label>
+                            <button class="btn btn-sm btn-primary mt-3" onclick="getQuillContent()">Get Content
+                                (Log)</button>
+                        </div>
+                    </div>
+
+                    <div class="card col-span-12  overflow-visible">
+                        <div class="card-header">
+                            <h5 class="card-title">8. Professional Editor (CKEditor 5)</h5>
+                        </div>
+                        <div class="card-body text-dark">
+                            <div id="ckeditor-classic">
+                                <p>Ini adalah editor kelas berat. Bagus untuk CMS.</p>
                             </div>
                         </div>
                     </div>
 
-                    <div class="card col-span-4">
+                    <div class="card col-span-12  overflow-visible">
                         <div class="card-header">
-                            <h5 class="card-title">2. Task List Style</h5>
+                            <h5 class="card-title">9. Code Editor (CodeMirror)</h5>
                         </div>
-                        <div class="d-flex flex-column gap-2">
-                            <label class="custom-check-wrapper p-2 rounded" style="background: var(--bg-hover);">
-                                Finish Design Mockup
-                                <input type="checkbox" checked>
-                                <span class="checkmark" style="top: 10px; left: 10px;"></span>
-                            </label>
-                            <label class="custom-check-wrapper p-2 rounded" style="background: var(--bg-hover);">
-                                Fix Responsive Bug
-                                <input type="checkbox">
-                                <span class="checkmark" style="top: 10px; left: 10px;"></span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="card col-span-4">
-                        <div class="card-header">
-                            <h5 class="card-title">3. Inline Options</h5>
-                        </div>
-                        <div class="d-flex gap-4">
-                            <label class="d-flex align-center gap-2 cursor-pointer">
-                                <input type="radio" name="gender" style="accent-color: var(--accent-color);"> Male
-                            </label>
-                            <label class="d-flex align-center gap-2 cursor-pointer">
-                                <input type="radio" name="gender" style="accent-color: var(--accent-color);"> Female
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="card col-span-4">
-                        <div class="card-header">
-                            <h5 class="card-title">4. Bordered Selection</h5>
-                        </div>
-                        <label class="d-flex align-center justify-between p-3"
-                            style="border: 1px solid var(--border-color); border-radius: 12px; cursor: pointer;">
-                            <span>Enable 2FA</span>
-                            <input type="checkbox"
-                                style="width: 18px; height: 18px; accent-color: var(--accent-green);">
-                        </label>
-                    </div>
-
-                    <div class="card col-span-4">
-                        <div class="card-header">
-                            <h5 class="card-title">5. Image Selection</h5>
-                        </div>
-                        <div class="d-flex gap-3">
-                            <label style="cursor: pointer;">
-                                <input type="radio" name="theme" class="d-none" checked>
-                                <img src="https://picsum.photos/80/80?random=1"
-                                    style="border-radius: 8px; border: 2px solid var(--accent-color);">
-                            </label>
-                            <label style="cursor: pointer;">
-                                <input type="radio" name="theme" class="d-none">
-                                <img src="https://picsum.photos/80/80?random=2"
-                                    style="border-radius: 8px; border: 2px solid var(--border-color); opacity: 0.5;">
-                            </label>
+                        <div class="card-body" style="padding: 0;">
+                            <textarea
+                                id="code-editor">function helloWorld() {console.log("Hello Daily Admin!");return true;}</textarea>
                         </div>
                     </div>
                 </div>
-                <div class="section-title col-span-12">
-                    <div class="section-line"></div>
-                    <div class="section-badge">
-                        <i class="fa fa-border-style"></i> <span>Switches</span>
-                    </div>
-                    <div class="section-line"></div>
-                </div>
-                <div class="content-grid">
-                    <div class="card col-span-4">
-                        <div class="card-header">
-                            <h5 class="card-title">1. iOS Standard</h5>
-                        </div>
-                        <label class="form-switch">
-                            <input type="checkbox" checked>
-                            <span class="switch-slider"></span>
-                        </label>
-                    </div>
 
-                    <div class="card col-span-4">
-                        <div class="card-header">
-                            <h5 class="card-title">2. Labeled Switch</h5>
-                        </div>
-                        <div class="d-flex align-center justify-between">
-                            <span>Airplane Mode</span>
-                            <label class="form-switch">
-                                <input type="checkbox">
-                                <span class="switch-slider"></span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="card col-span-4">
-                        <div class="card-header">
-                            <h5 class="card-title">3. Square Style</h5>
-                        </div>
-                        <label class="form-switch">
-                            <input type="checkbox" checked>
-                            <span class="switch-slider" style="border-radius: 4px;"></span>
-                        </label>
-                    </div>
-
-                    <div class="card col-span-4">
-                        <div class="card-header">
-                            <h5 class="card-title">4. Success Color</h5>
-                        </div>
-                        <label class="form-switch">
-                            <input type="checkbox" checked style="accent-color: green;"> <span class="switch-slider"
-                                style="background-color: var(--accent-green) !important;"></span>
-                        </label>
-                    </div>
-
-                    <div class="card col-span-4">
-                        <div class="card-header">
-                            <h5 class="card-title">5. Disabled State</h5>
-                        </div>
-                        <label class="form-switch" style="opacity: 0.5;">
-                            <input type="checkbox" disabled checked>
-                            <span class="switch-slider"></span>
-                        </label>
-                    </div>
-                </div>
-                <div class="section-title col-span-12">
-                    <div class="section-line"></div>
-                    <div class="section-badge">
-                        <i class="fa fa-border-style"></i> <span>Input Groups</span>
-                    </div>
-                    <div class="section-line"></div>
-                </div>
-                <div class="content-grid">
-                    <div class="card col-span-4">
-                        <div class="card-header">
-                            <h5 class="card-title">1. Icon Addon</h5>
-                        </div>
-                        <div class="input-group">
-                            <span class="input-group-text"><i class="fa-regular fa-envelope"></i></span>
-                            <input type="email" class="form-control" placeholder="Email Address">
-                        </div>
-                    </div>
-
-                    <div class="card col-span-4">
-                        <div class="card-header">
-                            <h5 class="card-title">2. URL Builder</h5>
-                        </div>
-                        <div class="input-group">
-                            <span class="input-group-text">https://daily.dev/users/</span>
-                            <input type="text" class="form-control" placeholder="username">
-                        </div>
-                    </div>
-
-                    <div class="card col-span-4">
-                        <div class="card-header">
-                            <h5 class="card-title">3. Search with Button</h5>
-                        </div>
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search product...">
-                            <button class="btn btn-primary" style="border-radius: 0 10px 10px 0;">Search</button>
-                        </div>
-                    </div>
-
-                    <div class="card col-span-4">
-                        <div class="card-header">
-                            <h5 class="card-title">4. Dual Inputs</h5>
-                        </div>
-                        <div class="input-group">
-                            <span class="input-group-text">Name</span>
-                            <input type="text" class="form-control" placeholder="First Name">
-                            <input type="text" class="form-control" placeholder="Last Name">
-                        </div>
-                    </div>
-
-                    <div class="card col-span-4">
-                        <div class="card-header">
-                            <h5 class="card-title">5. Password Reveal</h5>
-                        </div>
-                        <div class="input-group">
-                            <input type="password" class="form-control" value="secretpassword" id="passReveal">
-                            <button class="btn btn-secondary" onclick="alert('Logic toggle JS disini')"
-                                style="border-radius: 0 10px 10px 0;">
-                                <i class="fa-regular fa-eye"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="section-title col-span-12">
-                    <div class="section-line"></div>
-                    <div class="section-badge">
-                        <i class="fa fa-border-style"></i> <span>File Upload</span>
-                    </div>
-                    <div class="section-line"></div>
-                </div>
-                <div class="content-grid">
-                    <div class="card col-span-4">
-                        <div class="card-header">
-                            <h5 class="card-title">1. Main Dropzone</h5>
-                        </div>
-                        <div class="upload-zone-lg">
-                            <i class="fa-solid fa-cloud-arrow-up fa-3x mb-3 text-muted"></i>
-                            <h5>Drag & Drop files here</h5>
-                            <p class="text-muted text-sm">or click to browse from your computer</p>
-                            <button class="btn btn-primary">Browse Files</button>
-                        </div>
-                    </div>
-
-                    <div class="card col-span-4">
-                        <div class="card-header">
-                            <h5 class="card-title">2. Avatar Upload</h5>
-                        </div>
-                        <div class="d-flex align-center gap-3">
-                            <div style="position: relative;">
-                                <img src="https://i.pravatar.cc/150?img=12" class="rounded-full" width="80" height="80">
-                                <button class="btn btn-sm btn-primary rounded-full"
-                                    style="position: absolute; bottom: 0; right: 0; width: 30px; height: 30px; padding: 0;">
-                                    <i class="fa-solid fa-camera"></i>
-                                </button>
-                            </div>
-                            <div>
-                                <h6>Profile Photo</h6>
-                                <p class="text-xs text-muted mb-0">Max 2MB</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card col-span-4">
-                        <div class="card-header">
-                            <h5 class="card-title">3. Minimal Button</h5>
-                        </div>
-                        <label class="btn btn-secondary">
-                            <i class="fa-solid fa-paperclip"></i> Attach Document
-                            <input type="file" class="d-none">
-                        </label>
-                    </div>
-
-                    <div class="card col-span-4">
-                        <div class="card-header">
-                            <h5 class="card-title">4. Uploading...</h5>
-                        </div>
-                        <div class="d-flex align-center justify-between mb-2">
-                            <span class="text-sm"><i class="fa-regular fa-file-pdf"></i> report.pdf</span>
-                            <span class="text-xs text-success">80%</span>
-                        </div>
-                        <div
-                            style="width: 100%; height: 6px; background: var(--bg-hover); border-radius: 10px; overflow: hidden;">
-                            <div style="width: 80%; height: 100%; background: var(--accent-color);"></div>
-                        </div>
-                    </div>
-
-                    <div class="card col-span-4">
-                        <div class="card-header">
-                            <h5 class="card-title">5. Image Preview</h5>
-                        </div>
-                        <div
-                            style="position: relative; width: 100%; height: 150px; border-radius: 12px; overflow: hidden; background: url('https://source.unsplash.com/random/400x300') center/cover;">
-                            <button class="btn btn-danger btn-sm" style="position: absolute; top: 10px; right: 10px;"><i
-                                    class="fa-solid fa-trash"></i></button>
-                        </div>
-                    </div>
-                </div>
-                <div class="section-title col-span-12">
-                    <div class="section-line"></div>
-                    <div class="section-badge">
-                        <i class="fa fa-border-style"></i> <span>Pickers</span>
-                    </div>
-                    <div class="section-line"></div>
-                </div>
-                <div class="content-grid">
-                    <div class="card col-span-4">
-                        <div class="card-header">
-                            <h5 class="card-title">1. Product Color</h5>
-                        </div>
-                        <div class="d-flex gap-3">
-                            <label>
-                                <input type="radio" name="color" class="d-none color-input" checked>
-                                <div class="color-option" style="background: #e74c3c;"></div>
-                            </label>
-                            <label>
-                                <input type="radio" name="color" class="d-none color-input">
-                                <div class="color-option" style="background: #3498db;"></div>
-                            </label>
-                            <label>
-                                <input type="radio" name="color" class="d-none color-input">
-                                <div class="color-option" style="background: #f1c40f;"></div>
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="card col-span-4">
-                        <div class="card-header">
-                            <h5 class="card-title">2. Date Picker</h5>
-                        </div>
-                        <input type="date" class="form-control" style="color-scheme: dark;">
-                    </div>
-
-                    <div class="card col-span-4">
-                        <div class="card-header">
-                            <h5 class="card-title">3. Volume Slider</h5>
-                        </div>
-                        <label class="form-label d-flex justify-between">
-                            <span>Volume</span> <span>75%</span>
-                        </label>
-                        <input type="range" class="form-range" min="0" max="100" value="75">
-                    </div>
-
-                    <div class="card col-span-4">
-                        <div class="card-header">
-                            <h5 class="card-title">4. Time Picker</h5>
-                        </div>
-                        <input type="time" class="form-control" style="color-scheme: dark;">
-                    </div>
-
-                    <div class="card col-span-4">
-                        <div class="card-header">
-                            <h5 class="card-title">5. Custom Color Input</h5>
-                        </div>
-                        <div class="d-flex align-center gap-2">
-                            <input type="color" class="form-control" style="width: 50px; padding: 4px; height: 40px;"
-                                value="#a855f7">
-                            <span>#a855f7</span>
-                        </div>
-                    </div>
-                </div>
 
                 <footer class="app-footer mt-2">
                     <div class="footer-left">
@@ -672,6 +468,77 @@
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
     <div id="settings-container"></div>
     <script src="assets/js/core.js"></script>
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/javascript/javascript.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            // --- 1. LOGIKA AUTO-RESIZE (VANILLA JS) ---
+            const autoTextareas = document.querySelectorAll('.auto-resize');
+            autoTextareas.forEach(textarea => {
+                textarea.addEventListener('input', function () {
+                    this.style.height = 'auto'; // Reset height
+                    this.style.height = (this.scrollHeight) + 'px'; // Set new height
+                });
+            });
+
+
+            // --- 2. QUILL EDITOR INITIALIZATION ---
+            if (document.getElementById('quill-editor')) {
+                window.quill = new Quill('#quill-editor', {
+                    theme: 'snow',
+                    placeholder: 'Compose an epic...',
+                    modules: {
+                        toolbar: [
+                            ['bold', 'italic', 'underline'],
+                            [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+                            ['link', 'image']
+                        ]
+                    }
+                });
+
+                // Contoh Fungsi mengambil data nyata
+                window.getQuillContent = function () {
+                    const content = window.quill.root.innerHTML;
+                    alert("Check Console for HTML output");
+                    console.log(content);
+                }
+            }
+
+
+            // --- 3. CKEDITOR 5 INITIALIZATION ---
+            if (document.getElementById('ckeditor-classic')) {
+                ClassicEditor
+                    .create(document.querySelector('#ckeditor-classic'))
+                    .then(editor => {
+                        console.log('CKEditor 5 is ready to use!', editor);
+                        // Cara ambil data: editor.getData();
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
+            }
+
+
+            // --- 4. CODEMIRROR INITIALIZATION ---
+            if (document.getElementById('code-editor')) {
+                var myCodeMirror = CodeMirror.fromTextArea(document.getElementById("code-editor"), {
+                    lineNumbers: true,
+                    mode: "javascript",
+                    theme: "dracula", // Tema gelap bawaan CodeMirror
+                    lineWrapping: true
+                });
+
+                // Agar ukuran pas saat load
+                setTimeout(() => {
+                    myCodeMirror.refresh();
+                }, 100);
+            }
+
+        });
+    </script>
 </body>
 
 </html>

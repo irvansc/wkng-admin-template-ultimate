@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>WKNG - Engineer Your Digital Dominance</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="assets/css/marketing.css">
+</head>
+
+<body>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay ultimate-mobile-menu">
+        <div class="mobile-menu-header">
+            <div class="logo brand-wkng">
+                <i class="fa-solid fa-bolt" style="color: var(--primary);"></i>
+                <span>WKNG<span class="text-primary">.</span></span>
+            </div>
+            <button class="mobile-close-btn">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <div class="mobile-scroll-content">
+            <nav class="mobile-nav-links">
+
+                <a href="#" class="mobile-nav-row active">
+                    <span class="nav-label">Home</span>
+                    <i class="fa-solid fa-arrow-right active-indicator"></i>
+                </a>
+
+                <details class="mobile-accordion">
+                    <summary class="mobile-nav-row">
+                        <span class="nav-label">Solutions</span>
+                        <i class="fa-solid fa-plus accordion-icon"></i>
+                    </summary>
+                    <div class="mobile-submenu">
+                        <a href="growth-marketing.html" class="submenu-item">
+                            <i class="fa-solid fa-rocket"></i> Growth Marketing
+                        </a>
+                        <a href="#" class="submenu-item">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i> Creative Studio
+                        </a>
+                        <a href="#" class="submenu-item">
+                            <i class="fa-solid fa-code"></i> Web Development
+                        </a>
+                    </div>
+                </details>
+
+                <a href="#pricing" class="mobile-nav-row">
+                    <span class="nav-label">Pricing</span>
+                </a>
+
+                <details class="mobile-accordion">
+                    <summary class="mobile-nav-row">
+                        <span class="nav-label">Resources</span>
+                        <i class="fa-solid fa-plus accordion-icon"></i>
+                    </summary>
+                    <div class="mobile-submenu">
+                        <a href="#" class="submenu-item">
+                            <i class="fa-regular fa-newspaper"></i> Articles & Blog
+                        </a>
+                        <a href="#" class="submenu-item">
+                            <i class="fa-solid fa-book-open"></i> Case Studies
+                        </a>
+                    </div>
+                </details>
+
+                <a href="#about" class="mobile-nav-row">
+                    <span class="nav-label">About</span>
+                </a>
+
+                <a href="#careers" class="mobile-nav-row">
+                    <span class="nav-label">Careers</span>
+                </a>
+
+            </nav>
+        </div>
+
+        <div class="mobile-menu-footer">
+
+            <a href="#pricing" class="btn btn-primary btn-large btn-glow btn-block">
+                Start Project <i class="fa-solid fa-arrow-right" style="margin-left:8px; font-size:0.9em;"></i>
+            </a>
+
+            <div class="mobile-utility-bar">
+
+                <button class="util-item search-trigger-btn" title="Search">
+                    <div class="util-icon">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                    <span>Search</span>
+                </button>
+
+                <div class="util-divider"></div>
+
+                <button id="theme-toggle-mobile" class="util-item theme-toggle-btn" title="Switch Theme">
+                    <div class="util-icon">
+                        <i class="fa-solid fa-moon"></i>
+                    </div>
+                    <span>Theme</span>
+                </button>
+
+                <div class="util-divider"></div>
+
+                <a href="#" class="util-item" title="Client Login">
+                    <div class="util-icon login-icon">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <span>Login</span>
+                </a>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="navbar premium-nav">
+        <div class="container nav-inner">
+            <a href="#" class="logo brand-wkng">
+                <i class="fa-solid fa-bolt" style="color: var(--primary);"></i>
+                <span>WKNG<span class="text-primary">.</span></span>
+            </a>
+
+            <nav class="nav-links">
+                <a href="pages-lp.marketing.html" class="nav-link active">Home</a>
+
+                <div class="nav-item-dropdown">
+                    <a href="#" class="nav-link">Solutions <i class="fa-solid fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="growth-marketing.html" class="dropdown-item">
+                            <i class="fa-solid fa-rocket"></i>
+                            <div>
+                                <span>Growth Marketing</span>
+                                <small>Scale your revenue fast</small>
+                            </div>
+                        </a>
+                        <a href="creative-studio.html" class="dropdown-item">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                            <div>
+                                <span>Creative Studio</span>
+                                <small>Premium branding & UI/UX</small>
+                            </div>
+                        </a>
+                        <a href="web-development.html" class="dropdown-item">
+                            <i class="fa-solid fa-code"></i>
+                            <div>
+                                <span>Web Development</span>
+                                <small>Robust tech solutions</small>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <a href="#pricing" class="nav-link">Pricing</a>
+
+                <div class="nav-item-dropdown">
+                    <a href="#" class="nav-link">Resources <i class="fa-solid fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="#" class="dropdown-item">
+                            <i class="fa-regular fa-newspaper"></i>
+                            <div>
+                                <span>Articles & Blog</span>
+                                <small>Latest industry insights</small>
+                            </div>
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            <i class="fa-solid fa-book-open"></i>
+                            <div>
+                                <span>Case Studies</span>
+                                <small>Real results from clients</small>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <a href="#about" class="nav-link">About</a>
+
+                <a href="#careers" class="nav-link">Careers</a>
+            </nav>
+            <div class="nav-cta">
+
+                <button class="nav-icon-btn search-trigger-btn" title="Search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+
+                <button id="theme-toggle" class="nav-icon-btn theme-toggle-btn" title="Toggle Theme">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+
+                <div class="nav-divider"></div>
+
+                <a href="#" class="link-login">Sign In</a>
+
+                <a href="#pricing" class="btn btn-primary btn-glow">
+                    Start Project
+                </a>
+            </div>
+
+            <div style="display:flex; align-items:center; gap:16px;">
+                <button id="theme-toggle-mobile-icon" class="theme-toggle-btn mobile-menu-btn"
+                    style="display:none; @media(max-width:768px){display:flex; border:none;}">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                <button class="mobile-menu-btn">
+                    <i class="fa-solid fa-bars-staggered"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero hero-ultimate">
+            <div class="hero-glow-bg"></div>
+
+            <div class="container hero-content">
+                <div class="badge-premium fade-in-up">
+                    <span class="badge-dot"></span> WKNG Agency 2.0 is Live
+                </div>
+
+                <h1 class="fade-in-up" style="transition-delay: 0.1s;">
+                    We Engineer <br>
+                    <span class="text-gradient-premium">Digital Dominance.</span>
+                </h1>
+
+                <p class="hero-subtitle fade-in-up" style="transition-delay: 0.2s;">
+                    WKNG is the strategic partner for brands that refuse to blend in.
+                    We combine high-end design, data-driven marketing, and cutting-edge tech
+                    to build your empire.
+                </p>
+
+                <div class="hero-cta-group fade-in-up" style="transition-delay: 0.3s;">
+                    <a href="#pricing" class="btn btn-primary btn-large btn-glow">
+                        Explore Solutions
+                    </a>
+                    <a href="#" class="btn btn-outline btn-large">
+                        View Our Work
+                    </a>
+                </div>
+
+                <div class="hero-visual-wrapper fade-in-up" style="transition-delay: 0.4s;">
+                    <div class="hero-visual premium-border">
+                        <img src="https://picsum.photos/1200/700?random=99" alt="WKNG Dashboard" loading="lazy">
+
+                        <div class="float-card card-left">
+                            <div class="icon-box"><i class="fa-solid fa-users-viewfinder"></i></div>
+                            <div>
+                                <div class="label">Total Reach</div>
+                                <div class="value">2.4M+</div>
+                            </div>
+                        </div>
+
+                        <div class="float-card card-right">
+                            <div class="icon-box success"><i class="fa-solid fa-arrow-trend-up"></i></div>
+                            <div>
+                                <div class="label">Conversion Rate</div>
+                                <div class="value">+18.5%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-stats fade-in-up" style="transition-delay: 0.5s;">
+                    <div class="stat-item">
+                        <span class="stat-label">Average ROI</span>
+                        <span class="stat-val text-gradient">300%</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Revenue Gen</span>
+                        <span class="stat-val text-gradient">$50M+</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Happy Clients</span>
+                        <span class="stat-val text-gradient">500+</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Floating Mobile CTA -->
+        <div class="mobile-floating-cta" id="floating-cta">
+            <div style="display:flex; flex-direction:column; padding-left:8px;">
+                <span style="font-weight:700; font-size:0.9rem; color:white;">Ready to scale?</span>
+                <span style="font-size:0.75rem; color:var(--success);">Limited spots available</span>
+            </div>
+
+            <div style="display:flex; align-items:center; gap:12px;">
+                <a href="#pricing" class="btn btn-gradient" style="padding: 8px 20px; font-size:0.9rem;">Book Audit</a>
+
+                <button class="cta-close-btn" id="close-floating-cta">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Back To Top Button -->
+        <button id="back-to-top" class="back-to-top" title="Back to Top">
+            <i class="fa-solid fa-arrow-up"></i>
+        </button>
+
+        <main>
+            <!-- Hero Section -->
+
+
+
+            <!-- Trusted By (SLIDER ANIMATION) -->
+            <section class="trusted-by">
+                <div class="container">
+                    <p class="text-center text-muted"
+                        style="margin-bottom:32px; font-size:0.75rem; letter-spacing:2px; text-transform:uppercase; font-weight:600;">
+                        Trusted by Unicorns & Startups</p>
+
+                    <div class="logo-slider">
+                        <div class="logo-track">
+                            <!-- Set 1 -->
+                            <div class="logo-item"><i class="fa-brands fa-shopify"></i> Shopify Plus</div>
+                            <div class="logo-item"><i class="fa-brands fa-hubspot"></i> Hubspot</div>
+                            <div class="logo-item"><i class="fa-brands fa-meta"></i> Meta Ads</div>
+                            <div class="logo-item"><i class="fa-brands fa-tiktok"></i> TikTok Business</div>
+                            <div class="logo-item"><i class="fa-brands fa-google"></i> Google Ads</div>
+                            <div class="logo-item"><i class="fa-brands fa-stripe"></i> Stripe</div>
+                            <div class="logo-item"><i class="fa-brands fa-aws"></i> AWS</div>
+
+                            <!-- Set 2 (Duplicate for Loop) -->
+                            <div class="logo-item"><i class="fa-brands fa-shopify"></i> Shopify Plus</div>
+                            <div class="logo-item"><i class="fa-brands fa-hubspot"></i> Hubspot</div>
+                            <div class="logo-item"><i class="fa-brands fa-meta"></i> Meta Ads</div>
+                            <div class="logo-item"><i class="fa-brands fa-tiktok"></i> TikTok Business</div>
+                            <div class="logo-item"><i class="fa-brands fa-google"></i> Google Ads</div>
+                            <div class="logo-item"><i class="fa-brands fa-stripe"></i> Stripe</div>
+                            <div class="logo-item"><i class="fa-brands fa-aws"></i> AWS</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Features/Services -->
+            <section id="services" class="features">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="section-tag">Our Expertise</span>
+                        <h2>Comprehensive Growth Systems</h2>
+                        <p class="text-muted" style="margin-top:16px; font-size:1.1rem;">
+                            We don't just run ads. We build complete ecosystems that attract, nurture, and convert your
+                            ideal customers on autopilot.
+                        </p>
+                    </div>
+
+                    <!-- Horizontal Scroll on Mobile -->
+                    <div class="features-grid">
+                        <div class="feature-card reveal">
+                            <div class="feature-icon"><i class="fa-solid fa-bullseye"></i></div>
+                            <h3>Precision Targeting</h3>
+                            <p>We use AI-driven audience modeling to find buyers who are ready to purchase right now.
+                            </p>
+                        </div>
+                        <div class="feature-card reveal">
+                            <div class="feature-icon"><i class="fa-solid fa-filter"></i></div>
+                            <h3>Conversion Funnels</h3>
+                            <p>High-converting landing pages and email sequences designed to maximize LTV.</p>
+                        </div>
+                        <div class="feature-card reveal">
+                            <div class="feature-icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+                            <h3>SEO Domination</h3>
+                            <p>Rank #1 for high-intent keywords. We build authority that brings organic traffic.</p>
+                        </div>
+                        <div class="feature-card reveal">
+                            <div class="feature-icon"><i class="fa-solid fa-robot"></i></div>
+                            <h3>Marketing Automation</h3>
+                            <p>Save 20+ hours a week. We automate lead nurturing, follow-ups, and CRM management.</p>
+                        </div>
+                        <div class="feature-card reveal">
+                            <div class="feature-icon"><i class="fa-solid fa-pen-nib"></i></div>
+                            <h3>Creative Strategy</h3>
+                            <p>Scroll-stopping visuals and copywriting that speaks directly to pain points.</p>
+                        </div>
+                        <div class="feature-card reveal">
+                            <div class="feature-icon"><i class="fa-solid fa-chart-pie"></i></div>
+                            <h3>Real-Time Analytics</h3>
+                            <p>Transparent reporting. See exactly where every dollar goes and what return it brings.</p>
+                        </div>
+                    </div>
+                    <!-- Hint for mobile users -->
+                    <div class="text-center text-muted"
+                        style="margin-top:20px; font-size:0.9rem; display:none; @media(max-width:768px){display:block;}">
+                        <i class="fa-solid fa-arrow-right"></i> Swipe to explore services
+                    </div>
+                </div>
+            </section>
+
+            <!-- Benefits (Split) -->
+            <section id="results" class="benefits">
+                <div class="container">
+                    <!-- Row 1 -->
+                    <div class="benefit-row reveal">
+                        <div class="benefit-content">
+                            <span class="section-tag">Traffic</span>
+                            <h2>Stop chasing leads. <br>Make them come to you.</h2>
+                            <p class="text-muted"
+                                style="margin-top:24px; margin-bottom:32px; font-size:1.1rem; line-height:1.7;">
+                                Most businesses fail because they rely on hope. We rely on proven systems. Our "Inbound
+                                Torrent" method ensures your calendar is full.
+                            </p>
+                            <ul class="benefit-list">
+                                <li><i class="fa-solid fa-check"></i> <span>Automated lead generation 24/7</span></li>
+                                <li><i class="fa-solid fa-check"></i> <span>Qualify prospects before you talk</span>
+                                </li>
+                                <li><i class="fa-solid fa-check"></i> <span>Reduce customer acquisition costs</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="benefit-image">
+                            <img src="https://picsum.photos/600/400?random=11" alt="Lead Generation Graph">
+                        </div>
+                    </div>
+
+                    <!-- Row 2 -->
+                    <div class="benefit-row reverse reveal">
+                        <div class="benefit-content">
+                            <span class="section-tag">Conversion</span>
+                            <h2>Turn visitors into <br>obsessed fans.</h2>
+                            <p class="text-muted"
+                                style="margin-top:24px; margin-bottom:32px; font-size:1.1rem; line-height:1.7;">
+                                Traffic is useless if it doesn't convert. We optimize every touchpoint of the user
+                                journey
+                                to ensure maximum conversion rates.
+                            </p>
+                            <ul class="benefit-list">
+                                <li><i class="fa-solid fa-check"></i> <span>A/B tested copy & design</span></li>
+                                <li><i class="fa-solid fa-check"></i> <span>Psychological triggers that sell</span></li>
+                                <li><i class="fa-solid fa-check"></i> <span>Retargeting that feels personal</span></li>
+                            </ul>
+                        </div>
+                        <div class="benefit-image">
+                            <img src="https://picsum.photos/600/400?random=12" alt="Conversion Optimization">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Testimonials -->
+            <section class="testimonials">
+                <div class="container">
+                    <div class="section-header">
+                        <h2>Success Stories</h2>
+                    </div>
+                    <!-- Horizontal Scroll on Mobile -->
+                    <div class="testimonial-grid">
+                        <div class="testimonial-card reveal">
+                            <div class="user-profile">
+                                <img src="https://picsum.photos/100/100?random=13" alt="Client" class="user-avatar">
+                                <div>
+                                    <h4 style="font-size:1rem;">Jessica Chen</h4>
+                                    <span class="text-muted" style="font-size:0.85rem;">CEO at Glow Cosmetics</span>
+                                </div>
+                            </div>
+                            <div class="rating">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                    class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                    class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="quote">"We were stuck at $50k/mo. Nexus came in, revamped our ads, and within 3
+                                months
+                                we hit $200k/mo. Insane results."</p>
+                        </div>
+
+                        <div class="testimonial-card reveal">
+                            <div class="user-profile">
+                                <img src="https://picsum.photos/100/100?random=14" alt="Client" class="user-avatar">
+                                <div>
+                                    <h4 style="font-size:1rem;">Mark Johnson</h4>
+                                    <span class="text-muted" style="font-size:0.85rem;">Founder, SaaSify</span>
+                                </div>
+                            </div>
+                            <div class="rating">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                    class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                    class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="quote">"I thought I knew marketing until I met these guys. Their automation saved
+                                me
+                                hiring 3 sales reps. Highly recommended."</p>
+                        </div>
+
+                        <div class="testimonial-card reveal">
+                            <div class="user-profile">
+                                <img src="https://picsum.photos/100/100?random=15" alt="Client" class="user-avatar">
+                                <div>
+                                    <h4 style="font-size:1rem;">Amanda Roy</h4>
+                                    <span class="text-muted" style="font-size:0.85rem;">Director, FitLife</span>
+                                </div>
+                            </div>
+                            <div class="rating">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                    class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                    class="fa-solid fa-star-half-stroke"></i>
+                            </div>
+                            <p class="quote">"Professional, data-driven, and transparent. They don't promise magic, they
+                                deliver consistent growth. Best partner."</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Pricing -->
+            <section id="pricing" class="pricing">
+                <div class="container">
+                    <div class="section-header">
+                        <h2>Invest in Your Growth</h2>
+                        <p class="text-muted">Choose the package that fits your scaling goals.</p>
+                    </div>
+
+                    <div class="pricing-toggle">
+                        <div class="switch-container">
+                            <div class="switch-btn active" data-period="monthly">Monthly</div>
+                            <div class="switch-btn" data-period="yearly">Quarterly <span
+                                    style="font-size:0.75em; color:var(--success); margin-left:4px;">-15%</span></div>
+                        </div>
+                    </div>
+
+                    <div class="pricing-grid">
+                        <!-- Basic -->
+                        <div class="pricing-card reveal">
+                            <h3>Starter</h3>
+                            <p class="text-muted" style="margin-bottom:24px; font-size:0.95rem;">Perfect for local
+                                businesses</p>
+                            <div class="price-amount">$<span class="price-value" data-monthly="997"
+                                    data-yearly="850">997</span></div>
+                            <span class="price-period">per month</span>
+
+                            <a href="#" class="btn btn-outline" style="width:100%; margin-top:32px;">Start Now</a>
+
+                            <ul class="pricing-features">
+                                <li><i class="fa-solid fa-check"></i> Social Media Mgmt (2 Channels)</li>
+                                <li><i class="fa-solid fa-check"></i> Basic SEO Optimization</li>
+                                <li><i class="fa-solid fa-check"></i> Monthly Performance Report</li>
+                                <li class="disabled"><i class="fa-solid fa-xmark"></i> Paid Ad Management</li>
+                            </ul>
+                        </div>
+
+                        <!-- Pro -->
+                        <div class="pricing-card popular reveal">
+                            <div class="popular-badge">Best Value</div>
+                            <h3>Growth</h3>
+                            <p class="text-muted" style="margin-bottom:24px; font-size:0.95rem;">For scaling startups
+                            </p>
+                            <div class="price-amount">$<span class="price-value" data-monthly="2,497"
+                                    data-yearly="2,150">2,497</span></div>
+                            <span class="price-period">per month</span>
+
+                            <a href="#" class="btn btn-primary" style="width:100%; margin-top:32px;">Scale With Us</a>
+
+                            <ul class="pricing-features">
+                                <li><i class="fa-solid fa-check"></i> Full Stack Paid Ads (FB/Google)</li>
+                                <li><i class="fa-solid fa-check"></i> Funnel Construction</li>
+                                <li><i class="fa-solid fa-check"></i> Email Marketing Automation</li>
+                                <li><i class="fa-solid fa-check"></i> Weekly Strategy Calls</li>
+                                <li><i class="fa-solid fa-check"></i> Copywriting Included</li>
+                            </ul>
+                        </div>
+
+                        <!-- Enterprise -->
+                        <div class="pricing-card reveal">
+                            <h3>Dominance</h3>
+                            <p class="text-muted" style="margin-bottom:24px; font-size:0.95rem;">For established brands
+                            </p>
+                            <div class="price-amount">$<span class="price-value" data-monthly="5,000+"
+                                    data-yearly="4,500+">5k+</span></div>
+                            <span class="price-period">custom quote</span>
+
+                            <a href="#" class="btn btn-outline" style="width:100%; margin-top:32px;">Contact Sales</a>
+
+                            <ul class="pricing-features">
+                                <li><i class="fa-solid fa-check"></i> Everything in Growth</li>
+                                <li><i class="fa-solid fa-check"></i> Fractional CMO</li>
+                                <li><i class="fa-solid fa-check"></i> Video Production Team</li>
+                                <li><i class="fa-solid fa-check"></i> PR & Media Relations</li>
+                                <li><i class="fa-solid fa-check"></i> 24/7 Support Channel</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FAQ -->
+            <section id="faq" class="faq">
+                <div class="container faq-container">
+                    <div class="section-header">
+                        <h2>Frequently Asked Questions</h2>
+                    </div>
+
+                    <div class="accordion">
+                        <div class="accordion-item">
+                            <button class="accordion-header">
+                                How fast can I expect results?
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+                            <div class="accordion-body">
+                                <div class="accordion-content">
+                                    For paid advertising, we typically see traction within the first 7 days. SEO and
+                                    organic
+                                    strategies usually take 3-6 months to mature, but build long-term assets for your
+                                    brand.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-header">
+                                Do I have to sign a long-term contract?
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+                            <div class="accordion-body">
+                                <div class="accordion-content">
+                                    We believe in earning your business every month. Our standard agreements are
+                                    month-to-month with a 30-day notice period, though we offer discounts for quarterly
+                                    commitments.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-header">
+                                Is ad spend included in the price?
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+                            <div class="accordion-body">
+                                <div class="accordion-content">
+                                    No, ad spend is paid directly to the platforms (Facebook/Google) by you. Our fee
+                                    covers
+                                    strategy, management, creative, and optimization. We will recommend a budget based
+                                    on
+                                    your goals.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA Bottom -->
+            <section class="cta-section">
+                <div class="container">
+                    <div class="cta-card text-center">
+                        <h2 style="margin-bottom:24px;">Ready to double your leads?</h2>
+                        <p class="text-muted" style="max-width:600px; margin:0 auto 40px; font-size:1.1rem;">
+                            Book your free 30-minute strategy audit. We'll look at your current marketing and show you
+                            exactly where you're leaving money on the table.
+                        </p>
+                        <a href="#pricing" class="btn btn-gradient btn-large">
+                            Book Free Audit
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer ultimate-footer">
+            <div class="container">
+
+                <div class="footer-top">
+
+                    <div class="footer-brand-cta">
+                        <h3>Ready to dominate<br>your market?</h3>
+                        <p class="text-muted">Join the 1% of brands that actually scale.</p>
+                        <a href="#pricing" class="btn btn-primary btn-glow" style="margin-top:24px;">
+                            Start Your Project <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+
+                    <div class="footer-nav-grid">
+
+                        <div class="footer-col">
+                            <div class="footer-heading-mobile">
+                                <h4>Company</h4>
+                                <i class="fa-solid fa-chevron-down mobile-only"></i>
+                            </div>
+                            <ul class="footer-links-list">
+                                <li><a href="#about">About WKNG</a></li>
+                                <li><a href="#careers">Careers <span class="hiring-badge">Hiring</span></a></li>
+                                <li><a href="#contact">Contact</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="footer-col">
+                            <div class="footer-heading-mobile">
+                                <h4>Solutions</h4>
+                                <i class="fa-solid fa-chevron-down mobile-only"></i>
+                            </div>
+                            <ul class="footer-links-list">
+                                <li><a href="#">Growth Marketing</a></li>
+                                <li><a href="#">Creative Studio</a></li>
+                                <li><a href="#">Web Development</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="footer-col">
+                            <div class="footer-heading-mobile">
+                                <h4>Resources</h4>
+                                <i class="fa-solid fa-chevron-down mobile-only"></i>
+                            </div>
+                            <ul class="footer-links-list">
+                                <li><a href="#">Marketing Blog</a></li>
+                                <li><a href="#">ROI Calculator</a></li>
+                                <li><a href="#">Client Portal</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="footer-col socials-col">
+                            <h4>Connect</h4>
+                            <div style="display:flex; gap:16px; margin-top:16px;">
+                                <a href="#" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+                                <a href="#" class="social-icon"><i class="fa-brands fa-linkedin"></i></a>
+                                <a href="#" class="social-icon"><i class="fa-brands fa-twitter"></i></a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="footer-big-brand">
+                    <span>WKNG.</span>
+                </div>
+
+                <div class="footer-bottom">
+                    <div class="copyright">
+                        &copy; 2025 WKNG Agency Inc.
+                    </div>
+                    <div class="legal-links">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <div class="search-overlay">
+            <button class="search-close-btn">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="search-container">
+                <span class="search-label">What are you looking for?</span>
+                <div class="search-input-wrapper">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="Type keywords..." autofocus>
+                </div>
+                <div class="quick-links">
+                    <small>Quick Links:</small>
+                    <div class="tags">
+                        <a href="#">Pricing</a>
+                        <a href="#">Case Studies</a>
+                        <a href="#">Services</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- JavaScript -->
+        <script src="assets/js/marketing.js"></script>
+</body>
+
+</html>

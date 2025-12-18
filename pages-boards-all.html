@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kanban Boards - Daily Admin</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+
+    <link rel="stylesheet" href="assets/css/core.css" />
+    <link rel="stylesheet" href="assets/css/utilities.css" />
+    <link rel="stylesheet" href="assets/css/layout.css" />
+    <link rel="stylesheet" href="assets/css/components.css" />
+    <link rel="stylesheet" href="assets/css/kanban.css" />
+</head>
+
+<body>
+    <header class="app-header">
+        <div class="header-left-actions">
+            <button class="header-icon-btn mobile-toggle-btn" id="mobileToggle">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+            <div class="mobile-search-bar" id="mobileSearchBar">
+                <i class="fa-solid fa-magnifying-glass search-icon-mobile"></i>
+                <input type="text" class="mobile-search-input" placeholder="Search anything..."
+                    id="mobileSearchInput" />
+                <button class="mobile-search-close" id="mobileSearchClose">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="logo desktop-only">
+            <i class="fa-solid fa-code" style="color: var(--text-main)"></i>
+            <span>daily.dev</span>
+        </div>
+        <div id="horizontal-menu-container" class="desktop-only" style="flex: 1; margin-left: 20px">
+        </div>
+        <div class="search-wrapper search-wrapper-inline desktop-only">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <input type="text" class="search-input" placeholder="Search..." id="searchInputInline">
+            <div class="search-shortcut">Ctrl K</div>
+        </div>
+
+        <div class="header-right-actions">
+            <button class="header-icon-btn" id="searchTrigger" title="Search" style="display: none;">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </div>
+
+        <div class="search-overlay" id="searchOverlay">
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass search-box-icon"></i>
+                <input type="text" class="search-box-input" placeholder="Search pages..." id="searchInputFloating">
+                <button class="search-box-close" id="searchClose">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="header-right">
+            <div class="notification-wrapper">
+                <button class="header-icon-btn" id="notifTrigger" title="Notifications">
+                    <i class="fa-regular fa-bell"></i>
+                    <div class="notification-dot"></div>
+                </button>
+
+                <div class="notification-dropdown" id="notifDropdown">
+                    <div class="notif-header">
+                        <h4>
+                            Notifications
+                            <span class="badge badge-danger badge-sm" style="margin-left: 8px;">4 New</span>
+                        </h4>
+                        <span class="notif-mark-read">Mark all as read</span>
+                    </div>
+
+                    <div class="notif-list">
+                        <div class="notif-item unread">
+                            <div class="notif-icon-box error">
+                                <i class="fa-solid fa-circle-exclamation"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Server Connection Failed</h5>
+                                <p>Could not sync data with main server. Please check your API Key configuration.</p>
+                                <span class="notif-time">2 minutes ago</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="notif-footer">View All Notifications</div>
+                </div>
+            </div>
+
+            <div class="profile-wrapper">
+                <img src="https://i.pravatar.cc/150?img=12" alt="Profile" class="user-img header-icon-btn"
+                    id="profileTrigger" />
+
+                <div class="profile-dropdown" id="profileDropdown">
+                    <div class="pd-header">
+                        <img src="https://i.pravatar.cc/150?img=12" class="pd-avatar" />
+                        <div class="pd-info">
+                            <h4>Irvan Maulana</h4>
+                            <span>@irvanmaulana</span>
+                        </div>
+                    </div>
+                    <div class="pd-menu-list">
+                        <a href="pages-profile.html" class="pd-menu-item"><i class="fa-regular fa-user"></i> Your
+                            profile</a>
+                    </div>
+                    <div class="pd-divider"></div>
+                    <div class="pd-theme-toggle">
+                        <span>Theme</span>
+                        <div class="theme-options">
+                            <div class="theme-opt active" id="themeDark">
+                                <i class="fa-solid fa-moon"></i>
+                            </div>
+                            <div class="theme-opt" id="themeLight">
+                                <i class="fa-solid fa-sun"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pd-divider"></div>
+                    <div class="pd-menu-list">
+                        <a class="pd-menu-item text-muted"><i class="fa-solid fa-arrow-right-from-bracket"></i>
+                            Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="app-body-wrapper">
+        <div class="app-body">
+            <div id="sidebar-container"></div>
+
+            <main class="main-content" id="mainContent">
+
+                <div class="page-header-card">
+                    <i class="fa-solid fa-layer-group header-bg-icon"></i>
+                    <div class="header-hero-content">
+                        <h1 class="hero-title">Kanban Boards</h1>
+                        <p class="hero-desc">Centralized workflow management. Track Projects, Pipelines, and Tasks.</p>
+                    </div>
+                    <div class="header-hero-actions">
+                        <button class="btn btn-primary btn-lg shadow-glow" data-toggle="modal"
+                            data-target="#createBoardModal">
+                            <i class="fa-solid fa-plus"></i> Create New Board
+                        </button>
+                    </div>
+                </div>
+
+                <div class="log-filter-bar justify-between">
+                    <div class="d-flex gap-3 align-center flex-wrap">
+                        <div class="search-wrapper" style="width: 250px; margin: 0;">
+                            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                            <input type="text" class="search-input" placeholder="Search boards..." id="boardSearch">
+                        </div>
+
+                        <div class="custom-select-wrapper" style="width: 140px;">
+                            <div class="custom-select-trigger" style="min-height: 42px; padding: 0.5rem 1rem;">
+                                <span class="selection-text">All Types</span>
+                                <i class="fa-solid fa-chevron-down custom-arrow"></i>
+                            </div>
+                            <div class="custom-options">
+                                <span class="option selected" data-type="type" data-value="all">All Types</span>
+                                <span class="option" data-type="type" data-value="project">Projects</span>
+                                <span class="option" data-type="type" data-value="sales">Sales</span>
+                                <span class="option" data-type="type" data-value="custom">Custom</span>
+                            </div>
+                        </div>
+
+                        <div class="custom-select-wrapper" style="width: 140px;">
+                            <div class="custom-select-trigger" style="min-height: 42px; padding: 0.5rem 1rem;">
+                                <span class="selection-text">Anyone</span>
+                                <i class="fa-solid fa-chevron-down custom-arrow"></i>
+                            </div>
+                            <div class="custom-options">
+                                <span class="option selected" data-type="owner" data-value="all">Anyone</span>
+                                <span class="option" data-type="owner" data-value="me">Created by Me</span>
+                                <span class="option" data-type="owner" data-value="shared">Shared with Me</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="premium-tabs-container mb-0">
+                        <div class="premium-tab view-toggle-btn active" data-view="grid" title="Grid View">
+                            <i class="fa-solid fa-grip"></i>
+                        </div>
+                        <div class="premium-tab view-toggle-btn" data-view="list" title="List View">
+                            <i class="fa-solid fa-list"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-grid kb-container" id="boardsContainer"></div>
+
+                <footer class="app-footer">
+                    <div class="footer-left">
+                        <span>&copy; 2025 Daily.dev. Created by Irvan Maulana.</span>
+                    </div>
+                </footer>
+            </main>
+        </div>
+    </div>
+
+    <div class="modal-backdrop" id="createBoardModal">
+        <div class="modal-panel modal-lg">
+            <div class="modal-header">
+                <h5 class="modal-title">Create New Board</h5>
+                <button class="modal-close-btn" data-dismiss="modal"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body">
+                <form id="createBoardForm">
+                    <div class="row mb-4">
+                        <div class="col-md-8">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="boardNameInput" placeholder="Board Name"
+                                    required>
+                                <label>Board Name</label>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-label mb-2">Board Color</div>
+                            <div class="kb-color-picker">
+                                <div class="kb-color-option bg-gradient-blue selected" data-color="bg-gradient-blue">
+                                </div>
+                                <div class="kb-color-option bg-gradient-green" data-color="bg-gradient-green"></div>
+                                <div class="kb-color-option bg-gradient-purple" data-color="bg-gradient-purple"></div>
+                                <div class="kb-color-option bg-gradient-orange" data-color="bg-gradient-orange"></div>
+                                <div class="kb-color-option bg-gradient-pink" data-color="bg-gradient-pink"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-label mb-3">What is this board for?</div>
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-4">
+                            <label class="radio-card-label">
+                                <input type="radio" name="boardType" class="radio-card-input" value="project" checked>
+                                <div class="radio-card-content p-3">
+                                    <div class="radio-check-icon"><i class="fa-solid fa-check"></i></div>
+                                    <i class="fa-solid fa-code-branch text-primary mb-2 fs-4"></i>
+                                    <h6 class="fw-bold mb-1">Project</h6>
+                                    <p class="text-xs text-muted mb-0">Task management, Sprints.</p>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="radio-card-label">
+                                <input type="radio" name="boardType" class="radio-card-input" value="sales">
+                                <div class="radio-card-content p-3">
+                                    <div class="radio-check-icon"><i class="fa-solid fa-check"></i></div>
+                                    <i class="fa-solid fa-dollar-sign text-success mb-2 fs-4"></i>
+                                    <h6 class="fw-bold mb-1">Sales</h6>
+                                    <p class="text-xs text-muted mb-0">Leads & Pipeline.</p>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="radio-card-label">
+                                <input type="radio" name="boardType" class="radio-card-input" value="custom">
+                                <div class="radio-card-content p-3">
+                                    <div class="radio-check-icon"><i class="fa-solid fa-check"></i></div>
+                                    <i class="fa-solid fa-wand-magic-sparkles text-warning mb-2 fs-4"></i>
+                                    <h6 class="fw-bold mb-1">Custom</h6>
+                                    <p class="text-xs text-muted mb-0">Blank canvas.</p>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div id="inviteMemberSection" class="mb-4">
+                        <div class="form-label mb-2 d-flex justify-between">
+                            <span>Invite Team Members</span>
+                            <span class="text-xs text-primary cursor-pointer"><i class="fa-solid fa-link"></i> Copy
+                                Invite Link</span>
+                        </div>
+                        <div class="fake-member-select">
+                            <div class="avatar-group" id="invitedMembersList">
+                                <div class="avatar avatar-xs"><img src="https://i.pravatar.cc/150?img=12"></div>
+                            </div>
+                            <span class="ms-2">Add members...</span>
+                            <i class="fa-solid fa-plus ms-auto cursor-pointer p-1" id="btnAddMemberFake"></i>
+                        </div>
+                        <div class="text-xs text-muted mt-2">
+                            <i class="fa-solid fa-circle-info me-1"></i> Simulate adding members by clicking the plus
+                            icon.
+                        </div>
+                    </div>
+
+                    <div class="form-row-premium">
+                        <div class="label-col">
+                            <span class="label-title">Visibility</span>
+                            <span class="label-desc">Who can see this board?</span>
+                        </div>
+                        <div class="input-col">
+                            <select class="form-select" id="boardVisibility">
+                                <option value="private">Private (Only Me)</option>
+                                <option value="team" selected>Team Visible</option>
+                                <option value="public">Public (Organization)</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-ghost" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="btnCreateBoard">Create Board</button>
+            </div>
+        </div>
+    </div>
+    <div class="sidebar-overlay desktop-only" id="sidebarOverlay"></div>
+    <div id="settings-container"></div>
+    <script src="assets/js/core.js"></script>
+    <script src="assets/js/kanban.js"></script>
+</body>
+
+</html>

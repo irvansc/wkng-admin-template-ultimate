@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CRM Dashboard - Daily Admin</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet" />
+
+    <link rel="stylesheet" href="assets/css/core.css" />
+    <link rel="stylesheet" href="assets/css/utilities.css" />
+    <link rel="stylesheet" href="assets/css/layout.css" />
+    <link rel="stylesheet" href="assets/css/components.css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+</head>
+
+<body>
+    <header class="app-header">
+        <div class="header-left-actions">
+            <button class="header-icon-btn mobile-toggle-btn" id="mobileToggle">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+            <div class="mobile-search-bar" id="mobileSearchBar">
+                <i class="fa-solid fa-magnifying-glass search-icon-mobile"></i>
+                <input type="text" class="mobile-search-input" placeholder="Search anything..."
+                    id="mobileSearchInput" />
+                <button class="mobile-search-close" id="mobileSearchClose">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="logo desktop-only">
+            <i class="fa-solid fa-code" style="color: var(--text-main)"></i>
+            <span>daily.dev</span>
+        </div>
+        <div id="horizontal-menu-container" class="desktop-only" style="flex: 1; margin-left: 20px">
+        </div>
+        <div class="search-wrapper search-wrapper-inline desktop-only">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <input type="text" class="search-input" placeholder="Search..." id="searchInputInline">
+            <div class="search-shortcut">Ctrl K</div>
+        </div>
+
+        <div class="header-right-actions">
+
+            <button class="header-icon-btn" id="searchTrigger" title="Search" style="display: none;">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+
+        </div>
+
+        <div class="search-overlay" id="searchOverlay">
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass search-box-icon"></i>
+                <input type="text" class="search-box-input" placeholder="Search pages..." id="searchInputFloating">
+                <button class="search-box-close" id="searchClose">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="header-right">
+            <div class="dropdown-action">
+                <button class="header-icon-btn dropdown-trigger">
+                    <i class="fa-solid fa-plus"></i>
+                </button>
+                <div class="dropdown-menu-action icon-mode">
+                    <a href="#" class="action-icon-btn text-success" title="New Project"><i
+                            class="fa-solid fa-folder-plus"></i></a>
+                    <a href="#" class="action-icon-btn text-primary" title="New User"><i
+                            class="fa-solid fa-user-plus"></i></a>
+                    <a href="#" class="action-icon-btn text-warning" title="New Invoice"><i
+                            class="fa-solid fa-file-invoice"></i></a>
+                </div>
+            </div>
+            <div class="notification-wrapper">
+                <button class="header-icon-btn" id="notifTrigger" title="Notifications">
+                    <i class="fa-regular fa-bell"></i>
+                    <div class="notification-dot"></div>
+                </button>
+
+                <div class="notification-dropdown" id="notifDropdown">
+                    <div class="notif-header">
+                        <h4>
+                            Notifications
+                            <span class="badge badge-danger"
+                                style="margin-left: 8px; font-size: 10px; padding: 2px 6px">4
+                                New</span>
+                        </h4>
+                        <span class="notif-mark-read">Mark all as read</span>
+                    </div>
+
+                    <div class="notif-list">
+                        <div class="notif-item unread">
+                            <div class="notif-icon-box error">
+                                <i class="fa-solid fa-circle-exclamation"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Server Connection Failed</h5>
+                                <p>
+                                    Could not sync data with main server. Please check your API
+                                    Key configuration.
+                                </p>
+                                <span class="notif-time">2 minutes ago</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item unread">
+                            <div class="notif-icon-box success">
+                                <i class="fa-solid fa-check-double"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Project Exported</h5>
+                                <p>
+                                    Your dashboard layout "Q3 Report" has been successfully
+                                    exported to PDF.
+                                </p>
+                                <span class="notif-time">1 hour ago</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item">
+                            <div class="notif-icon-box warning">
+                                <i class="fa-solid fa-triangle-exclamation"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Storage Usage High</h5>
+                                <p>
+                                    You have used 85% of your allocated cloud storage. Consider
+                                    upgrading.
+                                </p>
+                                <span class="notif-time">Yesterday at 4:30 PM</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item">
+                            <div class="notif-icon-box info">
+                                <i class="fa-solid fa-circle-info"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>New Feature Available</h5>
+                                <p>
+                                    Dark mode is now customizable. Check settings for more
+                                    themes.
+                                </p>
+                                <span class="notif-time">2 days ago</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="notif-footer">View All Notifications</div>
+                </div>
+            </div>
+
+            <div class="profile-wrapper">
+                <img src="https://i.pravatar.cc/150?img=12" alt="Profile" class="user-img header-icon-btn"
+                    id="profileTrigger" />
+
+                <div class="profile-dropdown" id="profileDropdown">
+                    <div class="pd-header">
+                        <img src="https://i.pravatar.cc/150?img=12" class="pd-avatar" />
+                        <div class="pd-info">
+                            <h4>Irvan Maulana</h4>
+                            <span>@irvanmaulana</span>
+                        </div>
+                    </div>
+                    <div class="pd-menu-list">
+                        <a href="pages-profile.html" class="pd-menu-item"><i class="fa-regular fa-user"></i> Your
+                            profile</a>
+                    </div>
+                    <div class="pd-divider"></div>
+                    <div class="pd-theme-toggle">
+                        <span>Theme</span>
+                        <div class="theme-options">
+                            <div class="theme-opt active" id="themeDark">
+                                <i class="fa-solid fa-moon"></i>
+                            </div>
+                            <div class="theme-opt" id="themeLight">
+                                <i class="fa-solid fa-sun"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pd-divider"></div>
+                    <div class="pd-menu-list">
+                        <a class="pd-menu-item text-muted"><i class="fa-solid fa-arrow-right-from-bracket"></i>
+                            Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="app-body-wrapper">
+        <div class="app-body">
+            <div id="sidebar-container"></div>
+
+            <main class="main-content" id="mainContent">
+
+                <div class="page-header-card shadow-glow">
+                    <i class="fa-solid fa-handshake header-bg-icon"></i>
+                    <div class="header-hero-content">
+                        <h1 class="hero-title">CRM Command Center</h1>
+                        <p class="hero-desc">
+                            Manage your <span class="text-info">Leads</span>, track <span
+                                class="text-success">Pipelines</span>, and boost <span class="text-warning">Customer
+                                Relations</span>.
+                        </p>
+                    </div>
+
+
+                    <div class="header-hero-actions">
+                        <nav class="hero-breadcrumb">
+                            <div class="home-icon-box"><i class="fa-solid fa-home"></i></div>
+
+                            <span class="breadcrumb-sep"><i class="fa-solid fa-chevron-right"></i></span>
+                            <a href="dashboard.html" class="breadcrumb-link">Dashboard</a>
+                            <span class="breadcrumb-sep"><i class="fa-solid fa-chevron-right"></i></span>
+                            <span class="breadcrumb-link active">Profile Styles</span>
+                        </nav>
+                    </div>
+
+                </div>
+                <div class="header-hero-actions mb-3">
+                    <button class="btn btn-primary btn-sm">
+                        <i class="fa-solid fa-user-plus me-2"></i> Add New Lead
+                    </button>
+                </div>
+                <div class="content-grid mb-4">
+                    <div class="col-span-4">
+                        <div class="card card-ult-neon h-100">
+                            <div class="ult-card-body">
+                                <div class="d-flex justify-between">
+                                    <div>
+                                        <span class="ult-label text-primary">Total Leads</span>
+                                        <h2 class="ult-value text-white">2,845</h2>
+                                    </div>
+                                    <div class="avatar avatar-sm bg-soft-primary text-primary rounded-3">
+                                        <i class="fa-solid fa-users-viewfinder"></i>
+                                    </div>
+                                </div>
+                                <div class="mt-3">
+                                    <span class="text-xs text-success"><i class="fa-solid fa-caret-up"></i> +120 this
+                                        month</span>
+                                    <div class="prog-container xs mt-2">
+                                        <div class="prog-bar info" style="width: 70%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-span-4">
+                        <div class="card card-ult-gradient h-100">
+                            <div class="ult-card-body">
+                                <span class="ult-label text-white opacity-75">Customer Lifetime Value</span>
+                                <h2 class="ult-value text-white mt-1">$4,250</h2>
+                                <div class="ult-sub text-white opacity-75">
+                                    Avg. revenue per customer
+                                </div>
+                                <div id="sparkCLV" style="margin: 0 -20px -20px -20px;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-span-4">
+                        <div class="card card-ult-3d h-100">
+                            <div class="ult-card-body">
+                                <div class="d-flex justify-between">
+                                    <div>
+                                        <span class="ult-label text-warning">Conversion Rate</span>
+                                        <h2 class="ult-value text-main">18.5%</h2>
+                                    </div>
+                                    <i class="fa-solid fa-filter fa-2x text-warning icon-float opacity-50"></i>
+                                </div>
+                                <div class="d-flex align-items-center gap-2 mt-3">
+                                    <span class="badge badge-soft-warning">Lead to Deal</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-span-4">
+                        <div class="card card-neumorphic h-100">
+                            <div class="ult-card-body">
+                                <span class="ult-label text-success">Pipeline Value</span>
+                                <h2 class="ult-value text-main mb-0">$1.2M</h2>
+                                <span class="text-xs text-muted">Potential Revenue</span>
+                                <div class="mt-3 d-flex gap-1">
+                                    <div class="h-1 bg-success rounded w-full"></div>
+                                    <div class="h-1 bg-success rounded w-full" style="opacity: 0.6"></div>
+                                    <div class="h-1 bg-success rounded w-full" style="opacity: 0.3"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-grid mb-4">
+
+
+                    <div class="col-span-6">
+
+                        <div class="card card-neumorphic">
+                            <div class="card-header">
+                                <h3 class="card-title">Conversion Funnel</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="funnel-wrapper">
+                                    <div class="funnel-step">
+                                        <div class="funnel-bar bg-primary" style="width: 100%;">
+                                            <span>Impressions</span>
+                                            <span>15,000</span>
+                                        </div>
+                                    </div>
+                                    <div class="funnel-step mx-auto" style="width: 80%;">
+                                        <div class="funnel-bar bg-info" style="width: 100%;">
+                                            <span>Leads</span>
+                                            <span>3,200</span>
+                                        </div>
+                                    </div>
+                                    <div class="funnel-step mx-auto" style="width: 60%;">
+                                        <div class="funnel-bar bg-warning" style="width: 100%;">
+                                            <span>Qualified</span>
+                                            <span>1,100</span>
+                                        </div>
+                                    </div>
+                                    <div class="funnel-step mx-auto" style="width: 40%;">
+                                        <div class="funnel-bar bg-success" style="width: 100%;">
+                                            <span>Deals</span>
+                                            <span>450</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text-center mt-3">
+                                    <span class="text-xs text-muted">Overall Conversion: <b
+                                            class="text-white">3.2%</b></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-span-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Lead Sources</h3>
+                            </div>
+                            <div class="card-body">
+                                <div id="leadSourceChart" style="min-height: 250px;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="content-grid mb-4">
+                    <div class="card col-span-4">
+                        <div class="card-header">
+                            <h3 class="card-title">Top Sales Agents</h3>
+                            <button class="btn btn-sm btn-ghost">Full List</button>
+                        </div>
+                        <div class="card-body p-0">
+                            <div class="d-flex flex-column gap-2 p-3">
+                                <div class="agent-card rank-1">
+                                    <div class="agent-rank">1</div>
+                                    <div class="avatar avatar-md"><img src="https://i.pravatar.cc/150?img=68"></div>
+                                    <div class="flex-1">
+                                        <h6 class="mb-0 text-sm font-bold">Diana Prince</h6>
+                                        <span class="text-xs text-muted">24 Deals Closed</span>
+                                    </div>
+                                    <div class="text-end">
+                                        <span class="d-block font-mono font-bold text-success">$120k</span>
+                                    </div>
+                                </div>
+                                <div class="agent-card">
+                                    <div class="agent-rank">2</div>
+                                    <div class="avatar avatar-md"><img src="https://i.pravatar.cc/150?img=52"></div>
+                                    <div class="flex-1">
+                                        <h6 class="mb-0 text-sm font-bold">Bruce Wayne</h6>
+                                        <span class="text-xs text-muted">18 Deals Closed</span>
+                                    </div>
+                                    <div class="text-end">
+                                        <span class="d-block font-mono font-bold text-success">$95k</span>
+                                    </div>
+                                </div>
+                                <div class="agent-card">
+                                    <div class="agent-rank">3</div>
+                                    <div class="avatar avatar-md"><img src="https://i.pravatar.cc/150?img=12"></div>
+                                    <div class="flex-1">
+                                        <h6 class="mb-0 text-sm font-bold">Clark Kent</h6>
+                                        <span class="text-xs text-muted">15 Deals Closed</span>
+                                    </div>
+                                    <div class="text-end">
+                                        <span class="d-block font-mono font-bold text-success">$82k</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card col-span-8 overflow-visible">
+                        <div class="card-header">
+                            <h3 class="card-title">Interaction History</h3>
+                            <div class="search-wrapper" style="width: 200px;">
+                                <i class="fa-solid fa-search search-icon"></i>
+                                <input type="text" class="search-input" placeholder="Search logs...">
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle">
+                                <thead>
+                                    <tr>
+                                        <th>Lead Name</th>
+                                        <th>Interaction Type</th>
+                                        <th>Date & Time</th>
+                                        <th>Outcome</th>
+                                        <th>Agent</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center gap-2">
+                                                <div class="avatar avatar-xs rounded-circle bg-primary text-white">JD
+                                                </div>
+                                                <span class="font-bold text-sm">John Doe</span>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge-interaction call"><i class="fa-solid fa-phone"></i>
+                                                Call</span></td>
+                                        <td class="text-muted text-xs">Oct 24, 10:30 AM</td>
+                                        <td><span class="text-xs text-main">Interested, sent proposal</span></td>
+                                        <td><span class="text-xs text-muted">Diana</span></td>
+                                        <td>
+                                            <div class="dropdown-action">
+                                                <button class="btn btn-secondary dropdown-trigger"><i
+                                                        class="fa-solid fa-ellipsis-vertical"
+                                                        style="pointer-events: none;"></i></button>
+                                                <div class="dropdown-menu-action icon-mode ">
+                                                    <a class="action-icon-btn view"><i
+                                                            class="fa-regular fa-eye"></i></a>
+                                                    <a class="action-icon-btn edit"><i class="fa-solid fa-pen"></i></a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center gap-2">
+                                                <div class="avatar avatar-xs rounded-circle bg-warning text-black">AS
+                                                </div>
+                                                <span class="font-bold text-sm">Anna Smith</span>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge-interaction email"><i class="fa-solid fa-envelope"></i>
+                                                Email</span></td>
+                                        <td class="text-muted text-xs">Oct 23, 02:15 PM</td>
+                                        <td><span class="text-xs text-main">Follow-up scheduled</span></td>
+                                        <td><span class="text-xs text-muted">Bruce</span></td>
+                                        <td>
+                                            <div class="dropdown-action">
+                                                <button class="btn btn-secondary dropdown-trigger"><i
+                                                        class="fa-solid fa-ellipsis-vertical"
+                                                        style="pointer-events: none;"></i></button>
+                                                <div class="dropdown-menu-action icon-mode ">
+                                                    <a class="action-icon-btn view"><i
+                                                            class="fa-regular fa-eye"></i></a>
+                                                    <a class="action-icon-btn edit"><i class="fa-solid fa-pen"></i></a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center gap-2">
+                                                <img src="https://i.pravatar.cc/150?img=8"
+                                                    class="avatar avatar-xs rounded-circle">
+                                                <span class="font-bold text-sm">Robert Fox</span>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge-interaction meet"><i class="fa-solid fa-video"></i>
+                                                Meeting</span></td>
+                                        <td class="text-muted text-xs">Oct 22, 11:00 AM</td>
+                                        <td><span class="text-xs text-success font-bold">Deal Closed</span></td>
+                                        <td><span class="text-xs text-muted">Diana</span></td>
+                                        <td>
+                                            <div class="dropdown-action">
+                                                <button class="btn btn-secondary dropdown-trigger"><i
+                                                        class="fa-solid fa-ellipsis-vertical"
+                                                        style="pointer-events: none;"></i></button>
+                                                <div class="dropdown-menu-action icon-mode ">
+                                                    <a class="action-icon-btn view"><i
+                                                            class="fa-regular fa-eye"></i></a>
+                                                    <a class="action-icon-btn edit"><i class="fa-solid fa-pen"></i></a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <footer class="app-footer">
+                    <div class="footer-left">
+                        <span>&copy; 2025 Daily.dev CRM.</span>
+                    </div>
+                </footer>
+            </main>
+        </div>
+    </div>
+
+    <div class="sidebar-overlay desktop-only" id="sidebarOverlay"></div>
+    <div id="settings-container"></div>
+    <script src="assets/js/core.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            // 1. LEAD SOURCE (Donut)
+            const leadSourceEl = document.querySelector("#leadSourceChart");
+            if (leadSourceEl) {
+                const options = {
+                    series: [44, 55, 41, 17],
+                    labels: ['Website', 'LinkedIn', 'Referral', 'Ads'],
+                    chart: {
+                        type: 'donut',
+                        height: 280,
+                        background: 'transparent',
+                        fontFamily: 'Inter, sans-serif'
+                    },
+                    colors: ['#3b82f6', '#0a66c2', '#2ecc71', '#e74c3c'],
+                    plotOptions: {
+                        pie: {
+                            donut: {
+                                size: '65%',
+                                labels: {
+                                    show: true,
+                                    name: { color: '#9499a6' },
+                                    value: { color: '#fff', fontSize: '20px', fontWeight: 700 },
+                                    total: { show: true, color: '#9499a6', label: 'Total' }
+                                }
+                            }
+                        }
+                    },
+                    dataLabels: { enabled: false },
+                    stroke: { show: false },
+                    legend: { position: 'bottom', labels: { colors: '#9499a6' } },
+                    tooltip: { theme: 'dark' }
+                };
+                new ApexCharts(leadSourceEl, options).render();
+            }
+
+            // 2. SPARKLINE CLV (Area)
+            const sparkCLVEl = document.querySelector("#sparkCLV");
+            if (sparkCLVEl) {
+                const options = {
+                    series: [{ data: [1200, 1800, 1500, 2200, 2800, 2400, 3100, 4250] }],
+                    chart: { type: 'area', height: 60, sparkline: { enabled: true } },
+                    stroke: { curve: 'smooth', width: 2, colors: ['#fff'] },
+                    fill: { type: 'gradient', gradient: { shadeIntensity: 1, opacityFrom: 0.3, opacityTo: 0.05, stops: [0, 100] } },
+                    colors: ['#fff'],
+                    tooltip: { fixed: { enabled: false }, x: { show: false }, marker: { show: false } }
+                };
+                new ApexCharts(sparkCLVEl, options).render();
+            }
+        });
+    </script>
+</body>
+
+</html>

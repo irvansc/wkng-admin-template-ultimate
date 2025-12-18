@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>405 Method Not Allowed - Daily Admin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/core.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/error-pages.css">
+</head>
+
+<body class="error-page">
+
+    <div class="bg-grid"></div>
+    <div class="orb orb-1" id="orb1" style="background: #f39c12;"></div>
+    <div class="orb orb-2" id="orb2" style="background: #d35400;"></div>
+
+    <div class="content-box" id="contentBox">
+
+        <div class="ghost-container" style="color: #f39c12;">
+            <i class="fa-solid fa-ban fa-spin" style="--fa-animation-duration: 10s;"></i>
+        </div>
+
+        <div class="glitch-wrapper">
+            <h1 class="error-code" data-text="405" style="text-shadow: 2px 2px 0px #f39c12;">405</h1>
+        </div>
+
+        <h2 class="error-title">Method Not Allowed</h2>
+        <p class="error-desc">
+            // Error: Metode permintaan (GET/POST/PUT) tidak didukung untuk rute ini.<br>
+            // Action: Periksa kembali endpoint API atau formulir pengiriman Anda.
+        </p>
+
+        <div class="justify-content-beetween align-items-center gap-3 ">
+            <a href="dashboard.html" class="btn btn-home rounded-pill mb-2" style="background: #f39c12; color: #000;">
+                <i class="fa-solid fa-rotate-left me-2"></i> Reset Action
+            </a>
+            <a href="#" onclick="history.back()" class="btn btn-ghost rounded-pill">
+                Cancel
+            </a>
+        </div>
+    </div>
+    <footer class="error-footer">
+        &copy; 2025 DAILY ADMIN SYSTEM. ALL RIGHTS RESERVED.
+    </footer>
+    <script src="assets/js/error-pages.js"></script>
+</body>
+
+</html>

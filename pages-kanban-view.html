@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Board View - Daily Admin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+
+    <link rel="stylesheet" href="assets/css/core.css" />
+    <link rel="stylesheet" href="assets/css/utilities.css" />
+    <link rel="stylesheet" href="assets/css/layout.css" />
+    <link rel="stylesheet" href="assets/css/components.css" />
+    <link rel="stylesheet" href="assets/css/kanban.css" />
+
+    <style>
+        /* 1. SETUP FULL HEIGHT (Desktop & Mobile) */
+        html,
+        body {
+            height: 100%;
+            overflow: hidden;
+            /* Mencegah scroll ganda di body utama */
+        }
+
+        .app-body-wrapper,
+        .app-body {
+            height: 100%;
+            overflow: hidden;
+        }
+
+        /* 2. MAIN CONTENT (Flexbox Container) */
+        .main-content {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            padding: 0 !important;
+            margin-left: 0 !important;
+            width: 100% !important;
+            overflow: hidden;
+        }
+
+        /* 3. BOARD CONTAINER (Area Scroll Samping) */
+        .kb-board-container {
+            flex: 1;
+            /* Mengisi sisa ruang setelah header */
+            display: flex;
+            gap: 24px;
+            padding: 24px;
+            overflow-x: auto;
+            /* Scroll horizontal wajib */
+            overflow-y: hidden;
+            align-items: flex-start;
+            /* Kartu mulai dari atas */
+            height: 100%;
+        }
+
+        /* Custom Scrollbar agar cantik di Desktop */
+        .kb-board-container::-webkit-scrollbar {
+            height: 10px;
+        }
+
+        .kb-board-container::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 6px;
+        }
+
+        .kb-board-container::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        /* 4. KOLOM KANBAN (Desktop Default) */
+        .kb-column {
+            min-width: 320px;
+            width: 320px;
+            height: 100%;
+            max-height: 100%;
+            display: flex;
+            flex-direction: column;
+            background: var(--bg-card);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .kb-col-body {
+            flex: 1;
+            overflow-y: auto;
+            /* Scroll vertikal di dalam kolom */
+            padding: 16px;
+            padding-bottom: 80px;
+            /* Ruang lebih di bawah */
+        }
+
+        /* =========================================
+           MOBILE SPECIFIC STYLES (Hanya di HP)
+           ========================================= */
+        @media (max-width: 768px) {
+
+            /* Header dipadatkan */
+            .board-header-wrapper {
+                padding: 12px 16px !important;
+            }
+
+            .header-avatars,
+            .btn-filter-text {
+                display: none !important;
+            }
+
+            .board-title {
+                font-size: 16px !important;
+            }
+
+            /* Container Board di HP */
+            .kb-board-container {
+                gap: 16px;
+                padding: 16px;
+                /* Fitur Snap (Berhenti pas di tengah) */
+                scroll-snap-type: x mandatory;
+                scroll-padding: 16px;
+            }
+
+            /* Kolom di HP (Lebar hampir penuh) */
+            .kb-column {
+                min-width: 85vw;
+                /* 85% lebar layar */
+                width: 85vw;
+                scroll-snap-align: center;
+                /* Snap ke tengah */
+                border-radius: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body class="layout-horizontal">
+
+    <header class="app-header">
+
+
+        <div class="logo desktop-only">
+            <i class="fa-solid fa-code" style="color: var(--text-main)"></i>
+            <span>daily.dev</span>
+        </div>
+        <div id="horizontal-menu-container" class="desktop-only" style="flex: 1; margin-left: 20px">
+        </div>
+        <div class="header-left-actions">
+            <a href="pages-boards-all.html" class="header-icon-btn" style="margin-right: 10px;"><i
+                    class="fa-solid fa-arrow-left"></i></a>
+        </div>
+        <div class="search-wrapper search-wrapper-inline desktop-only">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <input type="text" class="search-input" placeholder="Search..." id="searchInputInline">
+            <div class="search-shortcut">Ctrl K</div>
+        </div>
+
+        <div class="header-right-actions">
+            <button class="header-icon-btn" id="searchTrigger" title="Search" style="display: none;">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </div>
+
+        <div class="search-overlay" id="searchOverlay">
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass search-box-icon"></i>
+                <input type="text" class="search-box-input" placeholder="Search pages..." id="searchInputFloating">
+                <button class="search-box-close" id="searchClose">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="header-right">
+
+            <div class="notification-wrapper">
+                <button class="header-icon-btn" id="notifTrigger" title="Notifications">
+                    <i class="fa-regular fa-bell"></i>
+                    <div class="notification-dot"></div>
+                </button>
+
+                <div class="notification-dropdown" id="notifDropdown">
+                    <div class="notif-header">
+                        <h4>
+                            Notifications
+                            <span class="badge badge-danger badge-sm" style="margin-left: 8px;">4 New</span>
+                        </h4>
+                        <span class="notif-mark-read">Mark all as read</span>
+                    </div>
+
+                    <div class="notif-list">
+                        <div class="notif-item unread">
+                            <div class="notif-icon-box error">
+                                <i class="fa-solid fa-circle-exclamation"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Server Connection Failed</h5>
+                                <p>Could not sync data with main server. Please check your API Key configuration.</p>
+                                <span class="notif-time">2 minutes ago</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="notif-footer">View All Notifications</div>
+                </div>
+            </div>
+
+            <div class="profile-wrapper">
+                <img src="https://i.pravatar.cc/150?img=12" alt="Profile" class="user-img header-icon-btn"
+                    id="profileTrigger" />
+
+                <div class="profile-dropdown" id="profileDropdown">
+                    <div class="pd-header">
+                        <img src="https://i.pravatar.cc/150?img=12" class="pd-avatar" />
+                        <div class="pd-info">
+                            <h4>Irvan Maulana</h4>
+                            <span>@irvanmaulana</span>
+                        </div>
+                    </div>
+                    <div class="pd-menu-list">
+                        <a href="pages-profile.html" class="pd-menu-item"><i class="fa-regular fa-user"></i> Your
+                            profile</a>
+                    </div>
+                    <div class="pd-divider"></div>
+                    <div class="pd-theme-toggle">
+                        <span>Theme</span>
+                        <div class="theme-options">
+                            <div class="theme-opt active" id="themeDark">
+                                <i class="fa-solid fa-moon"></i>
+                            </div>
+                            <div class="theme-opt" id="themeLight">
+                                <i class="fa-solid fa-sun"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pd-divider"></div>
+                    <div class="pd-menu-list">
+                        <a class="pd-menu-item text-muted"><i class="fa-solid fa-arrow-right-from-bracket"></i>
+                            Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="app-body-wrapper">
+        <div class="app-body">
+
+            <main class="main-content" id="mainContent">
+
+                <div class="board-header-wrapper"
+                    style="background: var(--bg-body); border-bottom: 1px solid var(--border-color); padding: 16px 24px;">
+                    <div class="d-flex justify-between align-center">
+
+                        <div class="d-flex align-center gap-3">
+                            <div>
+                                <h4 class="mb-0 fw-bold board-title" style="font-size: 18px; color: var(--text-main);"
+                                    id="boardTitle">Loading Board...</h4>
+                                <div class="d-flex align-center gap-2 mt-1">
+                                    <span class="badge badge-soft-success" style="font-size: 10px;">Active</span>
+                                    <span class="text-xs text-muted">Updated just now</span>
+                                </div>
+                            </div>
+
+                            <div class="header-avatars d-flex align-center ms-4">
+                                <div class="avatar-group">
+                                    <div class="avatar avatar-sm"><img src="https://i.pravatar.cc/150?img=12"></div>
+                                    <div class="avatar avatar-sm"><img src="https://i.pravatar.cc/150?img=33"></div>
+                                    <div class="avatar avatar-sm bg-card text-muted"
+                                        style="border: 2px dashed var(--border-color); cursor: pointer;">+2</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex gap-2">
+                            <div class="position-relative">
+                                <button class="btn btn-secondary btn-sm" onclick="BoardApp.toggleFilterMenu()">
+                                    <i class="fa-solid fa-filter"></i>
+                                    <span class="btn-filter-text ms-2">Filter</span>
+                                    <span id="filterIndicator"
+                                        class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle d-none"
+                                        style="margin-left: -5px; margin-top: 5px;"></span>
+                                </button>
+
+                                <div class="filter-dropdown" id="filterMenu">
+                                    <div class="text-xs fw-bold text-muted mb-2 px-2 uppercase tracking-wide">By
+                                        Priority</div>
+
+                                    <div class="filter-option active" onclick="BoardApp.setFilter('all', this)">
+                                        <i class="fa-solid fa-layer-group w-4"></i> All Tasks
+                                    </div>
+                                    <div class="filter-option" onclick="BoardApp.setFilter('high', this)">
+                                        <i class="fa-solid fa-flag text-danger w-4"></i> High Priority
+                                    </div>
+                                    <div class="filter-option" onclick="BoardApp.setFilter('medium', this)">
+                                        <i class="fa-solid fa-flag text-warning w-4"></i> Medium Priority
+                                    </div>
+                                    <div class="filter-option" onclick="BoardApp.setFilter('low', this)">
+                                        <i class="fa-solid fa-flag text-success w-4"></i> Low Priority
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary btn-sm shadow-glow" onclick="BoardApp.openTaskModal()">
+                                <i class="fa-solid fa-plus"></i>
+                                <span class="desktop-only ms-2">New Task</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="kb-board-container" id="boardColumnsContainer">
+                </div>
+
+            </main>
+
+        </div>
+    </div>
+
+    <div class="modal-backdrop" id="taskModal">
+        <div class="modal-panel modal-lg">
+            <div class="modal-header">
+                <h5 class="modal-title" id="taskModalTitle">Add New Task</h5>
+                <button class="modal-close-btn" onclick="BoardApp.closeModal()"><i
+                        class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body">
+                <form id="taskForm">
+                    <input type="hidden" id="taskId">
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="taskTitle" placeholder="Task Title"
+                                    required>
+                                <label>Task Title</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Status (Column)</label>
+                            <div class="custom-select-wrapper" id="columnSelectWrapper">
+                                <div class="custom-select-trigger">
+                                    <span class="selection-text">Select Column</span>
+                                    <i class="fa-solid fa-chevron-down custom-arrow"></i>
+                                </div>
+                                <div class="custom-options" id="columnOptions"></div>
+                                <input type="hidden" id="taskColumnId" class="hidden-value">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Priority</label>
+                            <div class="d-flex gap-2 mt-1">
+                                <input type="radio" class="btn-check" name="priority" id="prioLow" value="low"
+                                    autocomplete="off">
+                                <label class="btn btn-sm btn-ghost" for="prioLow">Low</label>
+
+                                <input type="radio" class="btn-check" name="priority" id="prioMed" value="medium"
+                                    autocomplete="off" checked>
+                                <label class="btn btn-sm btn-ghost" for="prioMed">Medium</label>
+
+                                <input type="radio" class="btn-check" name="priority" id="prioHigh" value="high"
+                                    autocomplete="off">
+                                <label class="btn btn-sm btn-ghost text-danger" for="prioHigh">High</label>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-floating">
+                                <textarea class="form-control" id="taskDesc" placeholder="Description"
+                                    style="height: 100px"></textarea>
+                                <label>Description</label>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label">Tags</label>
+                            <div class="tag-input-wrapper" id="tagWrapper">
+                                <input type="text" class="tag-input" id="tagInput" placeholder="Add tag & press Enter">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer justify-between">
+                <button type="button" class="btn btn-danger btn-sm d-none" id="btnDeleteTask"
+                    onclick="BoardApp.deleteCurrentTask()"><i class="fa-solid fa-trash"></i> Delete</button>
+                <div class="d-flex gap-2 ms-auto">
+                    <button type="button" class="btn btn-ghost" onclick="BoardApp.closeModal()">Cancel</button>
+                    <button type="button" class="btn btn-primary" onclick="BoardApp.saveTask()">Save Task</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Force layout horizontal khusus halaman ini
+        localStorage.setItem('layout', 'horizontal'); 
+    </script>
+    <script src="assets/js/core.js"></script>
+    <script src="assets/js/kanban-view.js"></script>
+</body>
+
+</html>

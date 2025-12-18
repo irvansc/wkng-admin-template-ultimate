@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ultimate Icons - Daily Admin</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.2.96/css/materialdesignicons.min.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/core.css" />
+    <link rel="stylesheet" href="assets/css/utilities.css" />
+    <link rel="stylesheet" href="assets/css/layout.css" />
+    <link rel="stylesheet" href="assets/css/components.css" />
+
+    <style>
+        /* --- TOOLBAR SEARCH --- */
+        .icon-toolbar {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        /* --- TABS --- */
+        .icon-tab-nav {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 2px;
+            /* Hide Scrollbar */
+            -ms-overflow-style: none;
+            /* IE and Edge */
+            scrollbar-width: none;
+            /* Firefox */
+        }
+
+        .icon-tab-nav::-webkit-scrollbar {
+            display: none;
+        }
+
+        .icon-tab-btn {
+            background: var(--bg-body);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 10px 16px;
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            border-radius: 50px;
+            /* Pill Shape */
+            transition: all 0.2s;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .icon-tab-btn:hover {
+            color: var(--text-main);
+            border-color: var(--text-muted);
+        }
+
+        .icon-tab-btn.active {
+            background: var(--text-main);
+            color: var(--bg-body);
+            border-color: var(--text-main);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* --- GRID --- */
+        .ultimate-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+            gap: 10px;
+            min-height: 300px;
+            position: relative;
+        }
+
+        .u-icon-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            aspect-ratio: 1/1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .u-icon-card:hover {
+            border-color: var(--accent-color);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            background: var(--bg-hover);
+        }
+
+        .u-icon-card i,
+        .u-icon-card svg {
+            /* Support SVG for Feather */
+            font-size: 24px;
+            width: 24px;
+            height: 24px;
+            color: var(--text-main);
+            transition: transform 0.2s;
+        }
+
+        .u-icon-card:hover i,
+        .u-icon-card:hover svg {
+            transform: scale(1.2);
+            color: var(--accent-color);
+            stroke: var(--accent-color);
+            /* For Feather SVG */
+        }
+
+        .u-icon-name {
+            font-size: 10px;
+            color: var(--text-muted);
+            font-family: 'JetBrains Mono', monospace;
+            text-align: center;
+            width: 90%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Copy Feedback */
+        .u-icon-card.copied::after {
+            content: "Copied!";
+            position: absolute;
+            inset: 0;
+            background: rgba(var(--accent-rgb), 0.95);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 11px;
+            animation: fadeIn 0.2s;
+        }
+
+        /* Pagination Buttons */
+        .page-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-card);
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .page-btn:hover:not(:disabled) {
+            border-color: var(--accent-color);
+            color: var(--text-main);
+        }
+
+        .page-btn.active {
+            background: var(--accent-color);
+            color: white;
+            border-color: var(--accent-color);
+        }
+
+        .page-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        /* Loader Overlay */
+        .loader-overlay {
+            position: absolute;
+            inset: 0;
+            background: var(--bg-body);
+            z-index: 50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 12px;
+            min-height: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="app-header">
+        <div class="header-left-actions">
+            <button class="header-icon-btn mobile-toggle-btn" id="mobileToggle">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+            <div class="mobile-search-bar" id="mobileSearchBar">
+                <i class="fa-solid fa-magnifying-glass search-icon-mobile"></i>
+                <input type="text" class="mobile-search-input" placeholder="Search anything..."
+                    id="mobileSearchInput" />
+                <button class="mobile-search-close" id="mobileSearchClose">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="logo desktop-only">
+            <i class="fa-solid fa-code" style="color: var(--text-main)"></i>
+            <span>daily.dev</span>
+        </div>
+        <div id="horizontal-menu-container" class="desktop-only" style="flex: 1; margin-left: 20px">
+        </div>
+        <div class="search-wrapper search-wrapper-inline desktop-only">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <input type="text" class="search-input" placeholder="Search..." id="searchInputInline">
+            <div class="search-shortcut">Ctrl K</div>
+        </div>
+
+        <div class="header-right-actions">
+            <button class="header-icon-btn" id="searchTrigger" title="Search" style="display: none;">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </div>
+
+        <div class="search-overlay" id="searchOverlay">
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass search-box-icon"></i>
+                <input type="text" class="search-box-input" placeholder="Search pages..." id="searchInputFloating">
+                <button class="search-box-close" id="searchClose">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="header-right">
+            <div class="notification-wrapper">
+                <button class="header-icon-btn" id="notifTrigger" title="Notifications">
+                    <i class="fa-regular fa-bell"></i>
+                    <div class="notification-dot"></div>
+                </button>
+
+                <div class="notification-dropdown" id="notifDropdown">
+                    <div class="notif-header">
+                        <h4>
+                            Notifications
+                            <span class="badge badge-danger"
+                                style="margin-left: 8px; font-size: 10px; padding: 2px 6px">4
+                                New</span>
+                        </h4>
+                        <span class="notif-mark-read">Mark all as read</span>
+                    </div>
+                    <div class="notif-list">
+                        <div class="notif-item unread">
+                            <div class="notif-icon-box info">
+                                <i class="fa-solid fa-circle-info"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>System Update</h5>
+                                <p>Core system updated to version 2.0.</p>
+                                <span class="notif-time">Just now</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="notif-footer">View All Notifications</div>
+                </div>
+            </div>
+
+            <div class="profile-wrapper">
+                <img src="https://i.pravatar.cc/150?img=12" alt="Profile" class="user-img header-icon-btn"
+                    id="profileTrigger" />
+
+                <div class="profile-dropdown" id="profileDropdown">
+                    <div class="pd-header">
+                        <img src="https://i.pravatar.cc/150?img=12" class="pd-avatar" />
+                        <div class="pd-info">
+                            <h4>Irvan Maulana</h4>
+                            <span>@irvanmaulana</span>
+                        </div>
+                    </div>
+                    <div class="pd-menu-list">
+                        <a href="pages-profile.html" class="pd-menu-item"><i class="fa-regular fa-user"></i> Your
+                            profile</a>
+                    </div>
+                    <div class="pd-divider"></div>
+                    <div class="pd-theme-toggle">
+                        <span>Theme</span>
+                        <div class="theme-options">
+                            <div class="theme-opt active" id="themeDark">
+                                <i class="fa-solid fa-moon"></i>
+                            </div>
+                            <div class="theme-opt" id="themeLight">
+                                <i class="fa-solid fa-sun"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pd-divider"></div>
+                    <div class="pd-menu-list">
+                        <a class="pd-menu-item text-muted"><i class="fa-solid fa-arrow-right-from-bracket"></i>
+                            Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="app-body-wrapper">
+        <div class="app-body">
+            <div id="sidebar-container"></div>
+
+            <main class="main-content" id="mainContent">
+
+                <div class="page-header-card">
+                    <i class="fa-solid fa-icons header-bg-icon"></i>
+                    <div class="header-hero-content">
+                        <h1 class="hero-title">Icon Collections</h1>
+                        <p class="hero-desc">
+                            Perpustakaan ikon lengkap. Klik ikon untuk menyalin kode class.
+                        </p>
+                    </div>
+                    <nav class="hero-breadcrumb">
+                        <div class="home-icon-box"><i class="fa-solid fa-home"></i></div>
+
+                        <span class="breadcrumb-sep"><i class="fa-solid fa-chevron-right"></i></span>
+                        <a href="dashboard.html" class="breadcrumb-link">Dashboard</a>
+                        <span class="breadcrumb-sep"><i class="fa-solid fa-chevron-right"></i></span>
+                        <span class="breadcrumb-link active">Icons</span>
+                    </nav>
+                </div>
+
+                <div class="icon-toolbar">
+                    <div class="icon-tab-nav">
+                        <button class="icon-tab-btn active" data-lib="fontawesome">
+                            <i class="fa-brands fa-font-awesome"></i> FontAwesome
+                        </button>
+                        <button class="icon-tab-btn" data-lib="remixicon">
+                            <i class="ri-remixicon-fill"></i> Remix
+                        </button>
+                        <button class="icon-tab-btn" data-lib="bootstrap">
+                            <i class="bi bi-bootstrap-fill"></i> Bootstrap
+                        </button>
+                        <button class="icon-tab-btn" data-lib="feather">
+                            <i class="fa-solid fa-feather"></i> Feather
+                        </button>
+                        <button class="icon-tab-btn" data-lib="material">
+                            <i class="mdi mdi-material-design"></i> Material
+                        </button>
+                    </div>
+
+                    <div class="search-wrapper" style="width: 250px; margin: 0;">
+                        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                        <input type="text" class="search-input" id="globalIconSearch" placeholder="Search icon...">
+                    </div>
+                </div>
+
+                <div style="position: relative; min-height: 400px;">
+
+                    <div id="iconLoader" class="loader-overlay d-none">
+                        <div class="spin-circle spin-lg spin-success"></div>
+                        <span class="text-xs text-muted">Fetching Library...</span>
+                    </div>
+
+                    <div class="d-flex justify-between align-center mb-3">
+                        <span class="text-xs text-muted">
+                            Total: <strong id="totalCount" class="text-main">0</strong> icons
+                        </span>
+                        <div class="text-xs text-muted">Page <span id="currentPageNum">1</span></div>
+                    </div>
+
+                    <div class="ultimate-grid" id="iconsGrid">
+                    </div>
+
+                    <div class="d-flex justify-center gap-2 mt-4" id="paginationControls"></div>
+
+                </div>
+
+                <footer class="app-footer mt-5">
+                    <div class="footer-left"><span>&copy; 2025 Daily.dev</span></div>
+                </footer>
+            </main>
+        </div>
+    </div>
+
+    <div class="sidebar-overlay desktop-only" id="sidebarOverlay"></div>
+    <div id="settings-container"></div>
+
+    <script src="assets/js/core.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+
+            // --- 1. SETUP LIBRARY ---
+            const LIBRARIES = {
+                fontawesome: {
+                    type: "css", // Fetch dari CSS
+                    url: "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css",
+                    regex: /\.fa-([a-z0-9-]+):before/g,
+                    render: (name) => `<i class="fa-solid fa-${name}"></i>`,
+                    copy: (name) => `<i class="fa-solid fa-${name}"></i>`
+                },
+                remixicon: {
+                    type: "css",
+                    url: "https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css",
+                    regex: /\.ri-([a-z0-9-]+-[a-z]+):before/g,
+                    render: (name) => `<i class="ri-${name}"></i>`,
+                    copy: (name) => `<i class="ri-${name}"></i>`
+                },
+                bootstrap: {
+                    type: "css",
+                    url: "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css",
+                    regex: /\.bi-([a-z0-9-]+)::before/g,
+                    render: (name) => `<i class="bi bi-${name}"></i>`,
+                    copy: (name) => `<i class="bi bi-${name}"></i>`
+                },
+                material: {
+                    type: "css",
+                    url: "https://cdn.jsdelivr.net/npm/@mdi/font@7.2.96/css/materialdesignicons.min.css",
+                    regex: /\.mdi-([a-z0-9-]+)::before/g,
+                    render: (name) => `<i class="mdi mdi-${name}"></i>`,
+                    copy: (name) => `<i class="mdi mdi-${name}"></i>`
+                },
+                feather: {
+                    type: "js", // Ambil dari Object JS Feather
+                    render: (name) => `<i data-feather="${name}"></i>`, // Placeholder
+                    copy: (name) => `<i data-feather="${name}"></i>`
+                }
+            };
+
+            // State
+            let currentLib = 'fontawesome';
+            let allIcons = [];
+            let filteredIcons = [];
+            let currentPage = 1;
+            const itemsPerPage = 60; // Loading ringan (pagination)
+            const iconCache = {};
+
+            // Elements
+            const grid = document.getElementById('iconsGrid');
+            const loader = document.getElementById('iconLoader');
+            const searchInput = document.getElementById('globalIconSearch');
+            const tabs = document.querySelectorAll('.icon-tab-btn');
+
+            // --- 2. ENGINE LOAD ICONS ---
+            async function loadLibrary(libKey) {
+                loader.classList.remove('d-none');
+                grid.innerHTML = '';
+                document.getElementById('paginationControls').innerHTML = '';
+                searchInput.value = '';
+
+                // Cek Cache
+                if (iconCache[libKey]) {
+                    allIcons = iconCache[libKey];
+                    finishLoading();
+                    return;
+                }
+
+                const config = LIBRARIES[libKey];
+
+                try {
+                    if (config.type === 'css') {
+                        // Fetch CSS Mode
+                        const response = await fetch(config.url);
+                        const cssText = await response.text();
+                        const icons = new Set();
+                        let match;
+                        while ((match = config.regex.exec(cssText)) !== null) {
+                            icons.add(match[1]);
+                        }
+                        iconCache[libKey] = Array.from(icons).sort();
+                    } else if (config.type === 'js' && libKey === 'feather') {
+                        // Feather JS Mode
+                        if (typeof feather !== 'undefined') {
+                            iconCache[libKey] = Object.keys(feather.icons).sort();
+                        } else {
+                            console.error("Feather JS not loaded");
+                        }
+                    }
+
+                    allIcons = iconCache[libKey] || [];
+                    finishLoading();
+
+                } catch (error) {
+                    console.error("Error:", error);
+                    loader.innerHTML = `<span class="text-danger">Gagal memuat library. Cek koneksi.</span>`;
+                }
+            }
+
+            function finishLoading() {
+                loader.classList.add('d-none');
+                filteredIcons = [...allIcons];
+                currentPage = 1;
+                renderPage();
+            }
+
+            // --- 3. ENGINE RENDER ---
+            function renderPage() {
+                const start = (currentPage - 1) * itemsPerPage;
+                const end = start + itemsPerPage;
+                const pageItems = filteredIcons.slice(start, end);
+
+                // Update Counts
+                document.getElementById('totalCount').innerText = filteredIcons.length;
+                document.getElementById('currentPageNum').innerText = currentPage;
+
+                grid.innerHTML = "";
+
+                if (pageItems.length === 0) {
+                    grid.innerHTML = `<div class="col-span-12 text-center text-muted py-5">No icons found.</div>`;
+                    return;
+                }
+
+                const config = LIBRARIES[currentLib];
+
+                pageItems.forEach(iconName => {
+                    const card = document.createElement('div');
+                    card.className = 'u-icon-card';
+                    card.innerHTML = `
+                        ${config.render(iconName)}
+                        <span class="u-icon-name">${iconName}</span>
+                    `;
+
+                    // Copy Action
+                    card.addEventListener('click', () => {
+                        const code = config.copy(iconName);
+                        navigator.clipboard.writeText(code).then(() => {
+                            card.classList.add('copied');
+                            if (window.Toast) window.Toast.fire({ title: "Copied!", message: iconName, type: "success" });
+                            setTimeout(() => card.classList.remove('copied'), 1000);
+                        });
+                    });
+
+                    grid.appendChild(card);
+                });
+
+                // Render Pagination Buttons
+                renderPagination();
+
+                // KHUSUS FEATHER: Perlu replace() setelah render HTML
+                if (currentLib === 'feather' && typeof feather !== 'undefined') {
+                    feather.replace();
+                }
+            }
+
+            // --- 4. PAGINATION UI ---
+            function renderPagination() {
+                const totalPages = Math.ceil(filteredIcons.length / itemsPerPage);
+                const container = document.getElementById('paginationControls');
+                container.innerHTML = '';
+
+                if (totalPages <= 1) return;
+
+                const createBtn = (label, page) => {
+                    const btn = document.createElement('button');
+                    btn.className = `page-btn ${page === currentPage ? 'active' : ''}`;
+                    btn.innerText = label;
+                    btn.onclick = () => { currentPage = page; renderPage(); window.scrollTo(0, 0); };
+                    return btn;
+                };
+
+                // Simple Prev/Next + Current Logic
+                if (currentPage > 1) container.appendChild(createBtn('<', currentPage - 1));
+
+                // Show limited pages
+                let start = Math.max(1, currentPage - 1);
+                let end = Math.min(totalPages, currentPage + 1);
+
+                if (start > 1) container.appendChild(createBtn(1, 1));
+                if (start > 2) container.appendChild(document.createTextNode('...'));
+
+                for (let i = start; i <= end; i++) container.appendChild(createBtn(i, i));
+
+                if (end < totalPages - 1) container.appendChild(document.createTextNode('...'));
+                if (end < totalPages) container.appendChild(createBtn(totalPages, totalPages));
+
+                if (currentPage < totalPages) container.appendChild(createBtn('>', currentPage + 1));
+            }
+
+            // --- 5. EVENTS ---
+            tabs.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    tabs.forEach(t => t.classList.remove('active'));
+                    btn.classList.add('active');
+                    currentLib = btn.dataset.lib;
+                    loadLibrary(currentLib);
+                });
+            });
+
+            searchInput.addEventListener('input', (e) => {
+                const term = e.target.value.toLowerCase();
+                filteredIcons = allIcons.filter(icon => icon.toLowerCase().includes(term));
+                currentPage = 1;
+                renderPage();
+            });
+
+            // Initial Load
+            loadLibrary('fontawesome');
+        });
+    </script>
+</body>
+
+</html>

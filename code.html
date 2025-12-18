@@ -1,14 +1,16 @@
 <!-- copy klik -->
 copy-click
 <!-- breadcumbs -->
-<nav class="hero-breadcrumb">
-    <div class="home-icon-box"><i class="fa-solid fa-home"></i></div>
+<div class="header-hero-actions">
+    <nav class="hero-breadcrumb">
+        <div class="home-icon-box"><i class="fa-solid fa-home"></i></div>
 
-    <span class="breadcrumb-sep"><i class="fa-solid fa-chevron-right"></i></span>
-    <a href="index.html" class="breadcrumb-link">Dashboard</a>
-    <span class="breadcrumb-sep"><i class="fa-solid fa-chevron-right"></i></span>
-    <span class="breadcrumb-link active">Activity Logs</span>
-</nav>
+        <span class="breadcrumb-sep"><i class="fa-solid fa-chevron-right"></i></span>
+        <a href="dashboard.html" class="breadcrumb-link">Dashboard</a>
+        <span class="breadcrumb-sep"><i class="fa-solid fa-chevron-right"></i></span>
+        <span class="breadcrumb-link active">Profile Styles</span>
+    </nav>
+</div>
 <!-- header -->
 <header class="app-header">
     <div class="header-left-actions">
@@ -55,6 +57,19 @@ copy-click
     </div>
 
     <div class="header-right">
+        <div class="dropdown-action">
+            <button class="header-icon-btn dropdown-trigger">
+                <i class="fa-solid fa-plus"></i>
+            </button>
+            <div class="dropdown-menu-action icon-mode">
+                <a href="#" class="action-icon-btn text-success" title="New Project"><i
+                        class="fa-solid fa-folder-plus"></i></a>
+                <a href="#" class="action-icon-btn text-primary" title="New User"><i
+                        class="fa-solid fa-user-plus"></i></a>
+                <a href="#" class="action-icon-btn text-warning" title="New Invoice"><i
+                        class="fa-solid fa-file-invoice"></i></a>
+            </div>
+        </div>
         <div class="notification-wrapper">
             <button class="header-icon-btn" id="notifTrigger" title="Notifications">
                 <i class="fa-regular fa-bell"></i>

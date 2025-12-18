@@ -1,0 +1,838 @@
+/* =========================================
+   KANBAN ULTIMATE MODULE (FINAL FIX)
+   ========================================= */
+
+/* --- 1. BASE CARD STYLING (GRID VIEW - THE "RICH" LOOK) --- */
+.kb-card {
+    position: relative;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 20px; /* Sudut lebih bulat seperti screenshot */
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+   z-index: 1; /* Layer dasar */
+}
+
+/* Hover Effect: Lift Up & Glow */
+.kb-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    border-color: rgba(var(--primary-rgb), 0.3);
+    z-index: 10; /* Angkat kartu yang sedang di-hover */
+}
+
+/* --- 2. HEADER ELEMENTS --- */
+.kb-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+/* Icon Box Mewah (Gradient Besar) */
+.kb-icon-box {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    color: white;
+    flex-shrink: 0;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+/* Gradient Presets (Wajib ada untuk warna) */
+.bg-gradient-blue { background: linear-gradient(135deg, #3b82f6, #2563eb); box-shadow: 0 8px 15px rgba(59, 130, 246, 0.3); }
+.bg-gradient-green { background: linear-gradient(135deg, #10b981, #059669); box-shadow: 0 8px 15px rgba(16, 185, 129, 0.3); }
+.bg-gradient-purple { background: linear-gradient(135deg, #a855f7, #7c3aed); box-shadow: 0 8px 15px rgba(168, 85, 247, 0.3); }
+.bg-gradient-orange { background: linear-gradient(135deg, #f59e0b, #d97706); box-shadow: 0 8px 15px rgba(245, 158, 11, 0.3); }
+.bg-gradient-pink { background: linear-gradient(135deg, #ec4899, #be185d); box-shadow: 0 8px 15px rgba(236, 72, 153, 0.3); }
+
+/* Typography */
+.kb-info {
+    flex: 1;
+    min-width: 0; /* Mencegah text overflow */
+}
+
+.kb-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+}
+
+.kb-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 3px 8px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+}
+
+.kb-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    height: 40px; /* Tinggi fix untuk deskripsi */
+}
+
+/* --- 3. STATS (PILLS) --- */
+.kb-stats {
+    display: flex;
+    justify-content: space-between;
+    background: var(--bg-hover);
+    border-radius: 12px;
+    padding: 12px 16px;
+    margin-bottom: 20px;
+    border: 1px solid var(--border-color);
+}
+
+.kb-stat-item {
+    text-align: center;
+    flex: 1;
+    position: relative;
+}
+
+/* Garis pemisah antar stats */
+.kb-stat-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 20%;
+    height: 60%;
+    width: 1px;
+    background: var(--border-color);
+}
+
+.kb-stat-val { font-weight: 800; font-size: 15px; color: var(--text-main); display: block; }
+.kb-stat-label { font-size: 10px; font-weight: 700; text-transform: uppercase; color: var(--text-muted); }
+
+/* --- 4. FOOTER (Avatar & Progress) --- */
+.kb-footer {
+    margin-top: auto;
+}
+
+.kb-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.kb-time {
+    font-size: 12px;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.kb-progress-track {
+    height: 6px;
+    background: var(--bg-hover);
+    border-radius: 10px;
+    overflow: hidden;
+    border-radius: 0 0 10px 10px; /* Sesuaikan sudut */
+}
+/* --- TAMBAHAN: SMART FORM ANIMATION --- */
+#inviteMemberSection {
+    display: none; /* Default hidden */
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Member Select Fake Input */
+.fake-member-select {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    cursor: pointer;
+    background: var(--bg-search);
+    color: var(--text-muted);
+    font-size: 13px;
+}
+.fake-member-select:hover {
+    border-color: var(--accent-color);
+    color: var(--text-main);
+}
+.kb-progress-fill {
+    height: 100%;
+    border-radius: 10px;
+    background: var(--accent-color);
+    transition: width 0.5s ease;
+}
+
+/* --- 5. CREATE NEW CARD (DASHED) --- */
+.kb-create-card {
+    border: 2px dashed var(--border-color);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    min-height: 340px; /* Tinggi Grid */
+    color: var(--text-muted);
+    transition: all 0.2s;
+    cursor: pointer;
+    background: transparent;
+}
+
+.kb-create-card:hover {
+    border-color: var(--accent-color);
+    background: rgba(var(--accent-rgb), 0.05);
+    color: var(--text-main);
+}
+
+.kb-create-icon {
+    width: 60px;
+    height: 60px;
+    background: var(--bg-hover);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    margin-bottom: 16px;
+    transition: 0.3s;
+}
+
+.kb-create-card:hover .kb-create-icon {
+    background: var(--accent-color);
+    color: white;
+    transform: rotate(90deg);
+}
+
+/* --- 6. COLOR PICKER (MODAL) --- */
+.kb-color-picker { display: flex; gap: 10px; }
+.kb-color-option {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: 0.2s;
+    position: relative;
+}
+.kb-color-option:hover { transform: scale(1.1); }
+.kb-color-option.selected { border-color: var(--bg-card); box-shadow: 0 0 0 2px var(--text-main); }
+.kb-color-option.selected::after {
+    content: '\f00c'; font-family: "Font Awesome 6 Free"; font-weight: 900;
+    color: white; font-size: 12px;
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+}
+
+/* =================================================================
+   7. LIST VIEW TRANSFORMATION (RAHASIA AGAR TIDAK BERANTAKAN)
+   ================================================================= */
+
+/* 1. Ubah Container Grid -> List */
+.kb-container.list-view {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* 2. Paksa Kolom Grid jadi Full Width Row */
+.kb-container.list-view .col-span-4,
+.kb-container.list-view .col-span-3 {
+    width: 100%;
+    max-width: 100%;
+}
+
+/* 3. Ubah Arah Kartu: Vertical -> Horizontal */
+.kb-container.list-view .kb-card {
+    flex-direction: row; /* Horizontal */
+    align-items: center;
+    padding: 16px 24px;
+    height: auto;
+    min-height: auto;
+    gap: 30px; /* Jarak antar elemen */
+}
+
+/* 4. Reset Elemen di dalam List View */
+.kb-container.list-view .kb-header {
+    margin-bottom: 0;
+    width: 30%; /* Judul ambil 30% lebar */
+    min-width: 250px;
+    align-items: center;
+}
+
+.kb-container.list-view .kb-icon-box {
+    width: 42px; height: 42px; font-size: 18px; /* Perkecil Icon */
+    margin-bottom: 0;
+}
+
+.kb-container.list-view .kb-desc {
+    display: none; /* Sembunyikan deskripsi di list view agar rapi */
+}
+
+.kb-container.list-view .kb-badge {
+    margin-bottom: 0; 
+    margin-left: 10px; /* Badge pindah ke samping judul */
+}
+
+/* 5. Transformasi Stats menjadi Horizontal Clean */
+.kb-container.list-view .kb-stats {
+    flex: 1; /* Stats ambil sisa ruang tengah */
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    border: none;
+    justify-content: flex-start;
+    gap: 40px;
+}
+
+.kb-container.list-view .kb-stat-item {
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 0;
+    min-width: 80px;
+}
+
+.kb-container.list-view .kb-stat-item::after { display: none; } /* Hapus garis */
+.kb-container.list-view .kb-stat-label { margin-top: 2px; }
+
+/* 6. Footer (Avatar & Action) */
+.kb-container.list-view .kb-footer {
+    width: 250px; /* Fixed width kanan */
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.kb-container.list-view .kb-meta {
+    margin-bottom: 0;
+    gap: 20px;
+}
+
+.kb-container.list-view .kb-progress-track {
+    display: none; /* Sembunyikan progress bar di list view */
+}
+
+/* 7. Sembunyikan Tombol Create Besar */
+.kb-container.list-view .kb-create-wrapper {
+    display: none;
+}
+
+/* Tombol Dropdown */
+.kb-container.list-view .dropdown-action {
+    margin-left: 20px;
+}
+.dropdown-menu-action {
+    z-index: 999 !important; /* Force paling atas */
+    min-width: 160px;
+}
+/* MOBILE LIST VIEW FIX */
+@media (max-width: 992px) {
+    .kb-container.list-view .kb-card {
+        flex-wrap: wrap; /* Izinkan turun baris di Tablet/HP */
+    }
+    .kb-container.list-view .kb-header {
+        width: 100%; /* Judul full width */
+    }
+    .kb-container.list-view .kb-stats {
+        width: 100%;
+        margin-top: 12px;
+        padding-top: 12px;
+        border-top: 1px solid var(--border-color);
+        justify-content: space-between;
+    }
+    .kb-container.list-view .kb-footer {
+        width: 100%;
+        justify-content: space-between;
+        margin-top: 12px;
+    }
+}
+
+/* ... CSS Kanban yang sebelumnya tetap dipertahankan ... */
+
+/* --- ADDITIONAL: CREATE MODAL STYLES --- */
+
+/* Radio Card di Modal (Agar Teks Deskripsi Muncul Rapi) */
+.radio-card-label {
+    width: 100%;
+    cursor: pointer;
+    position: relative;
+}
+
+.radio-card-input { display: none; }
+
+.radio-card-content {
+    background: var(--bg-hover);
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.2s;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* State Checked */
+.radio-card-input:checked + .radio-card-content {
+    border-color: var(--accent-color);
+    background: rgba(var(--accent-rgb), 0.05);
+    box-shadow: 0 0 0 4px rgba(var(--accent-rgb), 0.1);
+}
+
+.radio-check-icon {
+    position: absolute;
+    top: 10px; right: 10px;
+    width: 24px; height: 24px;
+    background: var(--accent-color);
+    color: white;
+    border-radius: 50%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+}
+
+.radio-card-input:checked + .radio-card-content .radio-check-icon {
+    display: flex;
+}
+
+/* Visibility Row (Form Premium) */
+.form-row-premium {
+    display: flex;
+    align-items: center;
+    padding: 20px 0;
+    border-top: 1px solid var(--border-color);
+    margin-top: 20px;
+}
+
+.label-col {
+    flex: 0 0 35%;
+    padding-right: 20px;
+}
+
+.label-title { display: block; font-weight: 700; color: var(--text-main); margin-bottom: 4px; }
+.label-desc { display: block; font-size: 12px; color: var(--text-muted); }
+
+.input-col { flex: 1; }
+
+/* Color Picker Size Fix */
+.kb-color-option {
+    width: 36px; height: 36px; /* Lebih besar agar mudah diklik */
+}
+
+/* =========================================
+   KANBAN BOARD VIEW (DETAIL PAGE)
+   ========================================= */
+
+/* 1. CONTAINER HORIZONTAL */
+.kb-board-container {
+    display: flex;
+    height: calc(100vh - 180px); /* Full height minus header */
+    overflow-x: auto;
+    overflow-y: hidden;
+    gap: 24px;
+    padding-bottom: 20px; /* Space for scrollbar */
+}
+
+/* Custom Scrollbar Horizontal */
+.kb-board-container::-webkit-scrollbar { height: 8px; }
+.kb-board-container::-webkit-scrollbar-thumb { 
+    background: var(--border-color); 
+    border-radius: 4px; 
+}
+.kb-board-container::-webkit-scrollbar-track { background: transparent; }
+
+/* 2. COLUMN STYLE */
+.kb-column {
+    min-width: 320px;
+    width: 320px;
+    background: var(--bg-card);
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    max-height: 100%;
+    flex-shrink: 0; /* Prevent shrinking */
+    transition: box-shadow 0.2s;
+}
+
+/* Header Kolom */
+.kb-col-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 700;
+    color: var(--text-main);
+    font-size: 14px;
+    background: rgba(255,255,255,0.01);
+}
+
+.kb-col-title-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.kb-task-count {
+    background: var(--bg-hover);
+    color: var(--text-muted);
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+/* Body Kolom (Scrollable Vertical) */
+.kb-col-body {
+    padding: 16px;
+    overflow-y: auto;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Scrollbar Vertikal di dalam kolom */
+.kb-col-body::-webkit-scrollbar { width: 4px; }
+.kb-col-body::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 4px; }
+
+/* Footer Kolom (Add Task Button) */
+.kb-col-footer {
+    padding: 12px 16px;
+    border-top: 1px solid var(--border-color);
+}
+
+.btn-add-task-ghost {
+    width: 100%;
+    text-align: left;
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 13px;
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-add-task-ghost:hover {
+    background: var(--bg-hover);
+    color: var(--text-main);
+}
+
+/* 3. TASK CARD STYLE */
+.kb-task-card {
+    background: var(--bg-hover); /* Sedikit lebih terang dari kolom */
+    border: 1px solid transparent;
+    border-radius: 12px;
+    padding: 16px;
+    cursor: grab;
+    transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.kb-task-card:hover {
+    border-color: var(--accent-color);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    z-index: 10;
+    background: var(--bg-card); /* Highlight */
+}
+
+/* Task Meta Elements */
+.kb-task-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 10px;
+}
+
+.kb-tag {
+    font-size: 10px;
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Tag Variants */
+.tag-design { background: rgba(236, 72, 153, 0.15); color: #ec4899; } /* Pink */
+.tag-dev { background: rgba(59, 130, 246, 0.15); color: #3b82f6; } /* Blue */
+.tag-urgent { background: rgba(231, 76, 60, 0.15); color: #e74c3c; } /* Red */
+.tag-feature { background: rgba(168, 85, 247, 0.15); color: #a855f7; } /* Purple */
+
+.kb-task-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-main);
+    margin-bottom: 6px;
+    line-height: 1.4;
+}
+
+.kb-task-desc {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.kb-task-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    padding-top: 10px;
+    margin-top: 10px;
+}
+
+.kb-task-meta {
+    display: flex;
+    gap: 12px;
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.kb-task-meta span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.kb-task-meta span:hover { color: var(--text-main); }
+
+/* 4. ADD COLUMN BUTTON (Ghost Column) */
+.kb-add-column {
+    min-width: 320px;
+    border-radius: 16px;
+    border: 2px dashed var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.2s;
+    color: var(--text-muted);
+    font-weight: 600;
+    background: transparent;
+}
+
+.kb-add-column:hover {
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+    background: rgba(var(--accent-rgb), 0.05);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .kb-board-container {
+        height: calc(100vh - 140px); /* Lebih pendek di HP karena header */
+        padding-left: 16px; /* Padding kiri agar tidak nempel */
+    }
+    
+    .kb-column {
+        min-width: 280px;
+        width: 280px;
+    }
+}
+
+/* --- FIX: DROPDOWN VISIBILITY --- */
+
+/* Pastikan kartu mengizinkan elemen keluar dari kotak (overflow) */
+.kb-card {
+    overflow: visible !important; 
+}
+
+/* Saat ada interaksi di dalam kartu (klik dropdown), angkat kartu ke layer paling atas */
+.kb-card:focus-within {
+    z-index: 50 !important;
+}
+
+/* Pastikan posisi dropdown benar */
+.kb-card .dropdown-menu-action {
+    right: 0;
+    top: 100%;
+    min-width: 150px;
+    margin-top: 5px;
+}
+
+/* --- DRAG & DROP VISUALS --- */
+.kb-task-card.dragging {
+    opacity: 0.5;
+    border: 2px dashed var(--accent-color);
+    background: var(--bg-body);
+    box-shadow: none;
+}
+
+/* Garis penanda posisi drop */
+.kb-col-body.drag-over {
+    background: rgba(var(--accent-rgb), 0.05);
+    border-radius: 8px;
+}
+
+/* --- FILTER DROPDOWN STYLING --- */
+.filter-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 8px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 12px;
+    width: 200px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    z-index: 100;
+    display: none; /* Hidden by default */
+    animation: fadeIn 0.2s ease;
+}
+
+.filter-dropdown.show {
+    display: block;
+}
+
+.filter-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    color: var(--text-muted);
+    transition: 0.2s;
+    font-size: 13px;
+}
+
+.filter-option:hover {
+    background: var(--bg-hover);
+    color: var(--text-main);
+}
+
+.filter-option.active {
+    background: rgba(var(--primary-rgb), 0.1);
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.filter-divider {
+    height: 1px;
+    background: var(--border-color);
+    margin: 8px 0;
+}
+/* --- FIX: FILTER MENU VISIBILITY --- */
+.position-relative {
+    position: relative !important; /* Pastikan induknya relative */
+}
+
+.filter-dropdown {
+    display: none; /* Sembunyi default */
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 220px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.5); /* Shadow lebih tebal */
+    border-radius: 12px;
+    padding: 8px;
+    z-index: 9999 !important; /* Paksa layer paling atas */
+    margin-top: 10px;
+}
+
+/* Class untuk memunculkan menu */
+.filter-dropdown.show {
+    display: block !important;
+    animation: slideDownFade 0.2s ease-out;
+}
+
+@keyframes slideDownFade {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- FIX: COLUMN DROPDOWN MENU --- */
+.kb-col-header {
+    position: relative; /* Penting untuk patokan dropdown */
+    z-index: 5; /* Agar di atas kartu */
+}
+
+/* Menu Dropdown Kolom */
+.column-dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 160px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    padding: 6px;
+    display: none; /* Hidden default */
+    z-index: 100;
+    margin-top: 5px;
+}
+
+.column-dropdown-menu.show {
+    display: block;
+    animation: fadeIn 0.2s ease;
+}
+
+/* Item Menu */
+.col-action-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    font-size: 13px;
+    color: var(--text-muted);
+    border-radius: 6px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.col-action-item:hover {
+    background: var(--bg-hover);
+    color: var(--text-main);
+}
+
+.col-action-item.text-danger:hover {
+    background: rgba(231, 76, 60, 0.1);
+    color: var(--danger);
+}
+

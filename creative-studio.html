@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Creative Studio - WKNG Agency</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="assets/css/marketing.css">
+</head>
+
+<body>
+
+    <div class="mobile-menu-overlay ultimate-mobile-menu">
+        <div class="mobile-menu-header">
+            <div class="logo brand-wkng">
+                <i class="fa-solid fa-bolt" style="color: var(--primary);"></i>
+                <span>WKNG<span class="text-primary">.</span></span>
+            </div>
+            <button class="mobile-close-btn">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <div class="mobile-scroll-content">
+            <nav class="mobile-nav-links">
+                <a href="pages-lp.marketing.html" class="mobile-nav-row">
+                    <span class="nav-label">Home</span>
+                </a>
+
+                <details class="mobile-accordion" open>
+                    <summary class="mobile-nav-row active">
+                        <span class="nav-label">Solutions</span>
+                        <i class="fa-solid fa-plus accordion-icon"></i>
+                    </summary>
+                    <div class="mobile-submenu">
+                        <a href="growth-marketing.html" class="submenu-item">
+                            <i class="fa-solid fa-rocket"></i> Growth Marketing
+                        </a>
+                        <a href="#" class="submenu-item" style="color:var(--primary);">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i> Creative Studio
+                        </a>
+                        <a href="#" class="submenu-item">
+                            <i class="fa-solid fa-code"></i> Web Development
+                        </a>
+                    </div>
+                </details>
+
+                <a href="#pricing" class="mobile-nav-row">
+                    <span class="nav-label">Pricing</span>
+                </a>
+
+                <details class="mobile-accordion">
+                    <summary class="mobile-nav-row">
+                        <span class="nav-label">Resources</span>
+                        <i class="fa-solid fa-plus accordion-icon"></i>
+                    </summary>
+                    <div class="mobile-submenu">
+                        <a href="#" class="submenu-item">
+                            <i class="fa-regular fa-newspaper"></i> Articles & Blog
+                        </a>
+                        <a href="#" class="submenu-item">
+                            <i class="fa-solid fa-book-open"></i> Case Studies
+                        </a>
+                    </div>
+                </details>
+
+                <a href="#about" class="mobile-nav-row">
+                    <span class="nav-label">About</span>
+                </a>
+                <a href="#careers" class="mobile-nav-row">
+                    <span class="nav-label">Careers</span>
+                </a>
+            </nav>
+        </div>
+
+        <div class="mobile-menu-footer">
+            <a href="#pricing" class="btn btn-primary btn-large btn-glow btn-block">
+                Start Project <i class="fa-solid fa-arrow-right" style="margin-left:8px; font-size:0.9em;"></i>
+            </a>
+
+            <div class="mobile-utility-bar">
+                <button class="util-item search-trigger-btn" title="Search">
+                    <div class="util-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+                    <span>Search</span>
+                </button>
+                <div class="util-divider"></div>
+                <button id="theme-toggle-mobile" class="util-item theme-toggle-btn" title="Switch Theme">
+                    <div class="util-icon"><i class="fa-solid fa-moon"></i></div>
+                    <span>Theme</span>
+                </button>
+                <div class="util-divider"></div>
+                <a href="#" class="util-item" title="Client Login">
+                    <div class="util-icon login-icon"><i class="fa-solid fa-user"></i></div>
+                    <span>Login</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <header class="navbar premium-nav">
+        <div class="container nav-inner">
+            <a href="pages-lp.marketing.html" class="logo brand-wkng">
+                <i class="fa-solid fa-bolt" style="color: var(--primary);"></i>
+                <span>WKNG<span class="text-primary">.</span></span>
+            </a>
+
+            <nav class="nav-links">
+                <a href="pages-lp.marketing.html" class="nav-link">Home</a>
+
+                <div class="nav-item-dropdown">
+                    <a href="#" class="nav-link active">Solutions <i class="fa-solid fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="growth-marketing.html" class="dropdown-item">
+                            <i class="fa-solid fa-rocket"></i>
+                            <div>
+                                <span>Growth Marketing</span>
+                                <small>Scale your revenue fast</small>
+                            </div>
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                            <div>
+                                <span>Creative Studio</span>
+                                <small>Premium branding & UI/UX</small>
+                            </div>
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            <i class="fa-solid fa-code"></i>
+                            <div>
+                                <span>Web Development</span>
+                                <small>Robust tech solutions</small>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <a href="#pricing" class="nav-link">Pricing</a>
+
+                <div class="nav-item-dropdown">
+                    <a href="#" class="nav-link">Resources <i class="fa-solid fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="#" class="dropdown-item">
+                            <i class="fa-regular fa-newspaper"></i>
+                            <div>
+                                <span>Articles & Blog</span>
+                                <small>Latest industry insights</small>
+                            </div>
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            <i class="fa-solid fa-book-open"></i>
+                            <div>
+                                <span>Case Studies</span>
+                                <small>Real results from clients</small>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <a href="#about" class="nav-link">About</a>
+                <a href="#careers" class="nav-link">Careers</a>
+            </nav>
+
+            <div class="nav-cta">
+                <button class="nav-icon-btn search-trigger-btn" title="Search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+                <button id="theme-toggle" class="nav-icon-btn theme-toggle-btn" title="Toggle Theme">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                <div class="nav-divider"></div>
+                <a href="#" class="link-login">Sign In</a>
+                <a href="#pricing" class="btn btn-primary btn-glow">
+                    Start Project
+                </a>
+            </div>
+
+            <div style="display:flex; align-items:center; gap:16px;">
+                <button class="mobile-menu-btn">
+                    <i class="fa-solid fa-bars-staggered"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+<!-- Back To Top Button -->
+<button id="back-to-top" class="back-to-top" title="Back to Top">
+    <i class="fa-solid fa-arrow-up"></i>
+</button>
+    <main>
+        <div class="mobile-floating-cta" id="floating-cta">
+            <div style="display:flex; flex-direction:column; padding-left:8px;">
+                <span style="font-weight:700; font-size:0.9rem; color:white;">Ready to scale?</span>
+                <span style="font-size:0.75rem; color:var(--success);">Limited spots available</span>
+            </div>
+
+            <div style="display:flex; align-items:center; gap:12px;">
+                <a href="#pricing" class="btn btn-gradient" style="padding: 8px 20px; font-size:0.9rem;">Book Audit</a>
+
+                <button class="cta-close-btn" id="close-floating-cta">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+        <section class="hero hero-creative">
+            <div class="bg-noise"></div>
+
+            <div class="creative-aura"></div>
+
+            <div class="container creative-hero-container">
+
+                <div class="creative-hero-text fade-in-up">
+                    <div class="badge-pill-creative">
+                        <i class="fa-solid fa-paintbrush"></i> WKNG Design Division
+                    </div>
+                    <h1>
+                        Visuals That <br>
+                        <span class="text-outline">Break The Internet.</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        We don't just design websites. We curate digital experiences that evoke emotion, build trust,
+                        and scream
+                        authority.
+                    </p>
+                    <div class="hero-cta-group" style="justify-content: center;">
+                        <a href="#portfolio" class="btn btn-primary btn-large btn-glow">
+                            See The Work
+                        </a>
+                        <a href="#contact" class="btn btn-outline btn-large">
+                            Start Brief
+                        </a>
+                    </div>
+                </div>
+
+                <div class="creative-float-img float-left fade-in-up" style="transition-delay: 0.2s;">
+                    <img src="https://picsum.photos/300/400?random=101" alt="Art 1">
+                </div>
+
+                <div class="creative-float-img float-right fade-in-up" style="transition-delay: 0.3s;">
+                    <img src="https://picsum.photos/300/400?random=102" alt="Art 2">
+                </div>
+
+                <div class="creative-float-img float-center fade-in-up" style="transition-delay: 0.4s;">
+                    <img src="https://picsum.photos/600/300?random=103" alt="Art 3">
+                </div>
+
+            </div>
+        </section>
+
+        <section class="features" style="padding-top: 40px;">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Our Craft</span>
+                    <h2>Visual Engineering</h2>
+                </div>
+
+                <div class="features-grid">
+                    <div class="feature-card reveal">
+                        <div class="feature-icon"
+                            style="color:#d946ef; border-color:rgba(217, 70, 239, 0.2); background:rgba(217, 70, 239, 0.05);">
+                            <i class="fa-solid fa-pen-nib"></i>
+                        </div>
+                        <h3>Brand Identity</h3>
+                        <p>Logo design, typography systems, and brand guidelines that tell your story without saying a
+                            word.</p>
+                    </div>
+
+                    <div class="feature-card reveal">
+                        <div class="feature-icon"
+                            style="color:#d946ef; border-color:rgba(217, 70, 239, 0.2); background:rgba(217, 70, 239, 0.05);">
+                            <i class="fa-solid fa-layer-group"></i>
+                        </div>
+                        <h3>UI/UX Design</h3>
+                        <p>User-centric interfaces for web and mobile apps that convert visitors into loyal users.</p>
+                    </div>
+
+                    <div class="feature-card reveal">
+                        <div class="feature-icon"
+                            style="color:#d946ef; border-color:rgba(217, 70, 239, 0.2); background:rgba(217, 70, 239, 0.05);">
+                            <i class="fa-solid fa-film"></i>
+                        </div>
+                        <h3>Motion & 3D</h3>
+                        <p>High-end motion graphics and 3D assets to give your digital presence depth and life.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="portfolio" class="portfolio-section" style="padding: 80px 0;">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Recent Masterpieces</h2>
+                    <p class="text-muted">Selected works from 2024-2025</p>
+                </div>
+
+                <div class="portfolio-grid">
+                    <div class="portfolio-item item-large reveal">
+                        <img src="https://picsum.photos/800/600?random=1" alt="Project 1">
+                        <div class="portfolio-overlay">
+                            <h3>Neon Fintech App</h3>
+                            <span>UI/UX Design</span>
+                        </div>
+                    </div>
+
+                    <div class="portfolio-item reveal">
+                        <img src="https://picsum.photos/400/300?random=2" alt="Project 2">
+                        <div class="portfolio-overlay">
+                            <h3>Luxe Hotel</h3>
+                            <span>Rebranding</span>
+                        </div>
+                    </div>
+
+                    <div class="portfolio-item reveal">
+                        <img src="https://picsum.photos/400/300?random=3" alt="Project 3">
+                        <div class="portfolio-overlay">
+                            <h3>Eco Energy</h3>
+                            <span>Web Design</span>
+                        </div>
+                    </div>
+
+                    <div class="portfolio-item item-wide reveal">
+                        <img src="https://picsum.photos/800/400?random=4" alt="Project 4">
+                        <div class="portfolio-overlay">
+                            <h3>Future Cars 3D</h3>
+                            <span>Motion Graphics</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center" style="margin-top: 40px;">
+                    <a href="#" class="btn btn-outline btn-large">View Full Portfolio</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="pricing" class="pricing">
+            <div class="container">
+                <div class="cta-card text-center reveal">
+                    <h2>Need World-Class Design?</h2>
+                    <p class="text-muted" style="max-width:600px; margin:0 auto 40px;">
+                        Good design is expensive. Bad design costs a fortune. Let's build something iconic together.
+                    </p>
+                    <a href="#" class="btn btn-primary btn-large btn-glow">
+                        Start Design Project
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer ultimate-footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand-cta">
+                    <h3>Ready to dominate<br>your market?</h3>
+                    <p class="text-muted">Join the 1% of brands that actually scale.</p>
+                    <a href="#pricing" class="btn btn-primary btn-glow" style="margin-top:24px;">
+                        Start Your Project <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <div class="footer-nav-grid">
+                    <div class="footer-col">
+                        <div class="footer-heading-mobile">
+                            <h4>Company</h4>
+                            <i class="fa-solid fa-chevron-down mobile-only"></i>
+                        </div>
+                        <ul class="footer-links-list">
+                            <li><a href="#about">About WKNG</a></li>
+                            <li><a href="#careers">Careers <span class="hiring-badge">Hiring</span></a></li>
+                            <li><a href="#contact">Contact</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col">
+                        <div class="footer-heading-mobile">
+                            <h4>Solutions</h4>
+                            <i class="fa-solid fa-chevron-down mobile-only"></i>
+                        </div>
+                        <ul class="footer-links-list">
+                            <li><a href="growth-marketing.html">Growth Marketing</a></li>
+                            <li><a href="creative-studio.html">Creative Studio</a></li>
+                            <li><a href="#">Web Development</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col">
+                        <div class="footer-heading-mobile">
+                            <h4>Resources</h4>
+                            <i class="fa-solid fa-chevron-down mobile-only"></i>
+                        </div>
+                        <ul class="footer-links-list">
+                            <li><a href="#">Marketing Blog</a></li>
+                            <li><a href="#">ROI Calculator</a></li>
+                            <li><a href="#">Client Portal</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col socials-col">
+                        <h4>Connect</h4>
+                        <div style="display:flex; gap:16px; margin-top:16px;">
+                            <a href="#" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="#" class="social-icon"><i class="fa-brands fa-linkedin"></i></a>
+                            <a href="#" class="social-icon"><i class="fa-brands fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-big-brand">
+                <span>WKNG.</span>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="copyright">&copy; 2025 WKNG Agency Inc.</div>
+                <div class="legal-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="search-overlay">
+        <button class="search-close-btn"><i class="fa-solid fa-xmark"></i></button>
+        <div class="search-container">
+            <span class="search-label">What are you looking for?</span>
+            <div class="search-input-wrapper">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" placeholder="Type keywords..." autofocus>
+            </div>
+            <div class="quick-links">
+                <small>Quick Links:</small>
+                <div class="tags">
+                    <a href="#">Pricing</a>
+                    <a href="#">Case Studies</a>
+                    <a href="#">Services</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/marketing.js"></script>
+</body>
+
+</html>

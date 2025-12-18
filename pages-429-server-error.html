@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>429 Too Many Requests - Daily Admin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/core.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/error-pages.css">
+</head>
+
+<body class="error-page">
+
+    <div class="bg-grid"></div>
+    <div class="orb orb-1" id="orb1" style="background: #ff4757;"></div>
+    <div class="orb orb-2" id="orb2" style="background: #ffa502;"></div>
+
+    <div class="content-box" id="contentBox">
+
+        <div class="ghost-container" style="color: #ff4757;">
+            <i class="fa-solid fa-gauge-high fa-shake" style="--fa-animation-duration: 0.5s;"></i>
+        </div>
+
+        <div class="glitch-wrapper">
+            <h1 class="error-code" data-text="429" style="text-shadow: 2px 2px 0px #ff4757;">429</h1>
+        </div>
+
+        <h2 class="error-title">Too Many Requests</h2>
+        <p class="error-desc">
+            // System Overload: Batas lalu lintas terlampaui (Rate Limit Exceeded).<br>
+            // Action: Harap tunggu beberapa saat sebelum mencoba lagi (Cooldown).
+        </p>
+
+        <div class="justify-content-beetween align-items-center gap-3">
+            <button onclick="window.location.reload()" class="btn btn-home rounded-pill mb-2"
+                style="background: #ff4757; color: #fff;">
+                <i class="fa-solid fa-rotate-right me-2"></i> Try Again
+            </button>
+            <a href="dashboard.html" class="btn btn-ghost rounded-pill">
+                Dashboard
+            </a>
+        </div>
+    </div>
+
+    <footer class="error-footer">
+        &copy; 2025 DAILY ADMIN SYSTEM. ALL RIGHTS RESERVED.
+    </footer>
+
+    <script src="assets/js/error-pages.js"></script>
+</body>
+
+</html>

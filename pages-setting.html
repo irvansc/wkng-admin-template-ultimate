@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Settings - Daily Admin</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+
+    <link rel="stylesheet" href="assets/css/core.css" />
+    <link rel="stylesheet" href="assets/css/utilities.css" />
+    <link rel="stylesheet" href="assets/css/layout.css" />
+    <link rel="stylesheet" href="assets/css/components.css" />
+</head>
+
+<body>
+    <header class="app-header">
+        <div class="header-left-actions">
+            <button class="header-icon-btn mobile-toggle-btn" id="mobileToggle">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+            <div class="mobile-search-bar" id="mobileSearchBar">
+                <i class="fa-solid fa-magnifying-glass search-icon-mobile"></i>
+                <input type="text" class="mobile-search-input" placeholder="Search anything..."
+                    id="mobileSearchInput" />
+                <button class="mobile-search-close" id="mobileSearchClose">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="logo desktop-only">
+            <i class="fa-solid fa-code" style="color: var(--text-main)"></i>
+            <span>daily.dev</span>
+        </div>
+        <div id="horizontal-menu-container" class="desktop-only" style="flex: 1; margin-left: 20px">
+        </div>
+        <div class="search-wrapper search-wrapper-inline desktop-only">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <input type="text" class="search-input" placeholder="Search..." id="searchInputInline">
+            <div class="search-shortcut">Ctrl K</div>
+        </div>
+
+        <div class="header-right-actions">
+
+            <button class="header-icon-btn" id="searchTrigger" title="Search" style="display: none;">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+
+        </div>
+
+        <div class="search-overlay" id="searchOverlay">
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass search-box-icon"></i>
+                <input type="text" class="search-box-input" placeholder="Search pages..." id="searchInputFloating">
+                <button class="search-box-close" id="searchClose">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="header-right">
+            <div class="dropdown-action">
+                <button class="header-icon-btn dropdown-trigger">
+                    <i class="fa-solid fa-plus"></i>
+                </button>
+                <div class="dropdown-menu-action icon-mode">
+                    <a href="#" class="action-icon-btn text-success" title="New Project"><i
+                            class="fa-solid fa-folder-plus"></i></a>
+                    <a href="#" class="action-icon-btn text-primary" title="New User"><i
+                            class="fa-solid fa-user-plus"></i></a>
+                    <a href="#" class="action-icon-btn text-warning" title="New Invoice"><i
+                            class="fa-solid fa-file-invoice"></i></a>
+                </div>
+            </div>
+            <div class="notification-wrapper">
+                <button class="header-icon-btn" id="notifTrigger" title="Notifications">
+                    <i class="fa-regular fa-bell"></i>
+                    <div class="notification-dot"></div>
+                </button>
+
+                <div class="notification-dropdown" id="notifDropdown">
+                    <div class="notif-header">
+                        <h4>
+                            Notifications
+                            <span class="badge badge-danger"
+                                style="margin-left: 8px; font-size: 10px; padding: 2px 6px">4
+                                New</span>
+                        </h4>
+                        <span class="notif-mark-read">Mark all as read</span>
+                    </div>
+
+                    <div class="notif-list">
+                        <div class="notif-item unread">
+                            <div class="notif-icon-box error">
+                                <i class="fa-solid fa-circle-exclamation"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Server Connection Failed</h5>
+                                <p>
+                                    Could not sync data with main server. Please check your API
+                                    Key configuration.
+                                </p>
+                                <span class="notif-time">2 minutes ago</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item unread">
+                            <div class="notif-icon-box success">
+                                <i class="fa-solid fa-check-double"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Project Exported</h5>
+                                <p>
+                                    Your dashboard layout "Q3 Report" has been successfully
+                                    exported to PDF.
+                                </p>
+                                <span class="notif-time">1 hour ago</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item">
+                            <div class="notif-icon-box warning">
+                                <i class="fa-solid fa-triangle-exclamation"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>Storage Usage High</h5>
+                                <p>
+                                    You have used 85% of your allocated cloud storage. Consider
+                                    upgrading.
+                                </p>
+                                <span class="notif-time">Yesterday at 4:30 PM</span>
+                            </div>
+                        </div>
+
+                        <div class="notif-item">
+                            <div class="notif-icon-box info">
+                                <i class="fa-solid fa-circle-info"></i>
+                            </div>
+                            <div class="notif-content">
+                                <h5>New Feature Available</h5>
+                                <p>
+                                    Dark mode is now customizable. Check settings for more
+                                    themes.
+                                </p>
+                                <span class="notif-time">2 days ago</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="notif-footer">View All Notifications</div>
+                </div>
+            </div>
+
+            <div class="profile-wrapper">
+                <img src="https://i.pravatar.cc/150?img=12" alt="Profile" class="user-img header-icon-btn"
+                    id="profileTrigger" />
+
+                <div class="profile-dropdown" id="profileDropdown">
+                    <div class="pd-header">
+                        <img src="https://i.pravatar.cc/150?img=12" class="pd-avatar" />
+                        <div class="pd-info">
+                            <h4>Irvan Maulana</h4>
+                            <span>@irvanmaulana</span>
+                        </div>
+                    </div>
+                    <div class="pd-menu-list">
+                        <a href="pages-profile.html" class="pd-menu-item"><i class="fa-regular fa-user"></i> Your
+                            profile</a>
+                    </div>
+                    <div class="pd-divider"></div>
+                    <div class="pd-theme-toggle">
+                        <span>Theme</span>
+                        <div class="theme-options">
+                            <div class="theme-opt active" id="themeDark">
+                                <i class="fa-solid fa-moon"></i>
+                            </div>
+                            <div class="theme-opt" id="themeLight">
+                                <i class="fa-solid fa-sun"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pd-divider"></div>
+                    <div class="pd-menu-list">
+                        <a class="pd-menu-item text-muted"><i class="fa-solid fa-arrow-right-from-bracket"></i>
+                            Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="app-body-wrapper">
+        <div class="app-body">
+            <div id="sidebar-container"></div>
+
+            <main class="main-content" id="mainContent">
+                <div class="page-header-card">
+                    <i class="fa-solid fa-gears header-bg-icon"></i>
+                    <div class="header-hero-content">
+                        <h1 class="hero-title">Platform Settings</h1>
+                        <p class="hero-desc">
+                            Manage your application preferences, API keys, and system configurations.
+                            <span style="color: var(--accent-green); font-weight: 600">Changes are auto-saved
+                                locally.</span>
+                        </p>
+                    </div>
+                    <div class="header-hero-actions">
+                        <nav class="hero-breadcrumb">
+                            <div class="home-icon-box"><i class="fa-solid fa-home"></i></div>
+
+                            <span class="breadcrumb-sep"><i class="fa-solid fa-chevron-right"></i></span>
+                            <a href="dashboard.html" class="breadcrumb-link">Dashboard</a>
+                            <span class="breadcrumb-sep"><i class="fa-solid fa-chevron-right"></i></span>
+                            <span class="breadcrumb-link active">Settings</span>
+                        </nav>
+                    </div>
+                </div>
+
+                <div class="tabs-line">
+                    <div class="tab-link-line tab-link active" data-tab="tab-general">General</div>
+                    <div class="tab-link-line tab-link " data-tab="tab-notifications">Notifications</div>
+                    <div class="tab-link-line tab-link " data-tab="tab-api">API Keys</div>
+                    <div class="tab-link-line tab-link " data-tab="tab-system">System Config</div>
+                </div>
+
+                <form id="settingsForm" class="tab-content needs-validation" novalidate>
+
+                    <div id="tab-general" class="tab-pane active">
+                        <div class="content-grid">
+
+                            <div class="card col-span-8">
+                                <div class="card-header">
+                                    <h5 class="card-title">Site Information</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row g-3">
+                                        <div class="col-md-6">
+                                            <label class="form-label">Site Name</label>
+                                            <input type="text" name="siteName" class="form-control"
+                                                placeholder="My Awesome App" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label">Support Email</label>
+                                            <input type="email" name="supportEmail" class="form-control"
+                                                placeholder="support@daily.dev">
+                                        </div>
+                                        <div class="col-12">
+                                            <label class="form-label">Description</label>
+                                            <textarea name="siteDesc" class="form-control" rows="3"
+                                                placeholder="Enter site description for SEO..."></textarea>
+                                        </div>
+
+                                        <div class="col-12">
+                                            <label class="form-label">Keywords (SEO)</label>
+                                            <div class="tag-input-wrapper" id="tagWrapper">
+                                                <span class="tag-pill">admin <i
+                                                        class="fa-solid fa-xmark ms-1 cursor-pointer remove-tag"></i></span>
+                                                <span class="tag-pill">dashboard <i
+                                                        class="fa-solid fa-xmark ms-1 cursor-pointer remove-tag"></i></span>
+                                                <input type="text" class="tag-input" id="tagInput"
+                                                    placeholder="Add keyword & press Enter...">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card col-span-4">
+                                <div class="card-header">
+                                    <h5 class="card-title">Branding Logo</h5>
+                                </div>
+                                <div class="card-body text-center">
+                                    <div class="avatar-upload-section">
+                                        <img src="https://placehold.co/150" id="logoPreview" class="mb-3"
+                                            style="width: 100px; height: 100px; object-fit: contain; border: 2px dashed var(--border-color); padding: 5px; border-radius: 12px;">
+                                        <p class="text-xs text-muted mb-3">Upload PNG or SVG only. Max 2MB.</p>
+
+                                        <input type="file" id="logoInput" class="d-none" accept="image/*">
+                                        <button type="button" class="btn btn-outline-primary btn-sm"
+                                            onclick="document.getElementById('logoInput').click()">
+                                            <i class="fa-solid fa-cloud-arrow-up"></i> Upload Logo
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div id="tab-notifications" class="tab-pane">
+                        <div class="content-grid">
+                            <div class="card col-span-8">
+                                <div class="card-header">
+                                    <h5 class="card-title">Alert Preferences</h5>
+                                </div>
+                                <div class="card-body">
+
+                                    <div class="d-flex align-center justify-between py-3 border-b">
+                                        <div>
+                                            <h6 class="mb-1 text-main">Email Notifications</h6>
+                                            <p class="text-xs text-muted m-0">Receive daily summaries and critical
+                                                alerts.</p>
+                                        </div>
+                                        <label class="form-switch">
+                                            <input type="checkbox" name="notifEmail" checked>
+                                            <span class="switch-slider"></span>
+                                        </label>
+                                    </div>
+
+                                    <div class="d-flex align-center justify-between py-3 border-b">
+                                        <div>
+                                            <h6 class="mb-1 text-main">Push Notifications</h6>
+                                            <p class="text-xs text-muted m-0">Real-time alerts on your desktop.</p>
+                                        </div>
+                                        <label class="form-switch">
+                                            <input type="checkbox" name="notifPush" checked>
+                                            <span class="switch-slider"></span>
+                                        </label>
+                                    </div>
+
+                                    <div class="d-flex align-center justify-between py-3">
+                                        <div>
+                                            <h6 class="mb-1 text-main">SMS Alerts</h6>
+                                            <p class="text-xs text-muted m-0">Only for high-priority security incidents.
+                                            </p>
+                                        </div>
+                                        <label class="form-switch">
+                                            <input type="checkbox" name="notifSMS">
+                                            <span class="switch-slider"></span>
+                                        </label>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="tab-api" class="tab-pane">
+                        <div class="content-grid">
+                            <div class="card col-span-12">
+                                <div class="card-header">
+                                    <h5 class="card-title">API Configuration</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="alert alert-info">
+                                        <div class="alert-icon"><i class="fa-solid fa-circle-info"></i></div>
+                                        <div>
+                                            <strong>Developer Note:</strong> Keep your keys secret. Regenerate if you
+                                            suspect a leak.
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group mb-4">
+                                        <label class="form-label">Live API Endpoint</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="fa-solid fa-link"></i></span>
+                                            <input type="text" class="form-control" id="apiEndpoint"
+                                                value="https://api.daily.dev/v1/user/data" readonly>
+                                            <button type="button" class="btn btn-secondary" onclick="copyToClipboard()">
+                                                <i class="fa-regular fa-copy" id="iconCopy"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="form-label">Secret Key</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="fa-solid fa-key"></i></span>
+                                            <input type="password" class="form-control" value="sk_live_51Hz.........."
+                                                readonly>
+                                            <button type="button" class="btn btn-warning">Regenerate</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="tab-system" class="tab-pane">
+                        <div class="content-grid">
+
+                            <div class="card col-span-6">
+                                <div class="card-header">
+                                    <h5 class="card-title">Maintenance Mode</h5>
+                                </div>
+                                <div class="card-body text-center py-5">
+                                    <div class="mb-3">
+                                        <i class="fa-solid fa-screwdriver-wrench fa-3x text-muted"></i>
+                                    </div>
+                                    <p class="text-sm text-muted mb-4">Activate this to show a "Under Maintenance" page
+                                        to all visitors.</p>
+
+                                    <div class="d-flex justify-center align-center">
+                                        <label class="form-switch">
+                                            <input type="checkbox" name="maintMode" id="maintSwitch"
+                                                onchange="toggleMaint(this)">
+                                            <span class="switch-slider"></span>
+                                        </label>
+                                        <span id="maintStatus" class="badge badge-soft-success ms-3">Live</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card col-span-6">
+                                <div class="card-header">
+                                    <h5 class="card-title">Primary Theme Color</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="d-flex align-center gap-3 mb-3">
+                                        <div id="colorDisplay"
+                                            style="width: 50px; height: 50px; border-radius: 12px; background-color: #a855f7; border: 2px solid var(--border-color); cursor: pointer;">
+                                        </div>
+                                        <div>
+                                            <h6 class="mb-1">Accent Color</h6>
+                                            <span class="text-xs text-muted font-mono" id="colorHex">#a855f7</span>
+                                        </div>
+                                    </div>
+                                    <input type="color" id="colorInput" class="form-control form-control-color w-100"
+                                        value="#a855f7" style="height: 40px; padding: 4px;">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="sticky-footer">
+                        <div class="d-flex align-center gap-2">
+                            <span class="text-xs text-muted d-none" id="autoSaveIndicator"><i
+                                    class="fa-solid fa-pen-nib"></i> Saving draft...</span>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <button type="button" class="btn btn-ghost" onclick="resetForm()">Reset Changes</button>
+                            <button type="submit" class="btn btn-primary">Save Settings</button>
+                        </div>
+                    </div>
+
+                </form>
+
+                <footer class="app-footer">
+                    <div class="footer-left">
+                        <span class="footer-logo-icon"><i class="fa-solid fa-code"></i></span>
+                        <span>&copy; 2025 <strong>Daily.dev</strong>. Created with
+                            <i class="fa-solid fa-heart heart-icon"></i> by Irvan Maulana.</span>
+                    </div>
+                    <div class="footer-links">
+                        <a href="#" class="footer-link-item">Privacy Policy</a>
+                        <a href="#" class="footer-link-item">Terms</a>
+                        <a href="#" class="footer-link-item">Support</a>
+                    </div>
+                </footer>
+            </main>
+        </div>
+    </div>
+
+    <div class="sidebar-overlay desktop-only" id="sidebarOverlay"></div>
+    <div id="settings-container"></div>
+
+    <script src="assets/js/core.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Cek apakah fungsi loadSavedData ada di core.js
+            if (typeof window.loadSavedData === 'function') {
+                window.loadSavedData();
+            }
+        });
+    </script>
+</body>
+
+</html>

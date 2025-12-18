@@ -141,58 +141,7 @@
   text-decoration: underline;
 }
 
-/* --- ERROR PAGE LAYOUT (404/500) --- */
-.error-page {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  background: var(--bg-body);
-  padding: 20px;
-  position: relative;
-  overflow: hidden;
-  transition: background-color 0.3s ease;
-}
 
-.error-code {
-  font-size: 10rem;
-  font-weight: 900;
-  line-height: 1;
-  background: linear-gradient(135deg, var(--accent-color), #a855f7);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  /* Menghapus opacity agar warna lebih tajam */
-  opacity: 1;
-  margin-bottom: 0;
-  letter-spacing: -5px;
-  text-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Tambahan shadow halus */
-}
-
-.error-title {
-  font-size: 2rem;
-  font-weight: 700;
-  color: var(--text-main);
-  margin-bottom: 16px;
-}
-
-.error-desc {
-  color: var(--text-muted);
-  max-width: 500px;
-  margin-bottom: 32px;
-  line-height: 1.6;
-  font-size: 1.1rem; /* Ukuran font sedikit diperbesar agar lebih terbaca */
-}
-
-.error-illustration {
-  font-size: 5rem; /* Icon diperbesar */
-  margin-bottom: 20px;
-  color: var(--text-muted);
-  /* Mengubah opacity dari 0.5 menjadi 1 agar terlihat jelas di light mode */
-  opacity: 1;
-  animation: float 3s ease-in-out infinite;
-}
 
 /* Khusus Light Mode: Berikan warna aksen pada ilustrasi agar lebih hidup */
 [data-theme="light"] .error-illustration {

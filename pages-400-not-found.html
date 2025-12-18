@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 Not Found - Daily Admin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/core.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/error-pages.css">
+</head>
+
+<body class="error-page">
+
+    <div class="bg-grid"></div>
+    <div class="orb orb-1" id="orb1"></div>
+    <div class="orb orb-2" id="orb2"></div>
+
+    <div class="content-box" id="contentBox">
+        <div class="ghost-container">
+            <i class="fa-solid fa-ghost"></i>
+            <div class="ghost-eyes" id="ghostEyes">
+                <div class="eye"></div>
+                <div class="eye"></div>
+            </div>
+        </div>
+
+        <div class="glitch-wrapper">
+            <h1 class="error-code" data-text="404">404</h1>
+        </div>
+
+        <h2 class="error-title">Page Not Found</h2>
+        <p class="error-desc">
+            // Error: Halaman yang Anda cari telah hilang ke dalam void.<br>
+            // Status: Not Found. Silakan kembali ke markas.
+        </p>
+
+        <div class="justify-content-beetween align-items-center gap-3">
+            <a href="dashboard.html" class="btn btn-home rounded-pill  mb-2">
+                <i class="fa-solid fa-house me-2"></i> Back Home
+            </a>
+            <button onclick="history.back()" class="btn btn-ghost rounded-pill">
+                Previous
+            </button>
+        </div>
+    </div>
+    <footer class="error-footer">
+        &copy; 2025 DAILY ADMIN SYSTEM. ALL RIGHTS RESERVED.
+    </footer>
+    <script src="assets/js/error-pages.js"></script>
+</body>
+
+</html>

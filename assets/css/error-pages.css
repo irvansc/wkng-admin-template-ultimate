@@ -1,0 +1,355 @@
+/* =========================================
+   ERROR PAGES STYLES (402, 404, 500, etc)
+   Path: assets/css/pages/error-pages.css
+   ========================================= */
+
+body.error-page {
+    overflow: hidden; /* Mencegah scrollbar */
+    background: var(--bg-body, #0e1217);
+    cursor: default;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* --- 1. Interactive Background Grid --- */
+.bg-grid {
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    transform: perspective(500px) rotateX(60deg);
+    z-index: -2;
+    animation: gridMove 20s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes gridMove {
+    0% { transform: perspective(500px) rotateX(60deg) translateY(0); }
+    100% { transform: perspective(500px) rotateX(60deg) translateY(50px); }
+}
+
+/* --- 2. Floating Orbs --- */
+.orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.4;
+    z-index: -1;
+    transition: transform 0.1s ease-out;
+    pointer-events: none;
+}
+.orb-1 { width: 300px; height: 300px; background: var(--accent-color, #ff4757); top: 10%; left: 20%; }
+.orb-2 { width: 200px; height: 200px; background: var(--info, #3b82f6); bottom: 20%; right: 20%; }
+
+/* --- 3. Ghost Container --- */
+.ghost-container {
+    font-size: 8rem;
+    color: var(--text-muted, #9499a6);
+    margin-bottom: 20px;
+    position: relative;
+    display: inline-block;
+    animation: floatGhost 3s ease-in-out infinite;
+}
+
+.ghost-eyes {
+    position: absolute;
+    top: 45px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70px;
+    height: 30px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+}
+
+.eye {
+    width: 12px;
+    height: 12px;
+    background: var(--bg-body, #0e1217);
+    border-radius: 50%;
+    position: relative;
+    transition: transform 0.1s;
+}
+
+.eye::after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 4px;
+    height: 4px;
+    background: white;
+    border-radius: 50%;
+}
+
+@keyframes floatGhost {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+/* --- 4. Glitch Text Code --- */
+.glitch-wrapper {
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.error-code {
+    font-size: 10rem;
+    font-weight: 900;
+    line-height: 1;
+    color: var(--text-main, #ffffff);
+    position: relative;
+    z-index: 1;
+    text-shadow: 2px 2px 0px var(--accent-color, #ff4757);
+}
+
+.error-code::before,
+.error-code::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-body, #0e1217);
+}
+
+.error-code::before {
+    left: 2px;
+    text-shadow: -1px 0 #ff00c1;
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim 5s infinite linear alternate-reverse;
+}
+
+.error-code::after {
+    left: -2px;
+    text-shadow: -1px 0 #00fff9;
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim2 5s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim {
+    0% { clip: rect(31px, 9999px, 94px, 0); transform: skew(0.85deg); }
+    5% { clip: rect(70px, 9999px, 11px, 0); transform: skew(0.26deg); }
+    10% { clip: rect(23px, 9999px, 83px, 0); transform: skew(0.06deg); }
+    15% { clip: rect(5px, 9999px, 96px, 0); transform: skew(0.68deg); }
+    20% { clip: rect(57px, 9999px, 55px, 0); transform: skew(0.55deg); }
+    100% { clip: rect(98px, 9999px, 37px, 0); transform: skew(0.18deg); }
+}
+
+@keyframes glitch-anim2 {
+    0% { clip: rect(65px, 9999px, 100px, 0); transform: skew(0.63deg); }
+    5% { clip: rect(52px, 9999px, 74px, 0); transform: skew(0.58deg); }
+    10% { clip: rect(78px, 9999px, 13px, 0); transform: skew(0.24deg); }
+    15% { clip: rect(56px, 9999px, 37px, 0); transform: skew(0.69deg); }
+    20% { clip: rect(39px, 9999px, 5px, 0); transform: skew(0.53deg); }
+    100% { clip: rect(9px, 9999px, 4px, 0); transform: skew(0.44deg); }
+}
+
+/* --- 5. Content Box Card --- */
+.content-box {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 2rem;
+    max-width: 600px;
+    width: 90%;
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(10px);
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+.error-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 1rem;
+}
+
+.error-desc {
+    color: var(--text-muted);
+    font-family: 'JetBrains Mono', monospace;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.btn-home {
+    background: var(--text-main);
+    color: var(--bg-body);
+    border: none;
+    padding: 12px 32px;
+    font-weight: 700;
+    transition: all 0.3s;
+}
+
+.btn-home:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+}
+
+/* =========================================
+   RESPONSIVE RULES
+   ========================================= */
+
+/* 1. LAPTOP (Max: 1024px) */
+@media (max-width: 1024px) {
+    .content-box {
+        max-width: 500px; /* Sedikit lebih ramping */
+        padding: 2.5rem;
+    }
+
+    .error-code {
+        font-size: 8rem; /* Turun dari 10rem */
+    }
+
+    .ghost-container {
+        font-size: 7rem;
+    }
+    
+    /* Sesuaikan posisi mata hantu karena ukuran font berubah */
+    .ghost-eyes {
+        top: 40px; 
+        width: 60px;
+    }
+}
+
+/* 2. TABLET (Max: 768px) */
+@media (max-width: 768px) {
+    .content-box {
+        max-width: 90%;
+        padding: 2rem;
+    }
+
+    .error-code {
+        font-size: 6rem; /* Turun lagi */
+    }
+
+    .ghost-container {
+        font-size: 5rem;
+        margin-bottom: 10px;
+    }
+
+    /* Mata hantu harus pas di tengah huruf O/hantu */
+    .ghost-eyes {
+        top: 28px;
+        width: 45px;
+    }
+    
+    .eye { 
+        width: 8px; 
+        height: 8px; 
+    }
+    
+    .eye::after { 
+        width: 3px; 
+        height: 3px; 
+        top: 2px; 
+        left: 2px; 
+    }
+
+    .error-title {
+        font-size: 1.5rem;
+    }
+    
+    .orb-1 { width: 200px; height: 200px; opacity: 0.3; }
+    .orb-2 { width: 150px; height: 150px; opacity: 0.3; }
+}
+
+/* 3. MOBILE (Max: 480px) - CRITICAL FIX */
+@media (max-width: 480px) {
+    .bg-grid {
+        background-size: 30px 30px; /* Grid lebih kecil agar terlihat di layar sempit */
+    }
+
+    .content-box {
+        width: 95%; /* Hampir full width */
+        padding: 1.5rem;
+        margin-top: -20px; /* Sedikit naik biar gak ketutup keyboard address bar */
+        border: 1px solid rgba(255,255,255,0.1); /* Border lebih tegas dikit */
+    }
+
+    .error-code {
+        font-size: 4.5rem; /* Ukuran aman untuk HP Portrait */
+        letter-spacing: -2px;
+    }
+
+    .ghost-container {
+        font-size: 4rem;
+    }
+
+    .ghost-eyes {
+        top: 22px;
+        width: 35px;
+    }
+    
+    .error-desc {
+        font-size: 12px; /* Perkecil teks deskripsi */
+        margin-bottom: 1.5rem;
+    }
+
+    /* Tombol Stack ke Bawah (Vertikal) */
+    .d-flex.justify-content-center.gap-3 {
+        flex-direction: column;
+        width: 100%;
+        gap: 12px !important;
+    }
+
+    .btn-home, 
+    .btn-ghost {
+        width: 100%; /* Tombol jadi full width enak dipencet jempol */
+        padding: 10px;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    /* Kurangi distraction di HP */
+    .orb { opacity: 0.2; }
+}
+
+/* =========================================
+   COPYRIGHT FOOTER
+   ========================================= */
+.error-footer {
+    position: fixed; /* Selalu di bawah layar */
+    bottom: 20px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    
+    /* Typography */
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-muted);
+    opacity: 0.4;
+    letter-spacing: 1px;
+    
+    z-index: 20 !important;
+    transition: opacity 0.3s ease;
+}
+
+.error-footer:hover {
+    opacity: 0.8; /* Terang saat di-hover */
+}
+
+/* Mobile Adjustment */
+@media (max-width: 480px) {
+    .error-footer {
+        bottom: 10px;
+        font-size: 10px;
+    }
+}
